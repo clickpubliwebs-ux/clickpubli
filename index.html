@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        :root { --primary:#0f766e; --primary-dark:#115e59; --primary-light:#14b8a6; --accent:#f97316; --accent-dark:#ea580c; --brand:#5B2D91; --brand-dot:#A9C93C; --dark:#0f172a; --gray:#64748b; --light-gray:#f1f5f9; --sand:#fdf6ec; --white:#fff; --border:#e2e8f0; --shadow:0 4px 20px rgba(15,23,42,.08); --shadow-lg:0 15px 40px rgba(15,23,42,.15); --radius:16px; }
+        :root { --primary:#0f766e; --primary-dark:#115e59; --primary-light:#14b8a6; --accent:#f97316; --accent-dark:#ea580c; --brand:#5B2D91; --dark:#0f172a; --gray:#64748b; --light-gray:#f1f5f9; --sand:#fdf6ec; --white:#fff; --border:#e2e8f0; --shadow:0 4px 20px rgba(15,23,42,.08); --shadow-lg:0 15px 40px rgba(15,23,42,.15); --radius:16px; }
         body { font-family:'Poppins','Cairo','Segoe UI',Tahoma,sans-serif; line-height:1.6; color:var(--dark); background:var(--white); overflow-x:hidden; }
         .rtl { font-family:'Cairo','Poppins','Segoe UI',Tahoma,sans-serif; }
         .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
@@ -30,10 +30,7 @@
         .desktop-nav a { color:var(--dark); text-decoration:none; font-weight:500; font-size:.95rem; transition:color .3s; }
         .desktop-nav a:hover { color:var(--primary); }
         .header-right { display:flex; align-items:center; gap:.6rem; }
-        .lang-switcher { display:flex; gap:.25rem; background:var(--light-gray); padding:.25rem; border-radius:10px; }
-        .lang-btn { border:none; background:transparent; padding:.35rem .6rem; border-radius:8px; font-weight:700; font-size:.8rem; cursor:pointer; color:var(--gray); transition:all .25s; }
-        .lang-btn.active { background:var(--primary); color:white; box-shadow:0 2px 8px rgba(15,118,110,.3); }
-        .menu-btn { display:none; background:var(--light-gray); border:none; width:40px; height:40px; border-radius:10px; font-size:1.25rem; cursor:pointer; color:var(--dark); align-items:center; justify-content:center; transition:background .2s; }
+        .menu-btn { display:flex; background:var(--light-gray); border:none; width:40px; height:40px; border-radius:10px; font-size:1.25rem; cursor:pointer; color:var(--dark); align-items:center; justify-content:center; transition:background .2s; }
         .menu-btn:hover { background:var(--border); }
         .auth-area { display:flex; align-items:center; gap:.6rem; }
         .auth-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; border:none; border-radius:11px; font-weight:700; cursor:pointer; font-family:inherit; font-size:.9rem; transition:transform .2s,box-shadow .2s; white-space:nowrap; }
@@ -59,8 +56,9 @@
         .drawer-nav a:hover { background:var(--light-gray); color:var(--primary); }
         .drawer-section { margin-bottom:1.4rem; }
         .drawer-label { font-size:.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.6rem; }
-        .drawer .lang-switcher { width:100%; }
-        .drawer .lang-btn { flex:1; padding:.55rem .3rem; font-size:.85rem; background:var(--light-gray); }
+        .drawer .lang-switcher { display:flex; width:100%; gap:.4rem; }
+        .drawer .lang-btn { flex:1; border:none; background:var(--light-gray); padding:.55rem .3rem; border-radius:9px; font-weight:700; font-size:.9rem; cursor:pointer; color:var(--gray); transition:all .25s; }
+        .drawer .lang-btn.active { background:var(--primary); color:white; box-shadow:0 2px 8px rgba(15,118,110,.3); }
         .drawer-link { display:flex; align-items:center; gap:.6rem; width:100%; padding:.75rem .9rem; border:none; background:transparent; border-radius:10px; font-weight:600; cursor:pointer; font-family:inherit; color:var(--dark); text-align:start; margin-bottom:.2rem; transition:background .2s,color .2s; font-size:.95rem; }
         .drawer-link:hover { background:var(--light-gray); color:var(--primary); }
         .hero { margin-top:74px; position:relative; background:linear-gradient(135deg,#0f766e 0%,#0d5c56 55%,#0b4a45 100%); color:white; padding:4.5rem 0 5rem; overflow:hidden; }
@@ -128,13 +126,15 @@
         .service-card { background:white; padding:1.8rem 1.2rem; border-radius:var(--radius); text-align:center; cursor:pointer; transition:all .3s; border:2px solid transparent; }
         .service-card:hover { border-color:var(--primary-light); transform:translateY(-5px); box-shadow:var(--shadow); }
         .service-icon { font-size:2.4rem; margin-bottom:.8rem; }
+        .service-img { width:70px; height:70px; object-fit:cover; border-radius:14px; margin:0 auto .8rem; display:block; border:1px solid var(--border); }
         .service-card h3 { font-size:1.05rem; margin-bottom:.4rem; }
         .service-card p { font-size:.82rem; color:var(--gray); }
         .pros-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.8rem; }
         .pro-card { background:white; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); transition:transform .3s,box-shadow .3s; position:relative; }
         .pro-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
         .pro-cover { height:90px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); position:relative; }
-        .pro-avatar { width:74px; height:74px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.2rem; position:absolute; bottom:-37px; left:50%; transform:translateX(-50%); box-shadow:0 4px 12px rgba(0,0,0,.12); }
+        .pro-avatar { width:74px; height:74px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.2rem; position:absolute; bottom:-37px; left:50%; transform:translateX(-50%); box-shadow:0 4px 12px rgba(0,0,0,.12); overflow:hidden; }
+        .pro-avatar img { width:100%; height:100%; object-fit:cover; }
         .rtl .pro-avatar { left:auto; right:50%; transform:translateX(50%); }
         .pro-body { padding:3rem 1.5rem 1.5rem; text-align:center; }
         .pro-body h3 { font-size:1.15rem; margin-bottom:.2rem; }
@@ -161,7 +161,8 @@
         .fav-back-btn:hover { border-color:var(--primary); color:var(--primary); }
         .pp-card { background:white; border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; position:relative; }
         .pp-cover { height:120px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); }
-        .pp-avatar { width:100px; height:100px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3rem; position:absolute; top:70px; left:50%; transform:translateX(-50%); box-shadow:0 4px 12px rgba(0,0,0,.15); }
+        .pp-avatar { width:100px; height:100px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3rem; position:absolute; top:70px; left:50%; transform:translateX(-50%); box-shadow:0 4px 12px rgba(0,0,0,.15); overflow:hidden; }
+        .pp-avatar img { width:100%; height:100%; object-fit:cover; }
         .pp-fav { top:130px; right:20px; }
         .pp-info { padding:60px 1.5rem 1.5rem; text-align:center; }
         .pp-info h2 { font-size:1.6rem; }
@@ -177,7 +178,8 @@
         .pp-gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--light-gray),var(--sand)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; border:1px solid var(--border); overflow:hidden; }
         .pp-gallery-item img { width:100%; height:100%; object-fit:cover; }
         .admin-pro-row { display:flex; align-items:center; gap:1rem; background:white; border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; margin-bottom:.7rem; }
-        .admin-pro-emoji { font-size:1.8rem; width:44px; height:44px; background:var(--light-gray); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .admin-pro-emoji { font-size:1.8rem; width:44px; height:44px; background:var(--light-gray); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+        .admin-pro-emoji img { width:100%; height:100%; object-fit:cover; }
         .admin-pro-info { flex:1; min-width:0; }
         .admin-pro-info strong { display:block; }
         .admin-pro-info small { color:var(--gray); font-size:.82rem; }
@@ -187,8 +189,15 @@
         .admin-btn-edit:hover { background:#bae6fd; }
         .admin-btn-del { background:#fee2e2; }
         .admin-btn-del:hover { background:#fecaca; }
+        .admin-subtitle { font-size:1.15rem; font-weight:700; margin:1.6rem 0 .8rem; }
+        .svc-media-row { display:flex; align-items:center; gap:.8rem; background:white; border:1px solid var(--border); border-radius:12px; padding:.7rem 1rem; margin-bottom:.6rem; flex-wrap:wrap; }
+        .svc-media-thumb { width:44px; height:44px; border-radius:9px; background:var(--light-gray); display:flex; align-items:center; justify-content:center; font-size:1.4rem; overflow:hidden; flex-shrink:0; }
+        .svc-media-thumb img { width:100%; height:100%; object-fit:cover; }
+        .svc-media-name { flex:1; font-weight:600; font-size:.92rem; min-width:120px; }
+        .svc-media-row input[type=file] { font-size:.8rem; }
         .admin-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
         .admin-form-grid .full { grid-column:1 / -1; }
+        .avatar-preview { width:64px; height:64px; border-radius:50%; object-fit:cover; border:2px solid var(--border); display:none; margin-bottom:.5rem; }
         .pro-photo-thumb { position:relative; width:80px; height:80px; border-radius:10px; overflow:hidden; border:1px solid var(--border); }
         .pro-photo-thumb img { width:100%; height:100%; object-fit:cover; }
         .pro-photo-del { position:absolute; top:2px; right:2px; background:rgba(0,0,0,.6); color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-size:.7rem; }
@@ -219,7 +228,8 @@
         .modal-cover { height:100px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); border-radius:20px 20px 0 0; position:relative; }
         .close-modal { position:absolute; top:12px; right:16px; font-size:1.8rem; cursor:pointer; color:white; line-height:1; background:rgba(0,0,0,.2); width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
         .rtl .close-modal { right:auto; left:16px; }
-        .modal-avatar { width:80px; height:80px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.4rem; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); box-shadow:var(--shadow); }
+        .modal-avatar { width:80px; height:80px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.4rem; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); box-shadow:var(--shadow); overflow:hidden; }
+        .modal-avatar img { width:100%; height:100%; object-fit:cover; }
         .modal-body { padding:3.2rem 1.8rem 1.8rem; text-align:center; }
         .modal-body h2 { font-size:1.4rem; }
         .modal-specialty { color:var(--primary); font-weight:600; margin:.2rem 0; }
@@ -293,8 +303,6 @@
         .reveal.visible { opacity:1; transform:translateY(0); }
         @media (max-width:900px) {
             .desktop-nav { display:none; }
-            .menu-btn { display:flex; }
-            .header-lang { display:none; }
             .hero-grid { grid-template-columns:1fr; text-align:center;} .hero h1 { font-size:2.3rem;} .hero-subtitle { margin-inline:auto;} .hero-stats { justify-content:center;} .popular-chips { justify-content:center;} .hero-visual { margin-top:2rem;} .footer-grid { grid-template-columns:1fr 1fr;}
         }
         @media (max-width:520px) {
@@ -329,11 +337,6 @@
                 <a href="javascript:void(0)" onclick="goSection('how')" data-i18n="nav_how">Comment ça marche</a>
             </nav>
             <div class="header-right">
-                <div class="lang-switcher header-lang">
-                    <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
-                    <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
-                    <button class="lang-btn" data-lang="ar">🇲🇦 AR</button>
-                </div>
                 <div class="auth-area" id="authArea"></div>
                 <button class="menu-btn" onclick="toggleDrawer()" aria-label="Menu">☰</button>
             </div>
@@ -375,7 +378,7 @@
             <div class="hero-orb o2"></div>
             <div class="container hero-grid">
                 <div class="hero-content">
-                    <span class="hero-badge">🇲 <span data-i18n="hero_badge">N°1 des services à domicile au Maroc</span></span>
+                    <span class="hero-badge">🇲🇦 <span data-i18n="hero_badge">N°1 des services à domicile au Maroc</span></span>
                     <h1><span data-i18n="hero_title_1">Trouvez des</span> <span class="highlight" data-i18n="hero_title_highlight">professionnels de confiance</span> <span data-i18n="hero_title_2">près de chez vous</span></h1>
                     <p class="hero-subtitle" data-i18n="hero_subtitle">Plombiers, électriciens, peintres, femmes de ménage... Contactez directement des artisans vérifiés partout au Maroc. Sans commission, sans intermédiaire.</p>
                     <div class="search-box">
@@ -494,6 +497,8 @@
                 </div>
             </div>
             <div id="adminProList"></div>
+            <h3 class="admin-subtitle" data-i18n="admin_svc_images">Imágenes de servicios</h3>
+            <div id="svcMediaList"></div>
         </div>
     </div>
 
@@ -607,6 +612,10 @@
                 <form id="proForm" onsubmit="savePro(event)" style="margin-top:1rem;">
                     <div class="admin-form-grid">
                         <div class="form-group full"><label data-i18n="auth_name">Nom complet</label><input type="text" id="pfName"></div>
+                        <div class="form-group full"><label data-i18n="field_pro_photo">Foto del profesional</label>
+                            <img id="pfAvatarPreview" class="avatar-preview" alt="">
+                            <input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem;">
+                        </div>
                         <div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨‍"></div>
                         <div class="form-group"><label data-i18n="field_category">Catégorie</label><select id="pfCategory"></select></div>
                         <div class="form-group"><label data-i18n="auth_city">Ville</label><select id="pfCity"></select></div>
@@ -696,10 +705,10 @@
                 reviews_placeholder:"Partagez votre expérience avec ce professionnel...", reviews_submit:"Publier l'avis",
                 reviews_login_required:"Connectez-vous pour laisser un avis.", reviews_success:"Merci pour votre avis !",
                 reviews_select_rating:"Veuillez choisir une note (étoiles)", reviews_empty_comment:"Veuillez écrire un commentaire",
-                admin_title:"Administration", admin_add_pro:"Ajouter un professionnel", admin_edit_pro:"Modifier le professionnel", admin_delete_confirm:"Supprimer ce professionnel ?", admin_saved:"Professionnel enregistré", admin_deleted:"Professionnel supprimé", admin_name_required:"Nom requis", admin_no_access:"Accès réservé aux administrateurs", admin_load_samples:"Charger les exemples",
+                admin_title:"Administration", admin_add_pro:"Ajouter un professionnel", admin_edit_pro:"Modifier le professionnel", admin_delete_confirm:"Supprimer ce professionnel ?", admin_saved:"Professionnel enregistré", admin_deleted:"Professionnel supprimé", admin_name_required:"Nom requis", admin_no_access:"Accès réservé aux administrateurs", admin_load_samples:"Charger les exemples", admin_svc_images:"Images des services",
                 field_category:"Catégorie", field_rating:"Note", field_specialty:"Spécialité", field_description:"Description",
-                my_pro_card:"Ma fiche pro", pro_only:"Réservé aux professionnels", create_pro_card:"Créer ma fiche pro",
-                field_photos:"Photos de vos travaux", install_app:"Installer l'app"
+                field_pro_photo:"Photo du professionnel", field_photos:"Photos de vos travaux", install_app:"Installer l'app",
+                my_pro_card:"Ma fiche pro", pro_only:"Réservé aux professionnels", create_pro_card:"Créer ma fiche pro"
             },
             es: {
                 doc_title:"ClickPubli — Servicios a domicilio en Marruecos", nav_home:"Inicio", nav_services:"Servicios", nav_pros:"Profesionales", nav_how:"Cómo funciona",
@@ -749,10 +758,10 @@
                 reviews_placeholder:"Comparte tu experiencia con este profesional...", reviews_submit:"Publicar reseña",
                 reviews_login_required:"Inicia sesión para dejar una reseña.", reviews_success:"¡Gracias por tu reseña!",
                 reviews_select_rating:"Por favor elige una puntuación (estrellas)", reviews_empty_comment:"Por favor escribe un comentario",
-                admin_title:"Administración", admin_add_pro:"Añadir profesional", admin_edit_pro:"Editar profesional", admin_delete_confirm:"¿Eliminar este profesional?", admin_saved:"Profesional guardado", admin_deleted:"Profesional eliminado", admin_name_required:"Nombre requerido", admin_no_access:"Acceso reservado a administradores", admin_load_samples:"Cargar ejemplos",
+                admin_title:"Administración", admin_add_pro:"Añadir profesional", admin_edit_pro:"Editar profesional", admin_delete_confirm:"¿Eliminar este profesional?", admin_saved:"Profesional guardado", admin_deleted:"Profesional eliminado", admin_name_required:"Nombre requerido", admin_no_access:"Acceso reservado a administradores", admin_load_samples:"Cargar ejemplos", admin_svc_images:"Imágenes de servicios",
                 field_category:"Categoría", field_rating:"Nota", field_specialty:"Especialidad", field_description:"Descripción",
-                my_pro_card:"Mi ficha profesional", pro_only:"Solo para profesionales", create_pro_card:"Crear mi ficha profesional",
-                field_photos:"Fotos de tus trabajos", install_app:"Instalar app"
+                field_pro_photo:"Foto del profesional", field_photos:"Fotos de tus trabajos", install_app:"Instalar app",
+                my_pro_card:"Mi ficha profesional", pro_only:"Solo para profesionales", create_pro_card:"Crear mi ficha profesional"
             },
             ar: {
                 doc_title:"ClickPubli — خدمات منزلية في المغرب", nav_home:"الرئيسية", nav_services:"الخدمات", nav_pros:"المحترفون", nav_how:"كيف يعمل",
@@ -802,10 +811,10 @@
                 reviews_placeholder:"شارك تجربتك مع هذا المحترف...", reviews_submit:"نشر الرأي",
                 reviews_login_required:"سجل الدخول لترك رأي.", reviews_success:"شكراً لرأيك!",
                 reviews_select_rating:"الرجاء اختيار تقييم (نجوم)", reviews_empty_comment:"الرجاء كتابة تعليق",
-                admin_title:"الإدارة", admin_add_pro:"إضافة محترف", admin_edit_pro:"تعديل المحترف", admin_delete_confirm:"حذف هذا المحترف؟", admin_saved:"تم حفظ المحترف", admin_deleted:"تم حذف المحترف", admin_name_required:"الاسم مطلوب", admin_no_access:"الوصول مخصص للمشرفين فقط", admin_load_samples:"تحميل الأمثلة",
+                admin_title:"الإدارة", admin_add_pro:"إضافة محترف", admin_edit_pro:"تعديل المحترف", admin_delete_confirm:"حذف هذا المحترف؟", admin_saved:"تم حفظ المحترف", admin_deleted:"تم حذف المحترف", admin_name_required:"الاسم مطلوب", admin_no_access:"الوصول مخصص للمشرفين فقط", admin_load_samples:"تحميل الأمثلة", admin_svc_images:"صور الخدمات",
                 field_category:"الفئة", field_rating:"التقييم", field_specialty:"التخصص", field_description:"الوصف",
-                my_pro_card:"بطاقتي المهنية", pro_only:"مخصص للمحترفين", create_pro_card:"إنشاء بطاقتي المهنية",
-                field_photos:"صور أعمالك", install_app:"تثبيت التطبيق"
+                field_pro_photo:"صورة المحترف", field_photos:"صور أعمالك", install_app:"تثبيت التطبيق",
+                my_pro_card:"بطاقتي المهنية", pro_only:"مخصص للمحترفين", create_pro_card:"إنشاء بطاقتي المهنية"
             }
         };
 
@@ -847,13 +856,12 @@
 
         const workEmojis = {
             plomberie:["🚿","","🚰",""], electricite:["💡","⚡","🔌","🏮"],
-            peinture:["🎨","🖌️","🖼️","🏠"], menage:["🧹","","✨",""],
+            peinture:["🎨","🖌️","🖼️",""], menage:["🧹","","✨",""],
             climatisation:["❄️","🌬️","🌀","🏢"], menuiserie:["🪚","","🚪","️"],
             serrurerie:["🔑","","🚪","️"], maconnerie:["🧱","🏗️","🏠","️"],
             electromenager:["🧺","","🧊",""], jardinage:["","🌳","","✂️"]
         };
 
-        /* ===== PROFESIONALES DE EJEMPLO (se cargan en BD con el botón 📥) ===== */
         const sampleMeta = {
             plomberie:{ specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"}, desc:{fr:"Plombier expérimenté pour réparations, installations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones, instalaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والتركيبات والأعطال الطارئة."} },
             electricite:{ specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"}, desc:{fr:"Électricien professionnel pour installations, mise aux normes et dépannages.",es:"Electricista profesional para instalaciones, normativas y averías.",ar:"كهربائي محترف للتركيبات والمطابقة للمعايير وإصلاح الأعطال."} },
@@ -869,11 +877,11 @@
         const sampleRaw = [
             ["p1","Mohammed El Amrani","👨‍🔧","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],
             ["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],
-            ["p3","Fatima Zahra","👩‍💼","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],
+            ["p3","Fatima Zahra","👩‍","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],
             ["p4","Hassan Idrissi","👨‍","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],
-            ["p5","Amina Berrada","👩‍🔧","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],
+            ["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],
             ["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],
-            ["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],
+            ["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],
             ["p8","Omar Cherkaoui","👨‍","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],
             ["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],
             ["p10","Nabil Fassi","👨‍💼","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],
@@ -914,22 +922,14 @@
         let prosData = [];
         let editingProId = null;
         let currentPhotos = [];
+        let pendingAvatarUrl = null;
+        let serviceMedia = {};
 
         function t(key) { return translations[currentLang][key] || key; }
 
-        function toggleDrawer() {
-            document.getElementById("drawer").classList.toggle("open");
-            document.getElementById("drawerOverlay").classList.toggle("show");
-        }
-        function closeDrawer() {
-            document.getElementById("drawer").classList.remove("open");
-            document.getElementById("drawerOverlay").classList.remove("show");
-        }
-        function goSection(id) {
-            closeDrawer();
-            showMainView();
-            setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior:"smooth" }); }, 60);
-        }
+        function toggleDrawer() { document.getElementById("drawer").classList.toggle("open"); document.getElementById("drawerOverlay").classList.toggle("show"); }
+        function closeDrawer() { document.getElementById("drawer").classList.remove("open"); document.getElementById("drawerOverlay").classList.remove("show"); }
+        function goSection(id) { closeDrawer(); showMainView(); setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior:"smooth" }); }, 60); }
 
         function renderMainView() {
             document.getElementById("mainView").style.display = "block";
@@ -947,10 +947,11 @@
             renderFavoritesPage();
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
+        function proAvatarHtml(p) { return p.photo_url ? `<img src="${p.photo_url}" alt="">` : p.emoji; }
         function renderProProfileView(proId) {
             const p = prosData.find(x => x.id === proId);
             if (!p) { renderMainView(); return; }
-            document.getElementById("ppAvatar").textContent = p.emoji;
+            document.getElementById("ppAvatar").innerHTML = proAvatarHtml(p);
             document.getElementById("ppName").textContent = p.name;
             document.getElementById("ppSpecialty").textContent = p.specialty[currentLang];
             document.getElementById("ppCity").textContent = p.city[currentLang];
@@ -959,16 +960,11 @@
             document.getElementById("ppPhoneLink").href = "tel:" + p.phone.replace(/\s/g,"");
             document.getElementById("ppWaLink").href = "https://wa.me/" + p.whatsapp;
             const gallery = document.getElementById("ppGallery");
-            if (p.photos && p.photos.length > 0) {
-                gallery.innerHTML = p.photos.map(u => `<div class="pp-gallery-item"><img src="${u}" alt=""></div>`).join("");
-            } else {
-                const emojis = workEmojis[p.category] || ["🛠️","🏠","","✨"];
-                gallery.innerHTML = emojis.map(e => `<div class="pp-gallery-item">${e}</div>`).join("");
-            }
+            if (p.photos && p.photos.length > 0) gallery.innerHTML = p.photos.map(u => `<div class="pp-gallery-item"><img src="${u}" alt=""></div>`).join("");
+            else { const emojis = workEmojis[p.category] || ["🛠️","","","✨"]; gallery.innerHTML = emojis.map(e => `<div class="pp-gallery-item">${e}</div>`).join(""); }
             const favBtn = document.getElementById("ppFavBtn");
             const fav = isFavorite(p.id);
-            favBtn.textContent = fav ? "♥" : "♡";
-            favBtn.classList.toggle("active", fav);
+            favBtn.textContent = fav ? "♥" : "♡"; favBtn.classList.toggle("active", fav);
             favBtn.setAttribute("onclick", `toggleFavorite('${p.id}', event)`);
             renderReviewsBlock(p.id, "reviewsProfile");
             document.getElementById("mainView").style.display = "none";
@@ -983,16 +979,13 @@
             document.getElementById("favoritesView").style.display = "none";
             document.getElementById("proProfileView").style.display = "none";
             document.getElementById("adminView").style.display = "block";
-            renderAdminProList();
+            renderAdminProList(); renderSvcMediaList();
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
         function showMainView() { if (location.hash && location.hash !== "#") location.hash = ""; else renderMainView(); }
         function showFavoritesView() { location.hash = "favorites"; }
         function showProProfile(proId) { location.hash = "pro=" + proId; }
-        function showAdminView() {
-            if (!isAdmin()) { showToast(t("admin_no_access")); return; }
-            location.hash = "admin";
-        }
+        function showAdminView() { if (!isAdmin()) { showToast(t("admin_no_access")); return; } location.hash = "admin"; }
         function handleRoute() {
             const hash = location.hash.replace(/^#/, "");
             if (hash === "admin") { if (isAdmin()) renderAdminView(); else renderMainView(); }
@@ -1058,12 +1051,7 @@
             await initAuth(); closeAuth();
             showToast(t("auth_success_login").replace("{n}", currentProfile ? currentProfile.name.split(" ")[0] : ""));
         }
-        async function logout() {
-            await sb.auth.signOut();
-            currentProfile = null; currentUserFavorites = [];
-            updateAuthUI();
-            showToast(t("auth_logout_success"));
-        }
+        async function logout() { await sb.auth.signOut(); currentProfile = null; currentUserFavorites = []; updateAuthUI(); showToast(t("auth_logout_success")); }
         function isAdmin() { return currentProfile && currentProfile.role === "admin"; }
         function isPro() { return currentProfile && currentProfile.role === "pro"; }
 
@@ -1086,14 +1074,8 @@
             if (currentProProfileId === proId) updateProFavBtn(proId);
         }
         function toggleFavoriteFromModal(event) { if (currentModalProId) toggleFavorite(currentModalProId, event); }
-        function updateModalFavButton(proId) {
-            const btn = document.getElementById("modalFavBtn"); if (!btn) return;
-            const fav = isFavorite(proId); btn.textContent = fav ? "♥" : "♡"; btn.classList.toggle("active", fav);
-        }
-        function updateProFavBtn(proId) {
-            const b = document.getElementById("ppFavBtn"); if (!b) return;
-            const fav = isFavorite(proId); b.textContent = fav ? "♥" : "♡"; b.classList.toggle("active", fav);
-        }
+        function updateModalFavButton(proId) { const b = document.getElementById("modalFavBtn"); if (!b) return; const f = isFavorite(proId); b.textContent = f ? "♥" : "♡"; b.classList.toggle("active", f); }
+        function updateProFavBtn(proId) { const b = document.getElementById("ppFavBtn"); if (!b) return; const f = isFavorite(proId); b.textContent = f ? "♥" : "♡"; b.classList.toggle("active", f); }
 
         function formatDate(iso) {
             if (!iso) return "—";
@@ -1156,10 +1138,7 @@
                 <button onclick="submitReview('${proId}', '${blockId}')">${t("reviews_submit")}</button>`;
             block.innerHTML = `<div class="reviews-list">${listHtml}</div><div class="review-form">${formHtml}</div>`;
         }
-        function setRating(value, starsId) {
-            selectedRating = value;
-            document.querySelectorAll("#" + starsId + " .star").forEach((star, i) => { star.textContent = i < value ? "★" : "☆"; star.classList.toggle("filled", i < value); });
-        }
+        function setRating(value, starsId) { selectedRating = value; document.querySelectorAll("#" + starsId + " .star").forEach((star, i) => { star.textContent = i < value ? "★" : "☆"; star.classList.toggle("filled", i < value); }); }
         async function submitReview(proId, blockId) {
             if (!currentProfile) return;
             if (selectedRating === 0) { showToast(t("reviews_select_rating")); return; }
@@ -1181,9 +1160,14 @@
                     rating: parseFloat(r.rating) || 4.5, reviews: r.reviews || 0,
                     phone: r.phone || "", whatsapp: r.whatsapp || "",
                     desc: r.description || { fr:"", es:"", ar:"" },
-                    photos: r.photos || [], user_id: r.user_id || null
+                    photos: r.photos || [], photo_url: r.photo_url || "", user_id: r.user_id || null
                 }));
             }
+        }
+        async function loadServiceMedia() {
+            const { data, error } = await sb.from("service_media").select("*");
+            serviceMedia = {};
+            if (!error && data) data.forEach(r => serviceMedia[r.id] = r.url);
         }
         async function loadSampleToDB() {
             if (!isAdmin()) return;
@@ -1217,9 +1201,40 @@
         }
         document.getElementById("proPhotoInput").addEventListener("change", e => uploadProPhotos(Array.from(e.target.files)));
 
+        async function uploadAvatar(file) {
+            if (!file) return;
+            const safe = file.name.replace(/[^\w.\-]+/g, "_");
+            const path = `avatars/${Date.now()}_${safe}`;
+            const { error } = await sb.storage.from("pro-photos").upload(path, file);
+            if (error) { showToast(error.message); return; }
+            const { data } = sb.storage.from("pro-photos").getPublicUrl(path);
+            pendingAvatarUrl = data.publicUrl;
+            const prev = document.getElementById("pfAvatarPreview");
+            prev.src = pendingAvatarUrl; prev.style.display = "block";
+        }
+        document.getElementById("pfAvatarInput").addEventListener("change", e => uploadAvatar(e.target.files[0]));
+
+        async function uploadServiceImage(serviceId, file) {
+            if (!file) return;
+            if (!isAdmin()) { showToast(t("admin_no_access")); return; }
+            const safe = file.name.replace(/[^\w.\-]+/g, "_");
+            const path = `services/${serviceId}_${Date.now()}_${safe}`;
+            const { error } = await sb.storage.from("pro-photos").upload(path, file);
+            if (error) { showToast(error.message); return; }
+            const { data } = sb.storage.from("pro-photos").getPublicUrl(path);
+            await sb.from("service_media").upsert({ id: serviceId, url: data.publicUrl });
+            await loadServiceMedia();
+            renderServices(); renderSvcMediaList();
+            showToast(t("admin_saved"));
+        }
+
         function prepareProForm() {
             document.getElementById("pfCategory").innerHTML = servicesData.map(s => `<option value="${s.id}">${s.name[currentLang]}</option>`).join("");
             document.getElementById("pfCity").innerHTML = citiesData.map((c,i) => `<option value="${i}">${c[currentLang]}</option>`).join("");
+        }
+        function setAvatarPreview(url) {
+            const prev = document.getElementById("pfAvatarPreview");
+            if (url) { prev.src = url; prev.style.display = "block"; } else { prev.removeAttribute("src"); prev.style.display = "none"; }
         }
         function fillProFormFromData(p) {
             document.getElementById("pfName").value = p.name;
@@ -1242,11 +1257,12 @@
             if (proId) {
                 const p = prosData.find(x => x.id === proId);
                 editingProId = proId; currentPhotos = (p && p.photos) ? p.photos.slice() : [];
-                fillProFormFromData(p);
+                pendingAvatarUrl = (p && p.photo_url) || null;
+                fillProFormFromData(p); setAvatarPreview(pendingAvatarUrl);
                 document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
             } else {
-                editingProId = null; currentPhotos = [];
-                document.getElementById("proForm").reset();
+                editingProId = null; currentPhotos = []; pendingAvatarUrl = null;
+                document.getElementById("proForm").reset(); setAvatarPreview(null);
                 document.getElementById("pfRating").value = "4.5";
                 document.getElementById("proFormTitle").textContent = t("admin_add_pro");
             }
@@ -1261,10 +1277,12 @@
                 editingProId = data.id;
                 fillProFormFromData({ id:data.id, name:data.name, emoji:data.emoji, category:data.category, specialty:data.specialty, city:citiesData[data.city_index] || citiesData[0], rating:parseFloat(data.rating), reviews:data.reviews, phone:data.phone, whatsapp:data.whatsapp, desc:data.description });
                 currentPhotos = data.photos || [];
+                pendingAvatarUrl = data.photo_url || null;
+                setAvatarPreview(pendingAvatarUrl);
                 document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
             } else {
                 editingProId = null; document.getElementById("proForm").reset();
-                document.getElementById("pfRating").value = "4.5"; currentPhotos = [];
+                document.getElementById("pfRating").value = "4.5"; currentPhotos = []; pendingAvatarUrl = null; setAvatarPreview(null);
                 document.getElementById("proFormTitle").textContent = t("create_pro_card");
             }
             showPhotosSection(true); renderPhotosList();
@@ -1285,7 +1303,7 @@
                 category: document.getElementById("pfCategory").value, city_index: cityIndex,
                 rating: parseFloat(document.getElementById("pfRating").value) || 4.5,
                 phone: document.getElementById("pfPhone").value.trim(), whatsapp: document.getElementById("pfWhatsapp").value.trim(),
-                photos: currentPhotos,
+                photos: currentPhotos, photo_url: pendingAvatarUrl,
                 specialty: { fr: document.getElementById("pfSpecFr").value.trim(), es: document.getElementById("pfSpecEs").value.trim(), ar: document.getElementById("pfSpecAr").value.trim() },
                 description: { fr: document.getElementById("pfDescFr").value.trim(), es: document.getElementById("pfDescEs").value.trim(), ar: document.getElementById("pfDescAr").value.trim() }
             };
@@ -1300,7 +1318,7 @@
             }
             await loadProfessionals();
             renderPros(lastProsFilter.id, lastProsFilter.city, lastProsFilter.favs);
-            if (isAdmin() && document.getElementById("adminView").style.display !== "none") renderAdminProList();
+            if (isAdmin() && document.getElementById("adminView").style.display !== "none") { renderAdminProList(); }
             closeProForm(); showToast(t("admin_saved"));
         }
         async function deletePro(proId) {
@@ -1315,13 +1333,24 @@
             if (prosData.length === 0) { container.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>${t("no_results_title")}</p></div>`; return; }
             container.innerHTML = prosData.map(p => `
                 <div class="admin-pro-row">
-                    <span class="admin-pro-emoji">${p.emoji}</span>
+                    <span class="admin-pro-emoji">${p.photo_url ? `<img src="${p.photo_url}" alt="">` : p.emoji}</span>
                     <div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div>
                     <div class="admin-pro-actions">
                         <button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button>
                         <button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button>
                     </div>
                 </div>`).join("");
+        }
+        function renderSvcMediaList() {
+            const c = document.getElementById("svcMediaList");
+            c.innerHTML = servicesData.map(s => {
+                const img = serviceMedia[s.id];
+                return `<div class="svc-media-row">
+                    <span class="svc-media-thumb">${img ? `<img src="${img}" alt="">` : s.icon}</span>
+                    <span class="svc-media-name">${s.name[currentLang]}</span>
+                    <input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}', this.files[0])">
+                </div>`;
+            }).join("");
         }
 
         function updateAuthUI() {
@@ -1358,10 +1387,11 @@
                 <div class="feature-card reveal"><div class="feature-icon">${f.icon}</div><h3>${f.title[currentLang]}</h3><p>${f.desc[currentLang]}</p></div>`).join("");
         }
         function renderServices() {
-            document.getElementById("servicesGrid").innerHTML = servicesData.map(s => `
-                <div class="service-card reveal" onclick="filterByService('${s.id}')">
-                    <div class="service-icon">${s.icon}</div><h3>${s.name[currentLang]}</h3><p>${s.desc[currentLang]}</p>
-                </div>`).join("");
+            document.getElementById("servicesGrid").innerHTML = servicesData.map(s => {
+                const img = serviceMedia[s.id];
+                const visual = img ? `<img class="service-img" src="${img}" alt="">` : `<div class="service-icon">${s.icon}</div>`;
+                return `<div class="service-card reveal" onclick="filterByService('${s.id}')">${visual}<h3>${s.name[currentLang]}</h3><p>${s.desc[currentLang]}</p></div>`;
+            }).join("");
             document.getElementById("footerServices").innerHTML = servicesData.slice(0,5).map(s => `<li><a onclick="filterByService('${s.id}')">${s.name[currentLang]}</a></li>`).join("");
         }
         function renderCitiesFooter() {
@@ -1394,7 +1424,7 @@
                     return `
                     <div class="pro-card reveal">
                         <button class="fav-btn ${fav ? "active" : ""}" onclick="toggleFavorite('${p.id}', event)">${fav ? "♥" : "♡"}</button>
-                        <div class="pro-cover"><div class="pro-avatar">${p.emoji}</div></div>
+                        <div class="pro-cover"><div class="pro-avatar">${proAvatarHtml(p)}</div></div>
                         <div class="pro-body">
                             <h3>${p.name}</h3>
                             <div class="pro-specialty">${p.specialty[currentLang]}</div>
@@ -1418,7 +1448,7 @@
             else container.innerHTML = favPros.map(p => `
                 <div class="pro-card">
                     <button class="fav-btn active" onclick="toggleFavorite('${p.id}', event)">♥</button>
-                    <div class="pro-cover"><div class="pro-avatar">${p.emoji}</div></div>
+                    <div class="pro-cover"><div class="pro-avatar">${proAvatarHtml(p)}</div></div>
                     <div class="pro-body">
                         <h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div>
                         <div class="pro-location">📍 ${p.city[currentLang]}</div>
@@ -1453,7 +1483,7 @@
         }
         function fillProModal(id) {
             const p = prosData.find(x => x.id === id); if (!p) return;
-            document.getElementById("modalAvatar").textContent = p.emoji;
+            document.getElementById("modalAvatar").innerHTML = proAvatarHtml(p);
             document.getElementById("modalName").textContent = p.name;
             document.getElementById("modalSpecialty").textContent = p.specialty[currentLang];
             document.getElementById("modalCity").textContent = p.city[currentLang];
@@ -1496,7 +1526,7 @@
             renderCitySelects(); renderFeatures(); renderServices(); renderCitiesFooter(); renderPopular(); renderPros(null); updateAuthUI();
             if (document.getElementById("favoritesView").style.display !== "none") renderFavoritesPage();
             if (document.getElementById("proProfileView").style.display !== "none" && currentProProfileId) renderProProfileView(currentProProfileId);
-            if (document.getElementById("adminView").style.display !== "none" && isAdmin()) renderAdminProList();
+            if (document.getElementById("adminView").style.display !== "none" && isAdmin()) { renderAdminProList(); renderSvcMediaList(); }
             if (currentModalProId && document.getElementById("contactModal").classList.contains("active")) { fillProModal(currentModalProId); renderReviewsBlock(currentModalProId, "reviewsModal"); updateModalFavButton(currentModalProId); }
         }
 
@@ -1537,6 +1567,7 @@
         async function initApp() {
             await initAuth();
             await loadProfessionals();
+            await loadServiceMedia();
             setLanguage(currentLang);
             handleRoute();
         }
