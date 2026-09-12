@@ -30,7 +30,10 @@
         .desktop-nav a { color:var(--dark); text-decoration:none; font-weight:500; font-size:.95rem; transition:color .3s; }
         .desktop-nav a:hover { color:var(--primary); }
         .header-right { display:flex; align-items:center; gap:.6rem; }
-        .menu-btn { display:flex; background:var(--light-gray); border:none; width:40px; height:40px; border-radius:10px; font-size:1.25rem; cursor:pointer; color:var(--dark); align-items:center; justify-content:center; transition:background .2s; }
+        .lang-switcher { display:flex; gap:.25rem; background:var(--light-gray); padding:.25rem; border-radius:10px; }
+        .lang-btn { border:none; background:transparent; padding:.35rem .6rem; border-radius:8px; font-weight:700; font-size:.8rem; cursor:pointer; color:var(--gray); transition:all .25s; }
+        .lang-btn.active { background:var(--primary); color:white; box-shadow:0 2px 8px rgba(15,118,110,.3); }
+        .menu-btn { display:none; background:var(--light-gray); border:none; width:40px; height:40px; border-radius:10px; font-size:1.25rem; cursor:pointer; color:var(--dark); align-items:center; justify-content:center; transition:background .2s; }
         .menu-btn:hover { background:var(--border); }
         .auth-area { display:flex; align-items:center; gap:.6rem; }
         .auth-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; border:none; border-radius:11px; font-weight:700; cursor:pointer; font-family:inherit; font-size:.9rem; transition:transform .2s,box-shadow .2s; white-space:nowrap; }
@@ -56,9 +59,8 @@
         .drawer-nav a:hover { background:var(--light-gray); color:var(--primary); }
         .drawer-section { margin-bottom:1.4rem; }
         .drawer-label { font-size:.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.6rem; }
-        .drawer .lang-switcher { display:flex; width:100%; gap:.4rem; }
-        .drawer .lang-btn { flex:1; border:none; background:var(--light-gray); padding:.55rem .3rem; border-radius:9px; font-weight:700; font-size:.9rem; cursor:pointer; color:var(--gray); transition:all .25s; }
-        .drawer .lang-btn.active { background:var(--primary); color:white; box-shadow:0 2px 8px rgba(15,118,110,.3); }
+        .drawer .lang-switcher { width:100%; gap:.4rem; }
+        .drawer .lang-btn { flex:1; padding:.55rem .3rem; font-size:.9rem; background:var(--light-gray); }
         .drawer-link { display:flex; align-items:center; gap:.6rem; width:100%; padding:.75rem .9rem; border:none; background:transparent; border-radius:10px; font-weight:600; cursor:pointer; font-family:inherit; color:var(--dark); text-align:start; margin-bottom:.2rem; transition:background .2s,color .2s; font-size:.95rem; }
         .drawer-link:hover { background:var(--light-gray); color:var(--primary); }
         .hero { margin-top:74px; position:relative; background:linear-gradient(135deg,#0f766e 0%,#0d5c56 55%,#0b4a45 100%); color:white; padding:4.5rem 0 5rem; overflow:hidden; }
@@ -155,28 +157,47 @@
         .empty-state h3 { color:var(--dark); margin-bottom:.4rem; font-size:1.3rem; }
         .empty-state p { font-size:.95rem; }
         .favorites-page, .pp-page, .admin-page { padding-top:100px; min-height:70vh; }
-        .favorites-header, .pp-header, .admin-header { display:flex; justify-content:space-between; align-items:center; margin:1rem 0 1.5rem; gap:1rem; flex-wrap:wrap; }
+        .favorites-header, .admin-header { display:flex; justify-content:space-between; align-items:center; margin:1rem 0 1.5rem; gap:1rem; flex-wrap:wrap; }
         .favorites-header h2, .admin-header h2 { font-size:1.6rem; font-weight:800; }
         .fav-back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.2rem; background:white; border:1.5px solid var(--border); border-radius:50px; font-weight:600; cursor:pointer; font-family:inherit; transition:all .2s; }
         .fav-back-btn:hover { border-color:var(--primary); color:var(--primary); }
-        .pp-card { background:white; border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; position:relative; }
-        .pp-cover { height:120px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); }
-        .pp-avatar { width:100px; height:100px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3rem; position:absolute; top:70px; left:50%; transform:translateX(-50%); box-shadow:0 4px 12px rgba(0,0,0,.15); overflow:hidden; }
-        .pp-avatar img { width:100%; height:100%; object-fit:cover; }
-        .pp-fav { top:130px; right:20px; }
-        .pp-info { padding:60px 1.5rem 1.5rem; text-align:center; }
-        .pp-info h2 { font-size:1.6rem; }
-        .pp-specialty { color:var(--primary); font-weight:600; margin:.2rem 0 .6rem; }
-        .pp-meta { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; color:var(--gray); margin-bottom:1rem; align-items:center; }
-        .pp-rating { background:#fef3c7; color:#b45309; padding:.2rem .7rem; border-radius:50px; font-weight:700; font-size:.85rem; }
-        .pp-actions { display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
-        .pp-actions a { padding:.7rem 1.5rem; border-radius:11px; text-decoration:none; font-weight:700; font-family:inherit; }
-        .pp-section { margin-top:2rem; }
-        .pp-section h3 { margin-bottom:.8rem; font-size:1.3rem; }
+        /* ===== FICHA DE PERFIL OPTIMIZADA ===== */
+        .pp-topbar { display:flex; justify-content:space-between; gap:.8rem; margin-bottom:1.2rem; flex-wrap:wrap; }
+        .pp-hero { position:relative; background:white; border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; margin-bottom:1.6rem; }
+        .pp-banner { height:170px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); background-size:cover; background-position:center; }
+        .pp-avatar-lg { width:110px; height:110px; border-radius:50%; background:white; border:4px solid white; box-shadow:0 6px 18px rgba(0,0,0,.18); display:flex; align-items:center; justify-content:center; font-size:3.2rem; overflow:hidden; position:absolute; top:115px; left:24px; }
+        .pp-avatar-lg img { width:100%; height:100%; object-fit:cover; }
+        .rtl .pp-avatar-lg { left:auto; right:24px; }
+        .pp-fav { top:12px; right:12px; }
+        .rtl .pp-fav { right:auto; left:12px; }
+        .pp-head-info { padding:70px 24px 1.2rem; }
+        .pp-head-info h2 { font-size:1.8rem; }
+        .pp-specialty { color:var(--primary); font-weight:600; margin:.2rem 0 .8rem; }
+        .pp-badges { display:flex; gap:.6rem; flex-wrap:wrap; }
+        .pp-badge { background:var(--light-gray); color:var(--gray); padding:.35rem .85rem; border-radius:50px; font-size:.85rem; font-weight:600; }
+        .pp-badge-rate { background:#fef3c7; color:#b45309; }
+        .pp-actions { display:flex; gap:.8rem; padding:0 24px 1.5rem; flex-wrap:wrap; }
+        .pp-actions a { flex:1; min-width:150px; padding:.9rem 1rem; border-radius:12px; text-align:center; text-decoration:none; font-weight:700; font-family:inherit; }
+        .pp-columns { display:grid; grid-template-columns:1.6fr 1fr; gap:1.6rem; align-items:start; }
+        .pp-main, .pp-side { display:flex; flex-direction:column; gap:1.4rem; }
+        .pp-section { background:white; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.5rem; }
+        .pp-section h3 { margin-bottom:.9rem; font-size:1.2rem; }
         .pp-desc { color:var(--gray); }
-        .pp-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:.8rem; }
-        .pp-gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--light-gray),var(--sand)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; border:1px solid var(--border); overflow:hidden; }
-        .pp-gallery-item img { width:100%; height:100%; object-fit:cover; }
+        .pp-services { display:flex; gap:.6rem; flex-wrap:wrap; }
+        .pp-service-chip { background:var(--light-gray); color:var(--dark); padding:.5rem 1.1rem; border-radius:50px; font-weight:600; font-size:.9rem; }
+        .pp-gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:.7rem; }
+        .pp-gallery-item { aspect-ratio:1; border-radius:12px; overflow:hidden; cursor:pointer; border:1px solid var(--border); background:var(--light-gray); display:flex; align-items:center; justify-content:center; font-size:2.2rem; }
+        .pp-gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
+        .pp-gallery-item:hover img { transform:scale(1.06); }
+        .pp-card-side { background:white; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.5rem; }
+        .pp-card-side h3 { margin-bottom:.9rem; font-size:1.15rem; }
+        .pp-rev-summary { display:flex; align-items:center; gap:.7rem; margin-bottom:1.1rem; }
+        .pp-rev-summary .big { font-size:2.2rem; font-weight:800; color:var(--dark); line-height:1; }
+        .pp-rev-summary .stars { color:var(--accent); font-size:1rem; }
+        .pp-rev-summary .count { color:var(--gray); font-size:.82rem; }
+        .lightbox { position:fixed; inset:0; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; z-index:3000; padding:1rem; }
+        .lightbox.show { display:flex; }
+        .lightbox img { max-width:92%; max-height:92%; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,.5); }
         .admin-pro-row { display:flex; align-items:center; gap:1rem; background:white; border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; margin-bottom:.7rem; }
         .admin-pro-emoji { font-size:1.8rem; width:44px; height:44px; background:var(--light-gray); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
         .admin-pro-emoji img { width:100%; height:100%; object-fit:cover; }
@@ -210,6 +231,8 @@
         .btn-primary,.btn-outline { padding:.9rem 2rem; border-radius:12px; font-weight:700; cursor:pointer; font-family:inherit; font-size:1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem; transition:transform .2s; border:2px solid transparent; }
         .btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; }
         .btn-outline { background:transparent; border-color:rgba(255,255,255,.4); color:white; }
+        .btn-call { background:var(--dark); color:white; }
+        .btn-wa { background:#25d366; color:white; }
         .btn-primary:hover,.btn-outline:hover { transform:translateY(-3px); }
         footer { background:var(--dark); color:#cbd5e1; padding:3.5rem 0 1.5rem; }
         .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:2rem; margin-bottom:2.5rem; }
@@ -243,8 +266,6 @@
         .modal-actions { display:flex; gap:.8rem; }
         .modal-actions a { flex:1; padding:.85rem; border-radius:12px; text-align:center; font-weight:700; text-decoration:none; font-family:inherit; transition:transform .2s; }
         .modal-actions a:hover { transform:translateY(-2px); }
-        .btn-call { background:var(--dark); color:white; }
-        .btn-wa { background:#25d366; color:white; }
         .modal-reviews { margin-top:1.5rem; text-align:start; border-top:1px solid var(--border); padding-top:1.2rem; }
         .modal-reviews h4 { margin-bottom:.9rem; }
         .review-item { background:var(--light-gray); border-radius:10px; padding:.8rem; margin-bottom:.7rem; }
@@ -303,6 +324,9 @@
         .reveal.visible { opacity:1; transform:translateY(0); }
         @media (max-width:900px) {
             .desktop-nav { display:none; }
+            .header-lang { display:none; }
+            .menu-btn { display:flex; }
+            .pp-columns { grid-template-columns:1fr; }
             .hero-grid { grid-template-columns:1fr; text-align:center;} .hero h1 { font-size:2.3rem;} .hero-subtitle { margin-inline:auto;} .hero-stats { justify-content:center;} .popular-chips { justify-content:center;} .hero-visual { margin-top:2rem;} .footer-grid { grid-template-columns:1fr 1fr;}
         }
         @media (max-width:520px) {
@@ -312,6 +336,7 @@
             .admin-form-grid { grid-template-columns:1fr;}
             .toast { bottom:80px;}
             .popular-chips { gap:.8rem; row-gap:.8rem;} .chip { padding:.6rem 1.4rem;}
+            .pp-head-info { padding:70px 16px 1.2rem; } .pp-actions { padding:0 16px 1.4rem; } .pp-avatar-lg { left:16px; } .rtl .pp-avatar-lg { left:auto; right:16px; }
         }
         @media (max-width:480px) {
             header .logo-text { display:none;}
@@ -337,6 +362,11 @@
                 <a href="javascript:void(0)" onclick="goSection('how')" data-i18n="nav_how">Comment ça marche</a>
             </nav>
             <div class="header-right">
+                <div class="lang-switcher header-lang">
+                    <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+                    <button class="lang-btn" data-lang="es">🇪 ES</button>
+                    <button class="lang-btn" data-lang="ar">🇲🇦 AR</button>
+                </div>
                 <div class="auth-area" id="authArea"></div>
                 <button class="menu-btn" onclick="toggleDrawer()" aria-label="Menu">☰</button>
             </div>
@@ -359,7 +389,7 @@
         <div class="drawer-section">
             <div class="drawer-label" data-i18n="lang_label">Langue</div>
             <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+                <button class="lang-btn active" data-lang="fr">🇫 FR</button>
                 <button class="lang-btn" data-lang="es">🇪 ES</button>
                 <button class="lang-btn" data-lang="ar">🇲🇦 AR</button>
             </div>
@@ -457,32 +487,45 @@
         </div>
     </div>
 
+    <!-- ===== FICHA DE PERFIL OPTIMIZADA ===== -->
     <div id="proProfileView" class="pp-page" style="display:none;">
         <div class="container">
-            <div class="pp-header">
+            <div class="pp-topbar">
                 <button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button>
                 <button class="fav-back-btn" onclick="copyProfileLink()">🔗 <span data-i18n="share">Partager</span></button>
             </div>
-            <div class="pp-card">
-                <div class="pp-cover"></div>
-                <div class="pp-avatar" id="ppAvatar">👨🔧</div>
+            <div class="pp-hero">
+                <div class="pp-banner" id="ppBanner"></div>
+                <div class="pp-avatar-lg" id="ppAvatar">👨🔧</div>
                 <button class="fav-btn pp-fav" id="ppFavBtn">♡</button>
-                <div class="pp-info">
+                <div class="pp-head-info">
                     <h2 id="ppName">Nom</h2>
                     <div class="pp-specialty" id="ppSpecialty">Spécialité</div>
-                    <div class="pp-meta">
-                        <span>📍 <span id="ppCity">Ville</span></span>
-                        <span class="pp-rating" id="ppRating">★ 4.9</span>
+                    <div class="pp-badges">
+                        <span class="pp-badge">📍 <span id="ppCity">Ville</span></span>
+                        <span class="pp-badge pp-badge-rate" id="ppRating">★ 4.9</span>
+                        <span class="pp-badge" id="ppReviewsCount"></span>
                     </div>
-                    <div class="pp-actions">
-                        <a class="btn-call" id="ppPhoneLink" href="tel:">📞 <span data-i18n="modal_call">Appeler</span></a>
-                        <a class="btn-wa" id="ppWaLink" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp">WhatsApp</span></a>
+                </div>
+                <div class="pp-actions">
+                    <a class="btn-call" id="ppPhoneLink" href="tel:">📞 <span data-i18n="modal_call">Appeler</span></a>
+                    <a class="btn-wa" id="ppWaLink" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp">WhatsApp</span></a>
+                </div>
+            </div>
+            <div class="pp-columns">
+                <div class="pp-main">
+                    <div class="pp-section"><h3 data-i18n="about_pro">À propos</h3><p id="ppDesc" class="pp-desc"></p></div>
+                    <div class="pp-section"><h3 data-i18n="nav_services">Services</h3><div class="pp-services" id="ppServices"></div></div>
+                    <div class="pp-section" id="ppGallerySection" style="display:none;"><h3 data-i18n="realisations">Réalisations</h3><div class="pp-gallery" id="ppGallery"></div></div>
+                </div>
+                <div class="pp-side">
+                    <div class="pp-card-side">
+                        <h3 data-i18n="reviews_title">Avis clients</h3>
+                        <div class="pp-rev-summary" id="ppRevSummary"></div>
+                        <div id="reviewsProfile"></div>
                     </div>
                 </div>
             </div>
-            <div class="pp-section"><h3 data-i18n="about_pro">À propos</h3><p id="ppDesc" class="pp-desc">Description</p></div>
-            <div class="pp-section"><h3 data-i18n="realisations">Réalisations</h3><div class="pp-gallery" id="ppGallery"></div></div>
-            <div class="pp-section"><h3 data-i18n="reviews_title">Avis clients</h3><div id="reviewsProfile"></div></div>
         </div>
     </div>
 
@@ -648,6 +691,7 @@
         </div>
     </div>
 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
     <button class="install-btn" id="installBtn" onclick="installApp()">📲 <span data-i18n="install_app">Instalar app</span></button>
     <div class="toast" id="toast"></div>
 
@@ -684,7 +728,7 @@
                 toast_contact:"Mettez-vous en relation avec {n}", cta_toast:"Merci ! Notre équipe vous contactera bientôt.",
                 cta_download_toast:"L'application arrive bientôt sur Google Play et l'App Store.", footer_info_toast:"Page de démonstration.",
                 install_guide:"Sur mobile : ouvrez le menu du navigateur puis « Ajouter à l'écran d'accueil ».",
-                reviews:"avis", back:"Retour", view_profile:"Voir le profil", about_pro:"À propos", realisations:"Réalisations", share:"Partager", link_copied:"Lien copié !",
+                reviews:"avis", back:"Retour", view_profile:"Voir le profil complet", about_pro:"À propos", realisations:"Réalisations", share:"Partager", link_copied:"Lien copié !",
                 auth_login_btn:"Se connecter", auth_tab_login:"Connexion", auth_tab_register:"Inscription",
                 auth_role_label:"Vous êtes :", auth_role_client:"Client", auth_role_client_desc:"Je cherche un professionnel",
                 auth_role_pro:"Professionnel", auth_role_pro_desc:"Je propose mes services",
@@ -790,7 +834,7 @@
                 toast_contact:"تواصل مع {n}", cta_toast:"شكراً! سيتواصل معك فريقنا قريباً.",
                 cta_download_toast:"التطبيق قادم قريباً على جوجل بلاي وآب ستور.", footer_info_toast:"صفحة تجريبية.",
                 install_guide:"على الهاتف: افتح قائمة المتصفح ثم اختر «إضافة إلى الشاشة الرئيسية».",
-                reviews:"تقييم", back:"رجوع", view_profile:"عرض الملف الشخصي", about_pro:"حول هذا المحترف", realisations:"أعمال منجزة", share:"مشاركة", link_copied:"تم نسخ الرابط!",
+                reviews:"تقييم", back:"رجوع", view_profile:"عرض الملف الكامل", about_pro:"حول", realisations:"أعمال منجزة", share:"مشاركة", link_copied:"تم نسخ الرابط!",
                 auth_login_btn:"تسجيل الدخول", auth_tab_login:"تسجيل الدخول", auth_tab_register:"إنشاء حساب",
                 auth_role_label:"أنت:", auth_role_client:"عميل", auth_role_client_desc:"أبحث عن محترف",
                 auth_role_pro:"محترف", auth_role_pro_desc:"أقدم خدماتي",
@@ -856,10 +900,10 @@
 
         const workEmojis = {
             plomberie:["🚿","","🚰",""], electricite:["💡","⚡","🔌","🏮"],
-            peinture:["🎨","🖌️","🖼️",""], menage:["🧹","","✨",""],
+            peinture:["🎨","️","🖼️","🏠"], menage:["🧹","","✨",""],
             climatisation:["❄️","🌬️","🌀","🏢"], menuiserie:["🪚","","🚪","️"],
             serrurerie:["🔑","","🚪","️"], maconnerie:["🧱","🏗️","🏠","️"],
-            electromenager:["🧺","","🧊",""], jardinage:["","🌳","","✂️"]
+            electromenager:["🧺","","",""], jardinage:["","🌳","","✂️"]
         };
 
         const sampleMeta = {
@@ -899,8 +943,8 @@
             ["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],
             ["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],
             ["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],
-            ["p25","Samira Tazi","👩‍🔧","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],
-            ["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],
+            ["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],
+            ["p26","Nadia Fassi","👩‍","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],
             ["p27","Imane Cherkaoui","👩‍🔧","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],
             ["p28","Aziz Cherkaoui","👨‍","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],
             ["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],
@@ -931,6 +975,9 @@
         function closeDrawer() { document.getElementById("drawer").classList.remove("open"); document.getElementById("drawerOverlay").classList.remove("show"); }
         function goSection(id) { closeDrawer(); showMainView(); setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior:"smooth" }); }, 60); }
 
+        function openLightbox(url) { document.getElementById("lightboxImg").src = url; document.getElementById("lightbox").classList.add("show"); }
+        function closeLightbox() { document.getElementById("lightbox").classList.remove("show"); }
+
         function renderMainView() {
             document.getElementById("mainView").style.display = "block";
             document.getElementById("favoritesView").style.display = "none";
@@ -948,20 +995,35 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
         function proAvatarHtml(p) { return p.photo_url ? `<img src="${p.photo_url}" alt="">` : p.emoji; }
+        function starsStr(n) { const f = Math.round(n); return "★".repeat(f) + "☆".repeat(5 - f); }
         function renderProProfileView(proId) {
             const p = prosData.find(x => x.id === proId);
             if (!p) { renderMainView(); return; }
+            const banner = document.getElementById("ppBanner");
+            if (p.photo_url) banner.style.backgroundImage = `url("${p.photo_url}")`;
+            else banner.style.backgroundImage = "";
             document.getElementById("ppAvatar").innerHTML = proAvatarHtml(p);
             document.getElementById("ppName").textContent = p.name;
             document.getElementById("ppSpecialty").textContent = p.specialty[currentLang];
             document.getElementById("ppCity").textContent = p.city[currentLang];
-            document.getElementById("ppRating").textContent = `★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})`;
+            document.getElementById("ppRating").textContent = `★ ${p.rating.toFixed(1)}`;
+            document.getElementById("ppReviewsCount").textContent = `${p.reviews} ${t("reviews")}`;
             document.getElementById("ppDesc").textContent = p.desc[currentLang];
             document.getElementById("ppPhoneLink").href = "tel:" + p.phone.replace(/\s/g,"");
             document.getElementById("ppWaLink").href = "https://wa.me/" + p.whatsapp;
+            const svc = servicesData.find(s => s.id === p.category);
+            document.getElementById("ppServices").innerHTML = svc
+                ? `<span class="pp-service-chip">${svc.icon} ${svc.name[currentLang]}</span><span class="pp-service-chip">${p.specialty[currentLang]}</span>`
+                : `<span class="pp-service-chip">${p.specialty[currentLang]}</span>`;
+            const galSec = document.getElementById("ppGallerySection");
             const gallery = document.getElementById("ppGallery");
-            if (p.photos && p.photos.length > 0) gallery.innerHTML = p.photos.map(u => `<div class="pp-gallery-item"><img src="${u}" alt=""></div>`).join("");
-            else { const emojis = workEmojis[p.category] || ["🛠️","","","✨"]; gallery.innerHTML = emojis.map(e => `<div class="pp-gallery-item">${e}</div>`).join(""); }
+            if (p.photos && p.photos.length > 0) {
+                galSec.style.display = "block";
+                gallery.innerHTML = p.photos.map(u => `<div class="pp-gallery-item" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("");
+            } else { galSec.style.display = "none"; gallery.innerHTML = ""; }
+            document.getElementById("ppRevSummary").innerHTML = `
+                <span class="big">${p.rating.toFixed(1)}</span>
+                <span><span class="stars">${starsStr(p.rating)}</span><br><span class="count">${p.reviews} ${t("reviews")}</span></span>`;
             const favBtn = document.getElementById("ppFavBtn");
             const fav = isFavorite(p.id);
             favBtn.textContent = fav ? "♥" : "♡"; favBtn.classList.toggle("active", fav);
@@ -1318,7 +1380,7 @@
             }
             await loadProfessionals();
             renderPros(lastProsFilter.id, lastProsFilter.city, lastProsFilter.favs);
-            if (isAdmin() && document.getElementById("adminView").style.display !== "none") { renderAdminProList(); }
+            if (isAdmin() && document.getElementById("adminView").style.display !== "none") renderAdminProList();
             closeProForm(); showToast(t("admin_saved"));
         }
         async function deletePro(proId) {
