@@ -1,14 +1,14 @@
-   {
-     "name": "Clickpubli — Services à domicile au Maroc",
-     "short_name": "Clickpubli",
-     "description": "Trouvez des professionnels de confiance au Maroc.",
-     "start_url": "/",
-     "scope": "/",
-     "display": "standalone",
-     "background_color": "#ffffff",
-     "theme_color": "#5B2D91",
-     "icons": [
-       { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-       { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
-     ]
-   }
+{
+  "name": "ClickPubli — Services à domicile au Maroc",
+  "short_name": "ClickPubli",
+  "description": "Trouvez des professionnels de confiance au Maroc.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5B2D91",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
