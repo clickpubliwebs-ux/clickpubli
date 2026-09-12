@@ -1,0 +1,5 @@
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+     <circle cx="256" cy="256" r="256" fill="#5B2D91"/>
+     <text x="256" y="312" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="bold" fill="#ffffff" text-anchor="middle">Click</text>
+     <circle cx="250" cy="200" r="24" fill="#A9C93C"/>
+   </svg>
