@@ -603,6 +603,9 @@
             <div id="adminProList"></div>
             <h3 class="admin-subtitle" data-i18n="admin_svc_images">Imágenes de servicios</h3>
             <div id="svcMediaList"></div>
+            <h3 class="admin-subtitle" data-i18n="admin_svc_categories">Catégories de services</h3>
+            <div style="margin-bottom:.8rem;"><button class="btn-primary" onclick="openServiceForm()">➕ <span data-i18n="admin_add_category">Ajouter une catégorie</span></button></div>
+            <div id="svcCategoriesList"></div>
         </div>
     </div>
 
@@ -792,6 +795,22 @@
         </div>
     </div>
 
+    <div class="modal" id="serviceFormModal">
+        <div class="modal-content" style="max-width:440px;">
+            <div class="modal-cover"><button class="close-modal" onclick="closeServiceForm()">&times;</button></div>
+            <div class="modal-body" style="text-align:start;">
+                <h2 id="serviceFormTitle" data-i18n="admin_add_category">Ajouter une catégorie</h2>
+                <form id="serviceForm" onsubmit="saveService(event)" style="margin-top:1rem;">
+                    <div class="form-group"><label>Icône (emoji)</label><input type="text" id="svcIcon" placeholder="🛠️"></div>
+                    <div class="form-group"><label>Nom (Français)</label><input type="text" id="svcNameFr"></div>
+                    <div class="form-group"><label>Nom (Español)</label><input type="text" id="svcNameEs"></div>
+                    <div class="form-group"><label>Nom (العربية)</label><input type="text" id="svcNameAr"></div>
+                    <button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="legalModal">
         <div class="modal-content legal-modal">
             <div class="modal-cover"><button class="close-modal" onclick="closeLegalModal()">&times;</button></div>
@@ -905,6 +924,7 @@
                 reviews_login_required:"Connectez-vous pour laisser un avis.", reviews_success:"Merci pour votre avis !",
                 reviews_select_rating:"Veuillez choisir une note (étoiles)", reviews_empty_comment:"Veuillez écrire un commentaire",
                 admin_title:"Administration", admin_add_pro:"Ajouter un professionnel", admin_edit_pro:"Modifier le professionnel", admin_delete_confirm:"Supprimer ce professionnel ?", admin_saved:"Professionnel enregistré", admin_deleted:"Professionnel supprimé", admin_name_required:"Nom requis", admin_no_access:"Accès réservé aux administrateurs", admin_load_samples:"Charger les exemples", admin_svc_images:"Images des services",
+                admin_svc_categories:"Catégories de services", admin_add_category:"Ajouter une catégorie", admin_edit_category:"Modifier la catégorie",
                 field_category:"Catégorie", field_rating:"Note", field_specialty:"Spécialité", field_description:"Description",
                 field_pro_photo:"Photo du professionnel", field_pro_cover:"Image de couverture", field_photos:"Photos de vos travaux", field_my_services:"Services que je propose", install_app:"Installer l'app",
                 my_pro_card:"Ma fiche pro", pro_only:"Réservé aux professionnels", create_pro_card:"Créer ma fiche pro",
@@ -967,6 +987,7 @@
                 reviews_login_required:"Inicia sesión para dejar una reseña.", reviews_success:"¡Gracias por tu reseña!",
                 reviews_select_rating:"Por favor elige una puntuación (estrellas)", reviews_empty_comment:"Por favor escribe un comentario",
                 admin_title:"Administración", admin_add_pro:"Añadir profesional", admin_edit_pro:"Editar profesional", admin_delete_confirm:"¿Eliminar este profesional?", admin_saved:"Profesional guardado", admin_deleted:"Profesional eliminado", admin_name_required:"Nombre requerido", admin_no_access:"Acceso reservado a administradores", admin_load_samples:"Cargar ejemplos", admin_svc_images:"Imágenes de servicios",
+                admin_svc_categories:"Categorías de servicios", admin_add_category:"Añadir categoría", admin_edit_category:"Editar categoría",
                 field_category:"Categoría", field_rating:"Nota", field_specialty:"Especialidad", field_description:"Descripción",
                 field_pro_photo:"Foto del profesional", field_pro_cover:"Imagen de cabecera", field_photos:"Fotos de tus trabajos", field_my_services:"Servicios que ofrezco", install_app:"Instalar app",
                 my_pro_card:"Mi ficha profesional", pro_only:"Solo para profesionales", create_pro_card:"Crear mi ficha profesional",
@@ -1003,7 +1024,7 @@
                 cta_download_toast:"التطبيق قادم قريباً على جوجل بلاي وآب ستور.", footer_info_toast:"صفحة تجريبية.",
                 install_guide:"استخدم قائمة المتصفح لتثبيت التطبيق.",
                 install_title:"تثبيت تطبيق ClickPubli", install_now:"تثبيت الآن", install_close:"إغلاق",
-                install_ios:"على آيفون / آيباد: افتح قائمة المشاركة (أيقونة مربعة بسهم لأعلى) ثم اختر «إلى الشاشة الرئيسية».",
+                install_ios:"على آيفون / آيباد: افتح قائمة المشاركة ثم اختر «إلى الشاشة الرئيسية».",
                 install_android:"على أندرويد / كروم: افتح قائمة المتصفح (⋮) ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
                 install_desktop:"على الكمبيوتر (كروم / إيدج): انقر على أيقونة التثبيت في شريط العنوان، أو القائمة (⋮) ثم «تثبيت ClickPubli».",
                 reviews:"تقييم", back:"رجوع", view_profile:"عرض الملف الكامل", about_pro:"حول", realisations:"أعمال منجزة", share:"مشاركة", link_copied:"تم نسخ الرابط!",
@@ -1029,6 +1050,7 @@
                 reviews_login_required:"سجل الدخول لترك رأي.", reviews_success:"شكراً لرأيك!",
                 reviews_select_rating:"الرجاء اختيار تقييم (نجوم)", reviews_empty_comment:"الرجاء كتابة تعليق",
                 admin_title:"الإدارة", admin_add_pro:"إضافة محترف", admin_edit_pro:"تعديل المحترف", admin_delete_confirm:"حذف هذا المحترف؟", admin_saved:"تم حفظ المحترف", admin_deleted:"تم حذف المحترف", admin_name_required:"الاسم مطلوب", admin_no_access:"الوصول مخصص للمشرفين فقط", admin_load_samples:"تحميل الأمثلة", admin_svc_images:"صور الخدمات",
+                admin_svc_categories:"فئات الخدمات", admin_add_category:"إضافة فئة", admin_edit_category:"تعديل الفئة",
                 field_category:"الفئة", field_rating:"التقييم", field_specialty:"التخصص", field_description:"الوصف",
                 field_pro_photo:"صورة المحترف", field_pro_cover:"صورة الغلاف", field_photos:"صور أعمالك", field_my_services:"الخدمات التي أقدمها", install_app:"تثبيت التطبيق",
                 my_pro_card:"بطاقتي المهنية", pro_only:"مخصص للمحترفين", create_pro_card:"إنشاء بطاقتي المهنية",
@@ -1125,7 +1147,8 @@
             { fr:"Khénifra", es:"Jenifra", ar:"خنيفرة" }
         ];
 
-        const servicesData = [
+        /* Categorías: fallback local; se cargan de Supabase si existen */
+        let servicesData = [
             { id:"plomberie", icon:"🔧", name:{fr:"Plomberie",es:"Fontanería",ar:"سباكة"}, desc:{fr:"Réparations et installations",es:"Reparaciones e instalaciones",ar:"إصلاحات وتركيبات"} },
             { id:"electricite", icon:"⚡", name:{fr:"Électricité",es:"Electricidad",ar:"كهرباء"}, desc:{fr:"Mise aux normes et dépannage",es:"Instalaciones y averías",ar:"تصليح وتمديدات"} },
             { id:"peinture", icon:"🎨", name:{fr:"Peinture",es:"Pintura",ar:"صباغة"}, desc:{fr:"Intérieur, extérieur et déco",es:"Interior, exterior y deco",ar:"داخلية وخارجية"} },
@@ -1147,9 +1170,9 @@
 
         const workEmojis = {
             plomberie:["🚿","🔧","🚰","🛁"], electricite:["💡","⚡","🔌","🏮"],
-            peinture:["🎨","️","🖼️","🏠"], menage:["🧹","","✨",""],
-            climatisation:["️","🌬️","🌀","🏢"], menuiserie:["🪚","🪑","🚪","🛠️"],
-            serrurerie:["🔑","🔒","🚪","🗝️"], maconnerie:["🧱","🏗️","🏠","️"],
+            peinture:["🎨","🖌️","🖼️",""], menage:["","🧽","✨","🧴"],
+            climatisation:["❄️","🌬️","🌀","🏢"], menuiserie:["🪚","","🚪","️"],
+            serrurerie:["🔑","","🚪","️"], maconnerie:["🧱","🏗️","🏠","️"],
             electromenager:["🧺","","🧊",""], jardinage:["","🌳","","✂️"]
         };
 
@@ -1173,13 +1196,13 @@
         ];
 
         const sampleRaw = [
-            ["p1","Mohammed El Amrani","👨‍🔧","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],
+            ["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],
             ["p2","Youssef Benali","👨‍🔧","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],
             ["p3","Fatima Zahra","👩‍💼","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],
-            ["p4","Hassan Idrissi","👨‍","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],
+            ["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],
             ["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],
             ["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],
-            ["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],
+            ["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],
             ["p8","Omar Cherkaoui","👨‍","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],
             ["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],
             ["p10","Nabil Fassi","👨‍💼","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],
@@ -1197,10 +1220,10 @@
             ["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],
             ["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],
             ["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],
-            ["p25","Samira Tazi","👩‍🔧","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],
-            ["p26","Nadia Fassi","👩‍","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],
+            ["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],
+            ["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],
             ["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],
-            ["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],
+            ["p28","Aziz Cherkaoui","👨‍","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],
             ["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],
             ["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]
         ];
@@ -1228,6 +1251,7 @@
         let serviceMedia = {};
         let selectedProSvcIds = [];
         let pendingProSvcImages = {};
+        let editingServiceId = null;
 
         function t(key) { return translations[currentLang][key] || key; }
         function flagUrl(code, size=20) { return `https://flagcdn.com/w${size}/${code}.png`; }
@@ -1295,7 +1319,7 @@
             currentProProfileId = proId;
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
-        function renderAdminView() { hideAllViews(); document.getElementById("adminView").style.display = "block"; renderAdminProList(); renderSvcMediaList(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+        function renderAdminView() { hideAllViews(); document.getElementById("adminView").style.display = "block"; renderAdminProList(); renderSvcMediaList(); renderSvcCategories(); window.scrollTo({ top: 0, behavior: "smooth" }); }
         function showMainView() { if (location.hash && location.hash !== "#") location.hash = ""; else renderMainView(); }
         function showFavoritesView() { location.hash = "favorites"; }
         function showProProfile(proId) { location.hash = "pro=" + proId; }
@@ -1484,6 +1508,17 @@
             selectedRating = 0; renderReviewsBlock(proId, blockId); showToast(t("reviews_success"));
         }
 
+        /* ===== CARGA DE DATOS ===== */
+        async function loadServices() {
+            const { data, error } = await sb.from("services").select("*").order("sort");
+            if (!error && data && data.length > 0) {
+                servicesData = data.map(r => ({
+                    id: r.id, icon: r.icon || "🛠️",
+                    name: { fr: r.name_fr, es: r.name_es || r.name_fr, ar: r.name_ar || r.name_fr },
+                    desc: { fr: r.desc_fr || r.name_fr, es: r.desc_es || r.name_es || r.name_fr, ar: r.desc_ar || r.name_ar || r.name_fr }
+                }));
+            }
+        }
         async function loadProfessionals() {
             const { data, error } = await sb.from("professionals").select("*").order("id");
             if (!error && data && data.length > 0) {
@@ -1582,6 +1617,70 @@
             await loadServiceMedia();
             renderServices(); renderSvcMediaList();
             showToast(t("admin_saved"));
+        }
+
+        /* ===== GESTIÓN DE CATEGORÍAS DE SERVICIOS ===== */
+        function renderSvcCategories() {
+            const c = document.getElementById("svcCategoriesList");
+            if (!c) return;
+            c.innerHTML = servicesData.map(s => `
+                <div class="svc-media-row">
+                    <span class="svc-media-thumb">${s.icon}</span>
+                    <span class="svc-media-name">${s.name[currentLang]}</span>
+                    <button class="admin-btn-edit" onclick="openServiceForm('${s.id}')">✏️</button>
+                    <button class="admin-btn-del" onclick="deleteService('${s.id}')">🗑️</button>
+                </div>`).join("");
+        }
+        function openServiceForm(id) {
+            if (!isAdmin()) return;
+            editingServiceId = id || null;
+            const s = id ? servicesData.find(x => x.id === id) : null;
+            document.getElementById("svcIcon").value = s ? s.icon : "";
+            document.getElementById("svcNameFr").value = s ? s.name.fr : "";
+            document.getElementById("svcNameEs").value = s ? (s.name.es || "") : "";
+            document.getElementById("svcNameAr").value = s ? (s.name.ar || "") : "";
+            document.getElementById("serviceFormTitle").textContent = s ? t("admin_edit_category") : t("admin_add_category");
+            document.getElementById("serviceFormModal").classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+        function closeServiceForm() { document.getElementById("serviceFormModal").classList.remove("active"); document.body.style.overflow = ""; }
+        async function saveService(e) {
+            e.preventDefault();
+            if (!isAdmin()) return;
+            const icon = document.getElementById("svcIcon").value.trim() || "🛠️";
+            const fr = document.getElementById("svcNameFr").value.trim();
+            const es = document.getElementById("svcNameEs").value.trim() || fr;
+            const ar = document.getElementById("svcNameAr").value.trim() || fr;
+            if (!fr) { showToast(t("admin_name_required")); return; }
+            let id = editingServiceId;
+            if (!id) {
+                id = fr.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+                if (servicesData.some(s => s.id === id)) id = id + "_" + Date.now().toString().slice(-4);
+            }
+            const existing = servicesData.find(s => s.id === id);
+            const payload = {
+                id, icon,
+                name_fr: fr, name_es: es, name_ar: ar,
+                desc_fr: existing ? (existing.desc && existing.desc.fr) || fr : fr,
+                desc_es: existing ? (existing.desc && existing.desc.es) || es : es,
+                desc_ar: existing ? (existing.desc && existing.desc.ar) || ar : ar,
+                sort: servicesData.length + 1
+            };
+            const { error } = await sb.from("services").upsert(payload);
+            if (error) { showToast(error.message); return; }
+            await loadServices();
+            renderSvcCategories(); renderServices(); renderSvcMediaList();
+            closeServiceForm();
+            showToast(t("admin_saved"));
+        }
+        async function deleteService(id) {
+            if (!isAdmin()) return;
+            if (!confirm(t("admin_delete_confirm"))) return;
+            const { error } = await sb.from("services").delete().eq("id", id);
+            if (error) { showToast(error.message); return; }
+            await loadServices();
+            renderSvcCategories(); renderServices(); renderSvcMediaList();
+            showToast(t("admin_deleted"));
         }
 
         function prepareProForm() {
@@ -1854,7 +1953,7 @@
             });
         }
         function renderPopular() {
-            const ids = ["plomberie","electricite","menage","climatisation"];
+            const ids = ["plomberie","electricite","menage","climatisation"].filter(id => servicesData.some(s => s.id === id));
             document.getElementById("popularChips").innerHTML = ids.map(id => {
                 const s = servicesData.find(x => x.id === id);
                 return `<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`;
@@ -2031,7 +2130,7 @@
             renderCitySelects(); renderFeatures(); renderServices(); renderCitiesFooter(); renderPopular(); renderPros(null); updateAuthUI();
             if (document.getElementById("favoritesView").style.display !== "none") renderFavoritesPage();
             if (document.getElementById("proProfileView").style.display !== "none" && currentProProfileId) renderProProfileView(currentProProfileId);
-            if (document.getElementById("adminView").style.display !== "none" && isAdmin()) { renderAdminProList(); renderSvcMediaList(); }
+            if (document.getElementById("adminView").style.display !== "none" && isAdmin()) { renderAdminProList(); renderSvcMediaList(); renderSvcCategories(); }
             if (document.getElementById("faqView").style.display !== "none") renderFaqList();
             if (currentModalProId && document.getElementById("contactModal").classList.contains("active")) { fillProModal(currentModalProId); renderReviewsBlock(currentModalProId, "reviewsModal"); updateModalFavButton(currentModalProId); }
             if (document.getElementById("cookieBanner").classList.contains("show")) {
@@ -2045,6 +2144,7 @@
         document.getElementById("proFormModal").addEventListener("click", e => { if (e.target.id === "proFormModal") closeProForm(); });
         document.getElementById("legalModal").addEventListener("click", e => { if (e.target.id === "legalModal") closeLegalModal(); });
         document.getElementById("installModal").addEventListener("click", e => { if (e.target.id === "installModal") closeInstallModal(); });
+        document.getElementById("serviceFormModal").addEventListener("click", e => { if (e.target.id === "serviceFormModal") closeServiceForm(); });
 
         let toastTimer;
         function showToast(msg) {
@@ -2080,6 +2180,7 @@
 
         async function initApp() {
             await initAuth();
+            await loadServices();
             await loadProfessionals();
             await loadProServicesAll();
             await loadServiceMedia();
