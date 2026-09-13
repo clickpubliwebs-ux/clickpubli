@@ -30,6 +30,8 @@
         .desktop-nav a { color:var(--dark); text-decoration:none; font-weight:500; font-size:.95rem; transition:color .3s; cursor:pointer; }
         .desktop-nav a:hover { color:var(--primary); }
         .header-right { display:flex; align-items:center; gap:.6rem; }
+        .header-role-btn { background:var(--light-gray); border:none; width:38px; height:38px; border-radius:10px; font-size:1.05rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+        .header-role-btn:hover { background:var(--border); }
         .lang-switcher { display:flex; gap:.25rem; background:var(--light-gray); padding:.25rem; border-radius:10px; }
         .lang-btn { border:none; background:transparent; padding:.35rem .5rem; border-radius:8px; font-weight:700; font-size:.8rem; cursor:pointer; color:var(--gray); transition:all .25s; display:inline-flex; align-items:center; gap:.3rem; }
         .lang-btn.active { background:var(--primary); color:white; box-shadow:0 2px 8px rgba(15,118,110,.3); }
@@ -230,6 +232,7 @@
         .admin-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
         .admin-form-grid .full { grid-column:1 / -1; }
         .avatar-preview { width:64px; height:64px; border-radius:50%; object-fit:cover; border:2px solid var(--border); display:none; margin-bottom:.5rem; }
+        .cover-preview { width:100%; height:90px; object-fit:cover; border-radius:10px; border:2px solid var(--border); display:none; margin-bottom:.5rem; }
         .pro-photo-thumb { position:relative; width:80px; height:80px; border-radius:10px; overflow:hidden; border:1px solid var(--border); }
         .pro-photo-thumb img { width:100%; height:100%; object-fit:cover; }
         .pro-photo-del { position:absolute; top:2px; right:2px; background:rgba(0,0,0,.6); color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-size:.7rem; }
@@ -748,6 +751,10 @@
                             <img id="pfAvatarPreview" class="avatar-preview" alt="">
                             <input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem;">
                         </div>
+                        <div class="form-group full"><label data-i18n="field_pro_cover">Imagen de cabecera</label>
+                            <img id="pfCoverPreview" class="cover-preview" alt="">
+                            <input type="file" id="pfCoverInput" accept="image/*" style="font-size:.85rem;">
+                        </div>
                         <div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨‍"></div>
                         <div class="form-group"><label data-i18n="field_category">Catégorie (principal)</label><select id="pfCategory"></select></div>
                         <div class="form-group"><label data-i18n="auth_city">Ville</label><select id="pfCity"></select></div>
@@ -899,7 +906,7 @@
                 reviews_select_rating:"Veuillez choisir une note (étoiles)", reviews_empty_comment:"Veuillez écrire un commentaire",
                 admin_title:"Administration", admin_add_pro:"Ajouter un professionnel", admin_edit_pro:"Modifier le professionnel", admin_delete_confirm:"Supprimer ce professionnel ?", admin_saved:"Professionnel enregistré", admin_deleted:"Professionnel supprimé", admin_name_required:"Nom requis", admin_no_access:"Accès réservé aux administrateurs", admin_load_samples:"Charger les exemples", admin_svc_images:"Images des services",
                 field_category:"Catégorie", field_rating:"Note", field_specialty:"Spécialité", field_description:"Description",
-                field_pro_photo:"Photo du professionnel", field_photos:"Photos de vos travaux", field_my_services:"Services que je propose", install_app:"Installer l'app",
+                field_pro_photo:"Photo du professionnel", field_pro_cover:"Image de couverture", field_photos:"Photos de vos travaux", field_my_services:"Services que je propose", install_app:"Installer l'app",
                 my_pro_card:"Ma fiche pro", pro_only:"Réservé aux professionnels", create_pro_card:"Créer ma fiche pro",
                 faq_title:"Questions fréquentes",
                 cookie_text:"Ce site utilise des cookies pour améliorer votre expérience et analyser le trafic.",
@@ -961,7 +968,7 @@
                 reviews_select_rating:"Por favor elige una puntuación (estrellas)", reviews_empty_comment:"Por favor escribe un comentario",
                 admin_title:"Administración", admin_add_pro:"Añadir profesional", admin_edit_pro:"Editar profesional", admin_delete_confirm:"¿Eliminar este profesional?", admin_saved:"Profesional guardado", admin_deleted:"Profesional eliminado", admin_name_required:"Nombre requerido", admin_no_access:"Acceso reservado a administradores", admin_load_samples:"Cargar ejemplos", admin_svc_images:"Imágenes de servicios",
                 field_category:"Categoría", field_rating:"Nota", field_specialty:"Especialidad", field_description:"Descripción",
-                field_pro_photo:"Foto del profesional", field_photos:"Fotos de tus trabajos", field_my_services:"Servicios que ofrezco", install_app:"Instalar app",
+                field_pro_photo:"Foto del profesional", field_pro_cover:"Imagen de cabecera", field_photos:"Fotos de tus trabajos", field_my_services:"Servicios que ofrezco", install_app:"Instalar app",
                 my_pro_card:"Mi ficha profesional", pro_only:"Solo para profesionales", create_pro_card:"Crear mi ficha profesional",
                 faq_title:"Preguntas frecuentes",
                 cookie_text:"Este sitio usa cookies para mejorar tu experiencia y analizar el tráfico.",
@@ -996,9 +1003,9 @@
                 cta_download_toast:"التطبيق قادم قريباً على جوجل بلاي وآب ستور.", footer_info_toast:"صفحة تجريبية.",
                 install_guide:"استخدم قائمة المتصفح لتثبيت التطبيق.",
                 install_title:"تثبيت تطبيق ClickPubli", install_now:"تثبيت الآن", install_close:"إغلاق",
-                install_ios:"على آيفون / آيباد: افتح قائمة المشاركة (أيقونة مربعة بسهم لأعلى) ثم اختر «إلى الشاشة الرئيسية». ستظهر أيقونة ClickPubli على شاشتك الرئيسية.",
-                install_android:"على أندرويد / كروم: افتح قائمة المتصفح (⋮) ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». إذا كان الزر بالأسفل متاحاً فاستخدمه مباشرة.",
-                install_desktop:"على الكمبيوتر (كروم / إيدج): انقر على أيقونة التثبيت في شريط العنوان، أو افتح القائمة (⋮) ثم اختر «تثبيت ClickPubli». إذا كان الزر بالأسفل متاحاً فاستخدمه مباشرة.",
+                install_ios:"على آيفون / آيباد: افتح قائمة المشاركة (أيقونة مربعة بسهم لأعلى) ثم اختر «إلى الشاشة الرئيسية».",
+                install_android:"على أندرويد / كروم: افتح قائمة المتصفح (⋮) ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
+                install_desktop:"على الكمبيوتر (كروم / إيدج): انقر على أيقونة التثبيت في شريط العنوان، أو القائمة (⋮) ثم «تثبيت ClickPubli».",
                 reviews:"تقييم", back:"رجوع", view_profile:"عرض الملف الكامل", about_pro:"حول", realisations:"أعمال منجزة", share:"مشاركة", link_copied:"تم نسخ الرابط!",
                 auth_login_btn:"تسجيل الدخول", auth_tab_login:"تسجيل الدخول", auth_tab_register:"إنشاء حساب",
                 auth_role_label:"أنت:", auth_role_client:"عميل", auth_role_client_desc:"أبحث عن محترف",
@@ -1023,7 +1030,7 @@
                 reviews_select_rating:"الرجاء اختيار تقييم (نجوم)", reviews_empty_comment:"الرجاء كتابة تعليق",
                 admin_title:"الإدارة", admin_add_pro:"إضافة محترف", admin_edit_pro:"تعديل المحترف", admin_delete_confirm:"حذف هذا المحترف؟", admin_saved:"تم حفظ المحترف", admin_deleted:"تم حذف المحترف", admin_name_required:"الاسم مطلوب", admin_no_access:"الوصول مخصص للمشرفين فقط", admin_load_samples:"تحميل الأمثلة", admin_svc_images:"صور الخدمات",
                 field_category:"الفئة", field_rating:"التقييم", field_specialty:"التخصص", field_description:"الوصف",
-                field_pro_photo:"صورة المحترف", field_photos:"صور أعمالك", field_my_services:"الخدمات التي أقدمها", install_app:"تثبيت التطبيق",
+                field_pro_photo:"صورة المحترف", field_pro_cover:"صورة الغلاف", field_photos:"صور أعمالك", field_my_services:"الخدمات التي أقدمها", install_app:"تثبيت التطبيق",
                 my_pro_card:"بطاقتي المهنية", pro_only:"مخصص للمحترفين", create_pro_card:"إنشاء بطاقتي المهنية",
                 faq_title:"الأسئلة الشائعة",
                 cookie_text:"يستخدم هذا الموقع ملفات تعريف الارتباط لتحسين تجربتك وتحليل حركة المرور.",
@@ -1073,80 +1080,48 @@
             },
             terms: {
                 fr: { title:"Conditions d'utilisation", html:"<p><em>Dernière mise à jour : janvier 2026</em></p><h3>1. Objet</h3><p>Les présentes conditions régissent l'utilisation de la plateforme ClickPubli, qui met en relation des clients avec des professionnels indépendants.</p><h3>2. Inscription</h3><p>L'utilisateur garantit l'exactitude des informations fournies lors de son inscription. Il est responsable de la confidentialité de son mot de passe.</p><h3>3. Rôle de ClickPubli</h3><p>ClickPubli est un annuaire de mise en relation. Nous ne sommes pas partie aux contrats conclus entre clients et professionnels et ne pouvons être tenus responsables de la qualité des prestations.</p><h3>4. Contenu publié</h3><p>Les professionnels sont responsables du contenu de leur fiche (textes, photos, tarifs). Tout contenu illicite ou trompeur sera supprimé.</p><h3>5. Avis et commentaires</h3><p>Les avis doivent refléter une expérience réelle. Les faux avis, insultes ou propos diffamatoires seront supprimés et pourront entraîner la suspension du compte.</p><h3>6. Propriété intellectuelle</h3><p>Tous les éléments du site (logo, textes, images) sont la propriété de ClickPubli et protégés par le droit d'auteur.</p><h3>7. Résiliation</h3><p>Chaque utilisateur peut supprimer son compte à tout moment. ClickPubli se réserve le droit de suspendre un compte en cas de non-respect des présentes conditions.</p><h3>8. Contact</h3><p>Pour toute question : contact@clickpubli.com</p>" },
-                es: { title:"Términos de uso", html:"<p><em>Última actualización: enero de 2026</em></p><h3>1. Objeto</h3><p>Estos términos rigen el uso de la plataforma ClickPubli, que pone en contacto a clientes con profesionales independientes.</p><h3>2. Registro</h3><p>El usuario garantiza la veracidad de la información facilitada al registrarse. Es responsable de la confidencialidad de su contraseña.</p><h3>3. Rol de ClickPubli</h3><p>ClickPubli es un directorio de puesta en contacto. No somos parte de los contratos entre clientes y profesionales y no somos responsables de la calidad de los trabajos.</p><h3>4. Contenido publicado</h3><p>Los profesionales son responsables del contenido de su ficha (textos, fotos, precios). Cualquier contenido ilícito o engañoso será eliminado.</p><h3>5. Reseñas y comentarios</h3><p>Las reseñas deben reflejar una experiencia real. Las reseñas falsas, insultos o comentarios difamatorios serán eliminados y podrán conllevar la suspensión de la cuenta.</p><h3>6. Propiedad intelectual</h3><p>Todos los elementos del sitio (logo, textos, imágenes) son propiedad de ClickPubli y están protegidos por derechos de autor.</p><h3>7. Cancelación</h3><p>Cada usuario puede eliminar su cuenta en cualquier momento. ClickPubli se reserva el derecho de suspender una cuenta en caso de incumplimiento de estos términos.</p><h3>8. Contacto</h3><p>Para cualquier pregunta: contact@clickpubli.com</p>" },
+                es: { title:"Términos de uso", html:"<p><em>Última actualización: enero 2026</em></p><h3>1. Objeto</h3><p>Estos términos rigen el uso de la plataforma ClickPubli, que pone en contacto a clientes con profesionales independientes.</p><h3>2. Registro</h3><p>El usuario garantiza la veracidad de la información facilitada al registrarse. Es responsable de la confidencialidad de su contraseña.</p><h3>3. Rol de ClickPubli</h3><p>ClickPubli es un directorio de puesta en contacto. No somos parte de los contratos entre clientes y profesionales y no somos responsables de la calidad de los trabajos.</p><h3>4. Contenido publicado</h3><p>Los profesionales son responsables del contenido de su ficha (textos, fotos, precios). Cualquier contenido ilícito o engañoso será eliminado.</p><h3>5. Reseñas y comentarios</h3><p>Las reseñas deben reflejar una experiencia real. Las reseñas falsas, insultos o comentarios difamatorios serán eliminados y podrán conllevar la suspensión de la cuenta.</p><h3>6. Propiedad intelectual</h3><p>Todos los elementos del sitio (logo, textos, imágenes) son propiedad de ClickPubli y están protegidos por derechos de autor.</p><h3>7. Cancelación</h3><p>Cada usuario puede eliminar su cuenta en cualquier momento. ClickPubli se reserva el derecho de suspender una cuenta en caso de incumplimiento de estos términos.</p><h3>8. Contacto</h3><p>Para cualquier pregunta: contact@clickpubli.com</p>" },
                 ar: { title:"شروط الاستخدام", html:"<p><em>آخر تحديث: يناير 2026</em></p><h3>1. الموضوع</h3><p>تنظم هذه الشروط استخدام منصة ClickPubli، التي تربط العملاء بمحترفين مستقلين.</p><h3>2. التسجيل</h3><p>يضمن المستخدم صحة المعلومات المقدمة عند التسجيل. وهو مسؤول عن سرية كلمة المرور الخاصة به.</p><h3>3. دور ClickPubli</h3><p>ClickPubli هو دليل للتواصل. لسنا طرفاً في العقود المبرمة بين العملاء والمحترفين ولسنا مسؤولين عن جودة الخدمات.</p><h3>4. المحتوى المنشور</h3><p>المحترفون مسؤولون عن محتوى بطاقتهم (نصوص، صور، أسعار). سيتم حذف أي محتوى غير قانوني أو مضلل.</p><h3>5. التقييمات والتعليقات</h3><p>يجب أن تعكس التقييمات تجربة حقيقية. سيتم حذف التقييمات المزيفة أو الإهانات أو التعليقات التشهيرية وقد تؤدي إلى تعليق الحساب.</p><h3>6. الملكية الفكرية</h3><p>جميع عناصر الموقع (الشعار، النصوص، الصور) هي ملك لـ ClickPubli ومحمية بموجب حقوق الطبع والنشر.</p><h3>7. الإنهاء</h3><p>يمكن لكل مستخدم حذف حسابه في أي وقت. تحتفظ ClickPubli بالحق في تعليق الحساب في حالة عدم احترام هذه الشروط.</p><h3>8. اتصل بنا</h3><p>لأي سؤال: contact@clickpubli.com</p>" }
             },
             privacy: {
                 fr: { title:"Politique de confidentialité", html:"<p><em>Dernière mise à jour : janvier 2026</em></p><h3>1. Données collectées</h3><p>Nous collectons les informations que vous nous fournissez lors de votre inscription (nom, email, téléphone, ville) ainsi que les données de navigation via des cookies.</p><h3>2. Utilisation des données</h3><p>Vos données servent à :</p><ul><li>Créer et gérer votre compte.</li><li>Vous mettre en relation avec des professionnels (ou inversement).</li><li>Améliorer la plateforme et votre expérience.</li><li>Vous envoyer des communications liées au service.</li></ul><h3>3. Partage des données</h3><p>Vos données ne sont jamais vendues à des tiers. Elles peuvent être partagées avec :</p><ul><li>Les professionnels que vous contactez (votre nom et message).</li><li>Nos prestataires techniques (hébergement, paiement) sous contrat de confidentialité.</li><li>Les autorités en cas d'obligation légale.</li></ul><h3>4. Cookies</h3><p>Nous utilisons des cookies essentiels au fonctionnement du site et des cookies analytiques (avec votre accord) pour améliorer nos services.</p><h3>5. Durée de conservation</h3><p>Vos données sont conservées tant que votre compte est actif. En cas de suppression, elles sont effacées dans un délai de 30 jours.</p><h3>6. Vos droits</h3><p>Vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Écrivez-nous à contact@clickpubli.com.</p>" },
-                es: { title:"Política de privacidad", html:"<p><em>Última actualización: enero de 2026</em></p><h3>1. Datos recogidos</h3><p>Recogemos la información que nos facilitas al registrarte (nombre, email, teléfono, ciudad) así como datos de navegación mediante cookies.</p><h3>2. Uso de los datos</h3><p>Tus datos sirven para:</p><ul><li>Crear y gestionar tu cuenta.</li><li>Ponerte en contacto con profesionales (o a la inversa).</li><li>Mejorar la plataforma y tu experiencia.</li><li>Enviarte comunicaciones relacionadas con el servicio.</li></ul><h3>3. Compartición de datos</h3><p>Tus datos nunca se venden a terceros. Pueden compartirse con:</p><ul><li>Los profesionales con los que contactas (tu nombre y mensaje).</li><li>Nuestros proveedores técnicos (alojamiento, pago) bajo contrato de confidencialidad.</li><li>Las autoridades en caso de obligación legal.</li></ul><h3>4. Cookies</h3><p>Usamos cookies esenciales para el funcionamiento del sitio y cookies analíticas (con tu consentimiento) para mejorar nuestros servicios.</p><h3>5. Plazo de conservación</h3><p>Tus datos se conservan mientras tu cuenta esté activa. En caso de supresión, se borran en un plazo de 30 días.</p><h3>6. Tus derechos</h3><p>Tienes derecho de acceso, rectificación, supresión y portabilidad de tus datos. Escríbenos a contact@clickpubli.com.</p>" },
+                es: { title:"Política de privacidad", html:"<p><em>Última actualización: enero 2026</em></p><h3>1. Datos recogidos</h3><p>Recogemos la información que nos facilitas al registrarte (nombre, email, teléfono, ciudad) así como datos de navegación mediante cookies.</p><h3>2. Uso de los datos</h3><p>Tus datos sirven para:</p><ul><li>Crear y gestionar tu cuenta.</li><li>Ponerte en contacto con profesionales (o a la inversa).</li><li>Mejorar la plataforma y tu experiencia.</li><li>Enviarte comunicaciones relacionadas con el servicio.</li></ul><h3>3. Compartición de datos</h3><p>Tus datos nunca se venden a terceros. Pueden compartirse con:</p><ul><li>Los profesionales con los que contactas (tu nombre y mensaje).</li><li>Nuestros proveedores técnicos (alojamiento, pago) bajo contrato de confidencialidad.</li><li>Las autoridades en caso de obligación legal.</li></ul><h3>4. Cookies</h3><p>Usamos cookies esenciales para el funcionamiento del sitio y cookies analíticas (con tu consentimiento) para mejorar nuestros servicios.</p><h3>5. Plazo de conservación</h3><p>Tus datos se conservan mientras tu cuenta esté activa. En caso de supresión, se borran en un plazo de 30 días.</p><h3>6. Tus derechos</h3><p>Tienes derecho de acceso, rectificación, supresión y portabilidad de tus datos. Escríbenos a contact@clickpubli.com.</p>" },
                 ar: { title:"سياسة الخصوصية", html:"<p><em>آخر تحديث: يناير 2026</em></p><h3>1. البيانات المجمعة</h3><p>نجمع المعلومات التي تقدمها لنا عند التسجيل (الاسم، البريد الإلكتروني، الهاتف، المدينة) بالإضافة إلى بيانات التصفح عبر ملفات تعريف الارتباط.</p><h3>2. استخدام البيانات</h3><p>تستخدم بياناتك من أجل:</p><ul><li>إنشاء وإدارة حسابك.</li><li>ربطك بالمحترفين (أو العكس).</li><li>تحسين المنصة وتجربتك.</li><li>إرسال رسائل تتعلق بالخدمة.</li></ul><h3>3. مشاركة البيانات</h3><p>لا تُباع بياناتك أبداً لأطراف ثالثة. يمكن مشاركتها مع:</p><ul><li>المحترفين الذين تتواصل معهم (اسمك ورسالتك).</li><li>مزودي الخدمة التقنيين لدينا (الاستضافة، الدفع) بموجب عقد سري.</li><li>السلطات في حالة وجود التزام قانوني.</li></ul><h3>4. ملفات تعريف الارتباط</h3><p>نستخدم ملفات تعريف الارتباط الأساسية لتشغيل الموقع وملفات تعريف الارتباط التحليلية (بموافقتك) لتحسين خدماتنا.</p><h3>5. مدة الحفظ</h3><p>تُحفظ بياناتك طالما أن حسابك نشط. في حالة الحذف، يتم محوها خلال 30 يوماً.</p><h3>6. حقوقك</h3><p>لديك الحق في الوصول والتصحيح والحذف ونقل بياناتك. راسلنا على contact@clickpubli.com.</p>" }
             }
         };
 
-        /* ===== CIUDADES DE MARRUECOS (todas las principales) ===== */
         const citiesData = [
-            { fr:"Casablanca", es:"Casablanca", ar:"الدار البيضاء" },
-            { fr:"Rabat", es:"Rabat", ar:"الرباط" },
-            { fr:"Marrakech", es:"Marrakech", ar:"مراكش" },
-            { fr:"Tanger", es:"Tánger", ar:"طنجة" },
-            { fr:"Fès", es:"Fez", ar:"فاس" },
-            { fr:"Agadir", es:"Agadir", ar:"أكادير" },
-            { fr:"Meknès", es:"Mequinez", ar:"مكناس" },
-            { fr:"Oujda", es:"Uchda", ar:"وجدة" },
-            { fr:"Kénitra", es:"Kenitra", ar:"القنيطرة" },
-            { fr:"Tétouan", es:"Tetuán", ar:"تطوان" },
-            { fr:"Salé", es:"Salé", ar:"سلا" },
-            { fr:"Temara", es:"Temara", ar:"تمارة" },
-            { fr:"Safi", es:"Safí", ar:"آسفي" },
-            { fr:"Mohammedia", es:"Mohammedia", ar:"المحمدية" },
-            { fr:"El Jadida", es:"El Yadida", ar:"الجديدة" },
-            { fr:"Nador", es:"Nador", ar:"الناظور" },
-            { fr:"Béni Mellal", es:"Beni Melal", ar:"بني ملال" },
-            { fr:"Khouribga", es:"Juribga", ar:"خريبكة" },
-            { fr:"Essaouira", es:"Esauira", ar:"الصويرة" },
-            { fr:"Ouarzazate", es:"Uarzazate", ar:"ورزازات" },
-            { fr:"Chefchaouen", es:"Chauen", ar:"شفشاون" },
-            { fr:"Larache", es:"Larache", ar:"العرائش" },
-            { fr:"Taza", es:"Taza", ar:"تازة" },
-            { fr:"Ifrane", es:"Ifrán", ar:"إفران" },
-            { fr:"Laâyoune", es:"El Aaiún", ar:"العيون" },
-            { fr:"Settat", es:"Settat", ar:"سطات" },
-            { fr:"Al Hoceïma", es:"Alhucemas", ar:"الحسيمة" },
-            { fr:"Errachidia", es:"Errachidia", ar:"الرشيدية" },
-            { fr:"Guelmim", es:"Guelmim", ar:"كلميم" },
-            { fr:"Tan-Tan", es:"Tan-Tan", ar:"طانطان" },
-            { fr:"Sidi Ifni", es:"Sidi Ifni", ar:"سيدي إفني" },
-            { fr:"Taroudant", es:"Taroudant", ar:"تارودانت" },
-            { fr:"Tiznit", es:"Tiznit", ar:"تيزنيت" },
-            { fr:"Zagora", es:"Zagora", ar:"زاكورة" },
-            { fr:"Azilal", es:"Azilal", ar:"أزيلال" },
-            { fr:"Khémisset", es:"Jemiset", ar:"الخميسات" },
-            { fr:"Sidi Kacem", es:"Sidi Kasem", ar:"سيدي قاسم" },
-            { fr:"Sidi Slimane", es:"Sidi Slimane", ar:"سيدي سليمان" },
-            { fr:"Berrechid", es:"Berrechid", ar:"برشيد" },
-            { fr:"Youssoufia", es:"Yusufía", ar:"اليوسفية" },
-            { fr:"Benguerir", es:"Benguerir", ar:"بن جرير" },
-            { fr:"Es-Semara", es:"Es-Semara", ar:"السمارة" },
-            { fr:"Boujdour", es:"Bojador", ar:"بوجدور" },
-            { fr:"Dakhla", es:"Dajla", ar:"الداخلة" },
-            { fr:"Ksar El Kebir", es:"Ksar El Kebir", ar:"القصر الكبير" },
-            { fr:"Asilah", es:"Asilah", ar:"أصيلة" },
-            { fr:"Fnideq", es:"Fnideq", ar:"الفنيدق" },
-            { fr:"Martil", es:"Martil", ar:"مرتيل" },
-            { fr:"Tiflet", es:"Tiflet", ar:"تيفلت" },
-            { fr:"El Hajeb", es:"El Hajeb", ar:"الحاجب" },
-            { fr:"Azrou", es:"Azrou", ar:"أزرو" },
-            { fr:"Midelt", es:"Midelt", ar:"ميدلت" },
-            { fr:"Tinghir", es:"Tinghir", ar:"تنغير" },
-            { fr:"Tata", es:"Tata", ar:"طاطا" },
-            { fr:"Tarfaya", es:"Tarfaya", ar:"طرفاية" },
-            { fr:"Fquih Ben Salah", es:"Fquih Ben Salah", ar:"الفقيه بن صالح" },
-            { fr:"Oued Zem", es:"Uad Zem", ar:"وادي زم" },
-            { fr:"Skhirat", es:"Skhirat", ar:"الصخيرات" },
-            { fr:"Bouznika", es:"Bouznika", ar:"بوزنيقة" },
-            { fr:"Benslimane", es:"Benslimane", ar:"بنسليمان" },
-            { fr:"El Kelaa des Sraghna", es:"El Kelaa de Sraghna", ar:"قلعة السراغنة" },
-            { fr:"Chichaoua", es:"Chichaoua", ar:"شيشاوة" },
+            { fr:"Casablanca", es:"Casablanca", ar:"الدار البيضاء" }, { fr:"Rabat", es:"Rabat", ar:"الرباط" },
+            { fr:"Marrakech", es:"Marrakech", ar:"مراكش" }, { fr:"Tanger", es:"Tánger", ar:"طنجة" },
+            { fr:"Fès", es:"Fez", ar:"فاس" }, { fr:"Agadir", es:"Agadir", ar:"أكادير" },
+            { fr:"Meknès", es:"Mequinez", ar:"مكناس" }, { fr:"Oujda", es:"Uchda", ar:"وجدة" },
+            { fr:"Kénitra", es:"Kenitra", ar:"القنيطرة" }, { fr:"Tétouan", es:"Tetuán", ar:"تطوان" },
+            { fr:"Salé", es:"Salé", ar:"سلا" }, { fr:"Temara", es:"Temara", ar:"تمارة" },
+            { fr:"Safi", es:"Safí", ar:"آسفي" }, { fr:"Mohammedia", es:"Mohammedia", ar:"المحمدية" },
+            { fr:"El Jadida", es:"El Yadida", ar:"الجديدة" }, { fr:"Nador", es:"Nador", ar:"الناظور" },
+            { fr:"Béni Mellal", es:"Beni Melal", ar:"بني ملال" }, { fr:"Khouribga", es:"Juribga", ar:"خريبكة" },
+            { fr:"Essaouira", es:"Esauira", ar:"الصويرة" }, { fr:"Ouarzazate", es:"Uarzazate", ar:"ورزازات" },
+            { fr:"Chefchaouen", es:"Chauen", ar:"شفشاون" }, { fr:"Larache", es:"Larache", ar:"العرائش" },
+            { fr:"Taza", es:"Taza", ar:"تازة" }, { fr:"Ifrane", es:"Ifrán", ar:"إفران" },
+            { fr:"Laâyoune", es:"El Aaiún", ar:"العيون" }, { fr:"Settat", es:"Settat", ar:"سطات" },
+            { fr:"Al Hoceïma", es:"Alhucemas", ar:"الحسيمة" }, { fr:"Errachidia", es:"Errachidia", ar:"الرشيدية" },
+            { fr:"Guelmim", es:"Guelmim", ar:"كلميم" }, { fr:"Tan-Tan", es:"Tan-Tan", ar:"طانطان" },
+            { fr:"Sidi Ifni", es:"Sidi Ifni", ar:"سيدي إفني" }, { fr:"Taroudant", es:"Taroudant", ar:"تارودانت" },
+            { fr:"Tiznit", es:"Tiznit", ar:"تيزنيت" }, { fr:"Zagora", es:"Zagora", ar:"زاكورة" },
+            { fr:"Azilal", es:"Azilal", ar:"أزيلال" }, { fr:"Khémisset", es:"Jemiset", ar:"الخميسات" },
+            { fr:"Sidi Kacem", es:"Sidi Kasem", ar:"سيدي قاسم" }, { fr:"Sidi Slimane", es:"Sidi Slimane", ar:"سيدي سليمان" },
+            { fr:"Berrechid", es:"Berrechid", ar:"برشيد" }, { fr:"Youssoufia", es:"Yusufía", ar:"اليوسفية" },
+            { fr:"Benguerir", es:"Benguerir", ar:"بن جرير" }, { fr:"Es-Semara", es:"Es-Semara", ar:"السمارة" },
+            { fr:"Boujdour", es:"Bojador", ar:"بوجدور" }, { fr:"Dakhla", es:"Dajla", ar:"الداخلة" },
+            { fr:"Ksar El Kebir", es:"Ksar El Kebir", ar:"القصر الكبير" }, { fr:"Asilah", es:"Asilah", ar:"أصيلة" },
+            { fr:"Fnideq", es:"Fnideq", ar:"الفنيدق" }, { fr:"Martil", es:"Martil", ar:"مرتيل" },
+            { fr:"Tiflet", es:"Tiflet", ar:"تيفلت" }, { fr:"El Hajeb", es:"El Hajeb", ar:"الحاجب" },
+            { fr:"Azrou", es:"Azrou", ar:"أزرو" }, { fr:"Midelt", es:"Midelt", ar:"ميدلت" },
+            { fr:"Tinghir", es:"Tinghir", ar:"تنغير" }, { fr:"Tata", es:"Tata", ar:"طاطا" },
+            { fr:"Tarfaya", es:"Tarfaya", ar:"طرفاية" }, { fr:"Fquih Ben Salah", es:"Fquih Ben Salah", ar:"الفقيه بن صالح" },
+            { fr:"Oued Zem", es:"Uad Zem", ar:"وادي زم" }, { fr:"Skhirat", es:"Skhirat", ar:"الصخيرات" },
+            { fr:"Bouznika", es:"Bouznika", ar:"بوزنيقة" }, { fr:"Benslimane", es:"Benslimane", ar:"بنسليمان" },
+            { fr:"El Kelaa des Sraghna", es:"El Kelaa de Sraghna", ar:"قلعة السراغنة" }, { fr:"Chichaoua", es:"Chichaoua", ar:"شيشاوة" },
             { fr:"Khénifra", es:"Jenifra", ar:"خنيفرة" }
         ];
 
@@ -1171,10 +1146,10 @@
         ];
 
         const workEmojis = {
-            plomberie:["🚿","","🚰",""], electricite:["","⚡","","🏮"],
-            peinture:["🎨","🖌️","🖼️","🏠"], menage:["🧹","","✨",""],
-            climatisation:["❄️","🌬️","🌀","🏢"], menuiserie:["🪚","","🚪","️"],
-            serrurerie:["🔑","","🚪","️"], maconnerie:["🧱","🏗️","🏠","️"],
+            plomberie:["🚿","🔧","🚰","🛁"], electricite:["💡","⚡","🔌","🏮"],
+            peinture:["🎨","️","🖼️","🏠"], menage:["🧹","","✨",""],
+            climatisation:["️","🌬️","🌀","🏢"], menuiserie:["🪚","🪑","🚪","🛠️"],
+            serrurerie:["🔑","🔒","🚪","🗝️"], maconnerie:["🧱","🏗️","🏠","️"],
             electromenager:["🧺","","🧊",""], jardinage:["","🌳","","✂️"]
         };
 
@@ -1191,7 +1166,6 @@
             jardinage:{ specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"}, desc:{fr:"Entretien d'espaces verts, tonte, taille et plantation.",es:"Mantenimiento de zonas verdes, corte, poda y plantación.",ar:"العناية بالمساحات الخضراء والقص والتقليم والزراعة."} }
         };
 
-        /* Avatares de prueba (randomuser.me) por índice */
         const sampleAvatars = [
             "men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12",
             "men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29",
@@ -1199,14 +1173,14 @@
         ];
 
         const sampleRaw = [
-            ["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],
+            ["p1","Mohammed El Amrani","👨‍🔧","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],
             ["p2","Youssef Benali","👨‍🔧","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],
             ["p3","Fatima Zahra","👩‍💼","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],
-            ["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],
-            ["p5","Amina Berrada","👩‍🔧","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],
+            ["p4","Hassan Idrissi","👨‍","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],
+            ["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],
             ["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],
             ["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],
-            ["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],
+            ["p8","Omar Cherkaoui","👨‍","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],
             ["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],
             ["p10","Nabil Fassi","👨‍💼","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],
             ["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],
@@ -1214,12 +1188,12 @@
             ["p13","Khadija Amrani","👩‍💼","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],
             ["p14","Salma Berrada","👩‍💼","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],
             ["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],
-            ["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],
+            ["p16","Karim Idrissi","👨‍🔧","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],
             ["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],
             ["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],
             ["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],
             ["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],
-            ["p21","Tarik Bennis","👨‍","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],
+            ["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],
             ["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],
             ["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],
             ["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],
@@ -1234,10 +1208,7 @@
             id:r[0], name:r[1], emoji:r[2], category:r[3], city_index:r[4], rating:r[5], reviews:r[6], phone:r[7], whatsapp:r[8],
             specialty: sampleMeta[r[3]].specialty, description: sampleMeta[r[3]].desc,
             photo_url: `https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,
-            photos: [
-                `https://picsum.photos/seed/${r[0]}-w1/400/300`,
-                `https://picsum.photos/seed/${r[0]}-w2/400/300`
-            ]
+            photos: [ `https://picsum.photos/seed/${r[0]}-w1/400/300`, `https://picsum.photos/seed/${r[0]}-w2/400/300` ]
         }));
 
         let currentLang = localStorage.getItem("clickpubli_lang") || "fr";
@@ -1253,6 +1224,7 @@
         let editingProId = null;
         let currentPhotos = [];
         let pendingAvatarUrl = null;
+        let pendingCoverUrl = null;
         let serviceMedia = {};
         let selectedProSvcIds = [];
         let pendingProSvcImages = {};
@@ -1278,7 +1250,7 @@
             const p = prosData.find(x => x.id === proId);
             if (!p) { renderMainView(); return; }
             const banner = document.getElementById("ppBanner");
-            if (p.photo_url) banner.style.backgroundImage = `url("${p.photo_url}")`;
+            if (p.cover_url) banner.style.backgroundImage = `url("${p.cover_url}")`;
             else banner.style.backgroundImage = "";
             document.getElementById("ppAvatar").innerHTML = proAvatarHtml(p);
             document.getElementById("ppName").textContent = p.name;
@@ -1522,7 +1494,7 @@
                     rating: parseFloat(r.rating) || 4.5, reviews: r.reviews || 0,
                     phone: r.phone || "", whatsapp: r.whatsapp || "",
                     desc: r.description || { fr:"", es:"", ar:"" },
-                    photos: r.photos || [], photo_url: r.photo_url || "", user_id: r.user_id || null
+                    photos: r.photos || [], photo_url: r.photo_url || "", cover_url: r.cover_url || "", user_id: r.user_id || null
                 }));
             }
         }
@@ -1580,6 +1552,23 @@
             prev.src = pendingAvatarUrl; prev.style.display = "block";
         }
         document.getElementById("pfAvatarInput").addEventListener("change", e => uploadAvatar(e.target.files[0]));
+
+        async function uploadCover(file) {
+            if (!file) return;
+            const safe = file.name.replace(/[^\w.\-]+/g, "_");
+            const path = `covers/${Date.now()}_${safe}`;
+            const { error } = await sb.storage.from("pro-photos").upload(path, file);
+            if (error) { showToast(error.message); return; }
+            const { data } = sb.storage.from("pro-photos").getPublicUrl(path);
+            pendingCoverUrl = data.publicUrl;
+            const prev = document.getElementById("pfCoverPreview");
+            prev.src = pendingCoverUrl; prev.style.display = "block";
+        }
+        document.getElementById("pfCoverInput").addEventListener("change", e => uploadCover(e.target.files[0]));
+        function setCoverPreview(url) {
+            const prev = document.getElementById("pfCoverPreview");
+            if (url) { prev.src = url; prev.style.display = "block"; } else { prev.removeAttribute("src"); prev.style.display = "none"; }
+        }
 
         async function uploadServiceImage(serviceId, file) {
             if (!file) return;
@@ -1660,30 +1649,31 @@
             document.getElementById("pfDescAr").value = (p.desc && p.desc.ar) || "";
         }
         function openProForm(proId) {
-    if (!isAdmin()) return;
-    selectedProSvcIds = []; pendingProSvcImages = {};
-    prepareProForm();
-    if (proId) {
-        const p = prosData.find(x => x.id === proId);
-        editingProId = proId; currentPhotos = (p && p.photos) ? p.photos.slice() : [];
-        pendingAvatarUrl = (p && p.photo_url) || null;
-        fillProFormFromData(p); setAvatarPreview(pendingAvatarUrl);
-        const existing = proServicesMap[proId] || [];
-        selectedProSvcIds = existing.map(s => s.service_id);
-        existing.forEach(s => { if (s.image_url) pendingProSvcImages[s.service_id] = s.image_url; });
-        renderProSvcGrid();
-        document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
-    } else {
-        editingProId = null; currentPhotos = []; pendingAvatarUrl = null;
-        document.getElementById("proForm").reset(); setAvatarPreview(null);
-        document.getElementById("pfRating").value = "4.5";
-        renderProSvcGrid();
-        document.getElementById("proFormTitle").textContent = t("admin_add_pro");
-    }
-    showPhotosSection(true);
-    renderPhotosList();
-    document.getElementById("proFormModal").classList.add("active"); document.body.style.overflow = "hidden";
-}
+            if (!isAdmin()) return;
+            selectedProSvcIds = []; pendingProSvcImages = {};
+            prepareProForm();
+            if (proId) {
+                const p = prosData.find(x => x.id === proId);
+                editingProId = proId; currentPhotos = (p && p.photos) ? p.photos.slice() : [];
+                pendingAvatarUrl = (p && p.photo_url) || null;
+                pendingCoverUrl = (p && p.cover_url) || null;
+                fillProFormFromData(p); setAvatarPreview(pendingAvatarUrl); setCoverPreview(pendingCoverUrl);
+                const existing = proServicesMap[proId] || [];
+                selectedProSvcIds = existing.map(s => s.service_id);
+                existing.forEach(s => { if (s.image_url) pendingProSvcImages[s.service_id] = s.image_url; });
+                renderProSvcGrid();
+                document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
+            } else {
+                editingProId = null; currentPhotos = []; pendingAvatarUrl = null; pendingCoverUrl = null;
+                document.getElementById("proForm").reset(); setAvatarPreview(null); setCoverPreview(null);
+                document.getElementById("pfRating").value = "4.5";
+                renderProSvcGrid();
+                document.getElementById("proFormTitle").textContent = t("admin_add_pro");
+            }
+            showPhotosSection(true);
+            renderPhotosList();
+            document.getElementById("proFormModal").classList.add("active"); document.body.style.overflow = "hidden";
+        }
         async function openMyProCard() {
             if (!currentProfile) { openAuth("login"); return; }
             if (currentProfile.role !== "pro") { showToast(t("pro_only")); return; }
@@ -1695,7 +1685,8 @@
                 fillProFormFromData({ id:data.id, name:data.name, emoji:data.emoji, category:data.category, specialty:data.specialty, city:citiesData[data.city_index] || citiesData[0], rating:parseFloat(data.rating), reviews:data.reviews, phone:data.phone, whatsapp:data.whatsapp, desc:data.description });
                 currentPhotos = data.photos || [];
                 pendingAvatarUrl = data.photo_url || null;
-                setAvatarPreview(pendingAvatarUrl);
+                pendingCoverUrl = data.cover_url || null;
+                setAvatarPreview(pendingAvatarUrl); setCoverPreview(pendingCoverUrl);
                 const existing = proServicesMap[data.id] || [];
                 selectedProSvcIds = existing.map(s => s.service_id);
                 existing.forEach(s => { if (s.image_url) pendingProSvcImages[s.service_id] = s.image_url; });
@@ -1703,7 +1694,8 @@
                 document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
             } else {
                 editingProId = null; document.getElementById("proForm").reset();
-                document.getElementById("pfRating").value = "4.5"; currentPhotos = []; pendingAvatarUrl = null; setAvatarPreview(null);
+                document.getElementById("pfRating").value = "4.5"; currentPhotos = []; pendingAvatarUrl = null; pendingCoverUrl = null;
+                setAvatarPreview(null); setCoverPreview(null);
                 renderProSvcGrid();
                 document.getElementById("proFormTitle").textContent = t("create_pro_card");
             }
@@ -1732,7 +1724,7 @@
                 category: document.getElementById("pfCategory").value, city_index: cityIndex,
                 rating: parseFloat(document.getElementById("pfRating").value) || 4.5,
                 phone: document.getElementById("pfPhone").value.trim(), whatsapp: document.getElementById("pfWhatsapp").value.trim(),
-                photos: currentPhotos, photo_url: pendingAvatarUrl,
+                photos: currentPhotos, photo_url: pendingAvatarUrl, cover_url: pendingCoverUrl,
                 specialty: { fr: document.getElementById("pfSpecFr").value.trim(), es: document.getElementById("pfSpecEs").value.trim(), ar: document.getElementById("pfSpecAr").value.trim() },
                 description: { fr: document.getElementById("pfDescFr").value.trim(), es: document.getElementById("pfDescEs").value.trim(), ar: document.getElementById("pfDescAr").value.trim() }
             };
@@ -1794,6 +1786,8 @@
                 const firstName = currentProfile.name.split(" ")[0];
                 const isAdminUser = isAdmin(); const isProUser = isPro();
                 area.innerHTML = `
+                    ${isAdminUser ? `<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>` : ""}
+                    ${(!isAdminUser && isProUser) ? `<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>` : ""}
                     <div class="user-chip">
                         <div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${initial}</div>
                         <span class="user-name" onclick="openProfile()">${firstName}</span>
@@ -1810,7 +1804,6 @@
             }
         }
 
-        /* Banderas: árabe usa bandera de Marruecos (ma) */
         function renderLangSwitchers() {
             const langs = [
                 { code:"fr", flag:"fr", label:"FR" },
@@ -2003,7 +1996,6 @@
             if (termsChk && !termsChk.checked && document.getElementById("authModal").classList.contains("active")) termsChk.checked = true;
         }
 
-        /* ===== INSTALACIÓN (modal) ===== */
         function openInstallModal() {
             const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
             const isAndroid = /android/i.test(navigator.userAgent);
