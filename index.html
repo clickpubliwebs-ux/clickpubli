@@ -1659,28 +1659,31 @@
             document.getElementById("pfDescEs").value = (p.desc && p.desc.es) || "";
             document.getElementById("pfDescAr").value = (p.desc && p.desc.ar) || "";
         }
-        function openProForm(proId) {
-            if (!isAdmin()) return;
-            showPhotosSection(false);
-            selectedProSvcIds = []; pendingProSvcImages = {};
-            prepareProForm();
-            if (proId) {
-                const p = prosData.find(x => x.id === proId);
-                editingProId = proId; currentPhotos = (p && p.photos) ? p.photos.slice() : [];
-                pendingAvatarUrl = (p && p.photo_url) || null;
-                fillProFormFromData(p); setAvatarPreview(pendingAvatarUrl);
-                const existing = proServicesMap[proId] || [];
-                selectedProSvcIds = existing.map(s => s.service_id);
-                existing.forEach(s => { if (s.image_url) pendingProSvcImages[s.service_id] = s.image_url; });
-                renderProSvcGrid();
-                document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
-            } else {
-                editingProId = null; currentPhotos = []; pendingAvatarUrl = null;
-                document.getElementById("proForm").reset(); setAvatarPreview(null);
-                document.getElementById("pfRating").value = "4.5";
-                renderProSvcGrid();
-                document.getElementById("proFormTitle").textContent = t("admin_add_pro");
-            }
+function openProForm(proId) {
+    if (!isAdmin()) return;
+    selectedProSvcIds = []; pendingProSvcImages = {};
+    prepareProForm();
+    if (proId) {
+        const p = prosData.find(x => x.id === proId);
+        editingProId = proId; currentPhotos = (p && p.photos) ? p.photos.slice() : [];
+        pendingAvatarUrl = (p && p.photo_url) || null;
+        fillProFormFromData(p); setAvatarPreview(pendingAvatarUrl);
+        const existing = proServicesMap[proId] || [];
+        selectedProSvcIds = existing.map(s => s.service_id);
+        existing.forEach(s => { if (s.image_url) pendingProSvcImages[s.service_id] = s.image_url; });
+        renderProSvcGrid();
+        document.getElementById("proFormTitle").textContent = t("admin_edit_pro");
+    } else {
+        editingProId = null; currentPhotos = []; pendingAvatarUrl = null;
+        document.getElementById("proForm").reset(); setAvatarPreview(null);
+        document.getElementById("pfRating").value = "4.5";
+        renderProSvcGrid();
+        document.getElementById("proFormTitle").textContent = t("admin_add_pro");
+    }
+    showPhotosSection(true);
+    renderPhotosList();
+    document.getElementById("proFormModal").classList.add("active"); document.body.style.overflow = "hidden";
+}
             document.getElementById("proFormModal").classList.add("active"); document.body.style.overflow = "hidden";
         }
         async function openMyProCard() {
