@@ -1312,6 +1312,7 @@ function applyI18nText(){
   document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
 }
 function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);applyI18nText();
+ renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPros(null);updateAuthUI();                          
 if(document.getElementById("favoritesView").style.display!=="none")renderFavoritesPage();
 if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
 if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
