@@ -1261,7 +1261,7 @@ c.querySelectorAll(".city-link").forEach(a=>a.addEventListener("click",()=>{cons
 function renderPopular(){const ids=["plomberie","electricite","menage"].filter(id=>servicesData.some(s=>s.id===id));document.getElementById("popularChips").innerHTML=ids.map(id=>{const s=servicesData.find(x=>x.id===id);return `<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`}).join(" ")}
 function renderFaqList(){const l=document.getElementById("faqList");const items=faqContent[currentLang]||faqContent.fr;l.innerHTML=items.map((it,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-q" onclick="toggleFaq(${i})"><span>${it.q}</span><span class="arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">${it.a}</div></div></div>`).join("")}
 function toggleFaq(i){document.getElementById("faq-"+i).classList.toggle("open")}
-function renderPros(filterId=null,filterCity=null,onlyFav=false){lastProsFilter={id:filterId,city:filterCity,favs:onlyFav};let list=prosData;
+function renderPros(filterId=null,filterCity=null,onlyFav=false){renderStats();lastProsFilter={id:filterId,city:filterCity,favs:onlyFav};let list=prosData;
 if(filterId){const by=prosData.filter(p=>p.category===filterId);if(by.length>0)list=by;else if(!filterCity)list=prosData;else list=[]}
 if(filterCity)list=list.filter(p=>p.city[currentLang]===filterCity);
 if(onlyFav){if(currentProfile)list=list.filter(p=>currentUserFavorites.includes(p.id));else list=[]}
