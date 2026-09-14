@@ -87,13 +87,13 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .hero h1 .highlight{color:#fdba74}
 .hero-subtitle{font-size:1.12rem;opacity:.92;margin-bottom:2rem;max-width:540px}
 .search-box{background:white;border-radius:16px;padding:.6rem;display:flex;gap:.5rem;box-shadow:var(--shadow-lg);flex-wrap:wrap}
-.search-box input,.search-box select{border:none;padding:.9rem 1rem;font-size:.98rem;font-family:inherit;color:var(--dark);background:var(--light-gray);border-radius:11px;outline:none}
-.search-box input{flex:2;min-width:160px}
-.search-box select{flex:1;min-width:130px;cursor:pointer}
+.search-box select{border:none;padding:.9rem 1rem;font-size:.98rem;font-family:inherit;color:var(--dark);background:var(--light-gray);border-radius:11px;outline:none;cursor:pointer}
+.search-box select:first-child{flex:2;min-width:170px}
+.search-box select:nth-child(2){flex:1;min-width:130px}
 .search-box button{flex:1;min-width:120px;padding:.9rem 1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:11px;font-weight:700;font-size:.98rem;cursor:pointer;font-family:inherit}
 .popular-chips{display:flex;align-items:center;gap:1rem;row-gap:1rem;margin-top:1.4rem;flex-wrap:wrap;font-size:.9rem}
 .popular-chips .label{opacity:.85;font-weight:500}
-.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:.6rem 1.4rem;border-radius:50px;cursor:pointer;font-size:.9rem}
+.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:.6rem 1.4rem;border-radius:50px;cursor:pointer;font-size:.9rem;margin:0}
 .hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
 .hero-stat strong{display:block;font-size:1.7rem;font-weight:800;color:#fdba74}
 .hero-stat span{font-size:.85rem;opacity:.85}
@@ -396,7 +396,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .hero h1{font-size:2.3rem}
 .hero-subtitle{margin-inline:auto}
 .hero-stats{justify-content:center}
-.popular-chips{justify-content:center}
 .hero-visual{margin-top:2rem}
 }
 @media (max-width:520px){
@@ -408,8 +407,8 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .admin-form-grid{grid-template-columns:1fr}
 .pro-svc-grid{grid-template-columns:1fr}
 .toast{bottom:80px}
-.popular-chips{gap:1.2rem;row-gap:1.2rem;justify-content:flex-start}
-.chip{padding:.8rem 1.7rem;font-size:.95rem}
+.hero .popular-chips{display:flex;flex-wrap:wrap;gap:1rem;row-gap:1rem;justify-content:center;align-items:center}
+.hero .popular-chips .chip{margin:0;padding:.75rem 1.6rem;font-size:.95rem;white-space:nowrap}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;justify-content:stretch}
 .hero-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:.9rem .6rem;text-align:center}
 .hero-stat strong{font-size:1.45rem}
@@ -474,16 +473,16 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <h1><span data-i18n="hero_title_1"></span> <span class="highlight" data-i18n="hero_title_highlight"></span> <span data-i18n="hero_title_2"></span></h1>
 <p class="hero-subtitle" data-i18n="hero_subtitle"></p>
 <div class="search-box">
-<input type="text" id="searchInput" data-i18n-placeholder="search_placeholder">
+<select id="serviceSelect"></select>
 <select id="citySelect"></select>
 <button onclick="searchServices()" data-i18n="search_btn">Rechercher</button>
 </div>
 <div class="popular-chips"><span class="label" data-i18n="popular_label"></span> <span id="popularChips"></span></div>
 <div class="hero-stats">
-<div class="hero-stat"><strong id="statPros">0</strong><span data-i18n="stat_pros"></span></div>
-<div class="hero-stat"><strong id="statCities">0</strong><span data-i18n="stat_cities"></span></div>
-<div class="hero-stat"><strong id="statServices">0</strong><span data-i18n="stat_services"></span></div>
-<div class="hero-stat"><strong id="statSatisfaction">—</strong><span data-i18n="stat_satisfaction"></span></div>
+<div class="hero-stat"><strong>25 000+</strong><span data-i18n="stat_pros"></span></div>
+<div class="hero-stat"><strong>26+</strong><span data-i18n="stat_cities"></span></div>
+<div class="hero-stat"><strong>160+</strong><span data-i18n="stat_services"></span></div>
+<div class="hero-stat"><strong>98%</strong><span data-i18n="stat_satisfaction"></span></div>
 </div>
 </div>
 <div class="hero-visual">
@@ -493,8 +492,8 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="vmc-tags"><span>⚡ <span data-i18n="hero_card_fast"></span></span><span>🛡️ <span data-i18n="hero_card_verified"></span></span><span>💰 <span data-i18n="hero_card_nocomm"></span></span></div>
 <button class="vmc-btn" onclick="openModal('p1')" data-i18n="hero_card_contact">Contacter</button>
 </div>
-<div class="floating-card fc-1"><span class="fc-icon">✅</span><div><strong id="statProsCard">0</strong><small data-i18n="hero_float_pros"></small></div></div>
-<div class="floating-card fc-2"><span class="fc-icon">⭐</span><div><strong id="statSatCard">—</strong><small data-i18n="hero_float_sat"></small></div></div>
+<div class="floating-card fc-1"><span class="fc-icon">✅</span><div><strong>25 000+</strong><small data-i18n="hero_float_pros"></small></div></div>
+<div class="floating-card fc-2"><span class="fc-icon">⭐</span><div><strong>98%</strong><small data-i18n="hero_float_sat"></small></div></div>
 </div>
 </div>
 </section>
@@ -761,7 +760,7 @@ const translations={
 fr:{doc_title:"ClickPubli — Services à domicile au Maroc | Plombiers, électriciens, ménage",nav_home:"Accueil",nav_services:"Services",nav_pros:"Professionnels",nav_how:"Comment ça marche",nav_faq:"FAQ",nav_contact:"Contact",nav_label:"Navigation",lang_label:"Langue",
 hero_badge:"N°1 des services à domicile au Maroc",hero_title_1:"Trouvez des",hero_title_highlight:"professionnels de confiance",hero_title_2:"près de chez vous",
 hero_subtitle:"Plombiers, électriciens, peintres, femmes de ménage... Contactez directement des artisans vérifiés partout au Maroc. Sans commission, sans intermédiaire.",
-search_placeholder:"Quel service recherchez-vous ?",search_city_label:"Votre ville",search_btn:"Rechercher",popular_label:"Populaire :",
+search_all_services:"Tous les services",search_city_label:"Votre ville",search_btn:"Rechercher",popular_label:"Populaire :",
 stat_pros:"Professionnels",stat_cities:"Villes couvertes",stat_services:"Services",stat_satisfaction:"Satisfaction",
 hero_card_role:"Plombier",hero_card_fast:"Rapide",hero_card_verified:"Vérifié",hero_card_nocomm:"Sans commission",hero_card_contact:"Contacter",hero_float_pros:"Pros vérifiés",hero_float_sat:"Satisfaction",
 features_title:"Pourquoi choisir ClickPubli ?",features_subtitle:"Une plateforme simple, gratuite et transparente pour tous vos besoins à domicile.",
@@ -793,7 +792,7 @@ field_category:"Catégorie",field_rating:"Note",field_specialty:"Spécialité",f
 my_pro_card:"Ma fiche pro",pro_only:"Réservé aux professionnels",create_pro_card:"Créer ma fiche pro",
 faq_title:"Questions fréquentes",
 quote_title:"Demander un devis",quote_subtitle:"Le message sera envoyé par WhatsApp au professionnel.",quote_name:"Votre nom",quote_phone:"Votre téléphone",quote_desc:"Décrivez votre besoin",quote_send:"Envoyer par WhatsApp",
-contact_title:"Contactez-nous",contact_phone:"Téléphone",contact_email:"Email",contact_city:"Casablanca, Maroc",contact_form_title:"Envoyez-nous un message",contact_form_name:"Nom",contact_form_email:"Email",contact_form_subject:"Sujet",contact_form_message:"Message",contact_form_send:"Envoyer",contact_sent:"Message préparé dans votre messagerie",
+contact_title:"Contactez-nous",contact_phone:"Téléphone",contact_email:"Email",contact_city:"Maroc",contact_form_title:"Envoyez-nous un message",contact_form_name:"Nom",contact_form_email:"Email",contact_form_subject:"Sujet",contact_form_message:"Message",contact_form_send:"Envoyer",contact_sent:"Message préparé dans votre messagerie",
 chat_title:"Assistant ClickPubli",chat_placeholder:"Écrivez votre réponse...",
 chat_greet:"Bonjour, je suis l'assistant ClickPubli. Je vous accompagne pour obtenir un devis professionnel en quelques étapes.",
 chat_q_service:"Pour commencer, quel type de service souhaitez-vous ? Sélectionnez une option :",
@@ -813,7 +812,7 @@ cookie_text:"Ce site utilise des cookies pour améliorer votre expérience.",coo
 es:{doc_title:"ClickPubli — Servicios a domicilio en Marruecos | Fontaneros, electricistas, limpieza",nav_home:"Inicio",nav_services:"Servicios",nav_pros:"Profesionales",nav_how:"Cómo funciona",nav_faq:"FAQ",nav_contact:"Contacto",nav_label:"Navegación",lang_label:"Idioma",
 hero_badge:"N.º 1 en servicios a domicilio en Marruecos",hero_title_1:"Encuentra",hero_title_highlight:"profesionales de confianza",hero_title_2:"cerca de ti",
 hero_subtitle:"Fontaneros, electricistas, pintores, personal de limpieza... Contacta directamente con artesanos verificados en todo Marruecos. Sin comisiones ni intermediarios.",
-search_placeholder:"¿Qué servicio buscas?",search_city_label:"Tu ciudad",search_btn:"Buscar",popular_label:"Popular:",
+search_all_services:"Todos los servicios",search_city_label:"Tu ciudad",search_btn:"Buscar",popular_label:"Popular:",
 stat_pros:"Profesionales",stat_cities:"Ciudades",stat_services:"Servicios",stat_satisfaction:"Satisfacción",
 hero_card_role:"Fontanero",hero_card_fast:"Rápido",hero_card_verified:"Verificado",hero_card_nocomm:"Sin comisión",hero_card_contact:"Contactar",hero_float_pros:"Pros verificados",hero_float_sat:"Satisfacción",
 features_title:"¿Por qué elegir ClickPubli?",features_subtitle:"Una plataforma sencilla, gratuita y transparente para todas tus necesidades del hogar.",
@@ -845,7 +844,7 @@ field_category:"Categoría",field_rating:"Nota",field_specialty:"Especialidad",f
 my_pro_card:"Mi ficha profesional",pro_only:"Solo para profesionales",create_pro_card:"Crear mi ficha profesional",
 faq_title:"Preguntas frecuentes",
 quote_title:"Pedir presupuesto",quote_subtitle:"El mensaje se enviará por WhatsApp al profesional.",quote_name:"Tu nombre",quote_phone:"Tu teléfono",quote_desc:"Describe tu necesidad",quote_send:"Enviar por WhatsApp",
-contact_title:"Contacto",contact_phone:"Teléfono",contact_email:"Email",contact_city:"Casablanca, Marruecos",contact_form_title:"Envíanos un mensaje",contact_form_name:"Nombre",contact_form_email:"Email",contact_form_subject:"Asunto",contact_form_message:"Mensaje",contact_form_send:"Enviar",contact_sent:"Mensaje preparado en tu correo",
+contact_title:"Contacto",contact_phone:"Teléfono",contact_email:"Email",contact_city:"Marruecos",contact_form_title:"Envíanos un mensaje",contact_form_name:"Nombre",contact_form_email:"Email",contact_form_subject:"Asunto",contact_form_message:"Mensaje",contact_form_send:"Enviar",contact_sent:"Mensaje preparado en tu correo",
 chat_title:"Asistente ClickPubli",chat_placeholder:"Escribe tu respuesta...",
 chat_greet:"Hola, soy el asistente de ClickPubli. Te acompaño para obtener un presupuesto profesional en pocos pasos.",
 chat_q_service:"Para empezar, ¿qué tipo de servicio necesitas? Selecciona una opción:",
@@ -865,7 +864,7 @@ cookie_text:"Este sitio usa cookies para mejorar tu experiencia.",cookie_more:"S
 ar:{doc_title:"ClickPubli — خدمات منزلية في المغرب | سباكة، كهرباء، تنظيف",nav_home:"الرئيسية",nav_services:"الخدمات",nav_pros:"المحترفون",nav_how:"كيف يعمل",nav_faq:"الأسئلة",nav_contact:"اتصل بنا",nav_label:"التنقل",lang_label:"اللغة",
 hero_badge:"الأول في الخدمات المنزلية بالمغرب",hero_title_1:"اعثر على",hero_title_highlight:"محترفين موثوقين",hero_title_2:"بالقرب منك",
 hero_subtitle:"سباكون، كهربائيون، صباغون، عاملات نظافة... تواصل مباشرة مع حرفيين موثوقين في جميع أنحاء المغرب. بدون عمولة وبدون وسيط.",
-search_placeholder:"ما الخدمة التي تبحث عنها؟",search_city_label:"مدينتك",search_btn:"بحث",popular_label:"الأكثر طلباً:",
+search_all_services:"كل الخدمات",search_city_label:"مدينتك",search_btn:"بحث",popular_label:"الأكثر طلباً:",
 stat_pros:"محترف",stat_cities:"مدينة",stat_services:"خدمة",stat_satisfaction:"رضا العملاء",
 hero_card_role:"سباك",hero_card_fast:"سريع",hero_card_verified:"موثوق",hero_card_nocomm:"بدون عمولة",hero_card_contact:"تواصل",hero_float_pros:"محترفون موثوقون",hero_float_sat:"رضا العملاء",
 features_title:"لماذا تختار ClickPubli؟",features_subtitle:"منصة بسيطة ومجانية وشفافة لجميع احتياجاتك المنزلية.",
@@ -897,7 +896,7 @@ field_category:"الفئة",field_rating:"التقييم",field_specialty:"ال�
 my_pro_card:"بطاقتي المهنية",pro_only:"مخصص للمحترفين",create_pro_card:"إنشاء بطاقتي المهنية",
 faq_title:"الأسئلة الشائعة",
 quote_title:"طلب عرض سعر",quote_subtitle:"سيتم إرسال الرسالة عبر واتساب إلى المحترف.",quote_name:"اسمك",quote_phone:"هاتفك",quote_desc:"صف حاجتك",quote_send:"إرسال عبر واتساب",
-contact_title:"اتصل بنا",contact_phone:"الهاتف",contact_email:"البريد الإلكتروني",contact_city:"الدار البيضاء، المغرب",contact_form_title:"أرسل لنا رسالة",contact_form_name:"الاسم",contact_form_email:"البريد الإلكتروني",contact_form_subject:"الموضوع",contact_form_message:"الرسالة",contact_form_send:"إرسال",contact_sent:"تم تجهيز الرسالة في بريدك",
+contact_title:"اتصل بنا",contact_phone:"الهاتف",contact_email:"البريد الإلكتروني",contact_city:"المغرب",contact_form_title:"أرسل لنا رسالة",contact_form_name:"الاسم",contact_form_email:"البريد الإلكتروني",contact_form_subject:"الموضوع",contact_form_message:"الرسالة",contact_form_send:"إرسال",contact_sent:"تم تجهيز الرسالة في بريدك",
 chat_title:"مساعد ClickPubli",chat_placeholder:"اكتب إجابتك...",
 chat_greet:"مرحباً، أنا مساعد ClickPubli. أرافقك للحصول على عرض سعر احترافي في خطوات قليلة.",
 chat_q_service:"للبدء، ما نوع الخدمة التي تحتاجها؟ اختر خياراً:",
@@ -947,7 +946,7 @@ const chatUrgOpts={fr:["Urgent (aujourd'hui)","Cette semaine","Planifié"],es:["
 
 const sampleMeta={plomberie:{specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"},desc:{fr:"Plombier expérimenté pour réparations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والأعطال الطارئة."}},electricite:{specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"},desc:{fr:"Électricien professionnel, mise aux normes et dépannages.",es:"Electricista profesional, normativas y averías.",ar:"كهربائي محترف للمعايير والأعطال."}},peinture:{specialty:{fr:"Peintre décorateur",es:"Pintor decorador",ar:"صباغ وديكور"},desc:{fr:"Peintre soigné intérieurs/extérieurs.",es:"Pintor esmerado interiores/exteriores.",ar:"صباغ متقن للداخل والخارج."}},menage:{specialty:{fr:"Service de ménage",es:"Servicio de limpieza",ar:"خدمة تنظيف"},desc:{fr:"Nettoyage soigné, ponctualité.",es:"Limpieza esmerada, puntualidad.",ar:"تنظيف متقن والتزام."}},climatisation:{specialty:{fr:"Technicien climatisation",es:"Técnico de climatización",ar:"تقني تكييف"},desc:{fr:"Installation et entretien toutes marques.",es:"Instalación y mantenimiento todas las marcas.",ar:"تركيب وصيانة جميع العلامات."}},menuiserie:{specialty:{fr:"Menuisier",es:"Carpintero",ar:"نجار"},desc:{fr:"Meubles sur mesure et réparations.",es:"Muebles a medida y reparaciones.",ar:"أثاث حسب الطلب وإصلاحات."}},serrurerie:{specialty:{fr:"Serrurier",es:"Cerrajero",ar:"حداد"},desc:{fr:"Ouverture, serrures, blindage.",es:"Apertura, cerraduras, blindaje.",ar:"فتح وأقفال وتحصين."}},maconnerie:{specialty:{fr:"Maçon",es:"Albañil",ar:"بنّاء"},desc:{fr:"Construction et rénovation.",es:"Construcción y reformas.",ar:"بناء وترميم."}},electromenager:{specialty:{fr:"Réparateur électroménager",es:"Reparador de electrodomésticos",ar:"مصلح أجهزة"},desc:{fr:"Lave-linge, frigo, four, toutes marques.",es:"Lavadora, nevera, horno, todas las marcas.",ar:"غسالة وثلاجة وفرن جميع العلامات."}},jardinage:{specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"},desc:{fr:"Entretien espaces verts, tonte, taille.",es:"Mantenimiento zonas verdes, corte, poda.",ar:"العناية بالمساحات الخضراء والقص والتقليم."}}};
 const sampleAvatars=["men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12","men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29","men/83","men/47","men/54","men/71","women/33","women/57","women/12","men/94","men/38","men/61"];
-const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍🔧","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍🎨","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍🔧","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
+const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
 const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:sampleMeta[r[3]].desc,photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
 
 let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
@@ -967,7 +966,6 @@ function goSection(id){closeDrawer();showMainView();setTimeout(()=>{const el=doc
 function openLightbox(u){document.getElementById("lightboxImg").src=u;document.getElementById("lightbox").classList.add("show")}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("show")}
 
-/* Selector de idioma desplegable (escritorio) */
 function toggleLangDD(e){e.stopPropagation();document.getElementById("langDDMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-dd"))document.getElementById("langDDMenu").classList.remove("open")});
 function renderLangSwitchers(){
@@ -1110,19 +1108,7 @@ async function loadServices(){const{data,error}=await sb.from("services").select
 async function loadProfessionals(){const{data,error}=await sb.from("professionals").select("*").order("id");if(!error&&data&&data.length>0){prosData=data.map(r=>({id:r.id,name:r.name,emoji:r.emoji,category:r.category,specialty:r.specialty||{fr:r.name,es:r.name,ar:r.name},city:citiesData[r.city_index]||citiesData[0],rating:parseFloat(r.rating)||4.5,reviews:r.reviews||0,phone:r.phone||"",whatsapp:r.whatsapp||"",desc:r.description||{fr:"",es:"",ar:""},photos:r.photos||[],photo_url:r.photo_url||"",cover_url:r.cover_url||"",links:r.links||{},user_id:r.user_id||null}))}}
 async function loadProServicesAll(){const{data,error}=await sb.from("pro_services").select("*");proServicesMap={};if(!error&&data)data.forEach(r=>{if(!proServicesMap[r.pro_id])proServicesMap[r.pro_id]=[];proServicesMap[r.pro_id].push({service_id:r.service_id,image_url:r.image_url})})}
 async function loadServiceMedia(){const{data,error}=await sb.from("service_media").select("*");serviceMedia={};if(!error&&data)data.forEach(r=>serviceMedia[r.id]=r.url)}
-async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();renderStats();setHeroCard();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
-
-function renderStats(){
-  const pros=prosData.length;
-  const cities=new Set(prosData.map(p=>p.city_index)).size;
-  const services=servicesData.length;
-  let sat="—";
-  if(pros>0){const avg=prosData.reduce((a,p)=>a+p.rating,0)/pros;sat=Math.round(avg/5*100)+"%";}
-  const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");
-  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
-  set("statPros",pros.toLocaleString(loc));set("statCities",cities>0?cities+"+":"0");set("statServices",services>0?services+"+":"0");set("statSatisfaction",sat);set("statProsCard",pros.toLocaleString(loc));set("statSatCard",sat);
-}
-setInterval(async()=>{if(document.hidden)return;await loadProfessionals();renderStats();},60000);
+async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();setHeroCard();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
 
 function showPhotosSection(s){document.getElementById("proPhotosSection").style.display=s?"block":"none"}
 function renderPhotosList(){document.getElementById("proPhotosList").innerHTML=currentPhotos.map((u,i)=>`<div class="pro-photo-thumb"><img src="${u}" alt=""><button type="button" class="pro-photo-del" onclick="removeProPhoto(${i})">✕</button></div>`).join("")}
@@ -1144,8 +1130,14 @@ let id=editingServiceId;if(!id){id=fr.toLowerCase().replace(/[^a-z0-9]+/g,"_").r
 const ex=servicesData.find(s=>s.id===id);
 const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:servicesData.length+1};
 const{error}=await sb.from("services").upsert(payload);if(error){showToast(error.message);return}
-await loadServices();renderStats();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
-async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderStats();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
+await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
+async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
+
+function renderServiceSelect(){
+  const sel=document.getElementById("serviceSelect");
+  if(!sel)return;
+  sel.innerHTML=`<option value="">${t("search_all_services")}</option>`+servicesData.map(s=>`<option value="${s.id}">${s.icon} ${s.name[currentLang]}</option>`).join("");
+}
 
 function prepareProForm(){document.getElementById("pfCategory").innerHTML=servicesData.map(s=>`<option value="${s.id}">${s.name[currentLang]}</option>`).join("");document.getElementById("pfCity").innerHTML=citiesData.map((c,i)=>`<option value="${i}">${c[currentLang]}</option>`).join("");renderProSvcGrid()}
 function renderProSvcGrid(){const g=document.getElementById("proSvcGrid");g.innerHTML=servicesData.map(s=>`<label class="pro-svc-item ${selectedProSvcIds.includes(s.id)?"checked":""}"><input type="checkbox" value="${s.id}" ${selectedProSvcIds.includes(s.id)?"checked":""} onchange="toggleProSvc('${s.id}',this)"><span class="svc-icon">${s.icon}</span><span class="svc-label">${s.name[currentLang]}</span></label>`).join("");renderProSvcImgRows()}
@@ -1178,10 +1170,10 @@ description:{fr:document.getElementById("pfDescFr").value.trim(),es:document.get
 let targetId=editingProId;
 if(editingProId){const{error}=await sb.from("professionals").update(payload).eq("id",editingProId);if(error){showToast(error.message);return}}
 else{payload.id="p"+(Date.now()%1000000);payload.reviews=0;if(!isAdmin()&&currentProfile&&currentProfile.role==="pro")payload.user_id=currentProfile.id;const{data,error}=await sb.from("professionals").insert(payload).select("id").single();if(error){showToast(error.message);return}targetId=data.id}
-await saveProSvc(targetId);await loadProfessionals();renderStats();setHeroCard();renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);
+await saveProSvc(targetId);await loadProfessionals();setHeroCard();renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);
 if(isAdmin()&&document.getElementById("adminView").style.display!=="none")renderAdminProList();
 closeProForm();showToast(t("admin_saved"))}
-async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();renderStats();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
+async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
 function renderAdminProList(){const c=document.getElementById("adminProList");if(prosData.length===0){c.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>${t("no_results_title")}</p></div>`;return}
 c.innerHTML=prosData.map(p=>`<div class="admin-pro-row"><span class="admin-pro-emoji">${p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}</span><div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div><div class="admin-pro-actions"><button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button><button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button></div></div>`).join("")}
 function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])"></div>`}).join("")}
@@ -1204,7 +1196,6 @@ if(!wa){showToast(t("auth_error_phone"));return}
 window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
 closeQuoteModal()}
 
-/* ===== ASISTENTE PROFESIONAL ===== */
 function toggleChat(){const p=document.getElementById("chatPanel");p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
 function closeChatPanel(){document.getElementById("chatPanel").classList.remove("open")}
 function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
@@ -1253,7 +1244,7 @@ function renderServices(){document.getElementById("servicesGrid").innerHTML=serv
 document.getElementById("footerServices").innerHTML=servicesData.slice(0,5).map(s=>`<li><a onclick="filterByService('${s.id}')">${s.name[currentLang]}</a></li>`).join("");observeReveal()}
 function renderCitiesFooter(){const c=document.getElementById("footerCities");c.innerHTML=citiesData.slice(0,16).map(x=>`<li><a class="city-link" data-city="${x[currentLang]}">${x[currentLang]}</a></li>`).join("");
 c.querySelectorAll(".city-link").forEach(a=>a.addEventListener("click",()=>{const city=a.dataset.city;showMainView();setTimeout(()=>{renderPros(null,city,false);document.getElementById("pros").scrollIntoView({behavior:"smooth"});showToast(t("city_filter").replace("{c}",city))},60)}))}
-function renderPopular(){const ids=["plomberie","electricite","menage","climatisation"].filter(id=>servicesData.some(s=>s.id===id));document.getElementById("popularChips").innerHTML=ids.map(id=>{const s=servicesData.find(x=>x.id===id);return `<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`}).join(" ")}
+function renderPopular(){const ids=["plomberie","electricite","menage"].filter(id=>servicesData.some(s=>s.id===id));document.getElementById("popularChips").innerHTML=ids.map(id=>{const s=servicesData.find(x=>x.id===id);return `<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`}).join(" ")}
 function renderFaqList(){const l=document.getElementById("faqList");const items=faqContent[currentLang]||faqContent.fr;l.innerHTML=items.map((it,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-q" onclick="toggleFaq(${i})"><span>${it.q}</span><span class="arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">${it.a}</div></div></div>`).join("")}
 function toggleFaq(i){document.getElementById("faq-"+i).classList.toggle("open")}
 function renderPros(filterId=null,filterCity=null,onlyFav=false){lastProsFilter={id:filterId,city:filterCity,favs:onlyFav};let list=prosData;
@@ -1269,8 +1260,15 @@ if(!currentProfile){fc.textContent="";c.innerHTML=`<div class="empty-state"><div
 const fp=prosData.filter(p=>currentUserFavorites.includes(p.id));fc.textContent=fp.length>0?`(${fp.length})`:"";
 if(fp.length===0)c.innerHTML=`<div class="empty-state"><div class="empty-icon">♡</div><h3>${t("favorites")}</h3><p>${t("favorites_empty")}</p></div>`;
 else c.innerHTML=fp.map(p=>`<div class="pro-card"><button class="fav-btn active" onclick="toggleFavorite('${p.id}',event)">♥</button><div class="pro-cover"><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`).join("")}
-function findServiceByQuery(q){const n=q.trim().toLowerCase();if(!n)return null;let f=servicesData.find(s=>s.name[currentLang].toLowerCase()===n||s.id.toLowerCase()===n);if(f)return f;return servicesData.find(s=>s.name[currentLang].toLowerCase().includes(n)||s.desc[currentLang].toLowerCase().includes(n))||null}
-function searchServices(){const q=document.getElementById("searchInput").value.trim();const city=document.getElementById("citySelect").value;if(!q&&!city){showToast(t("toast_field_empty"));return}const s=findServiceByQuery(q);renderPros(s?s.id:null,city||null,false);const c=document.getElementById("prosGrid").querySelectorAll(".pro-card").length;showToast(c>0?t("toast_search_results").replace("{n}",c):t("no_results_title"));document.getElementById("pros").scrollIntoView({behavior:"smooth"})}
+function searchServices(){
+  const svc=document.getElementById("serviceSelect").value;
+  const city=document.getElementById("citySelect").value;
+  if(!svc&&!city){showToast(t("toast_field_empty"));return}
+  renderPros(svc||null,city||null,false);
+  const c=document.getElementById("prosGrid").querySelectorAll(".pro-card").length;
+  showToast(c>0?t("toast_search_results").replace("{n}",c):t("no_results_title"));
+  document.getElementById("pros").scrollIntoView({behavior:"smooth"});
+}
 function filterByService(id){const s=servicesData.find(x=>x.id===id);const has=prosData.some(p=>p.category===id);renderPros(id,null,false);showToast(has?t("toast_filter").replace("{s}",s.name[currentLang]):t("toast_empty"));document.getElementById("pros").scrollIntoView({behavior:"smooth"})}
 function fillProModal(id){const p=prosData.find(x=>x.id===id);if(!p)return;document.getElementById("modalAvatar").innerHTML=proAvatarHtml(p);document.getElementById("modalName").textContent=p.name;document.getElementById("modalSpecialty").textContent=p.specialty[currentLang];document.getElementById("modalCity").textContent=p.city[currentLang];document.getElementById("modalPhone").textContent=p.phone;document.getElementById("modalRating").textContent=`★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})`;document.getElementById("modalDesc").textContent=p.desc[currentLang];document.getElementById("modalCallBtn").href="tel:"+p.phone.replace(/\s/g,"");document.getElementById("modalWaBtn").href="https://wa.me/"+p.whatsapp}
 function openModal(id){currentModalProId=id;fillProModal(id);renderReviewsBlock(id,"reviewsModal");updateModalFavButton(id);document.getElementById("contactModal").classList.add("active");document.body.style.overflow="hidden";const p=prosData.find(x=>x.id===id);showToast(t("toast_contact").replace("{n}",p.name))}
@@ -1293,7 +1291,7 @@ function rejectCookies(){localStorage.setItem("clickpubli_cookies","rejected");d
 function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.body.classList.toggle("rtl",lang==="ar");document.title=t("doc_title");
 document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
 document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
-renderLangSwitchers();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPopular();renderStats();renderPros(null);updateAuthUI();
+renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPopular();renderPros(null);updateAuthUI();
 if(document.getElementById("favoritesView").style.display!=="none")renderFavoritesPage();
 if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
 if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
@@ -1317,9 +1315,8 @@ async function installAppDirect(){if(deferredPrompt){deferredPrompt.prompt();awa
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
 
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
-document.getElementById("searchInput").addEventListener("keypress",e=>{if(e.key==="Enter")searchServices()});
 
-async function initApp(){await initAuth();await loadServices();await loadProfessionals();await loadProServicesAll();await loadServiceMedia();setLanguage(currentLang);renderStats();setHeroCard();handleRoute();showCookieBanner()}
+async function initApp(){await initAuth();await loadServices();await loadProfessionals();await loadProServicesAll();await loadServiceMedia();setLanguage(currentLang);setHeroCard();handleRoute();showCookieBanner()}
 initApp();
 </script>
 </body>
