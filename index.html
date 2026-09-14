@@ -3,11 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClickPubli — Services à domicile au Maroc</title>
-<meta name="description" content="ClickPubli : trouvez des professionnels de confiance au Maroc. Contact direct, sans commission.">
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#5B2D91">
+<title>ClickPubli — Services à domicile au Maroc | Plombiers, électriciens, ménage</title>
+<meta name="description" content="ClickPubli : trouvez et contactez directement des professionnels de confiance au Maroc — plombiers, électriciens, peintres, ménage, climatisation. Devis gratuits, avis vérifiés, sans commission. Casablanca, Rabat, Marrakech, Tanger et plus de 50 villes.">
+<meta name="keywords" content="services à domicile Maroc, plombier Casablanca, électricien Rabat, ménage Marrakech, artisan Maroc, devis gratuit, ClickPubli">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ClickPubli — Services à domicile au Maroc">
+<meta property="og:description" content="Contactez directement des artisans vérifiés au Maroc. Sans commission, sans intermédiaire. Devis gratuits en quelques clics.">
+<meta property="og:image" content="https://flagcdn.com/w20/ma.png">
+<meta property="og:url" content="https://clickpubli.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ClickPubli — Services à domicile au Maroc">
+<meta name="twitter:description" content="Artisans vérifiés au Maroc, contact direct sans commission.">
+<meta name="theme-color" content="#0f766e">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,24 +31,28 @@ body{font-family:'Poppins','Cairo','Segoe UI',Tahoma,sans-serif;line-height:1.6;
 .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
 header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem 0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid var(--border)}
 .header-inner{display:flex;justify-content:space-between;align-items:center;gap:.8rem}
-.logo{display:flex;align-items:center;gap:.6rem;font-size:1.4rem;font-weight:800;color:var(--dark);text-decoration:none}
-.logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 3px 10px rgba(91,45,145,.35)}
-.logo span.brand-accent{color:var(--brand)}
-.desktop-nav{display:flex;gap:1.4rem}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo-text{font-size:1.5rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(90deg,var(--primary),var(--primary-light));-webkit-background-clip:text;background-clip:text;color:transparent}
+.desktop-nav{display:flex;gap:1.3rem;align-items:center}
 .desktop-nav a{color:var(--dark);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s;cursor:pointer}
 .desktop-nav a:hover{color:var(--primary)}
 .header-right{display:flex;align-items:center;gap:.6rem}
-.header-fav-link{display:inline-flex;align-items:center;gap:.4rem;background:var(--light-gray);border:none;padding:.5rem .9rem;border-radius:50px;font-weight:600;font-size:.9rem;color:var(--dark);cursor:pointer;font-family:inherit;transition:all .2s}
-.header-fav-link:hover{background:#fee2e2;color:#ef4444}
-.lang-switcher{display:flex;gap:.35rem;background:var(--light-gray);padding:.3rem;border-radius:50px}
-.lang-btn{border:none;background:transparent;padding:.4rem .7rem;border-radius:50px;font-weight:700;font-size:.82rem;cursor:pointer;color:var(--gray);transition:all .25s;display:inline-flex;align-items:center;gap:.35rem}
-.lang-btn.active{background:var(--primary);color:white;box-shadow:0 2px 8px rgba(15,118,110,.3)}
-.lang-btn img.flag{width:19px;height:14px;border-radius:2px;object-fit:cover}
+.lang-dd{position:relative}
+.lang-dd-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--light-gray);border:none;padding:.45rem .8rem;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--dark);font-family:inherit}
+.lang-dd-btn img.flag{width:20px;height:15px;border-radius:2px;object-fit:cover}
+.lang-dd-btn .caret{font-size:.65rem;color:var(--gray)}
+.lang-dd-menu{position:absolute;top:110%;right:0;background:white;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:150px;padding:.3rem;display:none;z-index:50}
+.lang-dd-menu.open{display:block}
+.lang-dd-item{display:flex;align-items:center;gap:.6rem;width:100%;padding:.55rem .7rem;border:none;background:transparent;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:600;color:var(--dark);text-align:start}
+.lang-dd-item:hover{background:var(--light-gray)}
+.lang-dd-item img.flag{width:20px;height:15px;border-radius:2px;object-fit:cover}
+.lang-dd-item.active{background:var(--light-gray);color:var(--primary)}
 .menu-btn{display:none;background:var(--light-gray);border:none;width:40px;height:40px;border-radius:10px;font-size:1.25rem;cursor:pointer;color:var(--dark);align-items:center;justify-content:center}
 .auth-area{display:flex;align-items:center;gap:.6rem}
 .auth-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.2rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:11px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.9rem;white-space:nowrap}
 .user-chip{display:flex;align-items:center;gap:.5rem;background:var(--light-gray);padding:.3rem .5rem .3rem .3rem;border-radius:50px}
-.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;display:flex;align-items:center;justify-content:center;font-weight:800;cursor:pointer}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;display:flex;align-items:center;justify-content:center;font-weight:800;cursor:pointer;overflow:hidden}
+.user-avatar img{width:100%;height:100%;object-fit:cover}
 .user-name{font-weight:600;font-size:.9rem;cursor:pointer}
 .logout-btn{background:transparent;border:none;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%}
 .logout-btn svg{width:18px;height:18px;fill:#ef4444}
@@ -51,16 +64,16 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .rtl .drawer{right:auto;left:0;transform:translateX(-100%)}
 .rtl .drawer.open{transform:translateX(0)}
 .drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
-.drawer-head img{width:38px;height:38px;border-radius:50%}
-.drawer-title{font-weight:800;font-size:1.05rem;flex:1;margin-inline-start:.5rem}
 .drawer-close{background:var(--light-gray);border:none;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:1rem;color:var(--dark)}
 .drawer-nav{display:flex;flex-direction:column;gap:.2rem;margin-bottom:1.4rem}
 .drawer-nav a,.drawer-nav button{padding:.75rem .9rem;border-radius:10px;color:var(--dark);text-decoration:none;font-weight:600;background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:.95rem;text-align:start}
 .drawer-nav a:hover,.drawer-nav button:hover{background:var(--light-gray);color:var(--primary)}
 .drawer-section{margin-bottom:1.4rem}
 .drawer-label{font-size:.75rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem}
-.drawer .lang-switcher{width:100%;gap:.4rem;border-radius:12px}
-.drawer .lang-btn{flex:1;justify-content:center;padding:.55rem .3rem;font-size:.85rem}
+.drawer .lang-switcher{display:flex;width:100%;gap:.4rem}
+.drawer .lang-btn{flex:1;justify-content:center;padding:.55rem .3rem;font-size:.85rem;background:var(--light-gray);border:none;border-radius:10px;font-weight:700;cursor:pointer;color:var(--gray);display:inline-flex;align-items:center;gap:.35rem}
+.drawer .lang-btn.active{background:var(--primary);color:white}
+.drawer .lang-btn img.flag{width:19px;height:14px;border-radius:2px;object-fit:cover}
 .drawer-link{display:flex;align-items:center;gap:.6rem;width:100%;padding:.75rem .9rem;border:none;background:transparent;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--dark);text-align:start;margin-bottom:.2rem;font-size:.95rem}
 .drawer-link:hover{background:var(--light-gray);color:var(--primary)}
 .hero{margin-top:74px;position:relative;background:linear-gradient(135deg,#0f766e 0%,#0d5c56 55%,#0b4a45 100%);color:white;padding:4.5rem 0 5rem;overflow:hidden}
@@ -78,16 +91,17 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .search-box input{flex:2;min-width:160px}
 .search-box select{flex:1;min-width:130px;cursor:pointer}
 .search-box button{flex:1;min-width:120px;padding:.9rem 1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:11px;font-weight:700;font-size:.98rem;cursor:pointer;font-family:inherit}
-.popular-chips{display:flex;align-items:center;gap:1rem;row-gap:.8rem;margin-top:1.4rem;flex-wrap:wrap;font-size:.9rem}
+.popular-chips{display:flex;align-items:center;gap:1rem;row-gap:1rem;margin-top:1.4rem;flex-wrap:wrap;font-size:.9rem}
 .popular-chips .label{opacity:.85;font-weight:500}
-.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:.55rem 1.3rem;border-radius:50px;cursor:pointer;font-size:.9rem}
+.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:.6rem 1.4rem;border-radius:50px;cursor:pointer;font-size:.9rem}
 .hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
 .hero-stat strong{display:block;font-size:1.7rem;font-weight:800;color:#fdba74}
 .hero-stat span{font-size:.85rem;opacity:.85}
 .hero-visual{position:relative;display:flex;justify-content:center;align-items:center;min-height:380px}
 .visual-main-card{background:white;color:var(--dark);border-radius:22px;padding:1.6rem;width:100%;max-width:340px;box-shadow:0 25px 60px rgba(0,0,0,.25);animation:floatY 6s ease-in-out infinite}
 .vmc-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
-.vmc-avatar{width:56px;height:56px;background:linear-gradient(135deg,var(--primary-light),var(--primary));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.vmc-avatar{width:56px;height:56px;background:linear-gradient(135deg,var(--primary-light),var(--primary));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden;flex-shrink:0}
+.vmc-avatar img{width:100%;height:100%;object-fit:cover}
 .vmc-name{font-weight:700;font-size:1.05rem}
 .vmc-job{font-size:.85rem;color:var(--gray)}
 .vmc-verified{margin-inline-start:auto;background:#dcfce7;color:#16a34a;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
@@ -165,7 +179,6 @@ section{padding:4.5rem 0}
 .pp-badge-rate{background:#fef3c7;color:#b45309}
 .pp-social{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
 .pp-social a{display:inline-flex;align-items:center;gap:.4rem;background:var(--light-gray);color:var(--dark);padding:.4rem .8rem;border-radius:50px;font-size:.85rem;font-weight:600;text-decoration:none}
-.pp-social a:hover{background:var(--border)}
 .pp-actions{display:flex;gap:.8rem;padding:0 24px 1.5rem;flex-wrap:wrap}
 .pp-actions a,.pp-actions button{flex:1;min-width:140px;padding:.9rem 1rem;border-radius:12px;text-align:center;text-decoration:none;font-weight:700;font-family:inherit;border:none;cursor:pointer;font-size:1rem}
 .pp-columns{display:grid;grid-template-columns:1.6fr 1fr;gap:1.6rem;align-items:start;margin-bottom:1rem}
@@ -255,7 +268,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .footer-col a{color:#cbd5e1;text-decoration:none;font-size:.92rem;cursor:pointer}
 .footer-col a:hover{color:var(--primary-light)}
 .footer-brand p{font-size:.92rem;margin-top:1rem;max-width:280px}
-.footer-brand .logo{color:white}
 .footer-contact p{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem;font-size:.9rem}
 .footer-contact a{color:#cbd5e1;text-decoration:none}
 .footer-bottom{border-top:1px solid #334155;padding-top:1.5rem;text-align:center;font-size:.88rem;color:#94a3b8}
@@ -348,26 +360,24 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .legal-body h3{font-size:1.1rem;margin:1.2rem 0 .5rem;color:var(--primary)}
 .legal-body p,.legal-body li{color:var(--gray);font-size:.93rem;line-height:1.7;margin-bottom:.6rem}
 .legal-body ul{padding-inline-start:1.4rem;margin-bottom:.8rem}
-.chat-fab{position:fixed;bottom:20px;right:20px;z-index:1600;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--brand),#7c3aed);color:white;font-size:1.5rem;cursor:pointer;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center}
+.chat-fab{position:fixed;bottom:20px;right:20px;z-index:1600;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;font-size:1.5rem;cursor:pointer;box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center}
 .rtl .chat-fab{right:auto;left:20px}
-.chat-panel{position:fixed;bottom:88px;right:20px;z-index:1600;width:340px;max-width:calc(100vw - 40px);height:440px;max-height:70vh;background:white;border-radius:16px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--border)}
+.chat-panel{position:fixed;bottom:88px;right:20px;z-index:1600;width:360px;max-width:calc(100vw - 40px);height:480px;max-height:75vh;background:white;border-radius:16px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--border)}
 .chat-panel.open{display:flex}
 .rtl .chat-panel{right:auto;left:20px}
-.chat-head{background:linear-gradient(135deg,var(--brand),#7c3aed);color:white;padding:.9rem 1rem;display:flex;align-items:center;gap:.6rem}
-.chat-head .chat-ava{width:36px;height:36px;border-radius:50%;background:white;color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.chat-head{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:.9rem 1rem;display:flex;align-items:center;gap:.6rem}
+.chat-head .chat-ava{width:36px;height:36px;border-radius:50%;background:white;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
 .chat-head strong{flex:1;font-size:.95rem}
 .chat-head button{background:transparent;border:none;color:white;font-size:1.2rem;cursor:pointer}
 .chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem;background:var(--light-gray)}
 .chat-msg{max-width:85%;padding:.6rem .9rem;border-radius:12px;font-size:.88rem;line-height:1.5;white-space:pre-wrap}
 .chat-msg.bot{background:white;color:var(--dark);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
-.rtl .chat-msg.bot{border-bottom-left-radius:12px;border-bottom-right-radius:4px}
-.chat-msg.user{background:var(--brand);color:white;align-self:flex-end;border-bottom-right-radius:4px}
-.rtl .chat-msg.user{border-bottom-right-radius:12px;border-bottom-left-radius:4px}
+.chat-msg.user{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
 .chat-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem 1rem;background:var(--light-gray)}
-.chat-chip{background:white;border:1px solid var(--border);border-radius:50px;padding:.3rem .8rem;font-size:.78rem;cursor:pointer;font-family:inherit;color:var(--dark)}
+.chat-chip{background:white;border:1px solid var(--border);border-radius:50px;padding:.4rem .9rem;font-size:.8rem;cursor:pointer;font-family:inherit;color:var(--dark);font-weight:600}
 .chat-input{display:flex;gap:.5rem;padding:.6rem;background:white;border-top:1px solid var(--border)}
 .chat-input input{flex:1;border:1px solid var(--border);border-radius:50px;padding:.55rem .9rem;font-family:inherit;font-size:.88rem;outline:none}
-.chat-input button{background:var(--brand);color:white;border:none;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1rem}
+.chat-input button{background:var(--primary);color:white;border:none;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1rem}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--dark);color:white;padding:.9rem 1.5rem;border-radius:12px;box-shadow:var(--shadow-lg);z-index:3000;font-weight:500;font-size:.92rem;max-width:90%;transition:transform .4s cubic-bezier(.175,.885,.32,1.275)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
@@ -375,10 +385,10 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
 .reveal{opacity:0;transform:translateY(30px);transition:all .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+@media (min-width:901px){.pp-banner{height:250px}}
 @media (max-width:900px){
 .desktop-nav{display:none}
-.header-lang{display:none}
-.header-fav-link{display:none}
+.lang-dd{display:none}
 .menu-btn{display:flex}
 .pp-columns{grid-template-columns:1fr}
 .footer-grid{grid-template-columns:1fr 1fr}
@@ -398,29 +408,25 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .admin-form-grid{grid-template-columns:1fr}
 .pro-svc-grid{grid-template-columns:1fr}
 .toast{bottom:80px}
-.popular-chips{gap:.8rem;row-gap:.8rem}
+.popular-chips{gap:1.2rem;row-gap:1.2rem;justify-content:flex-start}
+.chip{padding:.8rem 1.7rem;font-size:.95rem}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;justify-content:stretch}
+.hero-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:.9rem .6rem;text-align:center}
+.hero-stat strong{font-size:1.45rem}
 .pp-head-info{padding:70px 16px 1.2rem}
 .pp-actions{padding:0 16px 1.4rem}
 .pp-avatar-lg{left:16px}
 .rtl .pp-avatar-lg{left:auto;right:16px}
 .cookie-inner{flex-direction:column;text-align:center}
 .cookie-actions{width:100%;justify-content:center}
-.logo-img{width:48px;height:48px}
-.logo{font-size:1.5rem}
-}
-@media (max-width:480px){
-.user-name{display:none}
-.auth-btn-text{display:none}
+.logo-text{font-size:1.55rem}
 }
 </style>
 </head>
 <body>
 <header>
 <div class="container header-inner">
-<a href="#" class="logo" onclick="showMainView();return false;">
-<img src="icon.svg" alt="ClickPubli" class="logo-img">
-<span class="logo-text">Click<span class="brand-accent">Publi</span></span>
-</a>
+<a href="#" class="logo" onclick="showMainView();return false;"><span class="logo-text">ClickPubli</span></a>
 <nav class="desktop-nav">
 <a onclick="goSection('home')" data-i18n="nav_home">Accueil</a>
 <a onclick="goSection('services')" data-i18n="nav_services">Services</a>
@@ -430,8 +436,10 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <a onclick="showContactView()" data-i18n="nav_contact">Contact</a>
 </nav>
 <div class="header-right">
-<div class="lang-switcher header-lang" id="headerLangSwitcher"></div>
-<button class="header-fav-link" onclick="showFavoritesView()">♥ <span data-i18n="favorites">Favoris</span></button>
+<div class="lang-dd" id="langDD">
+<button class="lang-dd-btn" onclick="toggleLangDD(event)"><img class="flag" id="langDDFlag" src="https://flagcdn.com/w20/fr.png" alt=""><span id="langDDLabel">FR</span><span class="caret">▼</span></button>
+<div class="lang-dd-menu" id="langDDMenu"></div>
+</div>
 <div class="auth-area" id="authArea"></div>
 <button class="menu-btn" onclick="toggleDrawer()" aria-label="Menu">☰</button>
 </div>
@@ -440,7 +448,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 <aside class="drawer" id="drawer">
-<div class="drawer-head"><img src="icon.svg" alt=""><span class="drawer-title">ClickPubli</span><button class="drawer-close" onclick="closeDrawer()">✕</button></div>
+<div class="drawer-head"><span class="logo-text">ClickPubli</span><button class="drawer-close" onclick="closeDrawer()">✕</button></div>
 <nav class="drawer-nav">
 <a onclick="goSection('home')" data-i18n="nav_home">Accueil</a>
 <a onclick="goSection('services')" data-i18n="nav_services">Services</a>
@@ -462,31 +470,31 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="hero-orb o1"></div><div class="hero-orb o2"></div>
 <div class="container hero-grid">
 <div class="hero-content">
-<span class="hero-badge"><img src="https://flagcdn.com/w20/ma.png" alt=""><span data-i18n="hero_badge">N°1 des services à domicile au Maroc</span></span>
-<h1><span data-i18n="hero_title_1">Trouvez des</span> <span class="highlight" data-i18n="hero_title_highlight">professionnels de confiance</span> <span data-i18n="hero_title_2">près de chez vous</span></h1>
+<span class="hero-badge"><img src="https://flagcdn.com/w20/ma.png" alt=""><span data-i18n="hero_badge"></span></span>
+<h1><span data-i18n="hero_title_1"></span> <span class="highlight" data-i18n="hero_title_highlight"></span> <span data-i18n="hero_title_2"></span></h1>
 <p class="hero-subtitle" data-i18n="hero_subtitle"></p>
 <div class="search-box">
 <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder">
 <select id="citySelect"></select>
 <button onclick="searchServices()" data-i18n="search_btn">Rechercher</button>
 </div>
-<div class="popular-chips"><span class="label" data-i18n="popular_label">Populaire :</span> <span id="popularChips"></span></div>
+<div class="popular-chips"><span class="label" data-i18n="popular_label"></span> <span id="popularChips"></span></div>
 <div class="hero-stats">
-<div class="hero-stat"><strong>25 000+</strong><span data-i18n="stat_pros">Professionnels</span></div>
-<div class="hero-stat"><strong>26+</strong><span data-i18n="stat_cities">Villes couvertes</span></div>
-<div class="hero-stat"><strong>160+</strong><span data-i18n="stat_services">Services</span></div>
-<div class="hero-stat"><strong>98%</strong><span data-i18n="stat_satisfaction">Satisfaction</span></div>
+<div class="hero-stat"><strong id="statPros">0</strong><span data-i18n="stat_pros"></span></div>
+<div class="hero-stat"><strong id="statCities">0</strong><span data-i18n="stat_cities"></span></div>
+<div class="hero-stat"><strong id="statServices">0</strong><span data-i18n="stat_services"></span></div>
+<div class="hero-stat"><strong id="statSatisfaction">—</strong><span data-i18n="stat_satisfaction"></span></div>
 </div>
 </div>
 <div class="hero-visual">
 <div class="visual-main-card">
-<div class="vmc-header"><div class="vmc-avatar">👨‍🔧</div><div><div class="vmc-name">Mohammed E.</div><div class="vmc-job"><span data-i18n="hero_card_role">Plombier</span> · Casablanca</div></div><span class="vmc-verified">✓</span></div>
+<div class="vmc-header"><div class="vmc-avatar"><img id="vmcAvatarImg" src="https://randomuser.me/api/portraits/men/32.jpg" alt=""></div><div><div class="vmc-name">Mohammed E.</div><div class="vmc-job"><span data-i18n="hero_card_role"></span> · Casablanca</div></div><span class="vmc-verified">✓</span></div>
 <div class="vmc-rating">★★★★★ 4.9 <small>(127)</small></div>
-<div class="vmc-tags"><span>⚡ <span data-i18n="hero_card_fast">Rapide</span></span><span>🛡️ <span data-i18n="hero_card_verified">Vérifié</span></span><span>💰 <span data-i18n="hero_card_nocomm">Sans commission</span></span></div>
+<div class="vmc-tags"><span>⚡ <span data-i18n="hero_card_fast"></span></span><span>🛡️ <span data-i18n="hero_card_verified"></span></span><span>💰 <span data-i18n="hero_card_nocomm"></span></span></div>
 <button class="vmc-btn" onclick="openModal('p1')" data-i18n="hero_card_contact">Contacter</button>
 </div>
-<div class="floating-card fc-1"><span class="fc-icon">✅</span><div><strong>25 000+</strong><small data-i18n="hero_float_pros">Pros vérifiés</small></div></div>
-<div class="floating-card fc-2"><span class="fc-icon">⭐</span><div><strong>98%</strong><small data-i18n="hero_float_sat">Satisfaction</small></div></div>
+<div class="floating-card fc-1"><span class="fc-icon">✅</span><div><strong id="statProsCard">0</strong><small data-i18n="hero_float_pros"></small></div></div>
+<div class="floating-card fc-2"><span class="fc-icon">⭐</span><div><strong id="statSatCard">—</strong><small data-i18n="hero_float_sat"></small></div></div>
 </div>
 </div>
 </section>
@@ -503,74 +511,74 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <h2 data-i18n="cta_title"></h2>
 <p data-i18n="cta_subtitle"></p>
 <div class="cta-buttons">
-<a class="btn-primary" onclick="openAuthAsPro()">🚀 <span data-i18n="cta_btn_pro">Devenir partenaire</span></a>
-<a class="btn-outline" onclick="installAppDirect()">📲 <span data-i18n="cta_btn_download">Installer l'app</span></a>
+<a class="btn-primary" onclick="openAuthAsPro()">🚀 <span data-i18n="cta_btn_pro"></span></a>
+<a class="btn-outline" onclick="installAppDirect()">📲 <span data-i18n="cta_btn_download"></span></a>
 </div></div></section>
 </div>
 
 <div id="favoritesView" class="favorites-page" style="display:none"><div class="container">
-<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="favorites">Mes favoris</h2><span id="favCount" style="color:var(--gray);font-weight:600"></span></div>
+<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back"></span></button><h2 data-i18n="favorites"></h2><span id="favCount" style="color:var(--gray);font-weight:600"></span></div>
 <div class="pros-grid" id="favoritesGrid"></div>
 </div></div>
 
 <div id="proProfileView" class="pp-page" style="display:none"><div class="container">
-<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><button class="fav-back-btn" onclick="copyProfileLink()">🔗 <span data-i18n="share">Partager</span></button></div>
+<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back"></span></button><button class="fav-back-btn" onclick="copyProfileLink()">🔗 <span data-i18n="share"></span></button></div>
 <div class="pp-hero">
 <div class="pp-banner" id="ppBanner"></div>
 <div class="pp-avatar-lg" id="ppAvatar">👨</div>
 <button class="fav-btn pp-fav" id="ppFavBtn">♡</button>
 <div class="pp-head-info">
 <h2 id="ppName">Nom</h2>
-<div class="pp-specialty" id="ppSpecialty">Spécialité</div>
-<div class="pp-badges"><span class="pp-badge">📍 <span id="ppCity">Ville</span></span><span class="pp-badge pp-badge-rate" id="ppRating">★ 4.9</span><span class="pp-badge" id="ppReviewsCount"></span></div>
+<div class="pp-specialty" id="ppSpecialty"></div>
+<div class="pp-badges"><span class="pp-badge">📍 <span id="ppCity"></span></span><span class="pp-badge pp-badge-rate" id="ppRating">★ 4.9</span><span class="pp-badge" id="ppReviewsCount"></span></div>
 <div class="pp-social" id="ppSocial"></div>
 </div>
 <div class="pp-actions">
-<a class="btn-call" id="ppPhoneLink" href="tel:">📞 <span data-i18n="modal_call">Appeler</span></a>
-<a class="btn-wa" id="ppWaLink" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp">WhatsApp</span></a>
-<button class="btn-quote" onclick="openQuoteModal(currentProProfileId)">📋 <span data-i18n="quote_title">Demander un devis</span></button>
+<a class="btn-call" id="ppPhoneLink" href="tel:">📞 <span data-i18n="modal_call"></span></a>
+<a class="btn-wa" id="ppWaLink" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp"></span></a>
+<button class="btn-quote" onclick="openQuoteModal(currentProProfileId)">📋 <span data-i18n="quote_title"></span></button>
 </div>
 </div>
 <div class="pp-columns">
 <div class="pp-main">
-<div class="pp-section"><h3 data-i18n="about_pro">À propos</h3><p id="ppDesc" class="pp-desc"></p></div>
-<div class="pp-section"><h3 data-i18n="nav_services">Services</h3><div class="pp-services" id="ppServices"></div></div>
-<div class="pp-section" id="ppGallerySection" style="display:none"><h3 data-i18n="realisations">Réalisations</h3><div class="pp-gallery" id="ppGallery"></div></div>
+<div class="pp-section"><h3 data-i18n="about_pro"></h3><p id="ppDesc" class="pp-desc"></p></div>
+<div class="pp-section"><h3 data-i18n="nav_services"></h3><div class="pp-services" id="ppServices"></div></div>
+<div class="pp-section" id="ppGallerySection" style="display:none"><h3 data-i18n="realisations"></h3><div class="pp-gallery" id="ppGallery"></div></div>
 </div>
-<div class="pp-side"><div class="pp-card-side"><h3 data-i18n="reviews_title">Avis clients</h3><div class="pp-rev-summary" id="ppRevSummary"></div><div id="reviewsProfile"></div></div></div>
+<div class="pp-side"><div class="pp-card-side"><h3 data-i18n="reviews_title"></h3><div class="pp-rev-summary" id="ppRevSummary"></div><div id="reviewsProfile"></div></div></div>
 </div>
 </div></div>
 
 <div id="adminView" class="admin-page" style="display:none"><div class="container">
-<div class="admin-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2>⚙️ <span data-i18n="admin_title">Administration</span></h2>
-<div style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn-primary" onclick="loadSampleToDB()">📥 <span data-i18n="admin_load_samples">Charger les exemples</span></button><button class="btn-primary" onclick="openProForm()">➕ <span data-i18n="admin_add_pro">Ajouter</span></button></div></div>
+<div class="admin-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back"></span></button><h2>⚙️ <span data-i18n="admin_title"></span></h2>
+<div style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn-primary" onclick="loadSampleToDB()">📥 <span data-i18n="admin_load_samples"></span></button><button class="btn-primary" onclick="openProForm()">➕ <span data-i18n="admin_add_pro"></span></button></div></div>
 <div id="adminProList"></div>
-<h3 class="admin-subtitle" data-i18n="admin_svc_images">Imágenes de servicios</h3><div id="svcMediaList"></div>
-<h3 class="admin-subtitle" data-i18n="admin_svc_categories">Catégories de services</h3>
-<div style="margin-bottom:.8rem"><button class="btn-primary" onclick="openServiceForm()">➕ <span data-i18n="admin_add_category">Ajouter une catégorie</span></button></div>
+<h3 class="admin-subtitle" data-i18n="admin_svc_images"></h3><div id="svcMediaList"></div>
+<h3 class="admin-subtitle" data-i18n="admin_svc_categories"></h3>
+<div style="margin-bottom:.8rem"><button class="btn-primary" onclick="openServiceForm()">➕ <span data-i18n="admin_add_category"></span></button></div>
 <div id="svcCategoriesList"></div>
 </div></div>
 
 <div id="faqView" class="faq-page" style="display:none"><div class="container">
-<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="faq_title">Questions fréquentes</h2><span></span></div>
+<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back"></span></button><h2 data-i18n="faq_title"></h2><span></span></div>
 <div class="faq-list" id="faqList"></div>
 </div></div>
 
 <div id="contactView" class="contact-page" style="display:none"><div class="container">
-<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="contact_title">Contact</h2><span></span></div>
+<div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back"></span></button><h2 data-i18n="contact_title"></h2><span></span></div>
 <div class="contact-grid">
-<div class="contact-card"><div class="c-icon">📞</div><h3 data-i18n="contact_phone">Téléphone</h3><a href="tel:+212690157092">+212 6 90 15 70 92</a></div>
-<div class="contact-card"><div class="c-icon">📧</div><h3 data-i18n="contact_email">Email</h3><a href="mailto:contact@clickpubli.com">contact@clickpubli.com</a></div>
+<div class="contact-card"><div class="c-icon">📞</div><h3 data-i18n="contact_phone"></h3><a href="tel:+212690157092">+212 6 90 15 70 92</a></div>
+<div class="contact-card"><div class="c-icon">📧</div><h3 data-i18n="contact_email"></h3><a href="mailto:contact@clickpubli.com">contact@clickpubli.com</a></div>
 <div class="contact-card"><div class="c-icon">💬</div><h3>WhatsApp</h3><a href="https://wa.me/212690157092" target="_blank">+212 6 90 15 70 92</a></div>
-<div class="contact-card"><div class="c-icon">📍</div><h3 data-i18n="footer_location">Maroc</h3><a data-i18n="contact_city">Casablanca, Maroc</a></div>
+<div class="contact-card"><div class="c-icon">📍</div><h3 data-i18n="footer_location"></h3><a data-i18n="contact_city"></a></div>
 </div>
 <div class="contact-form">
-<h3 style="margin-bottom:1rem" data-i18n="contact_form_title">Envoyez-nous un message</h3>
-<div class="form-group"><label data-i18n="contact_form_name">Nom</label><input type="text" id="ctName"></div>
-<div class="form-group"><label data-i18n="contact_form_email">Email</label><input type="email" id="ctEmail"></div>
-<div class="form-group"><label data-i18n="contact_form_subject">Sujet</label><input type="text" id="ctSubject"></div>
-<div class="form-group"><label data-i18n="contact_form_message">Message</label><textarea id="ctMessage" style="min-height:110px"></textarea></div>
-<button class="btn-submit" onclick="sendContact()" data-i18n="contact_form_send">Envoyer</button>
+<h3 style="margin-bottom:1rem" data-i18n="contact_form_title"></h3>
+<div class="form-group"><label data-i18n="contact_form_name"></label><input type="text" id="ctName"></div>
+<div class="form-group"><label data-i18n="contact_form_email"></label><input type="email" id="ctEmail"></div>
+<div class="form-group"><label data-i18n="contact_form_subject"></label><input type="text" id="ctSubject"></div>
+<div class="form-group"><label data-i18n="contact_form_message"></label><textarea id="ctMessage" style="min-height:110px"></textarea></div>
+<button class="btn-submit" onclick="sendContact()" data-i18n="contact_form_send"></button>
 </div>
 </div></div>
 
@@ -578,26 +586,26 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="container">
 <div class="footer-grid">
 <div class="footer-col footer-brand">
-<a href="#" class="logo" onclick="showMainView();return false;"><img src="icon.svg" alt="" class="logo-img"><span class="logo-text">Click<span class="brand-accent">Publi</span></span></a>
+<a href="#" class="logo" onclick="showMainView();return false;"><span class="logo-text">ClickPubli</span></a>
 <p data-i18n="footer_tagline"></p>
 </div>
-<div class="footer-col"><h4 data-i18n="footer_services">Services</h4><ul id="footerServices"></ul></div>
-<div class="footer-col"><h4 data-i18n="footer_cities">Villes</h4><ul class="cities-list" id="footerCities"></ul></div>
-<div class="footer-col"><h4 data-i18n="footer_company">Entreprise</h4><ul>
-<li><a onclick="openLegalModal('about')" data-i18n="footer_about">À propos</a></li>
-<li><a onclick="showContactView()" data-i18n="footer_contact_link">Contact</a></li>
-<li><a onclick="openLegalModal('terms')" data-i18n="footer_terms">Conditions d'utilisation</a></li>
-<li><a onclick="openLegalModal('privacy')" data-i18n="footer_privacy">Confidentialité</a></li>
-<li><a onclick="showFaqView()" data-i18n="nav_faq">FAQ</a></li>
+<div class="footer-col"><h4 data-i18n="footer_services"></h4><ul id="footerServices"></ul></div>
+<div class="footer-col"><h4 data-i18n="footer_cities"></h4><ul class="cities-list" id="footerCities"></ul></div>
+<div class="footer-col"><h4 data-i18n="footer_company"></h4><ul>
+<li><a onclick="openLegalModal('about')" data-i18n="footer_about"></a></li>
+<li><a onclick="showContactView()" data-i18n="footer_contact_link"></a></li>
+<li><a onclick="openLegalModal('terms')" data-i18n="footer_terms"></a></li>
+<li><a onclick="openLegalModal('privacy')" data-i18n="footer_privacy"></a></li>
+<li><a onclick="showFaqView()" data-i18n="nav_faq"></a></li>
 </ul></div>
 <div class="footer-col footer-contact">
-<h4 data-i18n="footer_contact">Contact</h4>
+<h4 data-i18n="footer_contact"></h4>
 <p>📞 <a href="tel:+212690157092">+212 6 90 15 70 92</a></p>
 <p>📧 <a href="mailto:contact@clickpubli.com">contact@clickpubli.com</a></p>
-<p>📍 <span data-i18n="footer_location">Maroc</span></p>
+<p>📍 <span data-i18n="footer_location"></span></p>
 </div>
 </div>
-<div class="footer-bottom"><span data-i18n="footer_rights">© 2026 ClickPubli. Tous droits réservés.</span></div>
+<div class="footer-bottom"><span data-i18n="footer_rights"></span></div>
 </div>
 </footer>
 
@@ -605,30 +613,30 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="modal-cover"><button class="close-modal" onclick="closeModal()">&times;</button><button class="fav-btn modal-fav" id="modalFavBtn" onclick="toggleFavoriteFromModal(event)">♡</button><div class="modal-avatar" id="modalAvatar">👨‍🔧</div></div>
 <div class="modal-body">
 <h2 id="modalName">Nom</h2>
-<div class="modal-specialty" id="modalSpecialty">Spécialité</div>
-<div class="modal-meta">📍 <span id="modalCity">Ville</span> · 📞 <span id="modalPhone">+212</span></div>
+<div class="modal-specialty" id="modalSpecialty"></div>
+<div class="modal-meta">📍 <span id="modalCity"></span> · 📞 <span id="modalPhone">+212</span></div>
 <div class="modal-rating" id="modalRating">★ 4.9</div>
-<div class="modal-desc" id="modalDesc">Description</div>
-<div class="modal-list"><h4 data-i18n="modal_services_title">Prestations</h4><ul><li data-i18n="modal_service1"></li><li data-i18n="modal_service2"></li><li data-i18n="modal_service3"></li><li data-i18n="modal_service4"></li></ul></div>
+<div class="modal-desc" id="modalDesc"></div>
+<div class="modal-list"><h4 data-i18n="modal_services_title"></h4><ul><li data-i18n="modal_service1"></li><li data-i18n="modal_service2"></li><li data-i18n="modal_service3"></li><li data-i18n="modal_service4"></li></ul></div>
 <div class="modal-actions">
-<a class="btn-call" id="modalCallBtn" href="tel:">📞 <span data-i18n="modal_call">Appeler</span></a>
-<a class="btn-wa" id="modalWaBtn" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp">WhatsApp</span></a>
-<button class="btn-quote" onclick="openQuoteModal(currentModalProId);closeModal()">📋 <span data-i18n="quote_title">Demander un devis</span></button>
+<a class="btn-call" id="modalCallBtn" href="tel:">📞 <span data-i18n="modal_call"></span></a>
+<a class="btn-wa" id="modalWaBtn" href="#" target="_blank">💬 <span data-i18n="modal_whatsapp"></span></a>
+<button class="btn-quote" onclick="openQuoteModal(currentModalProId);closeModal()">📋 <span data-i18n="quote_title"></span></button>
 </div>
-<div class="modal-reviews"><h4 data-i18n="reviews_title">Avis clients</h4><div id="reviewsModal"></div></div>
+<div class="modal-reviews"><h4 data-i18n="reviews_title"></h4><div id="reviewsModal"></div></div>
 </div></div></div>
 
 <div class="modal" id="quoteModal"><div class="modal-content">
 <div class="modal-cover"><button class="close-modal" onclick="closeQuoteModal()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
-<h2 data-i18n="quote_title">Demander un devis</h2>
+<h2 data-i18n="quote_title"></h2>
 <p style="color:var(--gray);font-size:.9rem;margin:.4rem 0 1rem" data-i18n="quote_subtitle"></p>
 <form id="quoteForm" onsubmit="submitQuote(event)">
 <div id="quoteFields"></div>
-<div class="form-group"><label data-i18n="quote_name">Votre nom</label><input type="text" id="qName"></div>
-<div class="form-group"><label data-i18n="quote_phone">Votre téléphone</label><input type="tel" id="qPhone"></div>
-<div class="form-group"><label data-i18n="quote_desc">Décrivez votre besoin</label><textarea id="qDesc" style="min-height:80px"></textarea></div>
-<button type="submit" class="btn-submit" data-i18n="quote_send">Envoyer par WhatsApp</button>
+<div class="form-group"><label data-i18n="quote_name"></label><input type="text" id="qName"></div>
+<div class="form-group"><label data-i18n="quote_phone"></label><input type="tel" id="qPhone"></div>
+<div class="form-group"><label data-i18n="quote_desc"></label><textarea id="qDesc" style="min-height:80px"></textarea></div>
+<button type="submit" class="btn-submit" data-i18n="quote_send"></button>
 </form>
 </div></div></div>
 
@@ -636,34 +644,34 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="auth-cover"><button class="close-modal" onclick="closeAuth()">&times;</button><div class="auth-logo"><img src="icon.svg" alt=""></div></div>
 <div class="auth-body">
 <div class="auth-tabs">
-<button type="button" class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')" data-i18n="auth_tab_login">Connexion</button>
-<button type="button" class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')" data-i18n="auth_tab_register">Inscription</button>
+<button type="button" class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')" data-i18n="auth_tab_login"></button>
+<button type="button" class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')" data-i18n="auth_tab_register"></button>
 </div>
 <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
-<div class="form-group"><label data-i18n="auth_email">Email</label><input type="email" id="loginEmail"></div>
-<div class="form-group"><label data-i18n="auth_password">Mot de passe</label><input type="password" id="loginPassword"></div>
-<button type="submit" class="btn-submit" data-i18n="auth_submit_login">Se connecter</button>
+<div class="form-group"><label data-i18n="auth_email"></label><input type="email" id="loginEmail"></div>
+<div class="form-group"><label data-i18n="auth_password"></label><input type="password" id="loginPassword"></div>
+<button type="submit" class="btn-submit" data-i18n="auth_submit_login"></button>
 </form>
 <form id="registerForm" style="display:none" onsubmit="handleRegister(event)" novalidate>
-<div class="form-group"><label data-i18n="auth_role_label">Vous êtes :</label>
+<div class="form-group"><label data-i18n="auth_role_label"></label>
 <div class="role-selector">
-<label class="role-option selected" id="roleClient"><input type="radio" name="role" value="client" checked><span class="role-icon">👤</span><strong data-i18n="auth_role_client">Client</strong><small data-i18n="auth_role_client_desc"></small></label>
-<label class="role-option" id="rolePro"><input type="radio" name="role" value="pro"><span class="role-icon">🛠️</span><strong data-i18n="auth_role_pro">Professionnel</strong><small data-i18n="auth_role_pro_desc"></small></label>
+<label class="role-option selected" id="roleClient"><input type="radio" name="role" value="client" checked><span class="role-icon">👤</span><strong data-i18n="auth_role_client"></strong><small data-i18n="auth_role_client_desc"></small></label>
+<label class="role-option" id="rolePro"><input type="radio" name="role" value="pro"><span class="role-icon">🛠️</span><strong data-i18n="auth_role_pro"></strong><small data-i18n="auth_role_pro_desc"></small></label>
 </div></div>
-<div class="form-group"><label data-i18n="auth_name">Nom complet</label><input type="text" id="regName"></div>
-<div class="form-group"><label data-i18n="auth_email">Email</label><input type="email" id="regEmail"></div>
-<div class="form-group"><label data-i18n="auth_phone">Téléphone</label>
+<div class="form-group"><label data-i18n="auth_name"></label><input type="text" id="regName"></div>
+<div class="form-group"><label data-i18n="auth_email"></label><input type="email" id="regEmail"></div>
+<div class="form-group"><label data-i18n="auth_phone"></label>
 <div class="phone-input">
 <div class="country-select" id="countrySelect" onclick="toggleCountryDropdown(event)"><img class="flag" id="countryFlag" src="https://flagcdn.com/w40/ma.png" alt=""><span class="dial" id="countryDial">+212</span><span class="caret">▼</span><div class="country-dropdown" id="countryDropdown"></div></div>
 <input type="tel" id="regPhone" placeholder="6 12 34 56 78">
 </div></div>
-<div class="form-group"><label data-i18n="auth_city">Ville</label><select id="regCity"></select></div>
+<div class="form-group"><label data-i18n="auth_city"></label><select id="regCity"></select></div>
 <div class="form-row">
-<div class="form-group"><label data-i18n="auth_password">Mot de passe</label><input type="password" id="regPassword"></div>
-<div class="form-group"><label data-i18n="auth_confirm">Confirmer</label><input type="password" id="regConfirm"></div>
+<div class="form-group"><label data-i18n="auth_password"></label><input type="password" id="regPassword"></div>
+<div class="form-group"><label data-i18n="auth_confirm"></label><input type="password" id="regConfirm"></div>
 </div>
-<label class="terms-check"><input type="checkbox" id="regTerms"><span><span data-i18n="auth_terms_prefix">J'accepte les</span> <a onclick="openLegalModal('terms');event.stopPropagation()" data-i18n="auth_terms_link">conditions d'utilisation</a></span></label>
-<button type="submit" class="btn-submit" data-i18n="auth_submit_register">Créer mon compte</button>
+<label class="terms-check"><input type="checkbox" id="regTerms"><span><span data-i18n="auth_terms_prefix"></span> <a onclick="openLegalModal('terms');event.stopPropagation()" data-i18n="auth_terms_link"></a></span></label>
+<button type="submit" class="btn-submit" data-i18n="auth_submit_register"></button>
 </form>
 </div></div></div>
 
@@ -674,50 +682,50 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <p id="profileRole" style="text-align:center;color:var(--gray);margin-bottom:1.5rem">Client</p>
 <div id="profileDetails"></div>
 <div style="display:flex;gap:.8rem;margin-top:1.4rem">
-<button class="btn-submit" id="profileEditBtn" onclick="toggleEditProfile()" data-i18n="profile_edit">Modifier</button>
-<button class="btn-submit" style="background:var(--gray)" onclick="logout();closeProfile()" data-i18n="auth_logout">Se déconnecter</button>
+<button class="btn-submit" id="profileEditBtn" onclick="toggleEditProfile()" data-i18n="profile_edit"></button>
+<button class="btn-submit" style="background:var(--gray)" onclick="logout();closeProfile()" data-i18n="auth_logout"></button>
 </div></div></div></div>
 
 <div class="modal" id="proFormModal"><div class="modal-content" style="max-width:640px">
 <div class="modal-cover"><button class="close-modal" onclick="closeProForm()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
-<h2 id="proFormTitle" data-i18n="admin_add_pro">Ajouter un professionnel</h2>
+<h2 id="proFormTitle" data-i18n="admin_add_pro"></h2>
 <form id="proForm" onsubmit="savePro(event)" style="margin-top:1rem">
 <div class="admin-form-grid">
-<div class="form-group full"><label data-i18n="auth_name">Nom complet</label><input type="text" id="pfName"></div>
-<div class="form-group full"><label data-i18n="field_pro_photo">Foto del profesional</label><img id="pfAvatarPreview" class="avatar-preview" alt=""><input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem"></div>
-<div class="form-group full"><label data-i18n="field_pro_cover">Imagen de cabecera</label><img id="pfCoverPreview" class="cover-preview" alt=""><input type="file" id="pfCoverInput" accept="image/*" style="font-size:.85rem"></div>
+<div class="form-group full"><label data-i18n="auth_name"></label><input type="text" id="pfName"></div>
+<div class="form-group full"><label data-i18n="field_pro_photo"></label><img id="pfAvatarPreview" class="avatar-preview" alt=""><input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem"></div>
+<div class="form-group full"><label data-i18n="field_pro_cover"></label><img id="pfCoverPreview" class="cover-preview" alt=""><input type="file" id="pfCoverInput" accept="image/*" style="font-size:.85rem"></div>
 <div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨‍"></div>
-<div class="form-group"><label data-i18n="field_category">Catégorie</label><select id="pfCategory"></select></div>
-<div class="form-group"><label data-i18n="auth_city">Ville</label><select id="pfCity"></select></div>
-<div class="form-group"><label data-i18n="field_rating">Note (1-5)</label><input type="number" id="pfRating" min="1" max="5" step="0.1" value="4.5"></div>
-<div class="form-group"><label data-i18n="auth_phone">Téléphone</label><input type="text" id="pfPhone" placeholder="+212 6 ..."></div>
+<div class="form-group"><label data-i18n="field_category"></label><select id="pfCategory"></select></div>
+<div class="form-group"><label data-i18n="auth_city"></label><select id="pfCity"></select></div>
+<div class="form-group"><label data-i18n="field_rating"></label><input type="number" id="pfRating" min="1" max="5" step="0.1" value="4.5"></div>
+<div class="form-group"><label data-i18n="auth_phone"></label><input type="text" id="pfPhone" placeholder="+212 6 ..."></div>
 <div class="form-group"><label>WhatsApp</label><input type="text" id="pfWhatsapp" placeholder="2126..."></div>
 <div class="form-group"><label>Facebook</label><input type="text" id="pfFacebook" placeholder="https://facebook.com/..."></div>
 <div class="form-group"><label>Instagram</label><input type="text" id="pfInstagram" placeholder="https://instagram.com/..."></div>
 <div class="form-group"><label>TikTok</label><input type="text" id="pfTiktok" placeholder="https://tiktok.com/@..."></div>
 <div class="form-group"><label>Google My Business</label><input type="text" id="pfGmb" placeholder="https://g.page/..."></div>
-<div class="form-group full"><label data-i18n="field_website">Site web (optionnel)</label><input type="text" id="pfWebsite" placeholder="https://..."></div>
-<div class="form-group full"><label data-i18n="field_specialty">Spécialité</label>
+<div class="form-group full"><label data-i18n="field_website"></label><input type="text" id="pfWebsite" placeholder="https://..."></div>
+<div class="form-group full"><label data-i18n="field_specialty"></label>
 <div class="admin-form-grid"><input type="text" id="pfSpecFr" placeholder="Français"><input type="text" id="pfSpecEs" placeholder="Español"><input type="text" id="pfSpecAr" placeholder="العربية" class="full"></div></div>
-<div class="form-group full"><label data-i18n="field_description">Description</label>
+<div class="form-group full"><label data-i18n="field_description"></label>
 <div class="admin-form-grid"><textarea id="pfDescFr" placeholder="Français" style="min-height:60px"></textarea><textarea id="pfDescEs" placeholder="Español" style="min-height:60px"></textarea><textarea id="pfDescAr" placeholder="العربية" class="full" style="min-height:60px"></textarea></div></div>
-<div class="form-group full"><label data-i18n="field_my_services">Services que je propose</label><div class="pro-svc-grid" id="proSvcGrid"></div><div class="pro-svc-imgs" id="proSvcImgs"></div></div>
-<div class="form-group full" id="proPhotosSection" style="display:none"><label data-i18n="field_photos">Fotos de tus trabajos</label><div id="proPhotosList" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem"></div><input type="file" id="proPhotoInput" accept="image/*" multiple style="font-size:.85rem"></div>
+<div class="form-group full"><label data-i18n="field_my_services"></label><div class="pro-svc-grid" id="proSvcGrid"></div><div class="pro-svc-imgs" id="proSvcImgs"></div></div>
+<div class="form-group full" id="proPhotosSection" style="display:none"><label data-i18n="field_photos"></label><div id="proPhotosList" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem"></div><input type="file" id="proPhotoInput" accept="image/*" multiple style="font-size:.85rem"></div>
 </div>
-<button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
+<button type="submit" class="btn-submit" data-i18n="profile_save"></button>
 </form></div></div></div>
 
 <div class="modal" id="serviceFormModal"><div class="modal-content" style="max-width:440px">
 <div class="modal-cover"><button class="close-modal" onclick="closeServiceForm()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
-<h2 id="serviceFormTitle" data-i18n="admin_add_category">Ajouter une catégorie</h2>
+<h2 id="serviceFormTitle" data-i18n="admin_add_category"></h2>
 <form id="serviceForm" onsubmit="saveService(event)" style="margin-top:1rem">
 <div class="form-group"><label>Icône (emoji)</label><input type="text" id="svcIcon" placeholder="🛠️"></div>
 <div class="form-group"><label>Nom (Français)</label><input type="text" id="svcNameFr"></div>
 <div class="form-group"><label>Nom (Español)</label><input type="text" id="svcNameEs"></div>
 <div class="form-group"><label>Nom (العربية)</label><input type="text" id="svcNameAr"></div>
-<button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
+<button type="submit" class="btn-submit" data-i18n="profile_save"></button>
 </form></div></div></div>
 
 <div class="modal" id="legalModal"><div class="modal-content legal-modal">
@@ -726,13 +734,13 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 </div></div>
 
 <div class="cookie-banner" id="cookieBanner"><div class="cookie-inner">
-<div class="cookie-text"><span data-i18n="cookie_text"></span> <a onclick="openLegalModal('privacy')" data-i18n="cookie_more">En savoir plus</a></div>
-<div class="cookie-actions"><button class="cookie-btn cookie-reject" onclick="rejectCookies()" data-i18n="cookie_reject">Refuser</button><button class="cookie-btn cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept">Accepter</button></div>
+<div class="cookie-text"><span data-i18n="cookie_text"></span> <a onclick="openLegalModal('privacy')" data-i18n="cookie_more"></a></div>
+<div class="cookie-actions"><button class="cookie-btn cookie-reject" onclick="rejectCookies()" data-i18n="cookie_reject"></button><button class="cookie-btn cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept"></button></div>
 </div></div>
 
 <button class="chat-fab" onclick="toggleChat()" aria-label="Chat">💬</button>
 <div class="chat-panel" id="chatPanel">
-<div class="chat-head"><div class="chat-ava">🤖</div><strong data-i18n="chat_title">Assistant ClickPubli</strong><button onclick="toggleChat()">✕</button></div>
+<div class="chat-head"><div class="chat-ava">🤖</div><strong data-i18n="chat_title"></strong><button onclick="toggleChat()">✕</button></div>
 <div class="chat-body" id="chatBody"></div>
 <div class="chat-chips" id="chatChips"></div>
 <div class="chat-input"><input type="text" id="chatInput" data-i18n-placeholder="chat_placeholder" onkeypress="if(event.key==='Enter')chatSend()"><button onclick="chatSend()">➤</button></div>
@@ -750,7 +758,7 @@ const countries=[{code:"ma",name:"Maroc",dial:"+212"},{code:"es",name:"España",
 let selectedCountry=countries[0];
 
 const translations={
-fr:{doc_title:"ClickPubli — Services à domicile au Maroc",nav_home:"Accueil",nav_services:"Services",nav_pros:"Professionnels",nav_how:"Comment ça marche",nav_faq:"FAQ",nav_contact:"Contact",nav_label:"Navigation",lang_label:"Langue",
+fr:{doc_title:"ClickPubli — Services à domicile au Maroc | Plombiers, électriciens, ménage",nav_home:"Accueil",nav_services:"Services",nav_pros:"Professionnels",nav_how:"Comment ça marche",nav_faq:"FAQ",nav_contact:"Contact",nav_label:"Navigation",lang_label:"Langue",
 hero_badge:"N°1 des services à domicile au Maroc",hero_title_1:"Trouvez des",hero_title_highlight:"professionnels de confiance",hero_title_2:"près de chez vous",
 hero_subtitle:"Plombiers, électriciens, peintres, femmes de ménage... Contactez directement des artisans vérifiés partout au Maroc. Sans commission, sans intermédiaire.",
 search_placeholder:"Quel service recherchez-vous ?",search_city_label:"Votre ville",search_btn:"Rechercher",popular_label:"Populaire :",
@@ -777,7 +785,7 @@ reviews:"avis",back:"Retour",view_profile:"Voir le profil complet",about_pro:"À
 auth_login_btn:"Se connecter",auth_tab_login:"Connexion",auth_tab_register:"Inscription",auth_role_label:"Vous êtes :",auth_role_client:"Client",auth_role_client_desc:"Je cherche un professionnel",auth_role_pro:"Professionnel",auth_role_pro_desc:"Je propose mes services",
 auth_name:"Nom complet",auth_email:"Adresse e-mail",auth_phone:"Téléphone",auth_city:"Ville",auth_city_placeholder:"Choisissez votre ville",auth_password:"Mot de passe",auth_confirm:"Confirmer le mot de passe",auth_terms_prefix:"J'accepte les",auth_terms_link:"conditions d'utilisation",auth_submit_login:"Se connecter",auth_submit_register:"Créer mon compte",
 auth_error_required:"Veuillez remplir tous les champs obligatoires",auth_error_email:"Adresse e-mail invalide",auth_error_phone:"Numéro de téléphone invalide",auth_error_password:"Le mot de passe doit contenir au moins 6 caractères",auth_error_confirm:"Les mots de passe ne correspondent pas",auth_error_terms:"Veuillez accepter les conditions d'utilisation",auth_error_notfound:"E-mail ou mot de passe incorrect",auth_check_email:"Vérifiez votre e-mail pour confirmer votre compte",auth_success_register:"Compte créé avec succès ! Bienvenue {n}",auth_success_login:"Content de vous revoir, {n} !",auth_logout:"Déconnexion",auth_logout_success:"Vous avez été déconnecté avec succès",
-profile_edit:"Modifier",profile_save:"Enregistrer",profile_member_since:"Membre depuis",profile_saved:"Profil mis à jour avec succès",
+profile_edit:"Modifier",profile_save:"Enregistrer",profile_member_since:"Membre depuis",profile_saved:"Profil mis à jour avec succès",profile_photo:"Photo de profil",
 favorites:"Favoris",favorites_empty:"Aucun favori pour le moment. Cliquez sur ♡ pour en ajouter.",favorites_added:"Ajouté aux favoris ❤",favorites_removed:"Retiré des favoris",favorites_login_required:"Connectez-vous pour ajouter des favoris",favorites_show:"Voir mes favoris",
 reviews_title:"Avis clients",reviews_none:"Aucun avis pour le moment. Soyez le premier !",reviews_placeholder:"Partagez votre expérience...",reviews_submit:"Publier l'avis",reviews_login_required:"Connectez-vous pour laisser un avis.",reviews_success:"Merci pour votre avis !",reviews_select_rating:"Veuillez choisir une note",reviews_empty_comment:"Veuillez écrire un commentaire",
 admin_title:"Administration",admin_add_pro:"Ajouter un professionnel",admin_edit_pro:"Modifier le professionnel",admin_delete_confirm:"Supprimer ce professionnel ?",admin_saved:"Enregistré",admin_deleted:"Supprimé",admin_name_required:"Nom requis",admin_no_access:"Accès réservé aux administrateurs",admin_load_samples:"Charger les exemples",admin_svc_images:"Images des services",admin_svc_categories:"Catégories de services",admin_add_category:"Ajouter une catégorie",admin_edit_category:"Modifier la catégorie",
@@ -786,9 +794,23 @@ my_pro_card:"Ma fiche pro",pro_only:"Réservé aux professionnels",create_pro_ca
 faq_title:"Questions fréquentes",
 quote_title:"Demander un devis",quote_subtitle:"Le message sera envoyé par WhatsApp au professionnel.",quote_name:"Votre nom",quote_phone:"Votre téléphone",quote_desc:"Décrivez votre besoin",quote_send:"Envoyer par WhatsApp",
 contact_title:"Contactez-nous",contact_phone:"Téléphone",contact_email:"Email",contact_city:"Casablanca, Maroc",contact_form_title:"Envoyez-nous un message",contact_form_name:"Nom",contact_form_email:"Email",contact_form_subject:"Sujet",contact_form_message:"Message",contact_form_send:"Envoyer",contact_sent:"Message préparé dans votre messagerie",
-chat_title:"Assistant ClickPubli",chat_placeholder:"Écrivez votre question...",
+chat_title:"Assistant ClickPubli",chat_placeholder:"Écrivez votre réponse...",
+chat_greet:"Bonjour, je suis l'assistant ClickPubli. Je vous accompagne pour obtenir un devis professionnel en quelques étapes.",
+chat_q_service:"Pour commencer, quel type de service souhaitez-vous ? Sélectionnez une option :",
+chat_q_city:"Merci. Dans quelle ville le service est-il nécessaire ?",
+chat_q_need:"Pourriez-vous décrire brièvement le travail à réaliser ?",
+chat_q_urgency:"Quelle est l'urgence de votre demande ?",
+chat_q_name:"Parfait. Quel est votre nom complet ?",
+chat_q_phone:"Merci. Quel est votre numéro de téléphone ?",
+chat_q_email:"Souhaitez-vous laisser un e-mail de contact ? (optionnel — choisissez « Ignorer » pour passer)",
+chat_skip:"Ignorer",
+chat_summary_title:"Récapitulatif de votre demande :",
+chat_urgency:"Urgence",chat_email_lbl:"E-mail",
+chat_send_wa:"Envoyer par WhatsApp",chat_send_email:"Envoyer par e-mail",chat_restart:"Recommencer",
+chat_not_understood:"Je n'ai pas bien compris. Veuillez sélectionner une option ou reformuler votre réponse.",
+chat_sent_ok:"Votre demande a été transmise. Un professionnel vous contactera rapidement.",
 cookie_text:"Ce site utilise des cookies pour améliorer votre expérience.",cookie_more:"En savoir plus",cookie_accept:"Accepter",cookie_reject:"Refuser",city_filter:"Filtre appliqué : {c}"},
-es:{doc_title:"ClickPubli — Servicios a domicilio en Marruecos",nav_home:"Inicio",nav_services:"Servicios",nav_pros:"Profesionales",nav_how:"Cómo funciona",nav_faq:"FAQ",nav_contact:"Contacto",nav_label:"Navegación",lang_label:"Idioma",
+es:{doc_title:"ClickPubli — Servicios a domicilio en Marruecos | Fontaneros, electricistas, limpieza",nav_home:"Inicio",nav_services:"Servicios",nav_pros:"Profesionales",nav_how:"Cómo funciona",nav_faq:"FAQ",nav_contact:"Contacto",nav_label:"Navegación",lang_label:"Idioma",
 hero_badge:"N.º 1 en servicios a domicilio en Marruecos",hero_title_1:"Encuentra",hero_title_highlight:"profesionales de confianza",hero_title_2:"cerca de ti",
 hero_subtitle:"Fontaneros, electricistas, pintores, personal de limpieza... Contacta directamente con artesanos verificados en todo Marruecos. Sin comisiones ni intermediarios.",
 search_placeholder:"¿Qué servicio buscas?",search_city_label:"Tu ciudad",search_btn:"Buscar",popular_label:"Popular:",
@@ -815,7 +837,7 @@ reviews:"reseñas",back:"Volver",view_profile:"Ver perfil completo",about_pro:"S
 auth_login_btn:"Iniciar sesión",auth_tab_login:"Iniciar sesión",auth_tab_register:"Registrarse",auth_role_label:"Tú eres:",auth_role_client:"Cliente",auth_role_client_desc:"Busco un profesional",auth_role_pro:"Profesional",auth_role_pro_desc:"Ofrezco mis servicios",
 auth_name:"Nombre completo",auth_email:"Correo electrónico",auth_phone:"Teléfono",auth_city:"Ciudad",auth_city_placeholder:"Elige tu ciudad",auth_password:"Contraseña",auth_confirm:"Confirmar contraseña",auth_terms_prefix:"Acepto los",auth_terms_link:"términos de uso",auth_submit_login:"Iniciar sesión",auth_submit_register:"Crear mi cuenta",
 auth_error_required:"Por favor, completa todos los campos obligatorios",auth_error_email:"Correo electrónico no válido",auth_error_phone:"Número de teléfono no válido",auth_error_password:"La contraseña debe tener al menos 6 caracteres",auth_error_confirm:"Las contraseñas no coinciden",auth_error_terms:"Por favor, acepta los términos de uso",auth_error_notfound:"Correo o contraseña incorrectos",auth_check_email:"Revisa tu correo para confirmar tu cuenta",auth_success_register:"¡Cuenta creada con éxito! Bienvenido/a {n}",auth_success_login:"¡Encantado de verte de nuevo, {n}!",auth_logout:"Cerrar sesión",auth_logout_success:"Has cerrado sesión correctamente",
-profile_edit:"Editar",profile_save:"Guardar",profile_member_since:"Miembro desde",profile_saved:"Perfil actualizado con éxito",
+profile_edit:"Editar",profile_save:"Guardar",profile_member_since:"Miembro desde",profile_saved:"Perfil actualizado con éxito",profile_photo:"Foto de perfil",
 favorites:"Favoritos",favorites_empty:"Aún no tienes favoritos. Haz clic en ♡ para añadir.",favorites_added:"Añadido a favoritos ❤",favorites_removed:"Eliminado de favoritos",favorites_login_required:"Inicia sesión para añadir favoritos",favorites_show:"Ver mis favoritos",
 reviews_title:"Reseñas de clientes",reviews_none:"Aún no hay reseñas. ¡Sé el primero!",reviews_placeholder:"Comparte tu experiencia...",reviews_submit:"Publicar reseña",reviews_login_required:"Inicia sesión para dejar una reseña.",reviews_success:"¡Gracias por tu reseña!",reviews_select_rating:"Por favor elige una puntuación",reviews_empty_comment:"Por favor escribe un comentario",
 admin_title:"Administración",admin_add_pro:"Añadir profesional",admin_edit_pro:"Editar profesional",admin_delete_confirm:"¿Eliminar este profesional?",admin_saved:"Guardado",admin_deleted:"Eliminado",admin_name_required:"Nombre requerido",admin_no_access:"Acceso reservado a administradores",admin_load_samples:"Cargar ejemplos",admin_svc_images:"Imágenes de servicios",admin_svc_categories:"Categorías de servicios",admin_add_category:"Añadir categoría",admin_edit_category:"Editar categoría",
@@ -824,9 +846,23 @@ my_pro_card:"Mi ficha profesional",pro_only:"Solo para profesionales",create_pro
 faq_title:"Preguntas frecuentes",
 quote_title:"Pedir presupuesto",quote_subtitle:"El mensaje se enviará por WhatsApp al profesional.",quote_name:"Tu nombre",quote_phone:"Tu teléfono",quote_desc:"Describe tu necesidad",quote_send:"Enviar por WhatsApp",
 contact_title:"Contacto",contact_phone:"Teléfono",contact_email:"Email",contact_city:"Casablanca, Marruecos",contact_form_title:"Envíanos un mensaje",contact_form_name:"Nombre",contact_form_email:"Email",contact_form_subject:"Asunto",contact_form_message:"Mensaje",contact_form_send:"Enviar",contact_sent:"Mensaje preparado en tu correo",
-chat_title:"Asistente ClickPubli",chat_placeholder:"Escribe tu pregunta...",
+chat_title:"Asistente ClickPubli",chat_placeholder:"Escribe tu respuesta...",
+chat_greet:"Hola, soy el asistente de ClickPubli. Te acompaño para obtener un presupuesto profesional en pocos pasos.",
+chat_q_service:"Para empezar, ¿qué tipo de servicio necesitas? Selecciona una opción:",
+chat_q_city:"Gracias. ¿En qué ciudad se necesita el servicio?",
+chat_q_need:"¿Podrías describir brevemente el trabajo a realizar?",
+chat_q_urgency:"¿Con qué urgencia necesitas el servicio?",
+chat_q_name:"Perfecto. ¿Cuál es tu nombre completo?",
+chat_q_phone:"Gracias. ¿Cuál es tu número de teléfono?",
+chat_q_email:"¿Deseas dejar un e-mail de contacto? (opcional — pulsa «Omitir» para continuar)",
+chat_skip:"Omitir",
+chat_summary_title:"Resumen de tu solicitud:",
+chat_urgency:"Urgencia",chat_email_lbl:"E-mail",
+chat_send_wa:"Enviar por WhatsApp",chat_send_email:"Enviar por e-mail",chat_restart:"Empezar de nuevo",
+chat_not_understood:"No he entendido bien. Selecciona una opción o reformula tu respuesta.",
+chat_sent_ok:"Tu solicitud ha sido enviada. Un profesional te contactará pronto.",
 cookie_text:"Este sitio usa cookies para mejorar tu experiencia.",cookie_more:"Saber más",cookie_accept:"Aceptar",cookie_reject:"Rechazar",city_filter:"Filtro aplicado: {c}"},
-ar:{doc_title:"ClickPubli — خدمات منزلية في المغرب",nav_home:"الرئيسية",nav_services:"الخدمات",nav_pros:"المحترفون",nav_how:"كيف يعمل",nav_faq:"الأسئلة",nav_contact:"اتصل بنا",nav_label:"التنقل",lang_label:"اللغة",
+ar:{doc_title:"ClickPubli — خدمات منزلية في المغرب | سباكة، كهرباء، تنظيف",nav_home:"الرئيسية",nav_services:"الخدمات",nav_pros:"المحترفون",nav_how:"كيف يعمل",nav_faq:"الأسئلة",nav_contact:"اتصل بنا",nav_label:"التنقل",lang_label:"اللغة",
 hero_badge:"الأول في الخدمات المنزلية بالمغرب",hero_title_1:"اعثر على",hero_title_highlight:"محترفين موثوقين",hero_title_2:"بالقرب منك",
 hero_subtitle:"سباكون، كهربائيون، صباغون، عاملات نظافة... تواصل مباشرة مع حرفيين موثوقين في جميع أنحاء المغرب. بدون عمولة وبدون وسيط.",
 search_placeholder:"ما الخدمة التي تبحث عنها؟",search_city_label:"مدينتك",search_btn:"بحث",popular_label:"الأكثر طلباً:",
@@ -853,7 +889,7 @@ reviews:"تقييم",back:"رجوع",view_profile:"عرض الملف الكام�
 auth_login_btn:"تسجيل الدخول",auth_tab_login:"تسجيل الدخول",auth_tab_register:"إنشاء حساب",auth_role_label:"أنت:",auth_role_client:"عميل",auth_role_client_desc:"أبحث عن محترف",auth_role_pro:"محترف",auth_role_pro_desc:"أقدم خدماتي",
 auth_name:"الاسم الكامل",auth_email:"البريد الإلكتروني",auth_phone:"الهاتف",auth_city:"المدينة",auth_city_placeholder:"اختر مدينتك",auth_password:"كلمة المرور",auth_confirm:"تأكيد كلمة المرور",auth_terms_prefix:"أوافق على",auth_terms_link:"شروط الاستخدام",auth_submit_login:"تسجيل الدخول",auth_submit_register:"إنشاء حسابي",
 auth_error_required:"الرجاء ملء جميع الحقول المطلوبة",auth_error_email:"البريد الإلكتروني غير صالح",auth_error_phone:"رقم الهاتف غير صالح",auth_error_password:"يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل",auth_error_confirm:"كلمتا المرور غير متطابقتين",auth_error_terms:"الرجاء الموافقة على شروط الاستخدام",auth_error_notfound:"البريد الإلكتروني أو كلمة المرور غير صحيحة",auth_check_email:"تحقق من بريدك الإلكتروني لتأكيد حسابك",auth_success_register:"تم إنشاء الحساب بنجاح! مرحباً {n}",auth_success_login:"سعداء برؤيتك مجدداً، {n}!",auth_logout:"تسجيل الخروج",auth_logout_success:"تم تسجيل خروجك بنجاح",
-profile_edit:"تعديل",profile_save:"حفظ",profile_member_since:"عضو منذ",profile_saved:"تم تحديث الملف الشخصي بنجاح",
+profile_edit:"تعديل",profile_save:"حفظ",profile_member_since:"عضو منذ",profile_saved:"تم تحديث الملف الشخصي بنجاح",profile_photo:"صورة الملف الشخصي",
 favorites:"المفضلة",favorites_empty:"لا توجد مفضلات بعد. انقر على ♡ للإضافة.",favorites_added:"أضيف إلى المفضلة ❤",favorites_removed:"أزيل من المفضلة",favorites_login_required:"سجل الدخول لإضافة مفضلات",favorites_show:"عرض المفضلة",
 reviews_title:"آراء العملاء",reviews_none:"لا توجد آراء بعد. كن الأول!",reviews_placeholder:"شارك تجربتك...",reviews_submit:"نشر الرأي",reviews_login_required:"سجل الدخول لترك رأي.",reviews_success:"شكراً لرأيك!",reviews_select_rating:"الرجاء اختيار تقييم",reviews_empty_comment:"الرجاء كتابة تعليق",
 admin_title:"الإدارة",admin_add_pro:"إضافة محترف",admin_edit_pro:"تعديل المحترف",admin_delete_confirm:"حذف هذا المحترف؟",admin_saved:"تم الحفظ",admin_deleted:"تم الحذف",admin_name_required:"الاسم مطلوب",admin_no_access:"الوصول مخصص للمشرفين فقط",admin_load_samples:"تحميل الأمثلة",admin_svc_images:"صور الخدمات",admin_svc_categories:"فئات الخدمات",admin_add_category:"إضافة فئة",admin_edit_category:"تعديل الفئة",
@@ -862,7 +898,21 @@ my_pro_card:"بطاقتي المهنية",pro_only:"مخصص للمحترفين"
 faq_title:"الأسئلة الشائعة",
 quote_title:"طلب عرض سعر",quote_subtitle:"سيتم إرسال الرسالة عبر واتساب إلى المحترف.",quote_name:"اسمك",quote_phone:"هاتفك",quote_desc:"صف حاجتك",quote_send:"إرسال عبر واتساب",
 contact_title:"اتصل بنا",contact_phone:"الهاتف",contact_email:"البريد الإلكتروني",contact_city:"الدار البيضاء، المغرب",contact_form_title:"أرسل لنا رسالة",contact_form_name:"الاسم",contact_form_email:"البريد الإلكتروني",contact_form_subject:"الموضوع",contact_form_message:"الرسالة",contact_form_send:"إرسال",contact_sent:"تم تجهيز الرسالة في بريدك",
-chat_title:"مساعد ClickPubli",chat_placeholder:"اكتب سؤالك...",
+chat_title:"مساعد ClickPubli",chat_placeholder:"اكتب إجابتك...",
+chat_greet:"مرحباً، أنا مساعد ClickPubli. أرافقك للحصول على عرض سعر احترافي في خطوات قليلة.",
+chat_q_service:"للبدء، ما نوع الخدمة التي تحتاجها؟ اختر خياراً:",
+chat_q_city:"شكراً. في أي مدينة تحتاج الخدمة؟",
+chat_q_need:"هل يمكنك وصف العمل المطلوب باختصار؟",
+chat_q_urgency:"ما مدى استعجال طلبك؟",
+chat_q_name:"ممتاز. ما اسمك الكامل؟",
+chat_q_phone:"شكراً. ما رقم هاتفك؟",
+chat_q_email:"هل ترغب بترك بريد إلكتروني للتواصل؟ (اختياري — اختر «تجاهل» للمتابعة)",
+chat_skip:"تجاهل",
+chat_summary_title:"ملخص طلبك:",
+chat_urgency:"الاستعجال",chat_email_lbl:"البريد الإلكتروني",
+chat_send_wa:"إرسال عبر واتساب",chat_send_email:"إرسال عبر البريد",chat_restart:"البدء من جديد",
+chat_not_understood:"لم أفهم جيداً. الرجاء اختيار خيار أو إعادة صياغة إجابتك.",
+chat_sent_ok:"تم إرسال طلبك. سيتواصل معك محترف قريباً.",
 cookie_text:"يستخدم هذا الموقع ملفات تعريف الارتباط لتحسين تجربتك.",cookie_more:"اعرف المزيد",cookie_accept:"قبول",cookie_reject:"رفض",city_filter:"تم تطبيق الفلتر: {c}"}
 };
 
@@ -893,9 +943,11 @@ climatisation:[{id:"q1",label:{fr:"Besoin",es:"Necesidad",ar:"الحاجة"},opt
 default:[{id:"q1",label:{fr:"Type de travail",es:"Tipo de trabajo",ar:"نوع العمل"},opts:null}]
 };
 
+const chatUrgOpts={fr:["Urgent (aujourd'hui)","Cette semaine","Planifié"],es:["Urgente (hoy)","Esta semana","Planificado"],ar:["عاجل (اليوم)","هذا الأسبوع","مخطط"]};
+
 const sampleMeta={plomberie:{specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"},desc:{fr:"Plombier expérimenté pour réparations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والأعطال الطارئة."}},electricite:{specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"},desc:{fr:"Électricien professionnel, mise aux normes et dépannages.",es:"Electricista profesional, normativas y averías.",ar:"كهربائي محترف للمعايير والأعطال."}},peinture:{specialty:{fr:"Peintre décorateur",es:"Pintor decorador",ar:"صباغ وديكور"},desc:{fr:"Peintre soigné intérieurs/extérieurs.",es:"Pintor esmerado interiores/exteriores.",ar:"صباغ متقن للداخل والخارج."}},menage:{specialty:{fr:"Service de ménage",es:"Servicio de limpieza",ar:"خدمة تنظيف"},desc:{fr:"Nettoyage soigné, ponctualité.",es:"Limpieza esmerada, puntualidad.",ar:"تنظيف متقن والتزام."}},climatisation:{specialty:{fr:"Technicien climatisation",es:"Técnico de climatización",ar:"تقني تكييف"},desc:{fr:"Installation et entretien toutes marques.",es:"Instalación y mantenimiento todas las marcas.",ar:"تركيب وصيانة جميع العلامات."}},menuiserie:{specialty:{fr:"Menuisier",es:"Carpintero",ar:"نجار"},desc:{fr:"Meubles sur mesure et réparations.",es:"Muebles a medida y reparaciones.",ar:"أثاث حسب الطلب وإصلاحات."}},serrurerie:{specialty:{fr:"Serrurier",es:"Cerrajero",ar:"حداد"},desc:{fr:"Ouverture, serrures, blindage.",es:"Apertura, cerraduras, blindaje.",ar:"فتح وأقفال وتحصين."}},maconnerie:{specialty:{fr:"Maçon",es:"Albañil",ar:"بنّاء"},desc:{fr:"Construction et rénovation.",es:"Construcción y reformas.",ar:"بناء وترميم."}},electromenager:{specialty:{fr:"Réparateur électroménager",es:"Reparador de electrodomésticos",ar:"مصلح أجهزة"},desc:{fr:"Lave-linge, frigo, four, toutes marques.",es:"Lavadora, nevera, horno, todas las marcas.",ar:"غسالة وثلاجة وفرن جميع العلامات."}},jardinage:{specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"},desc:{fr:"Entretien espaces verts, tonte, taille.",es:"Mantenimiento zonas verdes, corte, poda.",ar:"العناية بالمساحات الخضراء والقص والتقليم."}}};
 const sampleAvatars=["men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12","men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29","men/83","men/47","men/54","men/71","women/33","women/57","women/12","men/94","men/38","men/61"];
-const sampleRaw=[["p1","Mohammed El Amrani","👨‍🔧","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍🔧","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩‍","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍🔧","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍🎨","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍🎨","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍💼","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍🔧","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍🔧","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
+const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍🔧","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍🔧","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍💼","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍🎨","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍🔧","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
 const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:sampleMeta[r[3]].desc,photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
 
 let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
@@ -904,6 +956,7 @@ let selectedRating=0,isEditingProfile=false,currentProfile=null,currentUserFavor
 let prosData=[],proServicesMap={},editingProId=null,currentPhotos=[],pendingAvatarUrl=null,pendingCoverUrl=null;
 let serviceMedia={},selectedProSvcIds=[],pendingProSvcImages={},editingServiceId=null;
 let currentQuoteProId=null;
+let chatStep="service",chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""};
 
 function t(k){return translations[currentLang][k]||k}
 function flagUrl(c,s=20){return `https://flagcdn.com/w${s}/${c}.png`}
@@ -914,6 +967,21 @@ function goSection(id){closeDrawer();showMainView();setTimeout(()=>{const el=doc
 function openLightbox(u){document.getElementById("lightboxImg").src=u;document.getElementById("lightbox").classList.add("show")}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("show")}
 
+/* Selector de idioma desplegable (escritorio) */
+function toggleLangDD(e){e.stopPropagation();document.getElementById("langDDMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-dd"))document.getElementById("langDDMenu").classList.remove("open")});
+function renderLangSwitchers(){
+  const langs=[{code:"fr",flag:"fr",label:"FR"},{code:"es",flag:"es",label:"ES"},{code:"ar",flag:"ma",label:"AR"}];
+  const cur=langs.find(l=>l.code===currentLang)||langs[0];
+  const f=document.getElementById("langDDFlag"),lb=document.getElementById("langDDLabel");
+  if(f)f.src=flagUrl(cur.flag);if(lb)lb.textContent=cur.label;
+  const menu=document.getElementById("langDDMenu");
+  if(menu)menu.innerHTML=langs.map(l=>`<button class="lang-dd-item ${currentLang===l.code?"active":""}" onclick="setLanguage('${l.code}');document.getElementById('langDDMenu').classList.remove('open')"><img class="flag" src="${flagUrl(l.flag)}" alt="">${l.label}</button>`).join("");
+  const d=document.getElementById("drawerLangSwitcher");
+  if(d)d.innerHTML=langs.map(l=>`<button class="lang-btn ${currentLang===l.code?"active":""}" data-lang="${l.code}"><img class="flag" src="${flagUrl(l.flag)}" alt=""><span>${l.label}</span></button>`).join("");
+  document.querySelectorAll("#drawerLangSwitcher .lang-btn").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
+}
+
 function hideAllViews(){["mainView","favoritesView","proProfileView","adminView","faqView","contactView"].forEach(id=>{document.getElementById(id).style.display="none"})}
 function renderMainView(){hideAllViews();document.getElementById("mainView").style.display="block";currentProProfileId=null}
 function renderFavoritesView(){hideAllViews();document.getElementById("favoritesView").style.display="block";currentProProfileId=null;renderFavoritesPage();window.scrollTo({top:0,behavior:"smooth"})}
@@ -922,15 +990,15 @@ function showContactView(){hideAllViews();document.getElementById("contactView")
 function proAvatarHtml(p){return p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}
 function starsStr(n){const f=Math.round(n);return "★".repeat(f)+"☆".repeat(5-f)}
 
-function socialLinksHtml(p){
-  const L=(p.links||{});const out=[];
-  if(L.facebook)out.push(`<a href="${L.facebook}" target="_blank">📘 Facebook</a>`);
-  if(L.instagram)out.push(`<a href="${L.instagram}" target="_blank">📸 Instagram</a>`);
-  if(L.tiktok)out.push(`<a href="${L.tiktok}" target="_blank">🎵 TikTok</a>`);
-  if(L.gmb)out.push(`<a href="${L.gmb}" target="_blank">📍 Google</a>`);
-  if(L.website)out.push(`<a href="${L.website}" target="_blank">🌐 ${t("field_website")}</a>`);
-  return out.join("");
-}
+function socialLinksHtml(p){const L=(p.links||{});const out=[];
+if(L.facebook)out.push(`<a href="${L.facebook}" target="_blank">📘 Facebook</a>`);
+if(L.instagram)out.push(`<a href="${L.instagram}" target="_blank">📸 Instagram</a>`);
+if(L.tiktok)out.push(`<a href="${L.tiktok}" target="_blank">🎵 TikTok</a>`);
+if(L.gmb)out.push(`<a href="${L.gmb}" target="_blank">📍 Google</a>`);
+if(L.website)out.push(`<a href="${L.website}" target="_blank">🌐 ${t("field_website")}</a>`);
+return out.join("")}
+
+function setHeroCard(){const p=prosData.find(x=>x.id==="p1");const img=document.getElementById("vmcAvatarImg");if(img)img.src=(p&&p.photo_url)||"https://randomuser.me/api/portraits/men/32.jpg"}
 
 function renderProProfileView(proId){
   const p=prosData.find(x=>x.id===proId);if(!p){renderMainView();return}
@@ -1019,10 +1087,11 @@ function formatDate(iso){if(!iso)return "—";const loc=currentLang==="ar"?"ar-M
 function openProfile(){if(!currentProfile){openAuth("login");return}isEditingProfile=false;renderProfile();document.getElementById("profileModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeProfile(){document.getElementById("profileModal").classList.remove("active");document.body.style.overflow="";isEditingProfile=false}
 function toggleEditProfile(){isEditingProfile=!isEditingProfile;renderProfile()}
-function renderProfile(){if(!currentProfile)return;document.getElementById("profileAvatar").textContent=currentProfile.name.charAt(0).toUpperCase();document.getElementById("profileName").textContent=currentProfile.name;document.getElementById("profileRole").textContent=currentProfile.role==="pro"?t("auth_role_pro"):(currentProfile.role==="admin"?"Admin":t("auth_role_client"));
+function renderProfile(){if(!currentProfile)return;document.getElementById("profileAvatar").innerHTML=currentProfile.avatar_url?`<img src="${currentProfile.avatar_url}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:currentProfile.name.charAt(0).toUpperCase();document.getElementById("profileName").textContent=currentProfile.name;document.getElementById("profileRole").textContent=currentProfile.role==="pro"?t("auth_role_pro"):(currentProfile.role==="admin"?"Admin":t("auth_role_client"));
 const d=document.getElementById("profileDetails"),b=document.getElementById("profileEditBtn");
-if(isEditingProfile){d.innerHTML=`<div class="form-group"><label>${t("auth_name")}</label><input type="text" id="editName" value="${currentProfile.name}"></div><div class="form-group"><label>${t("auth_phone")}</label><input type="tel" id="editPhone" value="${currentProfile.phone||""}"></div><div class="form-group"><label>${t("auth_city")}</label><select id="editCity">${citiesData.map(c=>`<option value="${c[currentLang]}" ${c[currentLang]===currentProfile.city?"selected":""}>${c[currentLang]}</option>`).join("")}</select></div>`;b.textContent=t("profile_save");b.onclick=saveProfile}
+if(isEditingProfile){d.innerHTML=`<div class="form-group"><label>${t("profile_photo")}</label><input type="file" accept="image/*" onchange="uploadUserAvatar(this.files[0])" style="font-size:.85rem"></div><div class="form-group"><label>${t("auth_name")}</label><input type="text" id="editName" value="${currentProfile.name}"></div><div class="form-group"><label>${t("auth_phone")}</label><input type="tel" id="editPhone" value="${currentProfile.phone||""}"></div><div class="form-group"><label>${t("auth_city")}</label><select id="editCity">${citiesData.map(c=>`<option value="${c[currentLang]}" ${c[currentLang]===currentProfile.city?"selected":""}>${c[currentLang]}</option>`).join("")}</select></div>`;b.textContent=t("profile_save");b.onclick=saveProfile}
 else{d.innerHTML=`<div class="profile-row"><span>📧 ${t("auth_email")}</span><strong>${currentProfile.email||""}</strong></div><div class="profile-row"><span>📞 ${t("auth_phone")}</span><strong>${currentProfile.phone||""}</strong></div><div class="profile-row"><span>📍 ${t("auth_city")}</span><strong>${currentProfile.city||""}</strong></div><div class="profile-row"><span>📅 ${t("profile_member_since")}</span><strong>${formatDate(currentProfile.created_at)}</strong></div>`;b.textContent=t("profile_edit");b.onclick=toggleEditProfile}}
+async function uploadUserAvatar(f){if(!f||!currentProfile)return;const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`useravatars/${currentProfile.id}_${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);await sb.from("profiles").update({avatar_url:data.publicUrl}).eq("id",currentProfile.id);currentProfile.avatar_url=data.publicUrl;renderProfile();updateAuthUI();showToast(t("profile_saved"))}
 async function saveProfile(){if(!currentProfile)return;const name=document.getElementById("editName").value.trim();const phone=document.getElementById("editPhone").value.trim();const city=document.getElementById("editCity").value;if(!name){showToast(t("auth_error_required"));return}
 const{error}=await sb.from("profiles").update({name,phone,city}).eq("id",currentProfile.id);if(error){showToast(error.message);return}
 currentProfile.name=name;currentProfile.phone=phone;currentProfile.city=city;showToast(t("profile_saved"));isEditingProfile=false;renderProfile();updateAuthUI()}
@@ -1041,7 +1110,19 @@ async function loadServices(){const{data,error}=await sb.from("services").select
 async function loadProfessionals(){const{data,error}=await sb.from("professionals").select("*").order("id");if(!error&&data&&data.length>0){prosData=data.map(r=>({id:r.id,name:r.name,emoji:r.emoji,category:r.category,specialty:r.specialty||{fr:r.name,es:r.name,ar:r.name},city:citiesData[r.city_index]||citiesData[0],rating:parseFloat(r.rating)||4.5,reviews:r.reviews||0,phone:r.phone||"",whatsapp:r.whatsapp||"",desc:r.description||{fr:"",es:"",ar:""},photos:r.photos||[],photo_url:r.photo_url||"",cover_url:r.cover_url||"",links:r.links||{},user_id:r.user_id||null}))}}
 async function loadProServicesAll(){const{data,error}=await sb.from("pro_services").select("*");proServicesMap={};if(!error&&data)data.forEach(r=>{if(!proServicesMap[r.pro_id])proServicesMap[r.pro_id]=[];proServicesMap[r.pro_id].push({service_id:r.service_id,image_url:r.image_url})})}
 async function loadServiceMedia(){const{data,error}=await sb.from("service_media").select("*");serviceMedia={};if(!error&&data)data.forEach(r=>serviceMedia[r.id]=r.url)}
-async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
+async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();renderStats();setHeroCard();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
+
+function renderStats(){
+  const pros=prosData.length;
+  const cities=new Set(prosData.map(p=>p.city_index)).size;
+  const services=servicesData.length;
+  let sat="—";
+  if(pros>0){const avg=prosData.reduce((a,p)=>a+p.rating,0)/pros;sat=Math.round(avg/5*100)+"%";}
+  const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  set("statPros",pros.toLocaleString(loc));set("statCities",cities>0?cities+"+":"0");set("statServices",services>0?services+"+":"0");set("statSatisfaction",sat);set("statProsCard",pros.toLocaleString(loc));set("statSatCard",sat);
+}
+setInterval(async()=>{if(document.hidden)return;await loadProfessionals();renderStats();},60000);
 
 function showPhotosSection(s){document.getElementById("proPhotosSection").style.display=s?"block":"none"}
 function renderPhotosList(){document.getElementById("proPhotosList").innerHTML=currentPhotos.map((u,i)=>`<div class="pro-photo-thumb"><img src="${u}" alt=""><button type="button" class="pro-photo-del" onclick="removeProPhoto(${i})">✕</button></div>`).join("")}
@@ -1063,8 +1144,8 @@ let id=editingServiceId;if(!id){id=fr.toLowerCase().replace(/[^a-z0-9]+/g,"_").r
 const ex=servicesData.find(s=>s.id===id);
 const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:servicesData.length+1};
 const{error}=await sb.from("services").upsert(payload);if(error){showToast(error.message);return}
-await loadServices();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
-async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
+await loadServices();renderStats();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
+async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderStats();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
 
 function prepareProForm(){document.getElementById("pfCategory").innerHTML=servicesData.map(s=>`<option value="${s.id}">${s.name[currentLang]}</option>`).join("");document.getElementById("pfCity").innerHTML=citiesData.map((c,i)=>`<option value="${i}">${c[currentLang]}</option>`).join("");renderProSvcGrid()}
 function renderProSvcGrid(){const g=document.getElementById("proSvcGrid");g.innerHTML=servicesData.map(s=>`<label class="pro-svc-item ${selectedProSvcIds.includes(s.id)?"checked":""}"><input type="checkbox" value="${s.id}" ${selectedProSvcIds.includes(s.id)?"checked":""} onchange="toggleProSvc('${s.id}',this)"><span class="svc-icon">${s.icon}</span><span class="svc-label">${s.name[currentLang]}</span></label>`).join("");renderProSvcImgRows()}
@@ -1097,10 +1178,10 @@ description:{fr:document.getElementById("pfDescFr").value.trim(),es:document.get
 let targetId=editingProId;
 if(editingProId){const{error}=await sb.from("professionals").update(payload).eq("id",editingProId);if(error){showToast(error.message);return}}
 else{payload.id="p"+(Date.now()%1000000);payload.reviews=0;if(!isAdmin()&&currentProfile&&currentProfile.role==="pro")payload.user_id=currentProfile.id;const{data,error}=await sb.from("professionals").insert(payload).select("id").single();if(error){showToast(error.message);return}targetId=data.id}
-await saveProSvc(targetId);await loadProfessionals();renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);
+await saveProSvc(targetId);await loadProfessionals();renderStats();setHeroCard();renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);
 if(isAdmin()&&document.getElementById("adminView").style.display!=="none")renderAdminProList();
 closeProForm();showToast(t("admin_saved"))}
-async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
+async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();renderStats();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
 function renderAdminProList(){const c=document.getElementById("adminProList");if(prosData.length===0){c.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>${t("no_results_title")}</p></div>`;return}
 c.innerHTML=prosData.map(p=>`<div class="admin-pro-row"><span class="admin-pro-emoji">${p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}</span><div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div><div class="admin-pro-actions"><button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button><button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button></div></div>`).join("")}
 function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])"></div>`}).join("")}
@@ -1123,34 +1204,49 @@ if(!wa){showToast(t("auth_error_phone"));return}
 window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
 closeQuoteModal()}
 
-function toggleChat(){const p=document.getElementById("chatPanel");p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){botGreet()}}
-function botGreet(){const g={fr:"Bonjour 👋 Je suis l'assistant ClickPubli. Comment puis-je vous aider ?",es:"Hola 👋 Soy el asistente de ClickPubli. ¿En qué puedo ayudarte?",ar:"مرحباً 👋 أنا مساعد ClickPubli. كيف يمكنني مساعدتك؟"}[currentLang];addChat(g,"bot");renderChatChips()}
-function renderChatChips(){const chips={fr:["Services","Devis","Contact","Ville"],es:["Servicios","Presupuesto","Contacto","Ciudad"],ar:["الخدمات","عرض سعر","اتصال","مدينة"]}[currentLang];
-document.getElementById("chatChips").innerHTML=chips.map(c=>`<button class="chat-chip" onclick="chatQuick('${c}')">${c}</button>`).join("")}
+/* ===== ASISTENTE PROFESIONAL ===== */
+function toggleChat(){const p=document.getElementById("chatPanel");p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
+function closeChatPanel(){document.getElementById("chatPanel").classList.remove("open")}
+function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
+function chatStart(){chatReset();document.getElementById("chatBody").innerHTML="";addChat(t("chat_greet"),"bot");addChat(t("chat_q_service"),"bot");renderChatChips()}
 function addChat(text,who){const b=document.getElementById("chatBody");const d=document.createElement("div");d.className="chat-msg "+who;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
-function chatQuick(c){addChat(c,"user");botReply(c)}
-function chatSend(){const i=document.getElementById("chatInput");const v=i.value.trim();if(!v)return;i.value="";addChat(v,"user");botReply(v)}
-function botReply(raw){const q=raw.toLowerCase();let out="";const L=currentLang;const has=k=>q.includes(k);
-if(has("servicio")||has("service")||has("الخدمة")||has("خدمات")){out={fr:"Nous proposons : plomberie, électricité, peinture, ménage, climatisation, menuiserie, serrurerie, maçonnerie, électroménager, jardinage. Cliquez sur « Services » pour voir tout.",es:"Ofrecemos: fontanería, electricidad, pintura, limpieza, climatización, carpintería, cerrajería, albañilería, electrodomésticos, jardinería. Pulsa « Servicios » para ver todo.",ar:"نقدم: سباكة، كهرباء، صباغة، تنظيف، تكييف، نجارة، حدادة، بناء، أجهزة منزلية، بستنة. اضغط «الخدمات» لرؤية الكل."}[L]}
-else if(has("devis")||has("presupuesto")||has("عرض سعر")){out={fr:"Pour demander un devis : ouvrez la fiche d'un professionnel puis cliquez « 📋 Demander un devis ». Le message part par WhatsApp.",es:"Para pedir presupuesto: abre la ficha de un profesional y pulsa « 📋 Pedir presupuesto ». El mensaje se envía por WhatsApp.",ar:"لطلب عرض سعر: افتح بطاقة المحترف ثم اضغط «📋 طلب عرض سعر». تُرسل الرسالة عبر واتساب."}[L]}
-else if(has("contact")||has("contacto")||has("اتصل")||has("اتصال")){out={fr:"Contact : +212 6 90 15 70 92 · contact@clickpubli.com. Ou ouvrez la page Contact.",es:"Contacto: +212 6 90 15 70 92 · contact@clickpubli.com. O abre la página Contacto.",ar:"للتواصل: +212 6 90 15 70 92 · contact@clickpubli.com. أو افتح صفحة اتصل بنا."}[L]}
-else if(has("ville")||has("ciudad")||has("مدينة")||has("مدن")){out={fr:"Nous couvrons +50 villes : Casablanca, Rabat, Marrakech, Tanger, Fès, Agadir... Choisissez votre ville dans la recherche.",es:"Cubrimos +50 ciudades: Casablanca, Rabat, Marrakech, Tánger, Fez, Agadir... Elige tu ciudad en el buscador.",ar:"نغطي +50 مدينة: الدار البيضاء، الرباط، مراكش، طنجة، فاس، أكادير... اختر مدينتك في البحث."}[L]}
-else if(has("prix")||has("precio")||has("gratis")||has("gratuit")||has("مجاني")||has("سعر")){out={fr:"ClickPubli est 100% gratuit pour les clients, sans commission. Le prix se négocie directement avec le professionnel.",es:"ClickPubli es 100% gratis para clientes, sin comisiones. El precio se negocia directamente con el profesional.",ar:"ClickPubli مجاني 100% للعملاء بدون عمولة. السعر يُتفاوض مباشرة مع المحترف."}[L]}
-else if(has("professionnel")||has("profesional")||has("محترف")||has("حرفي")){out={fr:"Pour devenir professionnel : inscrivez-vous avec le rôle « Professionnel », puis cliquez 🛠️ pour créer votre fiche gratuitement.",es:"Para ser profesional: regístrate con el rol «Profesional» y pulsa 🛠️ para crear tu ficha gratis.",ar:"لتصبح محترفاً: سجل بدور «محترف» ثم اضغط 🛠️ لإنشاء بطاقتك مجاناً."}[L]}
-else if(has("bonjour")||has("hola")||has("salut")||has("مرحبا")||has("سلام")){out={fr:"Bonjour ! Que recherchez-vous aujourd'hui ?",es:"¡Hola! ¿Qué buscas hoy?",ar:"مرحباً! ماذا تبحث اليوم؟"}[L]}
-else{out={fr:"Je peux vous aider avec : services, devis, contact, villes, prix. Essayez un mot-clé ou un bouton ci-dessous.",es:"Puedo ayudarte con: servicios, presupuesto, contacto, ciudades, precios. Prueba una palabra o un botón de abajo.",ar:"يمكنني مساعدتك في: الخدمات، عرض سعر، اتصال، مدن، أسعار. جرّب كلمة أو زرًا بالأسفل."}[L]}
-setTimeout(()=>addChat(out,"bot"),350)}
+function renderChatChips(){const c=document.getElementById("chatChips");let html="";
+if(chatStep==="service"){html=servicesData.slice(0,8).map(s=>`<button class="chat-chip" onclick="chatPickService('${s.id}')">${s.name[currentLang]}</button>`).join("")}
+else if(chatStep==="city"){html=citiesData.slice(0,8).map((x,i)=>`<button class="chat-chip" onclick="chatPickCity(${i})">${x[currentLang]}</button>`).join("")}
+else if(chatStep==="urgency"){html=chatUrgOpts[currentLang].map((u,i)=>`<button class="chat-chip" onclick="chatPickUrgency(${i})">${u}</button>`).join("")}
+else if(chatStep==="email"){html=`<button class="chat-chip" onclick="chatSkipEmail()">⏭️ ${t("chat_skip")}</button>`}
+else if(chatStep==="summary"){html=`<button class="chat-chip" onclick="chatSendWA()">📤 ${t("chat_send_wa")}</button><button class="chat-chip" onclick="chatSendEmail()">✉️ ${t("chat_send_email")}</button><button class="chat-chip" onclick="chatStart()">🔄 ${t("chat_restart")}</button>`}
+else{html=""}
+c.innerHTML=html}
+function chatPickService(sid){const s=servicesData.find(x=>x.id===sid);if(!s)return;chatData.service=s;addChat(s.name[currentLang],"user");chatStep="city";addChat(t("chat_q_city"),"bot");renderChatChips()}
+function chatPickCity(i){const x=citiesData[i];chatData.city=x;addChat(x[currentLang],"user");chatStep="need";addChat(t("chat_q_need"),"bot");renderChatChips()}
+function chatPickUrgency(i){const u=chatUrgOpts[currentLang][i];chatData.urgency=u;addChat(u,"user");chatStep="name";addChat(t("chat_q_name"),"bot");renderChatChips()}
+function chatSkipEmail(){chatData.email="";addChat(t("chat_skip"),"user");chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+function chatSummaryText(){const s=chatData.service?chatData.service.name[currentLang]:"—";const c=chatData.city?chatData.city[currentLang]:"—";
+let out=`${t("chat_summary_title")}\n• ${t("nav_services")}: ${s}\n• ${t("auth_city")}: ${c}\n• ${t("quote_desc")}: ${chatData.need}\n• ${t("chat_urgency")}: ${chatData.urgency}\n• ${t("auth_name")}: ${chatData.name}\n• ${t("auth_phone")}: ${chatData.phone}`;
+if(chatData.email)out+=`\n• ${t("chat_email_lbl")}: ${chatData.email}`;
+return out}
+function chatSendWA(){const msg=chatSummaryText();let pro=null;
+if(chatData.service){pro=prosData.find(p=>p.category===chatData.service.id&&(!chatData.city||p.city[currentLang]===chatData.city[currentLang]))||prosData.find(p=>p.category===chatData.service.id)}
+const wa=pro?(pro.whatsapp||pro.phone.replace(/\D/g,"")):"212690157092";
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg+" — ClickPubli"),"_blank");addChat(t("chat_sent_ok"),"bot")}
+function chatSendEmail(){const msg=chatSummaryText();window.location.href=`mailto:contact@clickpubli.com?subject=${encodeURIComponent("Demande de devis — ClickPubli")}&body=${encodeURIComponent(msg)}`;addChat(t("chat_sent_ok"),"bot")}
+function chatSend(){const i=document.getElementById("chatInput");const v=i.value.trim();if(!v)return;i.value="";addChat(v,"user");
+if(chatStep==="service"){const s=servicesData.find(x=>x.name[currentLang].toLowerCase()===v.toLowerCase()||x.id===v);if(s){chatData.service=s;chatStep="city";addChat(t("chat_q_city"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="city"){const x=citiesData.find(c=>c[currentLang].toLowerCase()===v.toLowerCase());if(x){chatData.city=x;chatStep="need";addChat(t("chat_q_need"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="need"){chatData.need=v;chatStep="urgency";addChat(t("chat_q_urgency"),"bot");renderChatChips()}
+else if(chatStep==="urgency"){const idx=chatUrgOpts[currentLang].findIndex(u=>u.toLowerCase()===v.toLowerCase());if(idx>=0){chatData.urgency=chatUrgOpts[currentLang][idx];chatStep="name";addChat(t("chat_q_name"),"bot")}else{chatData.urgency=v;chatStep="name";addChat(t("chat_q_name"),"bot")}renderChatChips()}
+else if(chatStep==="name"){chatData.name=v;chatStep="phone";addChat(t("chat_q_phone"),"bot");renderChatChips()}
+else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t("auth_error_phone"),"bot");return}chatData.phone=v;chatStep="email";addChat(t("chat_q_email"),"bot");renderChatChips()}
+else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
 
 function updateAuthUI(){const area=document.getElementById("authArea");const dAdmin=document.getElementById("drawerAdminBtn");const dPro=document.getElementById("drawerProBtn");
-if(currentProfile){const ini=currentProfile.name.charAt(0).toUpperCase();const first=currentProfile.name.split(" ")[0];const ia=isAdmin();const ip=isPro();
+if(currentProfile){const av=currentProfile.avatar_url;const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();const first=currentProfile.name.split(" ")[0];const ia=isAdmin();const ip=isPro();
 area.innerHTML=`${ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:""}${(!ia&&ip)?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:""}<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
 if(dAdmin)dAdmin.style.display=ia?"flex":"none";if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none"}
 else{area.innerHTML=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;if(dAdmin)dAdmin.style.display="none";if(dPro)dPro.style.display="none"}}
 
-function renderLangSwitchers(){const langs=[{code:"fr",flag:"fr",label:"FR"},{code:"es",flag:"es",label:"ES"},{code:"ar",flag:"ma",label:"AR"}];
-const html=langs.map(l=>`<button class="lang-btn ${currentLang===l.code?"active":""}" data-lang="${l.code}"><img class="flag" src="${flagUrl(l.flag)}" alt=""><span>${l.label}</span></button>`).join("");
-const h=document.getElementById("headerLangSwitcher"),d=document.getElementById("drawerLangSwitcher");if(h)h.innerHTML=html;if(d)d.innerHTML=html;
-document.querySelectorAll(".lang-btn").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)))}
 function renderCitySelects(){const o=citiesData.map(c=>`<option value="${c[currentLang]}">${c[currentLang]}</option>`).join("");document.getElementById("citySelect").innerHTML=`<option value="" disabled selected>${t("search_city_label")}</option>`+o;document.getElementById("regCity").innerHTML=`<option value="" disabled selected>${t("auth_city_placeholder")}</option>`+o}
 function renderFeatures(){document.getElementById("featuresGrid").innerHTML=featuresData.map(f=>`<div class="feature-card reveal"><div class="feature-icon">${f.icon}</div><h3>${f.title[currentLang]}</h3><p>${f.desc[currentLang]}</p></div>`).join("")}
 function renderServices(){document.getElementById("servicesGrid").innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];const v=img?`<img class="service-img" src="${img}" alt="">`:`<div class="service-icon">${s.icon}</div>`;return `<div class="service-card reveal" onclick="filterByService('${s.id}')">${v}<h3>${s.name[currentLang]}</h3><p>${s.desc[currentLang]}</p></div>`}).join("");
@@ -1197,7 +1293,7 @@ function rejectCookies(){localStorage.setItem("clickpubli_cookies","rejected");d
 function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.body.classList.toggle("rtl",lang==="ar");document.title=t("doc_title");
 document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
 document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
-renderLangSwitchers();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPopular();renderPros(null);updateAuthUI();
+renderLangSwitchers();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPopular();renderStats();renderPros(null);updateAuthUI();
 if(document.getElementById("favoritesView").style.display!=="none")renderFavoritesPage();
 if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
 if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
@@ -1223,7 +1319,7 @@ if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.ser
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
 document.getElementById("searchInput").addEventListener("keypress",e=>{if(e.key==="Enter")searchServices()});
 
-async function initApp(){await initAuth();await loadServices();await loadProfessionals();await loadProServicesAll();await loadServiceMedia();setLanguage(currentLang);handleRoute();showCookieBanner()}
+async function initApp(){await initAuth();await loadServices();await loadProfessionals();await loadProServicesAll();await loadServiceMedia();setLanguage(currentLang);renderStats();setHeroCard();handleRoute();showCookieBanner()}
 initApp();
 </script>
 </body>
