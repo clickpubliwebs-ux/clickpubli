@@ -1110,7 +1110,21 @@ async function loadProfessionals(){const{data,error}=await sb.from("professional
 async function loadProServicesAll(){const{data,error}=await sb.from("pro_services").select("*");proServicesMap={};if(!error&&data)data.forEach(r=>{if(!proServicesMap[r.pro_id])proServicesMap[r.pro_id]=[];proServicesMap[r.pro_id].push({service_id:r.service_id,image_url:r.image_url})})}
 async function loadServiceMedia(){const{data,error}=await sb.from("service_media").select("*");serviceMedia={};if(!error&&data)data.forEach(r=>serviceMedia[r.id]=r.url)}
 async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();setHeroCard();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
-
+function renderStats(){
+  const pros=prosData.length;
+  const cities=new Set(prosData.map(p=>p.city_index)).size;
+  const services=servicesData.length;
+  let sat=null;
+  if(pros>0){const avg=prosData.reduce((a,p)=>a+p.rating,0)/pros;sat=Math.round(avg/5*100)+"%";}
+  const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  set("statPros",pros>0?pros.toLocaleString(loc):"25 000+");
+  set("statCities",cities>0?cities+"+":"26+");
+  set("statServices",services>0?services+"+":"160+");
+  set("statSatisfaction",sat||"98%");
+  set("statProsCard",pros>0?pros.toLocaleString(loc):"25 000+");
+  set("statSatCard",sat||"98%");
+}
 function showPhotosSection(s){document.getElementById("proPhotosSection").style.display=s?"block":"none"}
 function renderPhotosList(){document.getElementById("proPhotosList").innerHTML=currentPhotos.map((u,i)=>`<div class="pro-photo-thumb"><img src="${u}" alt=""><button type="button" class="pro-photo-del" onclick="removeProPhoto(${i})">✕</button></div>`).join("")}
 async function uploadProPhotos(files){if(!currentProfile)return;for(const f of files){const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`${currentProfile.id}/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);continue}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);currentPhotos.push(data.publicUrl)}renderPhotosList()}
