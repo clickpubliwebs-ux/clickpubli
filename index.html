@@ -406,8 +406,9 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .admin-form-grid{grid-template-columns:1fr}
 .pro-svc-grid{grid-template-columns:1fr}
 .toast{bottom:80px}
-.hero .popular-chips{display:flex;flex-wrap:wrap;gap:1rem;row-gap:1rem;justify-content:center;align-items:center}
-.hero .popular-chips .chip{margin:0;padding:.75rem 1.6rem;font-size:.95rem;white-space:nowrap}
+.hero .popular-chips{display:flex;flex-wrap:nowrap;gap:.8rem;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding-bottom:.3rem;scrollbar-width:none}
+.hero .popular-chips::-webkit-scrollbar{display:none}
+.hero .popular-chips .chip{margin:0;padding:.7rem 1.4rem;font-size:.92rem;white-space:nowrap;flex:0 0 auto}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;justify-content:stretch}
 .hero-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:.9rem .6rem;text-align:center}
 .hero-stat strong{font-size:1.45rem}
