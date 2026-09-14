@@ -1316,7 +1316,29 @@ if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.ser
 
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
 
-async function initApp(){await initAuth();await loadServices();await loadProfessionals();await loadProServicesAll();await loadServiceMedia();setLanguage(currentLang);setHeroCard();handleRoute();showCookieBanner()}
+function applyI18nText(){
+  document.documentElement.lang=currentLang;
+  document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";
+  document.body.classList.toggle("rtl",currentLang==="ar");
+  document.title=t("doc_title");
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
+}
+async function initApp(){
+  applyI18nText();
+  renderLangSwitchers();
+  renderServiceSelect();
+  renderCitySelects();
+  handleRoute();
+  showCookieBanner();
+  await initAuth();
+  await loadServices();
+  await loadProfessionals();
+  await loadProServicesAll();
+  await loadServiceMedia();
+  setLanguage(currentLang);
+  setHeroCard();
+}
 initApp();
 </script>
 </body>
