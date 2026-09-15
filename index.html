@@ -1249,10 +1249,19 @@ else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t
 else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
 else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
 
-function updateAuthUI(){const area=document.getElementById("authArea");const dAdmin=document.getElementById("drawerAdminBtn");const dPro=document.getElementById("drawerProBtn");
+function updateAuthUI(){const area=document.getElementById("authArea");const dAuth=document.getElementById("drawerAuth");const dAdmin=document.getElementById("drawerAdminBtn");const dPro=document.getElementById("drawerProBtn");
+let rolebtns="";let chip="";const loginbtn=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;
 if(currentProfile){const av=currentProfile.avatar_url;const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();const first=currentProfile.name.split(" ")[0];const ia=isAdmin();const ip=isPro();
-area.innerHTML=`${ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:""}${(!ia&&ip)?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:""}<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
-if(dAdmin)dAdmin.style.display=ia?"flex":"none";if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none"}
+rolebtns=(ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:"")+(ip&&!ia?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:"");
+chip=`<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
+if(dAdmin)dAdmin.style.display=ia?"flex":"none";if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none";
+if(area)area.innerHTML=rolebtns+chip;
+if(dAuth)dAuth.innerHTML=chip;
+}else{
+if(area)area.innerHTML=loginbtn;
+if(dAuth)dAuth.innerHTML=loginbtn;
+if(dAdmin)dAdmin.style.display="none";if(dPro)dPro.style.display="none";
+}}
 else{area.innerHTML=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;if(dAdmin)dAdmin.style.display="none";if(dPro)dPro.style.display="none"}}
 
 function renderCitySelects(){const o=citiesData.map(c=>`<option value="${c[currentLang]}">${c[currentLang]}</option>`).join("");document.getElementById("citySelect").innerHTML=`<option value="" disabled selected>${t("search_city_label")}</option>`+o;document.getElementById("regCity").innerHTML=`<option value="" disabled selected>${t("auth_city_placeholder")}</option>`+o}
