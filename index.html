@@ -56,6 +56,9 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .logout-btn{background:transparent;border:none;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%}
 .logout-btn svg{width:18px;height:18px;fill:#ef4444}
 .header-role-btn{background:var(--light-gray);border:none;width:38px;height:38px;border-radius:10px;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.drawer .auth-btn{width:100%;justify-content:center;padding:.7rem}
+.drawer .user-chip{width:100%;justify-content:space-between;padding:.4rem .6rem .4rem .4rem}
+.drawer .user-name{display:block}
 .drawer-overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:2400;opacity:0;pointer-events:none;transition:opacity .3s}
 .drawer-overlay.show{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;height:100%;width:280px;max-width:85vw;background:white;z-index:2500;transform:translateX(100%);transition:transform .3s ease;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;padding:1.2rem;overflow-y:auto}
@@ -413,13 +416,10 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .rtl .pp-avatar-lg{left:auto;right:16px}
 .cookie-inner{flex-direction:column;text-align:center}
 .cookie-actions{width:100%;justify-content:center}
-.logo-text{font-size:clamp(0.95rem,4.5vw,1.55rem);white-space:nowrap}
+.logo-text{font-size:clamp(1.05rem,5.5vw,1.55rem);white-space:nowrap}
 .drawer-title{font-size:clamp(0.95rem,4.5vw,1.15rem)}
 .auth-logo-text{font-size:clamp(1.1rem,5vw,1.7rem)}
 }
-.drawer .auth-btn{width:100%;justify-content:center;padding:.7rem}
-.drawer .user-chip{width:100%;justify-content:space-between;padding:.4rem .6rem .4rem .4rem}
-.drawer .user-name{display:block}
 </style>
 </head>
 <body>
@@ -947,7 +947,7 @@ const chatUrgOpts={fr:["Urgent (aujourd'hui)","Cette semaine","Planifié"],es:["
 
 const sampleMeta={plomberie:{specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"},desc:{fr:"Plombier expérimenté pour réparations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والأعطال الطارئة."}},electricite:{specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"},desc:{fr:"Électricien professionnel, mise aux normes et dépannages.",es:"Electricista profesional, normativas y averías.",ar:"كهربائي محترف للمعايير والأعطال."}},peinture:{specialty:{fr:"Peintre décorateur",es:"Pintor decorador",ar:"صباغ وديكور"},desc:{fr:"Peintre soigné intérieurs/extérieurs.",es:"Pintor esmerado interiores/exteriores.",ar:"صباغ متقن للداخل والخارج."}},menage:{specialty:{fr:"Service de ménage",es:"Servicio de limpieza",ar:"خدمة تنظيف"},desc:{fr:"Nettoyage soigné, ponctualité.",es:"Limpieza esmerada, puntualidad.",ar:"تنظيف متقن والتزام."}},climatisation:{specialty:{fr:"Technicien climatisation",es:"Técnico de climatización",ar:"تقني تكييف"},desc:{fr:"Installation et entretien toutes marques.",es:"Instalación y mantenimiento todas las marcas.",ar:"تركيب وصيانة جميع العلامات."}},menuiserie:{specialty:{fr:"Menuisier",es:"Carpintero",ar:"نجار"},desc:{fr:"Meubles sur mesure et réparations.",es:"Muebles a medida y reparaciones.",ar:"أثاث حسب الطلب وإصلاحات."}},serrurerie:{specialty:{fr:"Serrurier",es:"Cerrajero",ar:"حداد"},desc:{fr:"Ouverture, serrures, blindage.",es:"Apertura, cerraduras, blindaje.",ar:"فتح وأقفال وتحصين."}},maconnerie:{specialty:{fr:"Maçon",es:"Albañil",ar:"بنّاء"},desc:{fr:"Construction et rénovation.",es:"Construcción y reformas.",ar:"بناء وترميم."}},electromenager:{specialty:{fr:"Réparateur électroménager",es:"Reparador de electrodomésticos",ar:"مصلح أجهزة"},desc:{fr:"Lave-linge, frigo, four, toutes marques.",es:"Lavadora, nevera, horno, todas las marcas.",ar:"غسالة وثلاجة وفرن جميع العلامات."}},jardinage:{specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"},desc:{fr:"Entretien espaces verts, tonte, taille.",es:"Mantenimiento zonas verdes, corte, poda.",ar:"العناية بالمساحات الخضراء والقص والتقليم."}}};
 const sampleAvatars=["men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12","men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29","men/83","men/47","men/54","men/71","women/33","women/57","women/12","men/94","men/38","men/61"];
-const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍🌾","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
+const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍🔧","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
 const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:sampleMeta[r[3]].desc,photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
 
 let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
@@ -1249,20 +1249,31 @@ else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t
 else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
 else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
 
-function updateAuthUI(){const area=document.getElementById("authArea");const dAuth=document.getElementById("drawerAuth");const dAdmin=document.getElementById("drawerAdminBtn");const dPro=document.getElementById("drawerProBtn");
-let rolebtns="";let chip="";const loginbtn=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;
-if(currentProfile){const av=currentProfile.avatar_url;const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();const first=currentProfile.name.split(" ")[0];const ia=isAdmin();const ip=isPro();
-rolebtns=(ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:"")+(ip&&!ia?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:"");
-chip=`<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
-if(dAdmin)dAdmin.style.display=ia?"flex":"none";if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none";
-if(area)area.innerHTML=rolebtns+chip;
-if(dAuth)dAuth.innerHTML=chip;
-}else{
-if(area)area.innerHTML=loginbtn;
-if(dAuth)dAuth.innerHTML=loginbtn;
-if(dAdmin)dAdmin.style.display="none";if(dPro)dPro.style.display="none";
-}}
-else{area.innerHTML=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;if(dAdmin)dAdmin.style.display="none";if(dPro)dPro.style.display="none"}}
+function updateAuthUI(){
+  const area=document.getElementById("authArea");
+  const dAuth=document.getElementById("drawerAuth");
+  const dAdmin=document.getElementById("drawerAdminBtn");
+  const dPro=document.getElementById("drawerProBtn");
+  let rolebtns="";let chip="";
+  const loginbtn=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;
+  if(currentProfile){
+    const av=currentProfile.avatar_url;
+    const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();
+    const first=currentProfile.name.split(" ")[0];
+    const ia=isAdmin();const ip=isPro();
+    rolebtns=(ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:"")+(ip&&!ia?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:"");
+    chip=`<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
+    if(dAdmin)dAdmin.style.display=ia?"flex":"none";
+    if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none";
+    if(area)area.innerHTML=rolebtns+chip;
+    if(dAuth)dAuth.innerHTML=chip;
+  }else{
+    if(area)area.innerHTML=loginbtn;
+    if(dAuth)dAuth.innerHTML=loginbtn;
+    if(dAdmin)dAdmin.style.display="none";
+    if(dPro)dPro.style.display="none";
+  }
+}
 
 function renderCitySelects(){const o=citiesData.map(c=>`<option value="${c[currentLang]}">${c[currentLang]}</option>`).join("");document.getElementById("citySelect").innerHTML=`<option value="" disabled selected>${t("search_city_label")}</option>`+o;document.getElementById("regCity").innerHTML=`<option value="" disabled selected>${t("auth_city_placeholder")}</option>`+o}
 function renderFeatures(){document.getElementById("featuresGrid").innerHTML=featuresData.map(f=>`<div class="feature-card reveal"><div class="feature-icon">${f.icon}</div><h3>${f.title[currentLang]}</h3><p>${f.desc[currentLang]}</p></div>`).join("")}
