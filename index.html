@@ -1195,60 +1195,6 @@ function renderAdminProList(){const c=document.getElementById("adminProList");if
 c.innerHTML=prosData.map(p=>`<div class="admin-pro-row"><span class="admin-pro-emoji">${p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}</span><div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div><div class="admin-pro-actions"><button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button><button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button></div></div>`).join("")}
 function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])"></div>`}).join("")}
 
-function openQuoteModal(proId){const p=prosData.find(x=>x.id===proId);if(!p)return;currentQuoteProId=proId;
-const fields=quoteFields[p.category]||quoteFields.default;
-document.getElementById("quoteFields").innerHTML=fields.map(f=>{
-  if(f.opts){return `<div class="form-group"><label>${f.label[currentLang]}</label><select id="qf_${f.id}">${f.opts[currentLang].map(o=>`<option>${o}</option>`).join("")}</select></div>`}
-  return `<div class="form-group"><label>${f.label[currentLang]}</label><input type="text" id="qf_${f.id}"></div>`}).join("");
-document.getElementById("quoteModal").classList.add("active");document.body.style.overflow="hidden"}
-function closeQuoteModal(){document.getElementById("quoteModal").classList.remove("active");document.body.style.overflow=""}
-function submitQuote(e){e.preventDefault();const p=prosData.find(x=>x.id===currentQuoteProId);if(!p)return;
-const name=document.getElementById("qName").value.trim();const phone=document.getElementById("qPhone").value.trim();const desc=document.getElementById("qDesc").value.trim();
-if(!name||!phone){showToast(t("auth_error_required"));return}
-const fields=quoteFields[p.category]||quoteFields.default;
-let extra="";fields.forEach(f=>{const el=document.getElementById("qf_"+f.id);if(el)extra+=`\n- ${f.label[currentLang]}: ${el.value}`});
-const msg=`${t("quote_title")} — Professionnels Maroc\n${t("auth_name")}: ${name}\n${t("auth_phone")}: ${phone}${extra}\n${t("quote_desc")}: ${desc}`;
-const wa=p.whatsapp||p.phone.replace(/\D/g,"");
-if(!wa){showToast(t("auth_error_phone"));return}
-window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
-closeQuoteModal()}
-
-function toggleChat(){const p=document.getElementById("chatPanel");p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
-function closeChatPanel(){document.getElementById("chatPanel").classList.remove("open")}
-function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
-function chatStart(){chatReset();document.getElementById("chatBody").innerHTML="";addChat(t("chat_greet"),"bot");addChat(t("chat_q_service"),"bot");renderChatChips()}
-function addChat(text,who){const b=document.getElementById("chatBody");const d=document.createElement("div");d.className="chat-msg "+who;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
-function renderChatChips(){const c=document.getElementById("chatChips");let html="";
-if(chatStep==="service"){html=servicesData.slice(0,8).map(s=>`<button class="chat-chip" onclick="chatPickService('${s.id}')">${s.name[currentLang]}</button>`).join("")}
-else if(chatStep==="city"){html=citiesData.slice(0,8).map((x,i)=>`<button class="chat-chip" onclick="chatPickCity(${i})">${x[currentLang]}</button>`).join("")}
-else if(chatStep==="urgency"){html=chatUrgOpts[currentLang].map((u,i)=>`<button class="chat-chip" onclick="chatPickUrgency(${i})">${u}</button>`).join("")}
-else if(chatStep==="email"){html=`<button class="chat-chip" onclick="chatSkipEmail()">⏭️ ${t("chat_skip")}</button>`}
-else if(chatStep==="summary"){html=`<button class="chat-chip" onclick="chatSendWA()">📤 ${t("chat_send_wa")}</button><button class="chat-chip" onclick="chatSendEmail()">✉️ ${t("chat_send_email")}</button><button class="chat-chip" onclick="chatStart()">🔄 ${t("chat_restart")}</button>`}
-else{html=""}
-c.innerHTML=html}
-function chatPickService(sid){const s=servicesData.find(x=>x.id===sid);if(!s)return;chatData.service=s;addChat(s.name[currentLang],"user");chatStep="city";addChat(t("chat_q_city"),"bot");renderChatChips()}
-function chatPickCity(i){const x=citiesData[i];chatData.city=x;addChat(x[currentLang],"user");chatStep="need";addChat(t("chat_q_need"),"bot");renderChatChips()}
-function chatPickUrgency(i){const u=chatUrgOpts[currentLang][i];chatData.urgency=u;addChat(u,"user");chatStep="name";addChat(t("chat_q_name"),"bot");renderChatChips()}
-function chatSkipEmail(){chatData.email="";addChat(t("chat_skip"),"user");chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
-function chatSummaryText(){const s=chatData.service?chatData.service.name[currentLang]:"—";const c=chatData.city?chatData.city[currentLang]:"—";
-let out=`${t("chat_summary_title")}\n• ${t("nav_services")}: ${s}\n• ${t("auth_city")}: ${c}\n• ${t("quote_desc")}: ${chatData.need}\n• ${t("chat_urgency")}: ${chatData.urgency}\n• ${t("auth_name")}: ${chatData.name}\n• ${t("auth_phone")}: ${chatData.phone}`;
-if(chatData.email)out+=`\n• ${t("chat_email_lbl")}: ${chatData.email}`;
-return out}
-function chatSendWA(){const msg=chatSummaryText();let pro=null;
-if(chatData.service){pro=prosData.find(p=>p.category===chatData.service.id&&(!chatData.city||p.city[currentLang]===chatData.city[currentLang]))||prosData.find(p=>p.category===chatData.service.id)}
-const wa=pro?(pro.whatsapp||pro.phone.replace(/\D/g,"")):"212690157092";
-window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg+" — Professionnels Maroc"),"_blank");addChat(t("chat_sent_ok"),"bot")}
-function chatSendEmail(){const msg=chatSummaryText();window.location.href=`mailto:contact@professionnelsmaroc.click?subject=${encodeURIComponent("Demande de devis — Professionnels Maroc")}&body=${encodeURIComponent(msg)}`;addChat(t("chat_sent_ok"),"bot")}
-function chatSend(){const i=document.getElementById("chatInput");const v=i.value.trim();if(!v)return;i.value="";addChat(v,"user");
-if(chatStep==="service"){const s=servicesData.find(x=>x.name[currentLang].toLowerCase()===v.toLowerCase()||x.id===v);if(s){chatData.service=s;chatStep="city";addChat(t("chat_q_city"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
-else if(chatStep==="city"){const x=citiesData.find(c=>c[currentLang].toLowerCase()===v.toLowerCase());if(x){chatData.city=x;chatStep="need";addChat(t("chat_q_need"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
-else if(chatStep==="need"){chatData.need=v;chatStep="urgency";addChat(t("chat_q_urgency"),"bot");renderChatChips()}
-else if(chatStep==="urgency"){const idx=chatUrgOpts[currentLang].findIndex(u=>u.toLowerCase()===v.toLowerCase());if(idx>=0){chatData.urgency=chatUrgOpts[currentLang][idx];chatStep="name";addChat(t("chat_q_name"),"bot")}else{chatData.urgency=v;chatStep="name";addChat(t("chat_q_name"),"bot")}renderChatChips()}
-else if(chatStep==="name"){chatData.name=v;chatStep="phone";addChat(t("chat_q_phone"),"bot");renderChatChips()}
-else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t("auth_error_phone"),"bot");return}chatData.phone=v;chatStep="email";addChat(t("chat_q_email"),"bot");renderChatChips()}
-else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
-else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
-
 function updateAuthUI(){
   const area=document.getElementById("authArea");
   const dAuth=document.getElementById("drawerAuth");
@@ -1358,21 +1304,49 @@ if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.ser
 
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
 
-async function initApp(){
-  applyI18nText();
-  renderLangSwitchers();
-  renderServiceSelect();
-  renderCitySelects();
-  handleRoute();
-  showCookieBanner();
-  await initAuth();
-  await loadServices();
-  await loadProfessionals();
-  await loadProServicesAll();
-  await loadServiceMedia();
-  setLanguage(currentLang);
-  setHeroCard();
+/* === BLOQUE DE SEGURIDAD: evita pantalla en blanco si algo falla === */
+function hardRenderFallback(){
+  try{
+    if(typeof renderFeatures==="function") renderFeatures();
+    if(typeof renderServices==="function") renderServices();
+    if(typeof renderCitiesFooter==="function") renderCitiesFooter();
+    if(typeof renderPopular==="function") renderPopular();
+    if(typeof renderPros==="function") renderPros(null);
+    if(typeof updateAuthUI==="function") updateAuthUI();
+    if(typeof observeReveal==="function") setTimeout(observeReveal,300);
+  }catch(err){ console.warn("Fallback render:", err); }
 }
+function renderPopular(){
+  const ids=["plomberie","electricite","menage","climatisation"].filter(id=>servicesData.some(s=>s.id===id));
+  const el=document.getElementById("popularChips");
+  if(el) el.innerHTML=ids.map(id=>{const s=servicesData.find(x=>x.id===id);return s?`<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`:"";}).join("");
+}
+async function initApp(){
+  try{
+    applyI18nText();
+    renderLangSwitchers();
+    renderServiceSelect();
+    renderCitySelects();
+    renderPopular();
+    handleRoute();
+    showCookieBanner();
+    await initAuth();
+    await loadServices();
+    await loadProfessionals();
+    await loadProServicesAll();
+    await loadServiceMedia();
+    setLanguage(currentLang);
+    setHeroCard();
+  }catch(err){
+    console.error("initApp error:", err);
+    hardRenderFallback();
+  }
+}
+/* Si tras 2.5s el hero sigue sin título, fuerza render de seguridad */
+setTimeout(function(){ try{ var h1=document.querySelector(".hero h1"); if(h1 && !h1.textContent.trim()){ hardRenderFallback(); } }catch(e){} }, 2500);
+/* Doble seguro: si initApp falló, re-renderiza de todos modos */
+window.addEventListener("load", function(){ setTimeout(hardRenderFallback, 800); });
+
 initApp();
 </script>
 </body>
