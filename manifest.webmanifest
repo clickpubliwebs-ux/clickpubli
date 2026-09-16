@@ -2,9 +2,11 @@
   "name": "Professionnels Maroc — Services à domicile",
   "short_name": "Professionnels Maroc",
   "description": "Trouvez des professionnels de confiance au Maroc. Contact direct, sans commission.",
+  "lang": "fr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#2E8C7E",
   "icons": [
