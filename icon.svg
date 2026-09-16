@@ -1,5 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <circle cx="256" cy="256" r="256" fill="#2E8C7E"/>
-  <text x="256" y="310" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="bold" fill="#111111" text-anchor="middle">ClicK</text>
-  <circle cx="247" cy="208" r="24" fill="#7ED321"/>
+  <rect width="512" height="512" fill="#0E6B5C"/>
+  <g fill="none" stroke="#F8FAFC" stroke-width="14" stroke-linecap="square">
+    <!-- Techo a dos aguas con aleros -->
+    <path d="M136 190 L256 120 L376 190"/>
+    <path d="M136 190 L136 172 M136 190 L176 190"/>
+    <path d="M376 190 L376 172 M376 190 L336 190"/>
+    <!-- Pared izquierda -->
+    <path d="M178 196 L178 300"/>
+    <!-- Cuerpo con puerta -->
+    <path d="M212 186 L212 300 L246 300 L246 240 L286 240 L286 300 L334 300 L334 196"/>
+  </g>
+  <text x="256" y="352" text-anchor="middle" font-family="Montserrat, Arial, Helvetica, sans-serif" font-size="46" font-weight="800" letter-spacing="2" fill="#F8FAFC">PROFESSIONNELS</text>
+  <text x="256" y="386" text-anchor="middle" font-family="Montserrat, Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="10" fill="#F8FAFC">MAROC</text>
 </svg>
