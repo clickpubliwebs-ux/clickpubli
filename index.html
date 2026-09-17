@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Professionnels Maroc — Services à domicile au Maroc">
 <meta name="twitter:description" content="Artisans vérifiés au Maroc, contact direct sans commission.">
-<meta name="theme-color" content="#2E8C7E">
+<meta name="theme-color" content="#0E6B5C">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon.svg">
@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#0f766e;--primary-dark:#115e59;--primary-light:#14b8a6;--accent:#f97316;--accent-dark:#ea580c;--brand:#2E8C7E;--dark:#0f172a;--gray:#64748b;--light-gray:#f1f5f9;--sand:#fdf6ec;--white:#fff;--border:#e2e8f0;--shadow:0 4px 20px rgba(15,23,42,.08);--shadow-lg:0 15px 40px rgba(15,23,42,.15);--radius:16px}
+:root{--primary:#0f766e;--primary-dark:#115e59;--primary-light:#14b8a6;--accent:#f97316;--accent-dark:#ea580c;--brand:#0E6B5C;--dark:#0f172a;--gray:#64748b;--light-gray:#f1f5f9;--sand:#fdf6ec;--white:#fff;--border:#e2e8f0;--shadow:0 4px 20px rgba(15,23,42,.08);--shadow-lg:0 15px 40px rgba(15,23,42,.15);--radius:16px}
 body{font-family:'Poppins','Cairo','Segoe UI',Tahoma,sans-serif;line-height:1.6;color:var(--dark);background:#e8ecf1;overflow-x:hidden}
 .rtl{font-family:'Cairo','Poppins','Segoe UI',Tahoma,sans-serif}
 .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
@@ -79,6 +79,8 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .drawer .lang-btn img.flag{width:19px;height:14px;border-radius:2px;object-fit:cover}
 .drawer-link{display:flex;align-items:center;gap:.6rem;width:100%;padding:.75rem .9rem;border:none;background:transparent;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--dark);text-align:start;margin-bottom:.2rem;font-size:.95rem}
 .drawer-link:hover{background:var(--light-gray);color:var(--primary)}
+/* ARREGLO 4: evita el "salto" del menú compensando la cabecera fija */
+section{padding:4.5rem 0;scroll-margin-top:80px}
 .hero{margin-top:74px;position:relative;background:linear-gradient(135deg,#0f766e 0%,#0d5c56 55%,#0b4a45 100%);color:white;padding:4.5rem 0 5rem;overflow:hidden}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.4}
 .hero-orb.o1{width:300px;height:300px;background:var(--accent);top:-80px;right:-60px}
@@ -117,7 +119,6 @@ header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:.9rem
 .fc-1 .fc-icon{background:#dcfce7}
 .fc-2{bottom:8%;right:-5%;animation:floatY 5.5s ease-in-out infinite .5s}
 .fc-2 .fc-icon{background:#fef3c7}
-section{padding:4.5rem 0}
 .section-head{text-align:center;max-width:640px;margin:0 auto 3rem}
 .section-head h2{font-size:2.3rem;font-weight:800;margin-bottom:.8rem}
 .section-head p{color:var(--gray);font-size:1.05rem}
@@ -142,17 +143,20 @@ section{padding:4.5rem 0}
 .service-card p{font-size:.82rem;color:var(--gray)}
 .pros-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem}
 .pro-card{background:white;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);position:relative}
-.pro-cover{height:90px;background:linear-gradient(135deg,var(--primary),var(--primary-light));background-size:cover;background-position:center;position:relative}
-.pro-avatar{width:74px;height:74px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:absolute;bottom:-37px;left:50%;transform:translateX(-50%);overflow:hidden}
+/* ARREGLO 2: cabecera de tarjeta controlada (no gigante) + velo degradado */
+.pro-cover{height:70px;background:linear-gradient(135deg,var(--primary),var(--primary-light));background-size:cover;background-position:center 30%;position:relative}
+.pro-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,118,110,.65),rgba(20,184,166,.45));z-index:0}
+.pro-avatar{width:64px;height:64px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);overflow:hidden;z-index:1}
 .pro-avatar img{width:100%;height:100%;object-fit:cover}
 .rtl .pro-avatar{left:auto;right:50%;transform:translateX(50%)}
-.pro-body{padding:3rem 1.5rem 1.5rem;text-align:center}
+.pro-body{padding:2.6rem 1.5rem 1.5rem;text-align:center}
 .pro-body h3{font-size:1.15rem;margin-bottom:.2rem}
 .pro-specialty{color:var(--primary);font-weight:600;font-size:.9rem;margin-bottom:.5rem}
 .pro-location{color:var(--gray);font-size:.85rem;margin-bottom:.8rem}
 .pro-rating{display:inline-flex;background:#fef3c7;color:#b45309;padding:.3rem .8rem;border-radius:50px;font-size:.85rem;font-weight:700;margin-bottom:1.2rem}
 .pro-btn{width:100%;padding:.8rem;background:var(--dark);color:white;border:none;border-radius:11px;font-weight:700;cursor:pointer;font-family:inherit}
 .pro-btn-secondary{width:100%;padding:.6rem;background:white;color:var(--primary);border:1.5px solid var(--primary);border-radius:11px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:.5rem}
+.pro-btn-quote{width:100%;padding:.6rem;background:var(--brand);color:white;border:none;border-radius:11px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:.5rem}
 .fav-btn{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.95);color:#94a3b8;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 .fav-btn.active{color:#ef4444}
 .modal-fav{top:12px;right:58px}
@@ -165,11 +169,13 @@ section{padding:4.5rem 0}
 .favorites-header h2,.admin-header h2{font-size:1.6rem;font-weight:800}
 .fav-back-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.2rem;background:white;border:1.5px solid var(--border);border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit}
 .pp-hero{position:relative;background:white;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.6rem}
-.pp-banner{height:170px;background:linear-gradient(135deg,var(--primary),var(--primary-light));background-size:cover;background-position:center}
-.pp-avatar-lg{width:110px;height:110px;border-radius:50%;background:white;border:4px solid white;box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:3.2rem;overflow:hidden;position:absolute;top:115px;left:24px}
+/* ARREGLO 2b: banner del perfil con velo para que no se vea gigante/crudo */
+.pp-banner{height:170px;background:linear-gradient(135deg,var(--primary),var(--primary-light));background-size:cover;background-position:center 30%;position:relative}
+.pp-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,118,110,.55),rgba(20,184,166,.35))}
+.pp-avatar-lg{width:110px;height:110px;border-radius:50%;background:white;border:4px solid white;box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:3.2rem;overflow:hidden;position:absolute;top:115px;left:24px;z-index:1}
 .pp-avatar-lg img{width:100%;height:100%;object-fit:cover}
 .rtl .pp-avatar-lg{left:auto;right:24px}
-.pp-fav{top:12px;right:12px}
+.pp-fav{top:12px;right:12px;z-index:2}
 .rtl .pp-fav{right:auto;left:12px}
 .pp-head-info{padding:70px 24px 1.2rem}
 .pp-head-info h2{font-size:1.8rem}
@@ -253,7 +259,7 @@ section{padding:4.5rem 0}
 .cta h2{font-size:2.2rem;margin-bottom:1rem}
 .cta p{opacity:.85;max-width:560px;margin:0 auto 2rem;font-size:1.05rem}
 .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-primary,.btn-outline{padding:.9rem 2rem;border-radius:12px;font-weight:700;cursor:pointer;font-family:inherit;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border:2px solid transparent}
+.btn-primary,.btn-outline{padding:.9rem 2rem;border-radius:12px;font-weight:700;cursor:pointer;font-family:inherit;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:transform .2s;border:2px solid transparent}
 .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white}
 .btn-outline{background:transparent;border-color:rgba(255,255,255,.4);color:white}
 .btn-call{background:var(--dark);color:white}
@@ -276,7 +282,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .modal-content{background:white;border-radius:20px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .35s}
 .modal-content.legal-modal{max-width:620px}
 .modal-cover{height:100px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:20px 20px 0 0;position:relative;display:flex;align-items:center;justify-content:center}
-.close-modal{position:absolute;top:12px;right:16px;font-size:1.8rem;cursor:pointer;color:white;line-height:1;background:rgba(0,0,0,.2);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none}
+.close-modal{position:absolute;top:12px;right:16px;font-size:1.8rem;cursor:pointer;color:white;line-height:1;background:rgba(0,0,0,.2);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;z-index:3}
 .rtl .close-modal{right:auto;left:16px}
 .auth-logo-text{font-size:1.7rem;font-weight:800;color:white;letter-spacing:-.5px;white-space:nowrap}
 .modal-avatar{width:80px;height:80px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);overflow:hidden}
@@ -795,20 +801,20 @@ faq_title:"Questions fréquentes",
 quote_title:"Demander un devis",quote_subtitle:"Le message sera envoyé par WhatsApp au professionnel.",quote_name:"Votre nom",quote_phone:"Votre téléphone",quote_desc:"Décrivez votre besoin",quote_send:"Envoyer par WhatsApp",
 contact_title:"Contactez-nous",contact_phone:"Téléphone",contact_email:"Email",contact_city:"Maroc",contact_form_title:"Envoyez-nous un message",contact_form_name:"Nom",contact_form_email:"Email",contact_form_subject:"Sujet",contact_form_message:"Message",contact_form_send:"Envoyer",contact_sent:"Message préparé dans votre messagerie",
 chat_title:"Assistant Professionnels Maroc",chat_placeholder:"Écrivez votre réponse...",
-chat_greet:"Bonjour, je suis l'assistant Professionnels Maroc. Je vous accompagne pour obtenir un devis professionnel en quelques étapes.",
-chat_q_service:"Pour commencer, quel type de service souhaitez-vous ? Sélectionnez une option :",
-chat_q_city:"Merci. Dans quelle ville le service est-il nécessaire ?",
-chat_q_need:"Pourriez-vous décrire brièvement le travail à réaliser ?",
-chat_q_urgency:"Quelle est l'urgence de votre demande ?",
-chat_q_name:"Parfait. Quel est votre nom complet ?",
-chat_q_phone:"Merci. Quel est votre numéro de téléphone ?",
-chat_q_email:"Souhaitez-vous laisser un e-mail de contact ? (optionnel — choisissez « Ignorer » pour passer)",
+chat_greet:"Bonjour 👋 Je suis l'assistant Professionnels Maroc.\nJe peux vous aider à trouver un artisan ou à demander un devis.",
+chat_q_service:"Quel type de service recherchez-vous ?",
+chat_q_city:"Dans quelle ville ?",
+chat_q_need:"Décrivez brièvement votre besoin :",
+chat_q_urgency:"Quelle est l'urgence ?",
+chat_q_name:"Quel est votre nom ?",
+chat_q_phone:"Votre téléphone :",
+chat_q_email:"Votre e-mail (optionnel) :",
 chat_skip:"Ignorer",
-chat_summary_title:"Récapitulatif de votre demande :",
+chat_summary_title:"Récapitulatif :",
 chat_urgency:"Urgence",chat_email_lbl:"E-mail",
 chat_send_wa:"Envoyer par WhatsApp",chat_send_email:"Envoyer par e-mail",chat_restart:"Recommencer",
-chat_not_understood:"Je n'ai pas bien compris. Veuillez sélectionner une option ou reformuler votre réponse.",
-chat_sent_ok:"Votre demande a été transmise. Un professionnel vous contactera rapidement.",
+chat_not_understood:"Je n'ai pas bien compris. Choisissez une option ou reformulez.",
+chat_sent_ok:"Demande transmise ✅ Un professionnel vous contactera.",
 cookie_text:"Ce site utilise des cookies pour améliorer votre expérience.",cookie_more:"En savoir plus",cookie_accept:"Accepter",cookie_reject:"Refuser",city_filter:"Filtre appliqué : {c}"},
 es:{doc_title:"Professionnels Maroc — Servicios a domicilio en Marruecos | Fontaneros, electricistas, limpieza",nav_home:"Inicio",nav_services:"Servicios",nav_pros:"Profesionales",nav_how:"Cómo funciona",nav_faq:"FAQ",nav_contact:"Contacto",nav_label:"Navegación",lang_label:"Idioma",
 hero_badge:"N.º 1 en servicios a domicilio en Marruecos",hero_title_1:"Encuentra",hero_title_highlight:"profesionales de confianza",hero_title_2:"cerca de ti",
@@ -847,20 +853,20 @@ faq_title:"Preguntas frecuentes",
 quote_title:"Pedir presupuesto",quote_subtitle:"El mensaje se enviará por WhatsApp al profesional.",quote_name:"Tu nombre",quote_phone:"Tu teléfono",quote_desc:"Describe tu necesidad",quote_send:"Enviar por WhatsApp",
 contact_title:"Contacto",contact_phone:"Teléfono",contact_email:"Email",contact_city:"Marruecos",contact_form_title:"Envíanos un mensaje",contact_form_name:"Nombre",contact_form_email:"Email",contact_form_subject:"Asunto",contact_form_message:"Mensaje",contact_form_send:"Enviar",contact_sent:"Mensaje preparado en tu correo",
 chat_title:"Asistente Professionnels Maroc",chat_placeholder:"Escribe tu respuesta...",
-chat_greet:"Hola, soy el asistente de Professionnels Maroc. Te acompaño para obtener un presupuesto profesional en pocos pasos.",
-chat_q_service:"Para empezar, ¿qué tipo de servicio necesitas? Selecciona una opción:",
-chat_q_city:"Gracias. ¿En qué ciudad se necesita el servicio?",
-chat_q_need:"¿Podrías describir brevemente el trabajo a realizar?",
-chat_q_urgency:"¿Con qué urgencia necesitas el servicio?",
-chat_q_name:"Perfecto. ¿Cuál es tu nombre completo?",
-chat_q_phone:"Gracias. ¿Cuál es tu número de teléfono?",
-chat_q_email:"¿Deseas dejar un e-mail de contacto? (opcional — pulsa «Omitir» para continuar)",
+chat_greet:"Hola 👋 Soy el asistente de Professionnels Maroc.\nPuedo ayudarte a encontrar un artesano o pedir un presupuesto.",
+chat_q_service:"¿Qué tipo de servicio buscas?",
+chat_q_city:"¿En qué ciudad?",
+chat_q_need:"Describe brevemente tu necesidad:",
+chat_q_urgency:"¿Con qué urgencia?",
+chat_q_name:"¿Cuál es tu nombre?",
+chat_q_phone:"Tu teléfono:",
+chat_q_email:"Tu e-mail (opcional):",
 chat_skip:"Omitir",
-chat_summary_title:"Resumen de tu solicitud:",
+chat_summary_title:"Resumen:",
 chat_urgency:"Urgencia",chat_email_lbl:"E-mail",
 chat_send_wa:"Enviar por WhatsApp",chat_send_email:"Enviar por e-mail",chat_restart:"Empezar de nuevo",
-chat_not_understood:"No he entendido bien. Selecciona una opción o reformula tu respuesta.",
-chat_sent_ok:"Tu solicitud ha sido enviada. Un profesional te contactará pronto.",
+chat_not_understood:"No he entendido bien. Elige una opción o reformula.",
+chat_sent_ok:"Solicitud enviada ✅ Un profesional te contactará.",
 cookie_text:"Este sitio usa cookies para mejorar tu experiencia.",cookie_more:"Saber más",cookie_accept:"Aceptar",cookie_reject:"Rechazar",city_filter:"Filtro aplicado: {c}"},
 ar:{doc_title:"Professionnels Maroc — خدمات منزلية في المغرب | سباكة، كهرباء، تنظيف",nav_home:"الرئيسية",nav_services:"الخدمات",nav_pros:"المحترفون",nav_how:"كيف يعمل",nav_faq:"الأسئلة",nav_contact:"اتصل بنا",nav_label:"التنقل",lang_label:"اللغة",
 hero_badge:"الأول في الخدمات المنزلية بالمغرب",hero_title_1:"اعثر على",hero_title_highlight:"محترفين موثوقين",hero_title_2:"بالقرب منك",
@@ -899,20 +905,20 @@ faq_title:"الأسئلة الشائعة",
 quote_title:"طلب عرض سعر",quote_subtitle:"سيتم إرسال الرسالة عبر واتساب إلى المحترف.",quote_name:"اسمك",quote_phone:"هاتفك",quote_desc:"صف حاجتك",quote_send:"إرسال عبر واتساب",
 contact_title:"اتصل بنا",contact_phone:"الهاتف",contact_email:"البريد الإلكتروني",contact_city:"المغرب",contact_form_title:"أرسل لنا رسالة",contact_form_name:"الاسم",contact_form_email:"البريد الإلكتروني",contact_form_subject:"الموضوع",contact_form_message:"الرسالة",contact_form_send:"إرسال",contact_sent:"تم تجهيز الرسالة في بريدك",
 chat_title:"مساعد Professionnels Maroc",chat_placeholder:"اكتب إجابتك...",
-chat_greet:"مرحباً، أنا مساعد Professionnels Maroc. أرافقك للحصول على عرض سعر احترافي في خطوات قليلة.",
-chat_q_service:"للبدء، ما نوع الخدمة التي تحتاجها؟ اختر خياراً:",
-chat_q_city:"شكراً. في أي مدينة تحتاج الخدمة؟",
-chat_q_need:"هل يمكنك وصف العمل المطلوب باختصار؟",
-chat_q_urgency:"ما مدى استعجال طلبك؟",
-chat_q_name:"ممتاز. ما اسمك الكامل؟",
-chat_q_phone:"شكراً. ما رقم هاتفك؟",
-chat_q_email:"هل ترغب بترك بريد إلكتروني للتواصل؟ (اختياري — اختر «تجاهل» للمتابعة)",
+chat_greet:"مرحباً 👋 أنا مساعد Professionnels Maroc.\nأساعدك في العثور على حرفي أو طلب عرض سعر.",
+chat_q_service:"ما نوع الخدمة التي تبحث عنها؟",
+chat_q_city:"في أي مدينة؟",
+chat_q_need:"صف حاجتك باختصار:",
+chat_q_urgency:"ما مدى الاستعجال؟",
+chat_q_name:"ما اسمك؟",
+chat_q_phone:"هاتفك:",
+chat_q_email:"بريدك الإلكتروني (اختياري):",
 chat_skip:"تجاهل",
-chat_summary_title:"ملخص طلبك:",
-chat_urgency:"الاستعجال",chat_email_lbl:"البريد الإلكتروني",
+chat_summary_title:"الملخص:",
+chat_urgency:"الاستعجال",chat_email_lbl:"البريد",
 chat_send_wa:"إرسال عبر واتساب",chat_send_email:"إرسال عبر البريد",chat_restart:"البدء من جديد",
-chat_not_understood:"لم أفهم جيداً. الرجاء اختيار خيار أو إعادة صياغة إجابتك.",
-chat_sent_ok:"تم إرسال طلبك. سيتواصل معك محترف قريباً.",
+chat_not_understood:"لم أفهم جيداً. اختر خياراً أو أعد الصياغة.",
+chat_sent_ok:"تم إرسال الطلب ✅ سيتواصل معك محترف.",
 cookie_text:"يستخدم هذا الموقع ملفات تعريف الارتباط لتحسين تجربتك.",cookie_more:"اعرف المزيد",cookie_accept:"قبول",cookie_reject:"رفض",city_filter:"تم تطبيق الفلتر: {c}"}
 };
 
@@ -947,7 +953,7 @@ const chatUrgOpts={fr:["Urgent (aujourd'hui)","Cette semaine","Planifié"],es:["
 
 const sampleMeta={plomberie:{specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"},desc:{fr:"Plombier expérimenté pour réparations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والأعطال الطارئة."}},electricite:{specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"},desc:{fr:"Électricien professionnel, mise aux normes et dépannages.",es:"Electricista profesional, normativas y averías.",ar:"كهربائي محترف للمعايير والأعطال."}},peinture:{specialty:{fr:"Peintre décorateur",es:"Pintor decorador",ar:"صباغ وديكور"},desc:{fr:"Peintre soigné intérieurs/extérieurs.",es:"Pintor esmerado interiores/exteriores.",ar:"صباغ متقن للداخل والخارج."}},menage:{specialty:{fr:"Service de ménage",es:"Servicio de limpieza",ar:"خدمة تنظيف"},desc:{fr:"Nettoyage soigné, ponctualité.",es:"Limpieza esmerada, puntualidad.",ar:"تنظيف متقن والتزام."}},climatisation:{specialty:{fr:"Technicien climatisation",es:"Técnico de climatización",ar:"تقني تكييف"},desc:{fr:"Installation et entretien toutes marques.",es:"Instalación y mantenimiento todas las marcas.",ar:"تركيب وصيانة جميع العلامات."}},menuiserie:{specialty:{fr:"Menuisier",es:"Carpintero",ar:"نجار"},desc:{fr:"Meubles sur mesure et réparations.",es:"Muebles a medida y reparaciones.",ar:"أثاث حسب الطلب وإصلاحات."}},serrurerie:{specialty:{fr:"Serrurier",es:"Cerrajero",ar:"حداد"},desc:{fr:"Ouverture, serrures, blindage.",es:"Apertura, cerraduras, blindaje.",ar:"فتح وأقفال وتحصين."}},maconnerie:{specialty:{fr:"Maçon",es:"Albañil",ar:"بنّاء"},desc:{fr:"Construction et rénovation.",es:"Construcción y reformas.",ar:"بناء وترميم."}},electromenager:{specialty:{fr:"Réparateur électroménager",es:"Reparador de electrodomésticos",ar:"مصلح أجهزة"},desc:{fr:"Lave-linge, frigo, four, toutes marques.",es:"Lavadora, nevera, horno, todas las marcas.",ar:"غسالة وثلاجة وفرن جميع العلامات."}},jardinage:{specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"},desc:{fr:"Entretien espaces verts, tonte, taille.",es:"Mantenimiento zonas verdes, corte, poda.",ar:"العناية بالمساحات الخضراء والقص والتقليم."}}};
 const sampleAvatars=["men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12","men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29","men/83","men/47","men/54","men/71","women/33","women/57","women/12","men/94","men/38","men/61"];
-const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍🔧","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍🔧","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
+const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩‍","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩‍","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍🔧","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍🌾","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
 const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:sampleMeta[r[3]].desc,photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
 
 let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
@@ -963,7 +969,7 @@ function flagUrl(c,s=20){return `https://flagcdn.com/w${s}/${c}.png`}
 
 function toggleDrawer(){document.getElementById("drawer").classList.toggle("open");document.getElementById("drawerOverlay").classList.toggle("show")}
 function closeDrawer(){document.getElementById("drawer").classList.remove("open");document.getElementById("drawerOverlay").classList.remove("show")}
-function goSection(id){closeDrawer();showMainView();setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"})},60)}
+function goSection(id){closeDrawer();showMainView();setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},60)}
 function openLightbox(u){document.getElementById("lightboxImg").src=u;document.getElementById("lightbox").classList.add("show")}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("show")}
 
@@ -1229,19 +1235,20 @@ function renderCitiesFooter(){const c=document.getElementById("footerCities");c.
 c.querySelectorAll(".city-link").forEach(a=>a.addEventListener("click",()=>{const city=a.dataset.city;showMainView();setTimeout(()=>{renderPros(null,city,false);document.getElementById("pros").scrollIntoView({behavior:"smooth"});showToast(t("city_filter").replace("{c}",city))},60)}))}
 function renderFaqList(){const l=document.getElementById("faqList");const items=faqContent[currentLang]||faqContent.fr;l.innerHTML=items.map((it,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-q" onclick="toggleFaq(${i})"><span>${it.q}</span><span class="arrow">▼</span></button><div class="faq-a"><div class="faq-a-inner">${it.a}</div></div></div>`).join("")}
 function toggleFaq(i){document.getElementById("faq-"+i).classList.toggle("open")}
+/* ARREGLO 3: botón "Demander un devis" en cada tarjeta */
 function renderPros(filterId=null,filterCity=null,onlyFav=false){renderStats();lastProsFilter={id:filterId,city:filterCity,favs:onlyFav};let list=prosData;
 if(filterId){const by=prosData.filter(p=>p.category===filterId);if(by.length>0)list=by;else if(!filterCity)list=prosData;else list=[]}
 if(filterCity)list=list.filter(p=>p.city[currentLang]===filterCity);
 if(onlyFav){if(currentProfile)list=list.filter(p=>currentUserFavorites.includes(p.id));else list=[]}
 const g=document.getElementById("prosGrid");
 if(list.length===0){const icon=onlyFav?"♡":"🔍";const title=onlyFav?t("favorites"):t("no_results_title");const desc=onlyFav?t("favorites_empty"):t("no_results_desc");g.innerHTML=`<div class="empty-state"><div class="empty-icon">${icon}</div><h3>${title}</h3><p>${desc}</p></div>`}
-else{g.innerHTML=list.map(p=>{const fav=isFavorite(p.id);const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center"`:"";return `<div class="pro-card reveal"><button class="fav-btn ${fav?"active":""}" onclick="toggleFavorite('${p.id}',event)">${fav?"♥":"♡"}</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
+else{g.innerHTML=list.map(p=>{const fav=isFavorite(p.id);const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center 30%"`:"";return `<div class="pro-card reveal"><button class="fav-btn ${fav?"active":""}" onclick="toggleFavorite('${p.id}',event)">${fav?"♥":"♡"}</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-quote" onclick="openQuoteModal('${p.id}')">📋 ${t("quote_title")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
 observeReveal()}
 function renderFavoritesPage(){const c=document.getElementById("favoritesGrid");const fc=document.getElementById("favCount");
 if(!currentProfile){fc.textContent="";c.innerHTML=`<div class="empty-state"><div class="empty-icon">🔒</div><h3>${t("favorites")}</h3><p>${t("favorites_login_required")}</p></div>`;return}
 const fp=prosData.filter(p=>currentUserFavorites.includes(p.id));fc.textContent=fp.length>0?`(${fp.length})`:"";
 if(fp.length===0)c.innerHTML=`<div class="empty-state"><div class="empty-icon">♡</div><h3>${t("favorites")}</h3><p>${t("favorites_empty")}</p></div>`;
-else c.innerHTML=fp.map(p=>{const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center"`:"";return `<div class="pro-card"><button class="fav-btn active" onclick="toggleFavorite('${p.id}',event)">♥</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
+else c.innerHTML=fp.map(p=>{const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center 30%"`:"";return `<div class="pro-card"><button class="fav-btn active" onclick="toggleFavorite('${p.id}',event)">♥</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-quote" onclick="openQuoteModal('${p.id}')">📋 ${t("quote_title")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
 function searchServices(){
   const svc=document.getElementById("serviceSelect").value;
   const city=document.getElementById("citySelect").value;
@@ -1287,6 +1294,62 @@ if(document.getElementById("faqView").style.display!=="none")renderFaqList();
 if(currentModalProId&&document.getElementById("contactModal").classList.contains("active")){fillProModal(currentModalProId);renderReviewsBlock(currentModalProId,"reviewsModal");updateModalFavButton(currentModalProId)}
 if(document.getElementById("cookieBanner").classList.contains("show")){document.querySelectorAll("#cookieBanner [data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))})}}
 
+/* ===== ASISTENTE (ARREGLO 1) ===== */
+function toggleChat(){const p=document.getElementById("chatPanel");if(!p)return;p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
+function closeChatPanel(){const p=document.getElementById("chatPanel");if(p)p.classList.remove("open")}
+function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
+function chatStart(){chatReset();const b=document.getElementById("chatBody");if(b)b.innerHTML="";addChat(t("chat_greet"),"bot");addChat(t("chat_q_service"),"bot");renderChatChips()}
+function addChat(text,who){const b=document.getElementById("chatBody");if(!b)return;const d=document.createElement("div");d.className="chat-msg "+who;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
+function renderChatChips(){const c=document.getElementById("chatChips");if(!c)return;let html="";
+if(chatStep==="service"){html=servicesData.slice(0,8).map(s=>`<button class="chat-chip" onclick="chatPickService('${s.id}')">${s.name[currentLang]}</button>`).join("")}
+else if(chatStep==="city"){html=citiesData.slice(0,8).map((x,i)=>`<button class="chat-chip" onclick="chatPickCity(${i})">${x[currentLang]}</button>`).join("")}
+else if(chatStep==="urgency"){html=chatUrgOpts[currentLang].map((u,i)=>`<button class="chat-chip" onclick="chatPickUrgency(${i})">${u}</button>`).join("")}
+else if(chatStep==="email"){html=`<button class="chat-chip" onclick="chatSkipEmail()">⏭️ ${t("chat_skip")}</button>`}
+else if(chatStep==="summary"){html=`<button class="chat-chip" onclick="chatSendWA()">📤 ${t("chat_send_wa")}</button><button class="chat-chip" onclick="chatSendEmail()">✉️ ${t("chat_send_email")}</button><button class="chat-chip" onclick="chatStart()">🔄 ${t("chat_restart")}</button>`}
+c.innerHTML=html}
+function chatPickService(sid){const s=servicesData.find(x=>x.id===sid);if(!s)return;chatData.service=s;addChat(s.name[currentLang],"user");chatStep="city";addChat(t("chat_q_city"),"bot");renderChatChips()}
+function chatPickCity(i){const x=citiesData[i];if(!x)return;chatData.city=x;addChat(x[currentLang],"user");chatStep="need";addChat(t("chat_q_need"),"bot");renderChatChips()}
+function chatPickUrgency(i){const u=chatUrgOpts[currentLang][i];if(!u)return;chatData.urgency=u;addChat(u,"user");chatStep="name";addChat(t("chat_q_name"),"bot");renderChatChips()}
+function chatSkipEmail(){chatData.email="";addChat(t("chat_skip"),"user");chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+function chatSummaryText(){const s=chatData.service?chatData.service.name[currentLang]:"—";const c=chatData.city?chatData.city[currentLang]:"—";
+let out=`${t("chat_summary_title")}\n• ${t("nav_services")}: ${s}\n• ${t("auth_city")}: ${c}\n• ${t("quote_desc")}: ${chatData.need}\n• ${t("chat_urgency")}: ${chatData.urgency}\n• ${t("auth_name")}: ${chatData.name}\n• ${t("auth_phone")}: ${chatData.phone}`;
+if(chatData.email)out+=`\n• ${t("chat_email_lbl")}: ${chatData.email}`;
+return out}
+function chatSendWA(){const msg=chatSummaryText();let pro=null;
+if(chatData.service){pro=prosData.find(p=>p.category===chatData.service.id&&(!chatData.city||p.city[currentLang]===chatData.city[currentLang]))||prosData.find(p=>p.category===chatData.service.id)}
+const wa=pro?(pro.whatsapp||pro.phone.replace(/\D/g,"")):"212690157092";
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg+" — Professionnels Maroc"),"_blank");addChat(t("chat_sent_ok"),"bot")}
+function chatSendEmail(){const msg=chatSummaryText();window.location.href=`mailto:contact@professionnelsmaroc.click?subject=${encodeURIComponent("Demande de devis — Professionnels Maroc")}&body=${encodeURIComponent(msg)}`;addChat(t("chat_sent_ok"),"bot")}
+function chatSend(){const i=document.getElementById("chatInput");if(!i)return;const v=i.value.trim();if(!v)return;i.value="";addChat(v,"user");
+if(chatStep==="service"){const s=servicesData.find(x=>x.name[currentLang].toLowerCase()===v.toLowerCase()||x.id===v);if(s){chatData.service=s;chatStep="city";addChat(t("chat_q_city"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="city"){const x=citiesData.find(c=>c[currentLang].toLowerCase()===v.toLowerCase());if(x){chatData.city=x;chatStep="need";addChat(t("chat_q_need"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="need"){chatData.need=v;chatStep="urgency";addChat(t("chat_q_urgency"),"bot");renderChatChips()}
+else if(chatStep==="urgency"){const idx=chatUrgOpts[currentLang].findIndex(u=>u.toLowerCase()===v.toLowerCase());if(idx>=0){chatData.urgency=chatUrgOpts[currentLang][idx];chatStep="name";addChat(t("chat_q_name"),"bot")}else{chatData.urgency=v;chatStep="name";addChat(t("chat_q_name"),"bot")}renderChatChips()}
+else if(chatStep==="name"){chatData.name=v;chatStep="phone";addChat(t("chat_q_phone"),"bot");renderChatChips()}
+else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t("auth_error_phone"),"bot");return}chatData.phone=v;chatStep="email";addChat(t("chat_q_email"),"bot");renderChatChips()}
+else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
+
+/* ===== PRESUPUESTO (ARREGLO 3) ===== */
+function openQuoteModal(proId){const p=prosData.find(x=>x.id===proId);if(!p){showToast(t("no_results_title"));return}
+currentQuoteProId=proId;
+const fields=quoteFields[p.category]||quoteFields.default;
+document.getElementById("quoteFields").innerHTML=fields.map(f=>{
+  if(f.opts){return `<div class="form-group"><label>${f.label[currentLang]}</label><select id="qf_${f.id}">${f.opts[currentLang].map(o=>`<option>${o}</option>`).join("")}</select></div>`}
+  return `<div class="form-group"><label>${f.label[currentLang]}</label><input type="text" id="qf_${f.id}"></div>`}).join("");
+document.getElementById("quoteModal").classList.add("active");document.body.style.overflow="hidden"}
+function closeQuoteModal(){document.getElementById("quoteModal").classList.remove("active");document.body.style.overflow=""}
+function submitQuote(e){e.preventDefault();const p=prosData.find(x=>x.id===currentQuoteProId);if(!p)return;
+const name=document.getElementById("qName").value.trim();const phone=document.getElementById("qPhone").value.trim();const desc=document.getElementById("qDesc").value.trim();
+if(!name||!phone){showToast(t("auth_error_required"));return}
+const fields=quoteFields[p.category]||quoteFields.default;
+let extra="";fields.forEach(f=>{const el=document.getElementById("qf_"+f.id);if(el)extra+=`\n- ${f.label[currentLang]}: ${el.value}`});
+const msg=`${t("quote_title")} — Professionnels Maroc\n${t("auth_name")}: ${name}\n${t("auth_phone")}: ${phone}${extra}\n${t("quote_desc")}: ${desc}`;
+const wa=p.whatsapp||p.phone.replace(/\D/g,"");
+if(!wa){showToast(t("auth_error_phone"));return}
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
+closeQuoteModal()}
+
 document.getElementById("contactModal").addEventListener("click",e=>{if(e.target.id==="contactModal")closeModal()});
 document.getElementById("authModal").addEventListener("click",e=>{if(e.target.id==="authModal")closeAuth()});
 document.getElementById("profileModal").addEventListener("click",e=>{if(e.target.id==="profileModal")closeProfile()});
@@ -1304,22 +1367,16 @@ if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.ser
 
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
 
-/* === BLOQUE DE SEGURIDAD: evita pantalla en blanco si algo falla === */
+/* ===== BLOQUE DE SEGURIDAD anti-pantalla-en-blanco ===== */
 function hardRenderFallback(){
   try{
-    if(typeof renderFeatures==="function") renderFeatures();
-    if(typeof renderServices==="function") renderServices();
-    if(typeof renderCitiesFooter==="function") renderCitiesFooter();
-    if(typeof renderPopular==="function") renderPopular();
-    if(typeof renderPros==="function") renderPros(null);
-    if(typeof updateAuthUI==="function") updateAuthUI();
-    if(typeof observeReveal==="function") setTimeout(observeReveal,300);
-  }catch(err){ console.warn("Fallback render:", err); }
-}
-function renderPopular(){
-  const ids=["plomberie","electricite","menage","climatisation"].filter(id=>servicesData.some(s=>s.id===id));
-  const el=document.getElementById("popularChips");
-  if(el) el.innerHTML=ids.map(id=>{const s=servicesData.find(x=>x.id===id);return s?`<span class="chip" onclick="filterByService('${id}')">${s.name[currentLang]}</span>`:"";}).join("");
+    if(typeof renderFeatures==="function")renderFeatures();
+    if(typeof renderServices==="function")renderServices();
+    if(typeof renderCitiesFooter==="function")renderCitiesFooter();
+    if(typeof renderPros==="function")renderPros(null);
+    if(typeof updateAuthUI==="function")updateAuthUI();
+    if(typeof observeReveal==="function")setTimeout(observeReveal,300);
+  }catch(err){console.warn("Fallback render:",err)}
 }
 async function initApp(){
   try{
@@ -1327,7 +1384,6 @@ async function initApp(){
     renderLangSwitchers();
     renderServiceSelect();
     renderCitySelects();
-    renderPopular();
     handleRoute();
     showCookieBanner();
     await initAuth();
@@ -1337,16 +1393,10 @@ async function initApp(){
     await loadServiceMedia();
     setLanguage(currentLang);
     setHeroCard();
-  }catch(err){
-    console.error("initApp error:", err);
-    hardRenderFallback();
-  }
+  }catch(err){console.error("initApp error:",err);hardRenderFallback()}
 }
-/* Si tras 2.5s el hero sigue sin título, fuerza render de seguridad */
-setTimeout(function(){ try{ var h1=document.querySelector(".hero h1"); if(h1 && !h1.textContent.trim()){ hardRenderFallback(); } }catch(e){} }, 2500);
-/* Doble seguro: si initApp falló, re-renderiza de todos modos */
-window.addEventListener("load", function(){ setTimeout(hardRenderFallback, 800); });
-
+setTimeout(function(){try{var h1=document.querySelector(".hero h1");if(h1&&!h1.textContent.trim()){hardRenderFallback()}}catch(e){}},2500);
+window.addEventListener("load",function(){setTimeout(hardRenderFallback,800)});
 initApp();
 </script>
 </body>
