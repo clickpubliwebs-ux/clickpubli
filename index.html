@@ -9,15 +9,16 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Professionnels Maroc — Services à domicile au Maroc">
 <meta property="og:description" content="Contactez directement des artisans vérifiés au Maroc. Sans commission, sans intermédiaire. Devis gratuits en quelques clics.">
-<meta property="og:image" content="https://flagcdn.com/w20/ma.png">
+<meta property="og:image" content="https://flagcdn.com/w640/ma.png">
 <meta property="og:url" content="https://professionnelsmaroc.click">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Professionnels Maroc — Services à domicile au Maroc">
 <meta name="twitter:description" content="Artisans vérifiés au Maroc, contact direct sans commission.">
+<meta name="twitter:image" content="https://flagcdn.com/w640/ma.png">
 <meta name="theme-color" content="#0E6B5C">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon.svg?v=2">
+<link rel="apple-touch-icon" href="https://flagcdn.com/w320/ma.png">
 <link rel="icon" type="image/svg+xml" href="icon.svg?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +139,7 @@ section{padding:4.5rem 0;scroll-margin-top:80px}
 .service-card:hover{border-color:var(--primary-light);transform:translateY(-5px)}
 .service-icon{font-size:2.4rem;margin-bottom:.8rem}
 .service-img{width:70px;height:70px;object-fit:cover;border-radius:14px;margin:0 auto .8rem;display:block;border:1px solid var(--border)}
-.service-card h3{font-size:1.05rem;margin-bottom:.4rem}
+.service-card h3{font-size:1.05rem;margin-bottom:.4rem;overflow-wrap:break-word}
 .service-card p{font-size:.82rem;color:var(--gray)}
 .pros-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem}
 .pro-card{background:white;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);position:relative}
@@ -455,7 +456,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 </div>
 </div>
 </header>
-
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 <aside class="drawer" id="drawer">
 <div class="drawer-head"><span class="drawer-title">Professionnels Maroc</span><button class="drawer-close" onclick="closeDrawer()">✕</button></div>
@@ -475,7 +475,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <button class="drawer-link" id="drawerAdminBtn" style="display:none" onclick="showAdminView();closeDrawer()">⚙️ <span data-i18n="admin_title">Administration</span></button>
 </div>
 </aside>
-
 <div id="mainView">
 <section class="hero" id="home">
 <div class="hero-orb o1"></div><div class="hero-orb o2"></div>
@@ -525,12 +524,10 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <a class="btn-outline" onclick="installAppDirect()">📲 <span data-i18n="cta_btn_download">Installer l'app</span></a>
 </div></div></section>
 </div>
-
 <div id="favoritesView" class="favorites-page" style="display:none"><div class="container">
 <div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="favorites">Mes favoris</h2><span id="favCount" style="color:var(--gray);font-weight:600"></span></div>
 <div class="pros-grid" id="favoritesGrid"></div>
 </div></div>
-
 <div id="proProfileView" class="pp-page" style="display:none"><div class="container">
 <div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><button class="fav-back-btn" onclick="copyProfileLink()">🔗 <span data-i18n="share">Partager</span></button></div>
 <div class="pp-hero">
@@ -558,22 +555,19 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="pp-side"><div class="pp-card-side"><h3 data-i18n="reviews_title">Avis clients</h3><div class="pp-rev-summary" id="ppRevSummary"></div><div id="reviewsProfile"></div></div></div>
 </div>
 </div></div>
-
 <div id="adminView" class="admin-page" style="display:none"><div class="container">
 <div class="admin-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2>⚙️ <span data-i18n="admin_title">Administration</span></h2>
 <div style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn-primary" onclick="loadSampleToDB()">📥 <span data-i18n="admin_load_samples">Charger les exemples</span></button><button class="btn-primary" onclick="openProForm()">➕ <span data-i18n="admin_add_pro">Ajouter</span></button></div></div>
 <div id="adminProList"></div>
-<h3 class="admin-subtitle" data-i18n="admin_svc_images">Imágenes de servicios</h3><div id="svcMediaList"></div>
+<h3 class="admin-subtitle" data-i18n="admin_svc_images">Images des services</h3><div id="svcMediaList"></div>
 <h3 class="admin-subtitle" data-i18n="admin_svc_categories">Catégories de services</h3>
 <div style="margin-bottom:.8rem"><button class="btn-primary" onclick="openServiceForm()">➕ <span data-i18n="admin_add_category">Ajouter une catégorie</span></button></div>
 <div id="svcCategoriesList"></div>
 </div></div>
-
 <div id="faqView" class="faq-page" style="display:none"><div class="container">
 <div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="faq_title">Questions fréquentes</h2><span></span></div>
 <div class="faq-list" id="faqList"></div>
 </div></div>
-
 <div id="contactView" class="contact-page" style="display:none"><div class="container">
 <div class="favorites-header"><button class="fav-back-btn" onclick="showMainView()">← <span data-i18n="back">Retour</span></button><h2 data-i18n="contact_title">Contactez-nous</h2><span></span></div>
 <div class="contact-grid">
@@ -591,7 +585,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <button class="btn-submit" onclick="sendContact()" data-i18n="contact_form_send">Envoyer</button>
 </div>
 </div></div>
-
 <footer id="contact">
 <div class="container">
 <div class="footer-grid">
@@ -618,9 +611,8 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="footer-bottom"><span data-i18n="footer_rights">© 2026 Professionnels Maroc. Tous droits réservés.</span></div>
 </div>
 </footer>
-
 <div class="modal" id="contactModal"><div class="modal-content">
-<div class="modal-cover"><button class="close-modal" onclick="closeModal()">&times;</button><button class="fav-btn modal-fav" id="modalFavBtn" onclick="toggleFavoriteFromModal(event)">♡</button><div class="modal-avatar" id="modalAvatar">👨‍</div></div>
+<div class="modal-cover"><button class="close-modal" onclick="closeModal()">&times;</button><button class="fav-btn modal-fav" id="modalFavBtn" onclick="toggleFavoriteFromModal(event)">♡</button><div class="modal-avatar" id="modalAvatar">👨</div></div>
 <div class="modal-body">
 <h2 id="modalName">Nom</h2>
 <div class="modal-specialty" id="modalSpecialty"></div>
@@ -635,7 +627,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 </div>
 <div class="modal-reviews"><h4 data-i18n="reviews_title">Avis clients</h4><div id="reviewsModal"></div></div>
 </div></div></div>
-
 <div class="modal" id="quoteModal"><div class="modal-content">
 <div class="modal-cover"><button class="close-modal" onclick="closeQuoteModal()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
@@ -649,7 +640,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <button type="submit" class="btn-submit" data-i18n="quote_send">Envoyer par WhatsApp</button>
 </form>
 </div></div></div>
-
 <div class="modal" id="authModal"><div class="modal-content auth-content">
 <div class="auth-cover"><button class="close-modal" onclick="closeAuth()">&times;</button><span class="auth-logo-text">Professionnels Maroc</span></div>
 <div class="auth-body">
@@ -684,7 +674,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <button type="submit" class="btn-submit" data-i18n="auth_submit_register">Créer mon compte</button>
 </form>
 </div></div></div>
-
 <div class="modal" id="profileModal"><div class="modal-content auth-content profile-modal">
 <div class="profile-head"><button class="close-modal dark" onclick="closeProfile()">&times;</button><div class="profile-avatar" id="profileAvatar">A</div></div>
 <div class="auth-body">
@@ -695,7 +684,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <button class="btn-submit" id="profileEditBtn" onclick="toggleEditProfile()" data-i18n="profile_edit">Modifier</button>
 <button class="btn-submit" style="background:var(--gray)" onclick="logout();closeProfile()" data-i18n="auth_logout">Se déconnecter</button>
 </div></div></div></div>
-
 <div class="modal" id="proFormModal"><div class="modal-content" style="max-width:640px">
 <div class="modal-cover"><button class="close-modal" onclick="closeProForm()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
@@ -705,7 +693,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="form-group full"><label data-i18n="auth_name">Nom complet</label><input type="text" id="pfName"></div>
 <div class="form-group full"><label data-i18n="field_pro_photo">Photo du professionnel</label><img id="pfAvatarPreview" class="avatar-preview" alt=""><input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem"></div>
 <div class="form-group full"><label data-i18n="field_pro_cover">Image de couverture</label><img id="pfCoverPreview" class="cover-preview" alt=""><input type="file" id="pfCoverInput" accept="image/*" style="font-size:.85rem"></div>
-<div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨‍"></div>
+<div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨"></div>
 <div class="form-group"><label data-i18n="field_category">Catégorie</label><select id="pfCategory"></select></div>
 <div class="form-group"><label data-i18n="auth_city">Ville</label><select id="pfCity"></select></div>
 <div class="form-group"><label data-i18n="field_rating">Note (1-5)</label><input type="number" id="pfRating" min="1" max="5" step="0.1" value="4.5"></div>
@@ -725,7 +713,6 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 </div>
 <button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
 </form></div></div></div>
-
 <div class="modal" id="serviceFormModal"><div class="modal-content" style="max-width:440px">
 <div class="modal-cover"><button class="close-modal" onclick="closeServiceForm()">&times;</button></div>
 <div class="modal-body" style="text-align:start">
@@ -737,17 +724,14 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="form-group"><label>Nom (العربية)</label><input type="text" id="svcNameAr"></div>
 <button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
 </form></div></div></div>
-
 <div class="modal" id="legalModal"><div class="modal-content legal-modal">
 <div class="modal-cover"><button class="close-modal" onclick="closeLegalModal()">&times;</button></div>
 <div class="legal-body" id="legalBody"></div>
 </div></div>
-
 <div class="cookie-banner" id="cookieBanner"><div class="cookie-inner">
 <div class="cookie-text"><span data-i18n="cookie_text">Ce site utilise des cookies pour améliorer votre expérience.</span> <a onclick="openLegalModal('privacy')" data-i18n="cookie_more">En savoir plus</a></div>
 <div class="cookie-actions"><button class="cookie-btn cookie-reject" onclick="rejectCookies()" data-i18n="cookie_reject">Refuser</button><button class="cookie-btn cookie-accept" onclick="acceptCookies()" data-i18n="cookie_accept">Accepter</button></div>
 </div></div>
-
 <button class="chat-fab" onclick="toggleChat()" aria-label="Chat">💬</button>
 <div class="chat-panel" id="chatPanel">
 <div class="chat-head"><div class="chat-ava">🤖</div><strong data-i18n="chat_title">Assistant Professionnels Maroc</strong><button onclick="toggleChat()">✕</button></div>
@@ -755,19 +739,15 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="chat-chips" id="chatChips"></div>
 <div class="chat-input"><input type="text" id="chatInput" data-i18n-placeholder="chat_placeholder" onkeypress="if(event.key==='Enter')chatSend()"><button onclick="chatSend()">➤</button></div>
 </div>
-
 <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 <div class="toast" id="toast"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://ivredrbkxiekryghbovo.supabase.co";
 const SUPABASE_ANON_KEY="sb_publishable_HXPW6qp4J2K3hvnucvLnHA_FBm-zp88";
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-
 const countries=[{code:"ma",name:"Maroc",dial:"+212"},{code:"es",name:"España",dial:"+34"},{code:"fr",name:"France",dial:"+33"},{code:"de",name:"Deutschland",dial:"+49"},{code:"it",name:"Italia",dial:"+39"},{code:"gb",name:"UK",dial:"+44"},{code:"us",name:"USA",dial:"+1"},{code:"be",name:"Belgique",dial:"+32"},{code:"nl",name:"Nederland",dial:"+31"},{code:"pt",name:"Portugal",dial:"+351"},{code:"mx",name:"México",dial:"+52"},{code:"ae",name:"UAE",dial:"+971"},{code:"sa",name:"Saudi Arabia",dial:"+966"},{code:"eg",name:"Egypt",dial:"+20"},{code:"dz",name:"Algérie",dial:"+213"},{code:"tn",name:"Tunisie",dial:"+216"}];
 let selectedCountry=countries[0];
-
 const translations={
 fr:{doc_title:"Professionnels Maroc — Services à domicile au Maroc | Plombiers, électriciens, ménage",nav_home:"Accueil",nav_services:"Services",nav_pros:"Professionnels",nav_how:"Comment ça marche",nav_faq:"FAQ",nav_contact:"Contact",nav_label:"Navigation",lang_label:"Langue",
 hero_badge:"N°1 des services à domicile au Maroc",hero_title_1:"Trouvez des",hero_title_highlight:"professionnels de confiance",hero_title_2:"près de chez vous",
@@ -896,19 +876,17 @@ chat_skip:"تجاهل",chat_summary_title:"الملخص:",chat_urgency:"الاس
 chat_send_wa:"إرسال عبر واتساب",chat_send_email:"إرسال عبر البريد",chat_restart:"البدء من جديد",chat_not_understood:"لم أفهم جيداً. اختر خياراً أو أعد الصياغة.",chat_sent_ok:"تم إرسال الطلب ✅ سيتواصل معك محترف.",
 cookie_text:"يستخدم هذا الموقع ملفات تعريف الارتباط لتحسين تجربتك.",cookie_more:"اعرف المزيد",cookie_accept:"قبول",cookie_reject:"رفض",city_filter:"تم تطبيق الفلتر: {c}"}
 };
-
 const legalContent={
 about:{fr:{title:"À propos de Professionnels Maroc",html:"<p>Professionnels Maroc est la plateforme de référence qui met en relation, partout au Royaume, les particuliers et les entreprises avec des artisans et prestataires de services vérifiés : plombiers, électriciens, peintres, personnels de ménage, techniciens du froid, menuisiers, serruriers, maçons et bien d'autres.</p><h3>Notre mission</h3><p>Simplifier le quotidien des Marocains en leur permettant de trouver, en quelques clics, un professionnel de confiance dans leur ville, et offrir aux artisans une vitrine gratuite et visible pour développer leur activité.</p><h3>Nos valeurs</h3><ul><li><strong>Transparence :</strong> avis clients authentiques et coordonnées directes, sans intermédiaire.</li><li><strong>Gratuité :</strong> aucune commission prélevée sur les prestations.</li><li><strong>Confiance :</strong> chaque professionnel est contrôlé (identité, références, qualité) avant publication.</li><li><strong>Proximité :</strong> une couverture nationale, ville par ville.</li></ul><h3>Notre engagement</h3><p>Nous améliorons continuellement la plateforme (vérification renforcée, nouveaux métiers, outils de devis) pour garantir un service fiable, rapide et sans surprise, du premier contact à la fin du chantier.</p>"},
 es:{title:"Sobre Professionnels Maroc",html:"<p>Professionnels Maroc es la plataforma de referencia que conecta, en todo el Reino, a particulares y empresas con artesanos y prestadores de servicios verificados: fontaneros, electricistas, pintores, personal de limpieza, técnicos de frío, carpinteros, cerrajeros, albañiles y muchos más.</p><h3>Nuestra misión</h3><p>Simplificar el día a día de los marroquíes permitiéndoles encontrar, en pocos clics, un profesional de confianza en su ciudad, y ofrecer a los artesanos un escaparate gratuito y visible para hacer crecer su actividad.</p><h3>Nuestros valores</h3><ul><li><strong>Transparencia:</strong> reseñas reales y contacto directo, sin intermediarios.</li><li><strong>Gratuidad:</strong> ninguna comisión sobre los trabajos.</li><li><strong>Confianza:</strong> cada profesional se verifica (identidad, referencias, calidad) antes de publicarse.</li><li><strong>Proximidad:</strong> cobertura nacional, ciudad a ciudad.</li></ul><h3>Nuestro compromiso</h3><p>Mejoramos continuamente la plataforma (verificación reforzada, nuevos oficios, herramientas de presupuesto) para garantizar un servicio fiable, rápido y sin sorpresas, desde el primer contacto hasta el final del trabajo.</p>"},
 ar:{title:"حول Professionnels Maroc",html:"<p>Professionnels Maroc هي المنصة المرجعية التي تربط، في جميع أنحاء المملكة، الأفراد والشركات بحرفيين ومقدمي خدمات موثوقين: سباكون، كهربائيون، صباغون، عاملات نظافة، تقنيو تبريد، نجارون، حدادون، بناؤون وغيرهم.</p><h3>مهمتنا</h3><p>تبسيط الحياة اليومية للمغاربة بتمكينهم من العثور، في بضع نقرات، على محترف موثوق في مدينتهم، وتوفير واجهة مجانية ومرئية للحرفيين لتنمية نشاطهم.</p><h3>قيمنا</h3><ul><li><strong>الشفافية:</strong> آراء عملاء حقيقية وبيانات تواصل مباشرة بدون وسيط.</li><li><strong>المجانية:</strong> لا عمولة على الخدمات.</li><li><strong>الثقة:</strong> يتم التحقق من كل محترف (هوية، مراجع، جودة) قبل النشر.</li><li><strong>القرب:</strong> تغطية وطنية، مدينة بمدينة.</li></ul><h3>التزامنا</h3><p>نحسّن المنصة باستمرار (تحقق معزز، مهن جديدة، أدوات عروض السعر) لضمان خدمة موثوقة وسريعة وبدون مفاجآت، من أول تواصل حتى نهاية العمل.</p>"}},
 terms:{fr:{title:"Conditions d'utilisation",html:"<p><em>Dernière mise à jour : janvier 2026</em></p><h3>1. Objet</h3><p>Les présentes conditions régissent l'accès et l'utilisation de la plateforme Professionnels Maroc, annuaire de mise en relation entre clients et professionnels indépendants.</p><h3>2. Inscription et compte</h3><p>L'utilisateur s'engage à fournir des informations exactes et à jour. Il est responsable de la confidentialité de ses identifiants et de toute activité réalisée depuis son compte.</p><h3>3. Rôle de la plateforme</h3><p>Professionnels Maroc est un intermédiaire technique de mise en relation. La plateforme n'est pas partie aux contrats conclus entre clients et professionnels et n'est pas responsable de l'exécution des prestations.</p><h3>4. Contenus publiés</h3><p>Les professionnels sont responsables de leurs fiches (textes, photos, coordonnées, tarifs). Tout contenu illicite, trompeur ou portant atteinte aux droits d'autrui sera supprimé.</p><h3>5. Avis et notation</h3><p>Les avis doivent refléter une expérience réelle et respectueuse. Les faux avis, propos injurieux ou diffamatoires entraînent suppression et suspension du compte.</p><h3>6. Propriété intellectuelle</h3><p>La marque, le logo, les textes et l'interface sont la propriété de Professionnels Maroc. Toute reproduction non autorisée est interdite.</p><h3>7. Suspension et résiliation</h3><p>La plateforme peut suspendre ou supprimer un compte en cas de violation des présentes conditions, sans préavis, et sans que cela ouvre droit à indemnité.</p><h3>8. Limitation de responsabilité</h3><p>La plateforme ne saurait être tenue responsable des dommages indirects liés à l'utilisation du service ou aux relations entre utilisateurs.</p><h3>9. Droit applicable</h3><p>Les présentes conditions sont soumises au droit marocain. Tout litige sera porté devant les juridictions compétentes du Maroc.</p>"},
 es:{title:"Términos de uso",html:"<p><em>Última actualización: enero 2026</em></p><h3>1. Objeto</h3><p>Estos términos regulan el acceso y uso de la plataforma Professionnels Maroc, directorio de puesta en contacto entre clientes y profesionales independientes.</p><h3>2. Registro y cuenta</h3><p>El usuario se compromete a facilitar información exacta y actualizada. Es responsable de la confidencialidad de sus credenciales y de toda actividad realizada desde su cuenta.</p><h3>3. Rol de la plataforma</h3><p>Professionnels Maroc es un intermediario técnico de contacto. La plataforma no es parte de los contratos entre clientes y profesionales ni responde de la ejecución de los trabajos.</p><h3>4. Contenidos publicados</h3><p>Los profesionales son responsables de sus fichas (textos, fotos, contactos, precios). Se eliminará todo contenido ilícito, engañoso o que vulnere derechos de terceros.</p><h3>5. Reseñas y valoración</h3><p>Las reseñas deben reflejar una experiencia real y respetuosa. Las reseñas falsas o los comentarios injuriosos conllevan eliminación y suspensión de la cuenta.</p><h3>6. Propiedad intelectual</h3><p>La marca, el logo, los textos y la interfaz son propiedad de Professionnels Maroc. Se prohíbe toda reproducción no autorizada.</p><h3>7. Suspensión y baja</h3><p>La plataforma puede suspender o eliminar una cuenta en caso de incumplimiento de estos términos, sin preaviso y sin derecho a indemnización.</p><h3>8. Limitación de responsabilidad</h3><p>La plataforma no responde de daños indirectos derivados del uso del servicio o de las relaciones entre usuarios.</p><h3>9. Ley aplicable</h3><p>Estos términos se rigen por la ley marroquí. Toda disputa se someterá a los tribunales competentes de Marruecos.</p>"},
-ar:{title:"شروط الاستخدام",html:"<p><em>آخر تحديث: يناير 2026</em></p><h3>1. الموضوع</h3><p>تنظم هذه الشروط الوصول إلى منصة Professionnels Maroc واستخدامها، وهي دليل للتواصل بين العملاء والمحترفين المستقلين.</p><h3>2. التسجيل والحساب</h3><p>يلتزم المستخدم بتقديم معلومات دقيقة ومحدثة، وهو مسؤول عن سرية بيانات دخوله وعن كل نشاط يتم من حسابه.</p><h3>3. دور المنصة</h3><p>Professionnels Maroc وسيط تقني للتواصل. المنصة ليست طرفاً في العقود المبرمة بين العملاء والمحترفين ولا تتحمل مسؤولية تنفيذ الخدمات.</p><h3>4. المحتويات المنشورة</h3><p>المحترفون مسؤولون عن بطاقاتهم (نصوص، صور، بيانات تواصل، أسعار). سيتم حذف أي محتوى غير قانوني أو مضلل أو منتهك لحقوق الغير.</p><h3>5. الآراء والتقييم</h3><p>يجب أن تعكس الآراء تجربة حقيقية ومحترمة. الآراء المزيفة أو التعليقات المسيئة تؤدي إلى الحذف وتعليق الحساب.</p><h3>6. الملكية الفكرية</h3><p>العلامة التجارية والشعار والنصوص والواجهة ملك لـ Professionnels Maroc. يُمنع أي نسخ غير مصرح به.</p><h3>7. التعليق والإنهاء</h3><p>يجوز للمنصة تعليق أو حذف أي حساب عند مخالفة هذه الشروط، دون إنذار ودون تعويض.</p><h3>8. تحديد المسؤولية</h3><p>لا تتحمل المنصة مسؤولية الأضرار غير المباشرة الناتجة عن استخدام الخدمة أو عن العلاقات بين المستخدمين.</p><h3>9. القانون applicable</h3><p>تخضع هذه الشروط للقانون المغربي، وتُعرض أي نزاعات على المحاكم المختصة في المغرب.</p>"}},
+ar:{title:"شروط الاستخدام",html:"<p><em>آخر تحديث: يناير 2026</em></p><h3>1. الموضوع</h3><p>تنظم هذه الشروط الوصول إلى منصة Professionnels Maroc واستخدامها، وهي دليل للتواصل بين العملاء والمحترفين المستقلين.</p><h3>2. التسجيل والحساب</h3><p>يلتزم المستخدم بتقديم معلومات دقيقة ومحدثة، وهو مسؤول عن سرية بيانات دخوله وعن كل نشاط يتم من حسابه.</p><h3>3. دور المنصة</h3><p>Professionnels Maroc وسيط تقني للتواصل. المنصة ليست طرفاً في العقود المبرمة بين العملاء والمحترفين ولا تتحمل مسؤولية تنفيذ الخدمات.</p><h3>4. المحتويات المنشورة</h3><p>المحترفون مسؤولون عن بطاقاتهم (نصوص، صور، بيانات تواصل، أسعار). سيتم حذف أي محتوى غير قانوني أو مضلل أو منتهك لحقوق الغير.</p><h3>5. الآراء والتقييم</h3><p>يجب أن تعكس الآراء تجربة حقيقية ومحترمة. الآراء المزيفة أو التعليقات المسيئة تؤدي إلى الحذف وتعليق الحساب.</p><h3>6. الملكية الفكرية</h3><p>العلامة التجارية والشعار والنصوص والواجهة ملك لـ Professionnels Maroc. يُمنع أي نسخ غير مصرح به.</p><h3>7. التعليق والإنهاء</h3><p>يجوز للمنصة تعليق أو حذف أي حساب عند مخالفة هذه الشروط، دون إنذار ودون تعويض.</p><h3>8. تحديد المسؤولية</h3><p>لا تتحمل المنصة مسؤولية الأضرار غير المباشرة الناتجة عن استخدام الخدمة أو عن العلاقات بين المستخدمين.</p><h3>9. القانون المطبق</h3><p>تخضع هذه الشروط للقانون المغربي، وتُعرض أي نزاعات على المحاكم المختصة في المغرب.</p>"}},
 privacy:{fr:{title:"Politique de confidentialité",html:"<p><em>Dernière mise à jour : janvier 2026</em></p><h3>1. Données collectées</h3><p>Nous collectons les données fournies lors de l'inscription (nom, e-mail, téléphone, ville), les contenus publiés (fiches, photos, avis) et des données de navigation via cookies.</p><h3>2. Finalités</h3><ul><li>Créer et gérer votre compte.</li><li>Assurer la mise en relation clients / professionnels.</li><li>Améliorer la plateforme et mesurer son audience.</li><li>Vous informer des évolutions du service.</li></ul><h3>3. Base légale</h3><p>Le traitement repose sur votre consentement, l'exécution du service et notre intérêt légitime à sécuriser la plateforme.</p><h3>4. Destinataires</h3><p>Vos données ne sont jamais vendues. Elles peuvent être transmises aux professionnels que vous contactez, à nos prestataires techniques (hébergement, e-mail) et aux autorités en cas d'obligation légale.</p><h3>5. Cookies</h3><p>Nous utilisons des cookies essentiels au fonctionnement et des cookies de mesure d'audience, déposés uniquement avec votre accord via le bandeau cookies.</p><h3>6. Durée de conservation</h3><p>Les données de compte sont conservées tant que le compte est actif, puis supprimées sous 30 jours après suppression. Les cookies de mesure expirent sous 13 mois.</p><h3>7. Sécurité</h3><p>Vos données sont hébergées de façon sécurisée (chiffrement en transit, accès restreints, sauvegardes).</p><h3>8. Vos droits (RGPD / loi 09-08)</h3><p>Vous disposez de droits d'accès, de rectification, d'effacement, de limitation et de portabilité. Exercez-les à tout moment via contact@professionnelsmaroc.click.</p>"},
 es:{title:"Política de privacidad",html:"<p><em>Última actualización: enero 2026</em></p><h3>1. Datos recogidos</h3><p>Recogemos los datos facilitados en el registro (nombre, e-mail, teléfono, ciudad), los contenidos publicados (fichas, fotos, reseñas) y datos de navegación mediante cookies.</p><h3>2. Finalidades</h3><ul><li>Crear y gestionar tu cuenta.</li><li>Garantizar la puesta en contacto clientes / profesionales.</li><li>Mejorar la plataforma y medir su audiencia.</li><li>Informarte de las novedades del servicio.</li></ul><h3>3. Base legal</h3><p>El tratamiento se basa en tu consentimiento, la ejecución del servicio y nuestro interés legítimo en securizar la plataforma.</p><h3>4. Destinatarios</h3><p>Tus datos nunca se venden. Pueden comunicarse a los profesionales con los que contactas, a nuestros proveedores técnicos (alojamiento, e-mail) y a las autoridades por obligación legal.</p><h3>5. Cookies</h3><p>Usamos cookies esenciales para el funcionamiento y cookies de medición de audiencia, depositadas solo con tu acuerdo mediante el banner de cookies.</p><h3>6. Plazo de conservación</h3><p>Los datos de cuenta se conservan mientras la cuenta esté activa y se eliminan en 30 días tras la baja. Las cookies de medición caducan a los 13 meses.</p><h3>7. Seguridad</h3><p>Tus datos se alojan de forma segura (cifrado en tránsito, accesos restringidos, copias de seguridad).</p><h3>8. Tus derechos</h3><p>Tienes derechos de acceso, rectificación, supresión, limitación y portabilidad. Ejercítalos en cualquier momento en contact@professionnelsmaroc.click.</p>"},
 ar:{title:"سياسة الخصوصية",html:"<p><em>آخر تحديث: يناير 2026</em></p><h3>1. البيانات المجمعة</h3><p>نجمع البيانات المقدمة عند التسجيل (الاسم، البريد، الهاتف، المدينة)، والمحتويات المنشورة (بطاقات، صور، آراء)، وبيانات التصفح عبر ملفات تعريف الارتباط.</p><h3>2. الأغراض</h3><ul><li>إنشاء وإدارة حسابك.</li><li>ضمان التواصل بين العملاء والمحترفين.</li><li>تحسين المنصة وقياس جمهورها.</li><li>إعلامك بمستجدات الخدمة.</li></ul><h3>3. الأساس القانوني</h3><p>يعتمد المعالجة على موافقتك وتنفيذ الخدمة ومصلحتنا المشروعة في تأمين المنصة.</p><h3>4. المستفيدون</h3><p>لا تُباع بياناتك أبداً. قد تُحال إلى المحترفين الذين تتواصل معهم، ومزودينا التقنيين (استضافة، بريد)، والسلطات عند الالتزام القانوني.</p><h3>5. ملفات تعريف الارتباط</h3><p>نستخدم ملفات أساسية للتشغيل وملفات قياس الجمهور، تُوضع فقط بموافقتك عبر شريط الملفات.</p><h3>6. مدة الحفظ</h3><p>تُحفظ بيانات الحساب طالما الحساب نشط وتُحذف خلال 30 يوماً بعد الحذف. وتنتهي ملفات القياس خلال 13 شهراً.</p><h3>7. الأمان</h3><p>تُحفظ بياناتك بشكل آمن (تشفير أثناء النقل، وصول مقيد، نسخ احتياطية).</p><h3>8. حقوقك</h3><p>لك حقوق الوصول والتصحيح والحذف والتقييد والنقل. مارسها في أي وقت عبر contact@professionnelsmaroc.click.</p>"}}
 };
-
 const faqContent={
 fr:[
 {q:"Professionnels Maroc est-il gratuit ?",a:"Oui. La consultation des fiches, la recherche, les favoris et la mise en contact sont 100 % gratuits pour les clients. Aucune commission n'est prélevée sur les prestations : vous négociez directement avec l'artisan."},
@@ -950,13 +928,9 @@ ar:[
 {q:"كيف تُحسب النجوم المعروضة؟",a:"نجم البطاقة هو متوسط آراء العملاء الموثقين، ويُعرض عدد الآراء بجانب النجمة لضمان الشفافية."},
 {q:"كيف أبلغ عن محتوى مسيء؟",a:"استخدم صفحة الاتصال أو اكتب إلى contact@professionnelsmaroc.click مع تحديد البطاقة المعنية. يعالج فريقنا كل بلاغ بسرعة."}]
 };
-
 const citiesData=[{fr:"Casablanca",es:"Casablanca",ar:"الدار البيضاء"},{fr:"Rabat",es:"Rabat",ar:"الرباط"},{fr:"Marrakech",es:"Marrakech",ar:"مراكش"},{fr:"Tanger",es:"Tánger",ar:"طنجة"},{fr:"Fès",es:"Fez",ar:"فاس"},{fr:"Agadir",es:"Agadir",ar:"أكادير"},{fr:"Meknès",es:"Mequinez",ar:"مكناس"},{fr:"Oujda",es:"Uchda",ar:"وجدة"},{fr:"Kénitra",es:"Kenitra",ar:"القنيطرة"},{fr:"Tétouan",es:"Tetuán",ar:"تطوان"},{fr:"Salé",es:"Salé",ar:"سلا"},{fr:"Temara",es:"Temara",ar:"تمارة"},{fr:"Safi",es:"Safí",ar:"آسفي"},{fr:"Mohammedia",es:"Mohammedia",ar:"المحمدية"},{fr:"El Jadida",es:"El Yadida",ar:"الجديدة"},{fr:"Nador",es:"Nador",ar:"الناظور"},{fr:"Béni Mellal",es:"Beni Melal",ar:"بني ملال"},{fr:"Khouribga",es:"Juribga",ar:"خريبكة"},{fr:"Essaouira",es:"Esauira",ar:"الصويرة"},{fr:"Ouarzazate",es:"Uarzazate",ar:"ورزازات"},{fr:"Chefchaouen",es:"Chauen",ar:"شفشاون"},{fr:"Larache",es:"Larache",ar:"العرائش"},{fr:"Taza",es:"Taza",ar:"تازة"},{fr:"Ifrane",es:"Ifrán",ar:"إفران"},{fr:"Laâyoune",es:"El Aaiún",ar:"العيون"},{fr:"Settat",es:"Settat",ar:"سطات"},{fr:"Al Hoceïma",es:"Alhucemas",ar:"الحسيمة"},{fr:"Errachidia",es:"Errachidia",ar:"الرشيدية"},{fr:"Guelmim",es:"Guelmim",ar:"كلميم"},{fr:"Tan-Tan",es:"Tan-Tan",ar:"طانطان"},{fr:"Sidi Ifni",es:"Sidi Ifni",ar:"سيدي إفني"},{fr:"Taroudant",es:"Taroudant",ar:"تارودانت"},{fr:"Tiznit",es:"Tiznit",ar:"تيزنيت"},{fr:"Zagora",es:"Zagora",ar:"زاكورة"},{fr:"Azilal",es:"Azilal",ar:"أزيلال"},{fr:"Khémisset",es:"Jemiset",ar:"الخميسات"},{fr:"Sidi Kacem",es:"Sidi Kasem",ar:"سيدي قاسم"},{fr:"Sidi Slimane",es:"Sidi Slimane",ar:"سيدي سليمان"},{fr:"Berrechid",es:"Berrechid",ar:"برشيد"},{fr:"Youssoufia",es:"Yusufía",ar:"اليوسفية"},{fr:"Benguerir",es:"Benguerir",ar:"بن جرير"},{fr:"Es-Semara",es:"Es-Semara",ar:"السمارة"},{fr:"Boujdour",es:"Bojador",ar:"بوجدور"},{fr:"Dakhla",es:"Dajla",ar:"الداخلة"},{fr:"Ksar El Kebir",es:"Ksar El Kebir",ar:"القصر الكبير"},{fr:"Asilah",es:"Asilah",ar:"أصيلة"},{fr:"Fnideq",es:"Fnideq",ar:"الفنيدق"},{fr:"Martil",es:"Martil",ar:"مرتيل"},{fr:"Tiflet",es:"Tiflet",ar:"تيفلت"},{fr:"El Hajeb",es:"El Hajeb",ar:"الحاجب"},{fr:"Azrou",es:"Azrou",ar:"أزرو"},{fr:"Midelt",es:"Midelt",ar:"ميدلت"},{fr:"Tinghir",es:"Tinghir",ar:"تنغير"},{fr:"Tata",es:"Tata",ar:"طاطا"},{fr:"Tarfaya",es:"Tarfaya",ar:"طرفاية"},{fr:"Fquih Ben Salah",es:"Fquih Ben Salah",ar:"الفقيه بن صالح"},{fr:"Oued Zem",es:"Uad Zem",ar:"وادي زم"},{fr:"Skhirat",es:"Skhirat",ar:"الصخيرات"},{fr:"Bouznika",es:"Bouznika",ar:"بوزنيقة"},{fr:"Benslimane",es:"Benslimane",ar:"بنسليمان"},{fr:"El Kelaa des Sraghna",es:"El Kelaa de Sraghna",ar:"قلعة السراغنة"},{fr:"Chichaoua",es:"Chichaoua",ar:"شيشاوة"},{fr:"Khénifra",es:"Jenifra",ar:"خنيفرة"}];
-
 let servicesData=[{id:"plomberie",icon:"🔧",name:{fr:"Plomberie",es:"Fontanería",ar:"سباكة"},desc:{fr:"Réparations et installations",es:"Reparaciones e instalaciones",ar:"إصلاحات وتركيبات"}},{id:"electricite",icon:"⚡",name:{fr:"Électricité",es:"Electricidad",ar:"كهرباء"},desc:{fr:"Mise aux normes et dépannage",es:"Instalaciones y averías",ar:"تصليح وتمديدات"}},{id:"peinture",icon:"🎨",name:{fr:"Peinture",es:"Pintura",ar:"صباغة"},desc:{fr:"Intérieur, extérieur et déco",es:"Interior, exterior y deco",ar:"داخلية وخارجية"}},{id:"menage",icon:"🧹",name:{fr:"Ménage",es:"Limpieza",ar:"تنظيف"},desc:{fr:"Maison et bureaux",es:"Hogar y oficinas",ar:"منازل ومكاتب"}},{id:"climatisation",icon:"❄️",name:{fr:"Climatisation",es:"Aire acondicionado",ar:"تكييف"},desc:{fr:"Installation et entretien",es:"Instalación y mantenimiento",ar:"تركيب وصيانة"}},{id:"menuiserie",icon:"🪚",name:{fr:"Menuiserie",es:"Carpintería",ar:"نجارة"},desc:{fr:"Meubles sur mesure",es:"Muebles a medida",ar:"أثاث حسب الطلب"}},{id:"serrurerie",icon:"🔑",name:{fr:"Serrurerie",es:"Cerrajería",ar:"حدادة"},desc:{fr:"Ouverture et blindage",es:"Apertura y blindaje",ar:"فتح الأبواب والتحصين"}},{id:"maconnerie",icon:"🏗️",name:{fr:"Maçonnerie",es:"Albañilería",ar:"بناء"},desc:{fr:"Construction et rénovation",es:"Construcción y reformas",ar:"بناء وترميم"}},{id:"electromenager",icon:"🛋️",name:{fr:"Électroménager",es:"Electrodomésticos",ar:"أجهزة منزلية"},desc:{fr:"Réparation machine à laver",es:"Reparación de lavadoras",ar:"إصلاح الغسالات"}},{id:"jardinage",icon:"🌱",name:{fr:"Jardinage",es:"Jardinería",ar:"بستنة"},desc:{fr:"Entretien d'espaces verts",es:"Mantenimiento de jardines",ar:"العناية بالحدائق"}}];
-
 const featuresData=[{icon:"💰",title:{fr:"Sans commission",es:"Sin comisiones",ar:"بدون عمولة"},desc:{fr:"Contact direct, aucun frais caché.",es:"Contacto directo, sin costes ocultos.",ar:"تواصل مباشر بدون رسوم خفية."}},{icon:"🛡️",title:{fr:"Professionnels vérifiés",es:"Profesionales verificados",ar:"محترفون موثوقون"},desc:{fr:"Chaque artisan est contrôlé avant publication.",es:"Cada artesano se verifica antes de publicarse.",ar:"يتم التحقق من كل حرفي قبل النشر."}},{icon:"📞",title:{fr:"Contact direct",es:"Contacto directo",ar:"تواصل مباشر"},desc:{fr:"Appel ou WhatsApp en un clic.",es:"Llamada o WhatsApp en un clic.",ar:"اتصال أو واتساب بنقرة."}},{icon:"⭐",title:{fr:"Avis authentiques",es:"Reseñas reales",ar:"آراء حقيقية"},desc:{fr:"Notes et commentaires de vrais clients.",es:"Valoraciones de clientes reales.",ar:"تقييمات من عملاء حقيقيين."}}];
-
 const quoteFields={
 plomberie:[{id:"q1",label:{fr:"Type de problème",es:"Tipo de problema",ar:"نوع المشكلة"},opts:{fr:["Fuite","Robinet","Chauffe-eau","Autre"],es:["Fuga","Grifo","Calentador","Otro"],ar:["تسريب","صنبور","سخان","آخر"]}}],
 electricite:[{id:"q1",label:{fr:"Type d'intervention",es:"Tipo de intervención",ar:"نوع التدخل"},opts:{fr:["Panne","Installation","Mise aux normes","Autre"],es:["Avería","Instalación","Normativa","Otro"],ar:["عطل","تركيب","مطابقة","آخر"]}}],
@@ -965,14 +939,43 @@ menage:[{id:"q1",label:{fr:"Type de logement",es:"Tipo de vivienda",ar:"نوع �
 climatisation:[{id:"q1",label:{fr:"Besoin",es:"Necesidad",ar:"الحاجة"},opts:{fr:["Installation","Entretien","Panne"],es:["Instalación","Mantenimiento","Avería"],ar:["تركيب","صيانة","عطل"]}}],
 default:[{id:"q1",label:{fr:"Type de travail",es:"Tipo de trabajo",ar:"نوع العمل"},opts:null}]
 };
-
 const chatUrgOpts={fr:["Urgent (aujourd'hui)","Cette semaine","Planifié"],es:["Urgente (hoy)","Esta semana","Planificado"],ar:["عاجل (اليوم)","هذا الأسبوع","مخطط"]};
-
 const sampleMeta={plomberie:{specialty:{fr:"Plombier",es:"Fontanero",ar:"سباك"},desc:{fr:"Plombier expérimenté pour réparations et dépannages urgents.",es:"Fontanero con experiencia para reparaciones y averías urgentes.",ar:"سباك ذو خبرة في الإصلاحات والأعطال الطارئة."}},electricite:{specialty:{fr:"Électricien",es:"Electricista",ar:"كهربائي"},desc:{fr:"Électricien professionnel, mise aux normes et dépannages.",es:"Electricista profesional, normativas y averías.",ar:"كهربائي محترف للمعايير والأعطال."}},peinture:{specialty:{fr:"Peintre décorateur",es:"Pintor decorador",ar:"صباغ وديكور"},desc:{fr:"Peintre soigné intérieurs/extérieurs.",es:"Pintor esmerado interiores/exteriores.",ar:"صباغ متقن للداخل والخارج."}},menage:{specialty:{fr:"Service de ménage",es:"Servicio de limpieza",ar:"خدمة تنظيف"},desc:{fr:"Nettoyage soigné, ponctualité.",es:"Limpieza esmerada, puntualidad.",ar:"تنظيف متقن والتزام."}},climatisation:{specialty:{fr:"Technicien climatisation",es:"Técnico de climatización",ar:"تقني تكييف"},desc:{fr:"Installation et entretien toutes marques.",es:"Instalación y mantenimiento todas las marcas.",ar:"تركيب وصيانة جميع العلامات."}},menuiserie:{specialty:{fr:"Menuisier",es:"Carpintero",ar:"نجار"},desc:{fr:"Meubles sur mesure et réparations.",es:"Muebles a medida y reparaciones.",ar:"أثاث حسب الطلب وإصلاحات."}},serrurerie:{specialty:{fr:"Serrurier",es:"Cerrajero",ar:"حداد"},desc:{fr:"Ouverture, serrures, blindage.",es:"Apertura, cerraduras, blindaje.",ar:"فتح وأقفال وتحصين."}},maconnerie:{specialty:{fr:"Maçon",es:"Albañil",ar:"بنّاء"},desc:{fr:"Construction et rénovation.",es:"Construcción y reformas.",ar:"بناء وترميم."}},electromenager:{specialty:{fr:"Réparateur électroménager",es:"Reparador de electrodomésticos",ar:"مصلح أجهزة"},desc:{fr:"Lave-linge, frigo, four, toutes marques.",es:"Lavadora, nevera, horno, todas las marcas.",ar:"غسالة وثلاجة وفرن جميع العلامات."}},jardinage:{specialty:{fr:"Jardinier",es:"Jardinero",ar:"بستاني"},desc:{fr:"Entretien espaces verts, tonte, taille.",es:"Mantenimiento zonas verdes, corte, poda.",ar:"العناية بالمساحات الخضراء والقص والتقليم."}}};
+const sampleDescs={
+p1:{fr:"Plombier expérimenté à Casablanca, spécialisé en réparation de fuites, débouchage, chauffe-eau et installation sanitaire complète. Intervention rapide 7j/7 à domicile comme en entreprise, avec devis gratuit et travail garanti. Mohammed El Amrani allie ponctualité, transparence et prix justes pour tous vos travaux de plomberie au Maroc, sans commission ni intermédiaire.",es:"Fontanero con experiencia en Casablanca, especializado en reparación de fugas, desatascos, calentadores e instalación sanitaria completa. Intervención rápida 7 días a la semana en domicilios y empresas, con presupuesto gratuito y trabajo garantizado. Mohammed El Amrani une puntualidad, transparencia y precios justos en todos sus trabajos de fontanería en Marruecos, sin comisiones ni intermediarios.",ar:"سباك ذو خبرة في الدار البيضاء، متخصص في إصلاح التسريبات وتسليك المجاري والسخانات والتركيبات الصحية الكاملة. تدخل سريع طيلة أيام الأسبوع في المنازل والشركات، مع عرض سعر مجاني وعمل مضمون. محمد العمراني يجمع بين الالتزام والشفافية وأسعار عادلة في جميع أعمال السباكة بالمغرب، بدون عمولة أو وسيط."},
+p2:{fr:"Électricien professionnel à Rabat pour tous vos travaux : mise aux normes, tableaux électriques, éclairage intérieur et extérieur, dépannage de pannes et installations neuves. Youssef Benali intervient rapidement avec du matériel certifié, devis gratuit et garanties solides. Un artisan vérifié au Maroc pour une électricité sûre, sans commission ni intermédiaire.",es:"Electricista profesional en Rabat para todo tipo de trabajos: adecuación a normativa, cuadros eléctricos, iluminación interior y exterior, reparación de averías e instalaciones nuevas. Youssef Benali interviene rápidamente con material certificado, presupuesto gratuito y garantías sólidas. Un artesano verificado en Marruecos para una electricidad segura, sin comisiones ni intermediarios.",ar:"كهربائي محترف في الرباط لجميع الأعمال: مطابقة المعايير، اللوحات الكهربائية، الإضاءة الداخلية والخارجية، إصلاح الأعطال والتركيبات الجديدة. يوسف بنعلي يتدخل سريعاً بمعدات معتمدة، مع عرض سعر مجاني وضمانات قوية. حرفي موثوق في المغرب لكهرباء آمنة، بدون عمولة أو وسيط."},
+p3:{fr:"Service de ménage professionnel à Marrakech : nettoyage complet de maisons, appartements et bureaux, repassage, vitres et entretien régulier ou ponctuel. Fatima Zahra garantit un intérieur impeccable, produits de qualité et ponctualité irréprochable. Réservez en quelques clics un personnel de ménage vérifié au Maroc, avec devis gratuit et sans commission.",es:"Servicio de limpieza profesional en Marrakech: limpieza completa de casas, pisos y oficinas, planchado, cristales y mantenimiento regular o puntual. Fatima Zahra garantiza un interior impecable, productos de calidad y puntualidad intachable. Reserva en pocos clics personal de limpieza verificado en Marruecos, con presupuesto gratuito y sin comisiones.",ar:"خدمة تنظيف احترافية في مراكش: تنظيف شامل للمنازل والشقق والمكاتب، كيّ الزجاج والعناية الدورية أو عند الطلب. فاطمة الزهراء تضمن داخلاً لامعاً، منتجات جودة والتزام تام. احجز في نقرات قليلة طاقم تنظيف موثوق في المغرب، مع عرض سعر مجاني وبدون عمولة."},
+p4:{fr:"Peintre décorateur à Tanger pour intérieurs et extérieurs : préparation des murs, peinture lavable, enduits, effets décoratifs et façades. Hassan Idrissi soigne chaque détail, respecte les délais et laisse un chantier propre. Devis gratuit, conseils de couleurs personnalisés et finition durable pour tous vos projets de peinture au Maroc, sans commission.",es:"Pintor decorador en Tánger para interiores y exteriores: preparación de paredes, pintura lavable, estucos, efectos decorativos y fachadas. Hassan Idrissi cuida cada detalle, respeta los plazos y deja la obra limpia. Presupuesto gratuito, asesoramiento de colores personalizado y acabado duradero para todos tus proyectos de pintura en Marruecos, sin comisiones.",ar:"صباغ وديكور في طنجة للداخل والخارج: تحضير الجدران، الصباغة القابلة للغسل، الجص، تأثيرات ديكورية والواجهات. حسن الإدريسي يعتني بكل تفصيلة، يحترم الآجال ويترك الورش نظيفاً. عرض سعر مجاني، نصائح ألوان مخصصة وتشطيب دائم لجميع مشاريع الصباغة بالمغرب، بدون عمولة."},
+p5:{fr:"Technicienne en climatisation à Fès : installation, entretien et réparation de climatiseurs split, gainables et centrales, toutes marques. Amina Berrada assure un diagnostic précis, une intervention rapide et des pièces d'origine garanties. Profitez d'un confort optimal été comme hiver grâce à un service vérifié au Maroc, devis gratuit et sans commission.",es:"Técnica de climatización en Fez: instalación, mantenimiento y reparación de aires acondicionados split, conductos y centrales, de todas las marcas. Amina Berrada garantiza un diagnóstico preciso, intervención rápida y piezas originales garantizadas. Disfruta de un confort óptimo todo el año con un servicio verificado en Marruecos, presupuesto gratuito y sin comisiones.",ar:"تقنية تكييف في فاس: تركيب وصيانة وإصلاح مكيفات سبليت والقنوات والمركزية، لجميع العلامات. أمينة برادة تضمن تشخيصاً دقيقاً وتدخلاً سريعاً وقطع غيار أصلية مضمونة. استمتع براحة مثالية صيفاً وشتاءً مع خدمة موثوقة في المغرب، عرض سعر مجاني وبدون عمولة."},
+p6:{fr:"Menuisier artisan à Agadir : meubles sur mesure, placards, cuisines équipées, portes en bois et réparations de mobilier. Rachid Ouazzani travaille le bois avec précision, du plan à la pose finale, pour un résultat durable et élégant. Demandez votre devis gratuit à un menuisier vérifié au Maroc, contact direct sans commission.",es:"Carpintero artesano en Agadir: muebles a medida, armarios empotrados, cocinas equipadas, puertas de madera y reparación de mobiliario. Rachid Ouazzani trabaja la madera con precisión, desde el plano hasta la colocación final, para un resultado duradero y elegante. Pide tu presupuesto gratuito a un carpintero verificado en Marruecos, contacto directo sin comisiones.",ar:"نجار حرفي في أكادير: أثاث حسب الطلب، خزائن مطابقة، مطابخ مجهزة، أبواب خشبية وإصلاح الأثاث. رشيد الوزاني يشتغل الخشب بدقة، من التصميم إلى التركيب النهائي، لنتيجة دائمة وأنيقة. اطلب عرض سعر مجاني من نجار موثوق في المغرب، تواصل مباشر بدون عمولة."},
+p7:{fr:"Plombier à Rabat spécialisé en dépannage urgent : fuites d'eau, robinetterie, canalisations bouchées et chauffe-eau en panne. Khalid Tazi intervient rapidement à domicile avec un outillage complet, prix annoncés à l'avance et travail soigné garanti. Faites confiance à un plombier vérifié au Maroc pour une intervention propre, devis gratuit et sans commission.",es:"Fontanero en Rabat especializado en urgencias: fugas de agua, grifería, tuberías atascadas y calentadores averiados. Khalid Tazi interviene rápidamente a domicilio con herramienta completa, precios comunicados por adelantado y trabajo cuidado garantizado. Confía en un fontanero verificado en Marruecos para una intervención limpia, presupuesto gratuito y sin comisiones.",ar:"سباك في الرباط متخصص في الأعطال المستعجلة: تسريبات المياه، الصنابير، الأنابيب المسدودة والسخانات المعطلة. خالد التازي يتدخل سريعاً في المنزل بمعدات كاملة، أسعار معلنة مسبقاً وعمل متقن مضمون. ثق بسباك موثوق في المغرب لتدخل نظيف، عرض سعر مجاني وبدون عمولة."},
+p8:{fr:"Plombier polyvalent à Marrakech : installation de salles de bain complètes, rénovation de réseaux d'eau, entretien de chauffe-eau et petites réparations quotidiennes. Omar Cherkaoui combine expérience de chantier et sens du service, avec des finitions propres et durables. Contactez directement ce professionnel vérifié au Maroc, devis gratuit et sans commission.",es:"Fontanero polivalente en Marrakech: instalación de baños completos, renovación de redes de agua, mantenimiento de calentadores y pequeñas reparaciones diarias. Omar Cherkaoui combina experiencia de obra y vocación de servicio, con acabados limpios y duraderos. Contacta directamente con este profesional verificado en Marruecos, presupuesto gratuito y sin comisiones.",ar:"سباك متعدد المهارات في مراكش: تركيب حمامات كاملة، تجديد شبكات المياه، صيانة السخانات والإصلاحات اليومية الصغيرة. عمر الشرقاوي يجمع بين خبرة الورش وروح الخدمة، بتشطيبات نظيفة ودائمة. تواصل مباشرة مع هذا المحترف الموثوق في المغرب، عرض سعر مجاني وبدون عمولة."},
+p9:{fr:"Électricien à Casablanca pour installations et dépannages : câblage complet, prises et interrupteurs, éclairage LED, tableaux et mise à la terre. Reda Alami respecte les normes de sécurité marocaines, intervient vite et proprement, chez vous comme en commerce. Devis gratuit et contact direct avec un artisan vérifié au Maroc, sans commission.",es:"Electricista en Casablanca para instalaciones y reparaciones: cableado completo, enchufes e interruptores, iluminación LED, cuadros y puesta a tierra. Reda Alami respeta las normas de seguridad marroquíes, interviene rápido y limpio, en tu casa o en tu comercio. Presupuesto gratuito y contacto directo con un artesano verificado en Marruecos, sin comisiones.",ar:"كهربائي في الدار البيضاء للتركيبات والإصلاحات: تمديدات كاملة، مقابس ومفاتيح، إضاءة LED، لوحات وتأريض. رضا العلمي يحترم معايير السلامة المغربية، يتدخل سريعاً وبنظافة، في منزلك أو محلك. عرض سعر مجاني وتواصل مباشر مع حرفي موثوق في المغرب، بدون عمولة."},
+p10:{fr:"Électricien expérimenté à Tanger : dépannage de pannes électriques, remplacement de disjoncteurs, installation de luminaires et rénovation complète de réseaux anciens. Nabil Fassi diagnostique gratuitement, explique clairement chaque intervention et garantit un travail conforme et sûr. Un professionnel vérifié au Maroc, joignable directement par téléphone ou WhatsApp, sans commission.",es:"Electricista con experiencia en Tánger: reparación de averías eléctricas, sustitución de diferenciales, instalación de luminarias y renovación completa de redes antiguas. Nabil Fassi diagnostica gratis, explica con claridad cada intervención y garantiza un trabajo conforme y seguro. Un profesional verificado en Marruecos, localizable directamente por teléfono o WhatsApp, sin comisiones.",ar:"كهربائي ذو خبرة في طنجة: إصلاح الأعطال الكهربائية، تغيير القواطع، تركيب وحدات الإنارة وتجديد كاملة للشبكات القديمة. نبيل الفاسي يشخص مجاناً، يشرح بوضوح كل تدخل ويضمن عملاً مطابقاً وآمناً. محترف موثوق في المغرب، يمكن التواصل معه مباشرة بالهاتف أو واتساب، بدون عمولة."},
+p11:{fr:"Peintre à Casablanca pour appartements, villas et locaux professionnels : peinture intérieure et extérieure, traitement des fissures, papier peint et finitions décoratives. Said Bennis prépare soigneusement les supports, protège vos meubles et respecte le planning convenu. Obtenez un devis gratuit et contactez directement ce peintre vérifié au Maroc, sans commission.",es:"Pintor en Casablanca para pisos, villas y locales profesionales: pintura interior y exterior, tratamiento de grietas, papel pintado y acabados decorativos. Said Bennis prepara cuidadosamente los soportes, protege tus muebles y respeta el planning acordado. Obtén un presupuesto gratuito y contacta directamente con este pintor verificado en Marruecos, sin comisiones.",ar:"صباغ في الدار البيضاء للشقق والفيلات والمحلات المهنية: صباغة داخلية وخارجية، معالجة الشقوق، ورق جداري وتشطيبات ديكورية. سعيد بنيس يحضر الأسطح بعناية، يحمي أثاثك ويحترم الجدول المتفق عليه. احصل على عرض سعر مجاني وتواصل مباشرة مع هذا الصباغ الموثوق في المغرب، بدون عمولة."},
+p12:{fr:"Peintre à Agadir spécialisé en rénovation de façades et peinture extérieure résistante au climat côtier, ainsi qu'en intérieurs lumineux et soignés. Adil Hamdaoui utilise des peintures de qualité adaptées au soleil et à l'humidité, avec un chantier protégé et rendu propre. Devis gratuit, artisan vérifié au Maroc, sans commission.",es:"Pintor en Agadir especializado en renovación de fachadas y pintura exterior resistente al clima costero, además de interiores luminosos y cuidados. Adil Hamdaoui utiliza pinturas de calidad adaptadas al sol y a la humedad, con la obra protegida y entregada limpia. Presupuesto gratuito, artesano verificado en Marruecos, sin comisiones.",ar:"صباغ في أكادير متخصص في تجديد الواجهات والصباغة الخارجية المقاومة للمناخ الساحلي، إضافة إلى داخلية مضيئة ومتقنة. عادل الحمداوي يستعمل أصباغاً جودة مقاومة للشمس والرطوبة، مع ورش محمي وتسليم نظيف. عرض سعر مجاني، حرفي موثوق في المغرب، بدون عمولة."},
+p13:{fr:"Femme de ménage professionnelle à Casablanca : entretien complet du domicile, cuisine, vitres, repassage et nettoyage profond après déménagement ou fête. Khadija Amrani est ponctuelle, discrète et minutieuse, avec un service régulier ou ponctuel selon vos besoins. Réservez en toute confiance une aide ménagère vérifiée au Maroc, devis gratuit et sans commission.",es:"Mujer de limpieza profesional en Casablanca: mantenimiento completo del hogar, cocina, cristales, planchado y limpieza profunda tras mudanzas o fiestas. Khadija Amrani es puntual, discreta y minuciosa, con servicio regular o puntual según tus necesidades. Reserva con total confianza una empleada de hogar verificada en Marruecos, presupuesto gratuito y sin comisiones.",ar:"عاملة تنظيف محترفة في الدار البيضاء: عناية كاملة بالمنزل، المطبخ، الزجاج، الكي والتنظيف العميق بعد الانتقال أو المناسبات. خديجة العمراني ملتزمة وكتومة ودقيقة، مع خدمة دورية أو عند الطلب حسب حاجتك. احجز بثقة كاملة مساعدة منزلية موثوقة في المغرب، عرض سعر مجاني وبدون عمولة."},
+p14:{fr:"Service de ménage à Rabat pour maisons, appartements et bureaux : nettoyage régulier, grand ménage saisonnier, vitres et repassage inclus. Salma Berrada organise chaque intervention avec méthode et produits adaptés, pour un résultat impeccable et durable. Contactez directement cette professionnelle vérifiée au Maroc, devis gratuit en quelques clics, sans commission.",es:"Servicio de limpieza en Rabat para casas, pisos y oficinas: limpieza regular, limpieza general de temporada, cristales y planchado incluidos. Salma Berrada organiza cada intervención con método y productos adecuados, para un resultado impecable y duradero. Contacta directamente con esta profesional verificada en Marruecos, presupuesto gratuito en pocos clics, sin comisiones.",ar:"خدمة تنظيف في الرباط للمنازل والشقق والمكاتب: تنظيف دوري، تنظيف شامل موسمي، الزجاج والكي مشمولان. سلمى برادة تنظم كل تدخل بمنهجية ومنتجات مناسبة، لنتيجة لامعة ودائمة. تواصل مباشرة مع هذه المحترفة الموثوقة في المغرب، عرض سعر مجاني في نقرات قليلة، بدون عمولة."},
+p15:{fr:"Technicien en climatisation à Casablanca : installation de splits et multi-splits, entretien annuel, nettoyage de filtres et réparation de fuites de gaz, toutes marques. Hamid Ouazzani intervient rapidement, même en pleine saison, avec pièces garanties et tarifs transparents. Un service de climatisation vérifié au Maroc, devis gratuit et sans commission.",es:"Técnico de climatización en Casablanca: instalación de splits y multi-splits, mantenimiento anual, limpieza de filtros y reparación de fugas de gas, de todas las marcas. Hamid Ouazzani interviene rápidamente, incluso en plena temporada, con piezas garantizadas y tarifas transparentes. Un servicio de climatización verificado en Marruecos, presupuesto gratuito y sin comisiones.",ar:"تقني تكييف في الدار البيضاء: تركيب سبليت ومالتي سبليت، صيانة سنوية، تنظيف الفلاتر وإصلاح تسريبات الغاز، لجميع العلامات. حميد الوزاني يتدخل سريعاً، حتى في عز الموسم، بقطع مضمونة وأسعار شفافة. خدمة تكييف موثوقة في المغرب، عرض سعر مجاني وبدون عمولة."},
+p16:{fr:"Spécialiste climatisation à Marrakech : installation, recharge de gaz, entretien complet et dépannage de climatiseurs toutes marques, du split au gainable. Karim Idrissi connaît les exigences de la chaleur de Marrakech et garantit un froid performant et économe. Devis gratuit, intervention rapide et service vérifié au Maroc, sans commission.",es:"Especialista en climatización en Marrakech: instalación, recarga de gas, mantenimiento completo y reparación de aires acondicionados de todas las marcas, del split al conducto. Karim Idrissi conoce las exigencias del calor de Marrakech y garantiza un frío eficiente y de bajo consumo. Presupuesto gratuito, intervención rápida y servicio verificado en Marruecos, sin comisiones.",ar:"متخصص تكييف في مراكش: تركيب، تعبئة الغاز، صيانة شاملة وإصلاح المكيفات لجميع العلامات، من السبليت إلى المركزي. كريم الإدريسي يعرف متطلبات حر مراكش ويضمن تبريداً فعالاً ومقتصداً. عرض سعر مجاني، تدخل سريع وخدمة موثوقة في المغرب، بدون عمولة."},
+p17:{fr:"Menuisier à Fès, artisan du bois depuis plus de quinze ans : salons marocains sculptés, portes traditionnelles, placards sur mesure et restauration de meubles anciens. Mustafa Tazi allie savoir-faire artisanal et finitions modernes, avec pose soignée et délais respectés. Devis gratuit et contact direct avec un menuisier vérifié au Maroc, sans commission.",es:"Carpintero en Fez, artesano de la madera desde hace más de quince años: salones marroquíes tallados, puertas tradicionales, armarios a medida y restauración de muebles antiguos. Mustafa Tazi une saber hacer artesanal y acabados modernos, con colocación cuidada y plazos respetados. Presupuesto gratuito y contacto directo con un carpintero verificado en Marruecos, sin comisiones.",ar:"نجار في فاس، حرفي الخشب منذ أكثر من خمسة عشر عاماً: صالونات مغربية منقوشة، أبواب تقليدية، خزائن حسب الطلب وترميم الأثاث القديم. مصطفى التازي يجمع بين المهارة الحرفية والتشطيبات العصرية، مع تركيب متقن وآجال محترمة. عرض سعر مجاني وتواصل مباشر مع نجار مووثوق في المغرب، بدون عمولة."},
+p18:{fr:"Menuisier à Casablanca pour agencements modernes : dressings, bureaux, cuisines fonctionnelles, habillage de placards et réparations rapides de mobilier. Jamal Fassi prend les mesures à domicile, propose des plans clairs et installe avec précision. Profitez d'un menuisier vérifié au Maroc, contact direct par téléphone ou WhatsApp, devis gratuit et sans commission.",es:"Carpintero en Casablanca para equipamientos modernos: vestidores, escritorios, cocinas funcionales, revestimiento de armarios y reparaciones rápidas de mobiliario. Jamal Fassi toma las medidas a domicilio, propone planos claros e instala con precisión. Aprovecha un carpintero verificado en Marruecos, contacto directo por teléfono o WhatsApp, presupuesto gratuito y sin comisiones.",ar:"نجار في الدار البيضاء للتجهيزات العصرية: غرف ملابس، مكاتب، مطابخ عملية، تكسية الخزائن وإصلاحات سريعة للأثاث. جمال الفاسي يأخذ القياسات في المنزل، يقترح تصاميم واضحة ويركب بدقة. استفد من نجار موثوق في المغرب، تواصل مباشر بالهاتف أو واتساب، عرض سعر مجاني وبدون عمولة."},
+p19:{fr:"Serrurier à Casablanca disponible jour et nuit : ouverture de portes claquées ou blindées, changement de serrures, pose de cylindres sécurisés et blindage de porte. Abdellah Cherkaoui arrive rapidement avec un matériel professionnel, sans casse inutile. Un serrurier vérifié au Maroc pour votre sécurité, devis gratuit et sans commission.",es:"Cerrajero en Casablanca disponible día y noche: apertura de puertas cerradas o acorazadas, cambio de cerraduras, instalación de cilindros de seguridad y blindaje de puertas. Abdellah Cherkaoui llega rápidamente con equipo profesional, sin daños innecesarios. Un cerrajero verificado en Marruecos para tu seguridad, presupuesto gratuito y sin comisiones.",ar:"صانع أقفال في الدار البيضاء متاح ليلاً ونهاراً: فتح الأبواب المغلقة أو المصفحة، تغيير الأقفال، تركيب أسطوانات أمان وتصفيح الأبواب. عبد الله الشرقاوي يصل سريعاً بمعدات مهنية، بدون كسر غير ضروري. صانع أقفال موثوق في المغرب من أجل أمنك، عرض سعر مجاني وبدون عمولة."},
+p20:{fr:"Serrurier à Rabat pour urgences et sécurité : ouverture de portes, duplication de clés, serrures trois points et coffres-forts. Hicham Alami conseille gratuitement sur la protection de votre logement ou commerce et installe des solutions fiables et durables. Contactez directement ce serrurier vérifié au Maroc, intervention rapide, devis gratuit et sans commission.",es:"Cerrajero en Rabat para urgencias y seguridad: apertura de puertas, duplicado de llaves, cerraduras de tres puntos y cajas fuertes. Hicham Alami asesora gratis sobre la protección de tu vivienda o comercio e instala soluciones fiables y duraderas. Contacta directamente con este cerrajero verificado en Marruecos, intervención rápida, presupuesto gratuito y sin comisiones.",ar:"صانع أقفال في الرباط للطوارئ والأمان: فتح الأبواب، نسخ المفاتيح، أقفال ثلاثية النقاط وخزائن حديدية. هشام العلمي ينصح مجاناً حول حماية منزلك أو محلك ويركب حلولاً موثوقة ودائمة. تواصل مباشرة مع هذا الصانع الموثوق في المغرب، تدخل سريع، عرض سعر مجاني وبدون عمولة."},
+p21:{fr:"Serrurier à Marrakech : dépannage de portes bloquées, remplacement de serrures anciennes, installation de poignées, ferme-portes et systèmes de sécurité pour riads et commerces. Tarik Bennis travaille proprement, rapidement et à des prix annoncés à l'avance. Un artisan vérifié au Maroc, joignable 7j/7, devis gratuit et sans commission.",es:"Cerrajero en Marrakech: reparación de puertas bloqueadas, sustitución de cerraduras antiguas, instalación de manillas, cierrapuertas y sistemas de seguridad para riads y comercios. Tarik Bennis trabaja limpio, rápido y con precios comunicados por adelantado. Un artesano verificado en Marruecos, localizable 7 días a la semana, presupuesto gratuito y sin comisiones.",ar:"صانع أقفال في مراكش: إصلاح الأبواب العالقة، استبدال الأقفال القديمة، تركيب المقابض وأجهزة غلق الأبواب وأنظمة أمان للرياضات والمحلات. طارق بنيس يعمل بنظافة وسرعة وبأسعار معلنة مسبقاً. حرفي موثوق في المغرب، متاح طيلة أيام الأسبوع، عرض سعر مجاني وبدون عمولة."},
+p22:{fr:"Maçon expérimenté à Marrakech : construction de murs et cloisons, dallage, carrelage, enduits et petites extensions de maison. Brahim Hamdaoui respecte les règles de l'art, les délais annoncés et laisse un chantier propre à la fin des travaux. Demandez votre devis gratuit à un maçon vérifié au Maroc, sans commission.",es:"Albañil con experiencia en Marrakech: construcción de muros y tabiques, solados, alicatados, enfoscados y pequeñas ampliaciones de vivienda. Brahim Hamdaoui respeta las reglas del oficio, los plazos anunciados y deja la obra limpia al final de los trabajos. Pide tu presupuesto gratuito a un albañil verificado en Marruecos, sin comisiones.",ar:"بنّاء ذو خبرة في مراكش: بناء الجدران والفواصل، تبليط الأرضيات والجدران، اللياسات وتوسعات صغيرة للمنازل. براهيم الحمداوي يحترم أصول الصنعة والآجال المعلنة ويترك الورش نظيفاً في نهاية الأشغال. اطلب عرض سعر مجاني من بنّاء موثوق في المغرب، بدون عمولة."},
+p23:{fr:"Maçon à Oujda pour travaux de construction et rénovation : fondations, briques, cimentage, réparation de fissures et réfection de sols extérieurs. Lahcen Bennis apporte son savoir-faire de chantier aux particuliers comme aux entreprises, avec des matériaux de qualité et un suivi sérieux. Devis gratuit, artisan vérifié au Maroc, sans commission.",es:"Albañil en Uchda para trabajos de construcción y reforma: cimentaciones, ladrillo, cementado, reparación de grietas y renovación de suelos exteriores. Lahcen Bennis aporta su saber hacer de obra a particulares y empresas, con materiales de calidad y un seguimiento serio. Presupuesto gratuito, artesano verificado en Marruecos, sin comisiones.",ar:"بنّاء في وجدة لأشغال البناء والترميم: الأساسات، الطوب، التسميت، إصلاح الشقوق وتجديد الأرضيات الخارجية. لحسن بنيس يقدم خبرة الورش للأفراد والشركات، بمواد جودة ومتابعة جدية. عرض سعر مجاني، حرفي موثوق في المغرب، بدون عمولة."},
+p24:{fr:"Maçon à Fès spécialisé en rénovation de maisons anciennes et riads : reprise de murs, enduits traditionnels, tadelakt, carrelage zellige et petites maçonneries décoratives. Ali Tazi respecte l'authenticité de votre bien tout en renforçant sa solidité. Contactez directement ce maçon vérifié au Maroc, devis gratuit et travail garanti, sans commission.",es:"Albañil en Fez especializado en renovación de casas antiguas y riads: refuerzo de muros, enfoscados tradicionales, tadelakt, alicatado zellige y pequeña albañilería decorativa. Ali Tazi respeta la autenticidad de tu propiedad mientras refuerza su solidez. Contacta directamente con este albañil verificado en Marruecos, presupuesto gratuito y trabajo garantizado, sin comisiones.",ar:"بنّاء في فاس متخصص في ترميم المنازل القديمة والرياضات: تقوية الجدران، لياسات تقليدية، تادلاكت، تبليط الزليج وأعمال بناء ديكورية صغيرة. علي التازي يحترم أصالة ملكك ويعزز متانته. تواصل مباشرة مع هذا البنّاء الموثوق في المغرب، عرض سعر مجاني وعمل مضمون، بدون عمولة."},
+p25:{fr:"Réparatrice d'électroménager à Casablanca : lave-linge, réfrigérateurs, fours, lave-vaisselle et sèche-linge, toutes marques. Samira Tazi diagnostique la panne à domicile, remplace les pièces défectueuses avec des composants garantis et redonne vie à vos appareils. Un service vérifié au Maroc, intervention rapide, devis gratuit et sans commission.",es:"Reparadora de electrodomésticos en Casablanca: lavadoras, frigoríficos, hornos, lavavajillas y secadoras, de todas las marcas. Samira Tazi diagnostica la avería a domicilio, sustituye las piezas defectuosas con componentes garantizados y devuelve la vida a tus aparatos. Un servicio verificado en Marruecos, intervención rápida, presupuesto gratuito y sin comisiones.",ar:"مصلحة أجهزة منزلية في الدار البيضاء: غسالات، ثلاجات، أفران، غسالات صحون ونشافات، لجميع العلامات. سميرة التازي تشخص العطل في المنزل، تستبدل القطع المعطوبة بمكونات مضمونة وتعيد الحياة لأجهزتك. خدمة موثوقة في المغرب، تدخل سريع، عرض سعر مجاني وبدون عمولة."},
+p26:{fr:"Technicienne en électroménager à Tanger : réparation de lave-linge qui ne tourne plus, réfrigérateurs qui ne refroidissent pas, fours en panne et erreurs d'affichage. Nadia Fassi intervient à domicile avec des pièces d'origine et une garantie sur chaque réparation. Devis gratuit, service vérifié au Maroc, sans commission ni intermédiaire.",es:"Técnica de electrodomésticos en Tánger: reparación de lavadoras que no giran, frigoríficos que no enfrían, hornos averiados y errores de pantalla. Nadia Fassi interviene a domicilio con piezas originales y garantía en cada reparación. Presupuesto gratuito, servicio verificado en Marruecos, sin comisiones ni intermediarios.",ar:"تقنية أجهزة منزلية في طنجة: إصلاح الغسالات التي لا تدور، الثلاجات التي لا تبرد، الأفران المعطلة وأخطاء الشاشة. نادية الفاسي تتدخل في المنزل بقطع أصلية وضمان على كل إصلاح. عرض سعر مجاني، خدمة موثوقة في المغرب، بدون عمولة أو وسيط."},
+p27:{fr:"Réparatrice d'électroménager à Rabat : dépannage de lave-linge, congélateurs, cuisinières et petits électroménagers, à domicile ou en atelier. Imane Cherkaoui propose des créneaux rapides, des prix clairs annoncés avant réparation et des conseils d'entretien pour prolonger la vie de vos appareils. Service vérifié au Maroc, devis gratuit et sans commission.",es:"Reparadora de electrodomésticos en Rabat: reparación de lavadoras, congeladores, cocinas y pequeño electrodoméstico, a domicilio o en taller. Imane Cherkaoui ofrece citas rápidas, precios claros comunicados antes de la reparación y consejos de mantenimiento para alargar la vida de tus aparatos. Servicio verificado en Marruecos, presupuesto gratuito y sin comisiones.",ar:"مصلحة أجهزة منزلية في الرباط: إصلاح الغسالات والمجمدات والمطابخ والأجهزة الصغيرة، في المنزل أو في الورشة. إيمان الشرقاوي تقدم مواعيد سريعة وأسعاراً واضحة معلنة قبل الإصلاح ونصائح صيانة لإطالة عمر أجهزتك. خدمة موثوقة في المغرب، عرض سعر مجاني وبدون عمولة."},
+p28:{fr:"Jardinier à Rabat pour l'entretien complet de vos espaces verts : tonte de pelouse, taille de haies et d'arbres, désherbage, plantation et arrosage automatique. Aziz Cherkaoui redonne vie à votre jardin avec soin et régularité, chez les particuliers comme en entreprise. Devis gratuit, jardinier vérifié au Maroc, sans commission.",es:"Jardinero en Rabat para el mantenimiento completo de tus zonas verdes: corte de césped, poda de setos y árboles, desherbado, plantación y riego automático. Aziz Cherkaoui devuelve la vida a tu jardín con cuidado y regularidad, en particulares y empresas. Presupuesto gratuito, jardinero verificado en Marruecos, sin comisiones.",ar:"بستاني في الرباط للعناية الكاملة بمساحاتك الخضراء: جز العشب، تقليم الأسوار والأشجار، إزالة الأعشاب، الغرس والسقي الأوتوماتيكي. عزيز الشرقاوي يعيد الحياة لحديقتك بعناية وانتظام، لدى الأفراد والشركات. عرض سعر مجاني، بستاني موثوق في المغرب، بدون عمولة."},
+p29:{fr:"Jardinier à Essaouira, habitué aux jardins exposés au vent et à l'air marin : entretien d'espaces verts, taille d'oliviers et de palmiers, création de massifs résistants et systèmes d'irrigation économes. Driss Amrani travaille avec passion et ponctualité. Contactez ce jardinier vérifié au Maroc, devis gratuit et sans commission.",es:"Jardinero en Esauira, acostumbrado a jardines expuestos al viento y al aire marino: mantenimiento de zonas verdes, poda de olivos y palmeras, creación de macizos resistentes y sistemas de riego eficientes. Driss Amrani trabaja con pasión y puntualidad. Contacta con este jardinero verificado en Marruecos, presupuesto gratuito y sin comisiones.",ar:"بستاني في الصويرة، معتاد على الحدائق المعرضة للرياح وهواء البحر: العناية بالمساحات الخضراء، تقليم الزيتون والنخيل، إنشاء أحواض مقاومة وأنظمة ري مقتصدة. إدريس العمراني يعمل بشغف والتزام. تواصل مع هذا البستاني الموثوق في المغرب، عرض سعر مجاني وبدون عمولة."},
+p30:{fr:"Jardinier à Agadir pour création et entretien de jardins : gazon naturel ou synthétique, plantation adaptée au climat chaud, taille, débroussaillage et entretien mensuel abordable. Hassan Ouazzani vous conseille gratuitement sur les plantes résistantes à la chaleur. Un jardinier vérifié au Maroc, contact direct, devis gratuit et sans commission.",es:"Jardinero en Agadir para creación y mantenimiento de jardines: césped natural o artificial, plantación adaptada al clima cálido, poda, desbroce y mantenimiento mensual asequible. Hassan Ouazzani te asesora gratis sobre plantas resistentes al calor. Un jardinero verificado en Marruecos, contacto directo, presupuesto gratuito y sin comisiones.",ar:"بستاني في أكادير لإنشاء والعناية بالحدائق: عشب طبيعي أو اصطناعي، غرس ملائم للمناخ الحار، تقليم، إزالة الأعشاب وعناية شهرية في المتناول. حسن الوزاني ينصحك مجاناً حول النباتات المقاومة للحرارة. بستاني موثوق في المغرب، تواصل مباشر، عرض سعر مجاني وبدون عمولة."}
+};
 const sampleAvatars=["men/32","men/45","women/44","men/75","women/65","men/22","men/51","men/63","men/85","men/12","men/41","men/76","women/21","women/68","men/58","men/36","men/91","men/15","men/67","men/29","men/83","men/47","men/54","men/71","women/33","women/57","women/12","men/94","men/38","men/61"];
-const sampleRaw=[["p1","Mohammed El Amrani","👨‍","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨‍","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩‍","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨‍","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨‍","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨‍","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨‍","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨‍","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨‍","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨‍","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨‍","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩‍","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩‍","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩‍","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨‍","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨‍","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
-const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:sampleMeta[r[3]].desc,photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
-
+const sampleRaw=[["p1","Mohammed El Amrani","👨","plomberie",0,4.9,127,"+212 6 12 34 56 78","212612345678"],["p2","Youssef Benali","👨","electricite",1,4.8,98,"+212 6 23 45 67 89","212623456789"],["p3","Fatima Zahra","👩","menage",2,5.0,156,"+212 6 34 56 78 90","212634567890"],["p4","Hassan Idrissi","👨‍🎨","peinture",3,4.9,84,"+212 6 45 67 89 01","212645678901"],["p5","Amina Berrada","👩","climatisation",4,4.7,73,"+212 6 56 78 90 12","212656789012"],["p6","Rachid Ouazzani","🧔","menuiserie",5,4.8,65,"+212 6 67 89 01 23","212667890123"],["p7","Khalid Tazi","👨","plomberie",1,4.7,88,"+212 6 70 11 22 33","212670112233"],["p8","Omar Cherkaoui","👨‍🔧","plomberie",2,4.6,64,"+212 6 70 22 33 44","212670223344"],["p9","Reda Alami","👨","electricite",0,4.8,102,"+212 6 70 33 44 55","212670334455"],["p10","Nabil Fassi","👨","electricite",3,4.6,57,"+212 6 70 44 55 66","212670445566"],["p11","Said Bennis","👨","peinture",0,4.7,91,"+212 6 70 55 66 77","212670556677"],["p12","Adil Hamdaoui","👨","peinture",5,4.5,46,"+212 6 70 66 77 88","212670667788"],["p13","Khadija Amrani","👩","menage",0,4.9,143,"+212 6 70 77 88 99","212670778899"],["p14","Salma Berrada","👩","menage",1,4.7,78,"+212 6 70 88 99 00","212670889900"],["p15","Hamid Ouazzani","👨‍🔧","climatisation",0,4.6,69,"+212 6 71 11 22 33","212671112233"],["p16","Karim Idrissi","👨","climatisation",2,4.7,83,"+212 6 71 22 33 44","212671223344"],["p17","Mustafa Tazi","🧔","menuiserie",4,4.8,72,"+212 6 71 33 44 55","212671334455"],["p18","Jamal Fassi","🧔","menuiserie",0,4.6,59,"+212 6 71 44 55 66","212671445566"],["p19","Abdellah Cherkaoui","👨","serrurerie",0,4.7,95,"+212 6 71 55 66 77","212671556677"],["p20","Hicham Alami","👨","serrurerie",1,4.6,61,"+212 6 71 66 77 88","212671667788"],["p21","Tarik Bennis","👨‍🔧","serrurerie",2,4.5,44,"+212 6 71 77 88 99","212671778899"],["p22","Brahim Hamdaoui","👷","maconnerie",2,4.7,86,"+212 6 71 88 99 00","212671889900"],["p23","Lahcen Bennis","👷","maconnerie",7,4.6,58,"+212 6 72 11 22 33","212672112233"],["p24","Ali Tazi","👷","maconnerie",4,4.5,41,"+212 6 72 22 33 44","212672223344"],["p25","Samira Tazi","👩","electromenager",0,4.8,104,"+212 6 72 33 44 55","212672334455"],["p26","Nadia Fassi","👩","electromenager",3,4.7,76,"+212 6 72 44 55 66","212672445566"],["p27","Imane Cherkaoui","👩","electromenager",1,4.6,63,"+212 6 72 55 66 77","212672556677"],["p28","Aziz Cherkaoui","👨","jardinage",1,4.7,82,"+212 6 72 66 77 88","212672667788"],["p29","Driss Amrani","👨","jardinage",18,4.6,54,"+212 6 72 77 88 99","212672778899"],["p30","Hassan Ouazzani","👨‍🌾","jardinage",5,4.5,39,"+212 6 72 88 99 00","212672889900"]];
+const samplePros=sampleRaw.map((r,i)=>({id:r[0],name:r[1],emoji:r[2],category:r[3],city_index:r[4],rating:r[5],reviews:r[6],phone:r[7],whatsapp:r[8],specialty:sampleMeta[r[3]].specialty,description:(sampleDescs[r[0]]||sampleMeta[r[3]].desc),photo_url:`https://randomuser.me/api/portraits/${sampleAvatars[i]}.jpg`,photos:[`https://picsum.photos/seed/${r[0]}-w1/400/300`,`https://picsum.photos/seed/${r[0]}-w2/400/300`]}));
 let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
 let currentModalProId=null,currentProProfileId=null,lastProsFilter={id:null,city:null,favs:false};
 let selectedRating=0,isEditingProfile=false,currentProfile=null,currentUserFavorites=[];
@@ -980,30 +983,26 @@ let prosData=[],proServicesMap={},editingProId=null,currentPhotos=[],pendingAvat
 let serviceMedia={},selectedProSvcIds=[],pendingProSvcImages={},editingServiceId=null;
 let currentQuoteProId=null;
 let chatStep="service",chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""};
-
 function t(k){return translations[currentLang][k]||k}
 function flagUrl(c,s=20){return `https://flagcdn.com/w${s}/${c}.png`}
-
 function toggleDrawer(){document.getElementById("drawer").classList.toggle("open");document.getElementById("drawerOverlay").classList.toggle("show")}
 function closeDrawer(){document.getElementById("drawer").classList.remove("open");document.getElementById("drawerOverlay").classList.remove("show")}
 function goSection(id){closeDrawer();showMainView();setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})},60)}
 function openLightbox(u){document.getElementById("lightboxImg").src=u;document.getElementById("lightbox").classList.add("show")}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("show")}
-
 function toggleLangDD(e){e.stopPropagation();document.getElementById("langDDMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-dd"))document.getElementById("langDDMenu").classList.remove("open")});
 function renderLangSwitchers(){
-  const langs=[{code:"fr",flag:"fr",label:"FR"},{code:"es",flag:"es",label:"ES"},{code:"ar",flag:"ma",label:"AR"}];
-  const cur=langs.find(l=>l.code===currentLang)||langs[0];
-  const f=document.getElementById("langDDFlag"),lb=document.getElementById("langDDLabel");
-  if(f)f.src=flagUrl(cur.flag);if(lb)lb.textContent=cur.label;
-  const menu=document.getElementById("langDDMenu");
-  if(menu)menu.innerHTML=langs.map(l=>`<button class="lang-dd-item ${currentLang===l.code?"active":""}" onclick="setLanguage('${l.code}');document.getElementById('langDDMenu').classList.remove('open')"><img class="flag" src="${flagUrl(l.flag)}" alt="">${l.label}</button>`).join("");
-  const d=document.getElementById("drawerLangSwitcher");
-  if(d)d.innerHTML=langs.map(l=>`<button class="lang-btn ${currentLang===l.code?"active":""}" data-lang="${l.code}"><img class="flag" src="${flagUrl(l.flag)}" alt=""><span>${l.label}</span></button>`).join("");
-  document.querySelectorAll("#drawerLangSwitcher .lang-btn").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
+const langs=[{code:"fr",flag:"fr",label:"FR"},{code:"es",flag:"es",label:"ES"},{code:"ar",flag:"ma",label:"AR"}];
+const cur=langs.find(l=>l.code===currentLang)||langs[0];
+const f=document.getElementById("langDDFlag"),lb=document.getElementById("langDDLabel");
+if(f)f.src=flagUrl(cur.flag);if(lb)lb.textContent=cur.label;
+const menu=document.getElementById("langDDMenu");
+if(menu)menu.innerHTML=langs.map(l=>`<button class="lang-dd-item ${currentLang===l.code?"active":""}" onclick="setLanguage('${l.code}');document.getElementById('langDDMenu').classList.remove('open')"><img class="flag" src="${flagUrl(l.flag)}" alt="">${l.label}</button>`).join("");
+const d=document.getElementById("drawerLangSwitcher");
+if(d)d.innerHTML=langs.map(l=>`<button class="lang-btn ${currentLang===l.code?"active":""}" data-lang="${l.code}"><img class="flag" src="${flagUrl(l.flag)}" alt=""><span>${l.label}</span></button>`).join("");
+document.querySelectorAll("#drawerLangSwitcher .lang-btn").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
 }
-
 function hideAllViews(){["mainView","favoritesView","proProfileView","adminView","faqView","contactView"].forEach(id=>{document.getElementById(id).style.display="none"})}
 function renderMainView(){hideAllViews();document.getElementById("mainView").style.display="block";currentProProfileId=null}
 function renderFavoritesView(){hideAllViews();document.getElementById("favoritesView").style.display="block";currentProProfileId=null;renderFavoritesPage();window.scrollTo({top:0,behavior:"smooth"})}
@@ -1011,7 +1010,6 @@ function showFaqView(){hideAllViews();document.getElementById("faqView").style.d
 function showContactView(){hideAllViews();document.getElementById("contactView").style.display="block";window.scrollTo({top:0,behavior:"smooth"})}
 function proAvatarHtml(p){return p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}
 function starsStr(n){const f=Math.round(n);return "★".repeat(f)+"☆".repeat(5-f)}
-
 function socialLinksHtml(p){const L=(p.links||{});const out=[];
 if(L.facebook)out.push(`<a href="${L.facebook}" target="_blank">📘 Facebook</a>`);
 if(L.instagram)out.push(`<a href="${L.instagram}" target="_blank">📸 Instagram</a>`);
@@ -1019,53 +1017,50 @@ if(L.tiktok)out.push(`<a href="${L.tiktok}" target="_blank">🎵 TikTok</a>`);
 if(L.gmb)out.push(`<a href="${L.gmb}" target="_blank">📍 Google</a>`);
 if(L.website)out.push(`<a href="${L.website}" target="_blank">🌐 ${t("field_website")}</a>`);
 return out.join("")}
-
 function setHeroCard(){const p=prosData.find(x=>x.id==="p1");const img=document.getElementById("vmcAvatarImg");if(img)img.src=(p&&p.photo_url)||"https://randomuser.me/api/portraits/men/32.jpg"}
-
 function renderStats(){
-  const pros=prosData.length;
-  const cities=new Set(prosData.map(p=>p.city_index)).size;
-  const services=servicesData.length;
-  let sat=null;
-  if(pros>0){const avg=prosData.reduce((a,p)=>a+p.rating,0)/pros;sat=Math.round(avg/5*100)+"%";}
-  const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");
-  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
-  set("statPros",pros>0?pros.toLocaleString(loc):"25 000+");
-  set("statCities",cities>0?cities+"+":"26+");
-  set("statServices",services>0?services+"+":"160+");
-  set("statSatisfaction",sat||"98%");
-  set("statProsCard",pros>0?pros.toLocaleString(loc):"25 000+");
-  set("statSatCard",sat||"98%");
+const pros=prosData.length;
+const cities=new Set(prosData.map(p=>p.city_index)).size;
+const services=servicesData.length;
+let sat=null;
+if(pros>0){const avg=prosData.reduce((a,p)=>a+p.rating,0)/pros;sat=Math.round(avg/5*100)+"%";}
+const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");
+const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+set("statPros",pros>0?pros.toLocaleString(loc):"25 000+");
+set("statCities",cities>0?cities+"+":"26+");
+set("statServices",services>0?services+"+":"160+");
+set("statSatisfaction",sat||"98%");
+set("statProsCard",pros>0?pros.toLocaleString(loc):"25 000+");
+set("statSatCard",sat||"98%");
 }
-
 function renderProProfileView(proId){
-  const p=prosData.find(x=>x.id===proId);if(!p){renderMainView();return}
-  const banner=document.getElementById("ppBanner");
-  banner.style.backgroundImage=p.cover_url?`url("${p.cover_url}")`:"";
-  document.getElementById("ppAvatar").innerHTML=proAvatarHtml(p);
-  document.getElementById("ppName").textContent=p.name;
-  document.getElementById("ppSpecialty").textContent=p.specialty[currentLang];
-  document.getElementById("ppCity").textContent=p.city[currentLang];
-  document.getElementById("ppRating").textContent=`★ ${p.rating.toFixed(1)}`;
-  document.getElementById("ppReviewsCount").textContent=`${p.reviews} ${t("reviews")}`;
-  document.getElementById("ppSocial").innerHTML=socialLinksHtml(p);
-  document.getElementById("ppDesc").textContent=p.desc[currentLang];
-  document.getElementById("ppPhoneLink").href="tel:"+p.phone.replace(/\s/g,"");
-  document.getElementById("ppWaLink").href="https://wa.me/"+p.whatsapp;
-  const svcs=proServicesMap[p.id]||[];const primary=servicesData.find(s=>s.id===p.category);
-  let svcHtml="";
-  if(svcs.length>0){svcHtml=svcs.map(sv=>{const sd=servicesData.find(s=>s.id===sv.service_id);if(!sd)return"";const img=sv.image_url?`<img src="${sv.image_url}" alt="">`:"";return `<span class="pp-service-chip">${img}${sd.icon} ${sd.name[currentLang]}</span>`}).join("")}
-  else if(primary){svcHtml=`<span class="pp-service-chip">${primary.icon} ${primary.name[currentLang]}</span>`}
-  document.getElementById("ppServices").innerHTML=svcHtml;
-  const galSec=document.getElementById("ppGallerySection"),gallery=document.getElementById("ppGallery");
-  if(p.photos&&p.photos.length>0){galSec.style.display="block";gallery.innerHTML=p.photos.map(u=>`<div class="pp-gallery-item" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("")}
-  else{galSec.style.display="none";gallery.innerHTML=""}
-  document.getElementById("ppRevSummary").innerHTML=`<span class="big">${p.rating.toFixed(1)}</span><span><span class="stars">${starsStr(p.rating)}</span><br><span class="count">${p.reviews} ${t("reviews")}</span></span>`;
-  const favBtn=document.getElementById("ppFavBtn");const fav=isFavorite(p.id);
-  favBtn.textContent=fav?"♥":"♡";favBtn.classList.toggle("active",fav);favBtn.setAttribute("onclick",`toggleFavorite('${p.id}', event)`);
-  renderReviewsBlock(p.id,"reviewsProfile");
-  hideAllViews();document.getElementById("proProfileView").style.display="block";currentProProfileId=proId;
-  window.scrollTo({top:0,behavior:"smooth"});
+const p=prosData.find(x=>x.id===proId);if(!p){renderMainView();return}
+const banner=document.getElementById("ppBanner");
+banner.style.backgroundImage=p.cover_url?`url("${p.cover_url}")`:"";
+document.getElementById("ppAvatar").innerHTML=proAvatarHtml(p);
+document.getElementById("ppName").textContent=p.name;
+document.getElementById("ppSpecialty").textContent=p.specialty[currentLang];
+document.getElementById("ppCity").textContent=p.city[currentLang];
+document.getElementById("ppRating").textContent=`★ ${p.rating.toFixed(1)}`;
+document.getElementById("ppReviewsCount").textContent=`${p.reviews} ${t("reviews")}`;
+document.getElementById("ppSocial").innerHTML=socialLinksHtml(p);
+document.getElementById("ppDesc").textContent=p.desc[currentLang];
+document.getElementById("ppPhoneLink").href="tel:"+p.phone.replace(/\s/g,"");
+document.getElementById("ppWaLink").href="https://wa.me/"+p.whatsapp;
+const svcs=proServicesMap[p.id]||[];const primary=servicesData.find(s=>s.id===p.category);
+let svcHtml="";
+if(svcs.length>0){svcHtml=svcs.map(sv=>{const sd=servicesData.find(s=>s.id===sv.service_id);if(!sd)return"";const img=sv.image_url?`<img src="${sv.image_url}" alt="">`:"";return `<span class="pp-service-chip">${img}${sd.icon} ${sd.name[currentLang]}</span>`}).join("")}
+else if(primary){svcHtml=`<span class="pp-service-chip">${primary.icon} ${primary.name[currentLang]}</span>`}
+document.getElementById("ppServices").innerHTML=svcHtml;
+const galSec=document.getElementById("ppGallerySection"),gallery=document.getElementById("ppGallery");
+if(p.photos&&p.photos.length>0){galSec.style.display="block";gallery.innerHTML=p.photos.map(u=>`<div class="pp-gallery-item" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("")}
+else{galSec.style.display="none";gallery.innerHTML=""}
+document.getElementById("ppRevSummary").innerHTML=`<span class="big">${p.rating.toFixed(1)}</span><span><span class="stars">${starsStr(p.rating)}</span><br><span class="count">${p.reviews} ${t("reviews")}</span></span>`;
+const favBtn=document.getElementById("ppFavBtn");const fav=isFavorite(p.id);
+favBtn.textContent=fav?"♥":"♡";favBtn.classList.toggle("active",fav);favBtn.setAttribute("onclick",`toggleFavorite('${p.id}', event)`);
+renderReviewsBlock(p.id,"reviewsProfile");
+hideAllViews();document.getElementById("proProfileView").style.display="block";currentProProfileId=proId;
+window.scrollTo({top:0,behavior:"smooth"});
 }
 function renderAdminView(){hideAllViews();document.getElementById("adminView").style.display="block";renderAdminProList();renderSvcMediaList();renderSvcCategories();window.scrollTo({top:0,behavior:"smooth"})}
 function showMainView(){if(location.hash&&location.hash!=="#")location.hash="";else renderMainView()}
@@ -1073,18 +1068,17 @@ function showFavoritesView(){location.hash="favorites"}
 function showProProfile(id){location.hash="pro="+id}
 function showAdminView(){if(!isAdmin()){showToast(t("admin_no_access"));return}location.hash="admin"}
 function handleRoute(){
-  const h=location.hash.replace(/^#/,"");
-  if(h==="admin"){isAdmin()?renderAdminView():renderMainView()}
-  else if(h.startsWith("pro=")){const id=h.substring(4);prosData.some(p=>p.id===id)?renderProProfileView(id):renderMainView()}
-  else if(h==="favorites")renderFavoritesView();
-  else if(h==="faq")showFaqView();
-  else if(h==="contact")showContactView();
-  else renderMainView();
+const h=location.hash.replace(/^#/,"");
+if(h==="admin"){isAdmin()?renderAdminView():renderMainView()}
+else if(h.startsWith("pro=")){const id=h.substring(4);prosData.some(p=>p.id===id)?renderProProfileView(id):renderMainView()}
+else if(h==="favorites")renderFavoritesView();
+else if(h==="faq")showFaqView();
+else if(h==="contact")showContactView();
+else renderMainView();
 }
 window.addEventListener("hashchange",handleRoute);
 function copyProfileLink(){const u=location.href;if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>showToast(t("link_copied"))).catch(()=>showToast(u));else showToast(u)}
 function openProfileFromModal(){const id=currentModalProId;closeModal();if(id)showProProfile(id)}
-
 async function initAuth(){const{data:{session}}=await sb.auth.getSession();if(session){await loadProfile(session.user.id);if(currentProfile)currentProfile.email=session.user.email;await loadFavorites()}else{currentProfile=null;currentUserFavorites=[]}updateAuthUI()}
 async function loadProfile(id){const{data,error}=await sb.from("profiles").select("*").eq("id",id).maybeSingle();currentProfile=(!error&&data)?data:null}
 async function loadFavorites(){if(!currentProfile){currentUserFavorites=[];return}const{data,error}=await sb.from("favorites").select("pro_id").eq("user_id",currentProfile.id);currentUserFavorites=error?[]:(data||[]).map(f=>f.pro_id)}
@@ -1097,18 +1091,16 @@ if(pw!==cf){showToast(t("auth_error_confirm"));return}
 if(!terms){showToast(t("auth_error_terms"));return}
 const{data,error}=await sb.auth.signUp({email,password:pw,options:{data:{name,phone:full,city,role}}});
 if(error){showToast(error.message);return}
-if(data.user)await sb.from("profiles").insert({id:data.user.id,name,email,phone:full,city,role});
+if(data.user)await sb.from("profiles").upsert({id:data.user.id,name,email,phone:full,city,role});
 if(data.session){await initAuth();closeAuth();showToast(t("auth_success_register").replace("{n}",name.split(" ")[0]))}else{closeAuth();showToast(t("auth_check_email"))}}
 async function handleLogin(e){e.preventDefault();const email=document.getElementById("loginEmail").value.trim().toLowerCase();const pw=document.getElementById("loginPassword").value;const{error}=await sb.auth.signInWithPassword({email,password:pw});if(error){showToast(t("auth_error_notfound"));return}await initAuth();closeAuth();showToast(t("auth_success_login").replace("{n}",currentProfile?currentProfile.name.split(" ")[0]:""))}
 async function logout(){await sb.auth.signOut();currentProfile=null;currentUserFavorites=[];updateAuthUI();showToast(t("auth_logout_success"))}
 function isAdmin(){return currentProfile&&currentProfile.role==="admin"}
 function isPro(){return currentProfile&&currentProfile.role==="pro"}
-
 function renderCountryDropdown(){document.getElementById("countryDropdown").innerHTML=countries.map(c=>`<div class="country-option" onclick="selectCountry('${c.code}');event.stopPropagation()"><img class="flag" src="${flagUrl(c.code,40)}" alt=""><span class="co-name">${c.name}</span><span class="co-dial">${c.dial}</span></div>`).join("")}
 function toggleCountryDropdown(e){e.stopPropagation();document.getElementById("countryDropdown").classList.toggle("open")}
 function selectCountry(code){selectedCountry=countries.find(c=>c.code===code)||countries[0];document.getElementById("countryFlag").src=flagUrl(selectedCountry.code,40);document.getElementById("countryDial").textContent=selectedCountry.dial;document.getElementById("countryDropdown").classList.remove("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".country-select"))document.getElementById("countryDropdown").classList.remove("open")});
-
 function isFavorite(id){return currentUserFavorites.includes(id)}
 async function toggleFavorite(proId,event){if(event)event.stopPropagation();if(!currentProfile){showToast(t("favorites_login_required"));openAuth("login");return}
 if(currentUserFavorites.includes(proId)){await sb.from("favorites").delete().eq("user_id",currentProfile.id).eq("pro_id",proId);currentUserFavorites=currentUserFavorites.filter(i=>i!==proId);showToast(t("favorites_removed"))}
@@ -1120,7 +1112,6 @@ if(currentProProfileId===proId)updateProFavBtn(proId)}
 function toggleFavoriteFromModal(e){if(currentModalProId)toggleFavorite(currentModalProId,e)}
 function updateModalFavButton(id){const b=document.getElementById("modalFavBtn");if(!b)return;const f=isFavorite(id);b.textContent=f?"♥":"♡";b.classList.toggle("active",f)}
 function updateProFavBtn(id){const b=document.getElementById("ppFavBtn");if(!b)return;const f=isFavorite(id);b.textContent=f?"♥":"♡";b.classList.toggle("active",f)}
-
 function formatDate(iso){if(!iso)return "—";const loc=currentLang==="ar"?"ar-MA":(currentLang==="es"?"es-ES":"fr-FR");try{return new Date(iso).toLocaleDateString(loc,{year:"numeric",month:"long",day:"numeric"})}catch(e){return new Date(iso).toLocaleDateString()}}
 function openProfile(){if(!currentProfile){openAuth("login");return}isEditingProfile=false;renderProfile();document.getElementById("profileModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeProfile(){document.getElementById("profileModal").classList.remove("active");document.body.style.overflow="";isEditingProfile=false}
@@ -1137,7 +1128,6 @@ async function uploadUserAvatar(f){if(!f||!currentProfile)return;const safe=f.na
 async function saveProfile(){if(!currentProfile)return;const name=document.getElementById("editName").value.trim();const phone=document.getElementById("editPhone").value.trim();const city=document.getElementById("editCity").value;if(!name){showToast(t("auth_error_required"));return}
 const{error}=await sb.from("profiles").update({name,phone,city}).eq("id",currentProfile.id);if(error){showToast(error.message);return}
 currentProfile.name=name;currentProfile.phone=phone;currentProfile.city=city;showToast(t("profile_saved"));isEditingProfile=false;renderProfile();updateAuthUI()}
-
 async function renderReviewsBlock(proId,blockId){const block=document.getElementById(blockId);if(!block)return;const{data,error}=await sb.from("reviews").select("*").eq("pro_id",proId).order("created_at",{ascending:false});const reviews=error?[]:(data||[]);const starsId=blockId+"_stars",commentId=blockId+"_comment";
 const list=reviews.length===0?`<p class="no-reviews">${t("reviews_none")}</p>`:reviews.map(r=>`<div class="review-item"><div class="review-header"><span class="review-stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</span><span class="review-author">${r.user_name}</span><span class="review-date">${formatDate(r.created_at)}</span></div><p class="review-comment">${r.comment}</p></div>`).join("");
 let form;
@@ -1147,13 +1137,11 @@ block.innerHTML=`<div class="reviews-list">${list}</div><div class="review-form"
 function setRating(v,sid){selectedRating=v;document.querySelectorAll("#"+sid+" .star").forEach((s,i)=>{s.textContent=i<v?"★":"☆";s.classList.toggle("filled",i<v)})}
 async function submitReview(proId,blockId){if(!currentProfile)return;if(selectedRating===0){showToast(t("reviews_select_rating"));return}const el=document.getElementById(blockId+"_comment");const c=el?el.value.trim():"";if(!c){showToast(t("reviews_empty_comment"));return}
 const{error}=await sb.from("reviews").insert({user_id:currentProfile.id,user_name:currentProfile.name,pro_id:proId,rating:selectedRating,comment:c});if(error){showToast(error.message);return}selectedRating=0;renderReviewsBlock(proId,blockId);showToast(t("reviews_success"))}
-
-async function loadServices(){const{data,error}=await sb.from("services").select("*").order("sort");if(!error&&data&&data.length>0){servicesData=data.map(r=>({id:r.id,icon:r.icon||"🛠️",name:{fr:r.name_fr,es:r.name_es||r.name_fr,ar:r.name_ar||r.name_fr},desc:{fr:r.desc_fr||r.name_fr,es:r.desc_es||r.name_es||r.name_fr,ar:r.desc_ar||r.name_ar||r.name_fr}}))}}
-async function loadProfessionals(){const{data,error}=await sb.from("professionals").select("*").order("id");if(!error&&data&&data.length>0){prosData=data.map(r=>({id:r.id,name:r.name,emoji:r.emoji,category:r.category,specialty:r.specialty||{fr:r.name,es:r.name,ar:r.name},city:citiesData[r.city_index]||citiesData[0],rating:parseFloat(r.rating)||4.5,reviews:r.reviews||0,phone:r.phone||"",whatsapp:r.whatsapp||"",desc:r.description||{fr:"",es:"",ar:""},photos:r.photos||[],photo_url:r.photo_url||"",cover_url:r.cover_url||"",links:r.links||{},user_id:r.user_id||null}))}}
+async function loadServices(){const{data,error}=await sb.from("services").select("*").order("sort");if(!error&&data&&data.length>0){servicesData=data.map(r=>({id:r.id,icon:r.icon||"🛠️",name:{fr:r.name_fr,es:r.name_es||r.name_fr,ar:r.name_ar||r.name_fr},desc:{fr:r.desc_fr||r.name_fr,es:r.desc_es||r.name_es||r.name_fr,ar:r.desc_ar||r.name_ar||r.name_fr},sort:r.sort}))}}
+async function loadProfessionals(){const{data,error}=await sb.from("professionals").select("*").order("id");if(!error&&data&&data.length>0){prosData=data.map(r=>({id:r.id,name:r.name,emoji:r.emoji,category:r.category,specialty:(r.specialty&&{fr:r.specialty.fr||r.name,es:r.specialty.es||r.specialty.fr||r.name,ar:r.specialty.ar||r.specialty.fr||r.name})||{fr:r.name,es:r.name,ar:r.name},city:citiesData[r.city_index]||citiesData[0],rating:parseFloat(r.rating)||4.5,reviews:r.reviews||0,phone:r.phone||"",whatsapp:r.whatsapp||"",desc:(r.description&&{fr:r.description.fr||"",es:r.description.es||"",ar:r.description.ar||""})||{fr:"",es:"",ar:""},photos:r.photos||[],photo_url:r.photo_url||"",cover_url:r.cover_url||"",links:r.links||{},user_id:r.user_id||null}))}}
 async function loadProServicesAll(){const{data,error}=await sb.from("pro_services").select("*");proServicesMap={};if(!error&&data)data.forEach(r=>{if(!proServicesMap[r.pro_id])proServicesMap[r.pro_id]=[];proServicesMap[r.pro_id].push({service_id:r.service_id,image_url:r.image_url})})}
 async function loadServiceMedia(){const{data,error}=await sb.from("service_media").select("*");serviceMedia={};if(!error&&data)data.forEach(r=>serviceMedia[r.id]=r.url)}
 async function loadSampleToDB(){if(!isAdmin())return;for(const s of samplePros){await sb.from("professionals").upsert(s)}await loadProfessionals();setHeroCard();renderAdminProList();renderPros(null);showToast(t("admin_saved"))}
-
 function showPhotosSection(s){document.getElementById("proPhotosSection").style.display=s?"block":"none"}
 function renderPhotosList(){document.getElementById("proPhotosList").innerHTML=currentPhotos.map((u,i)=>`<div class="pro-photo-thumb"><img src="${u}" alt=""><button type="button" class="pro-photo-del" onclick="removeProPhoto(${i})">✕</button></div>`).join("")}
 async function uploadProPhotos(files){if(!currentProfile)return;for(const f of files){const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`${currentProfile.id}/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);continue}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);currentPhotos.push(data.publicUrl)}renderPhotosList()}
@@ -1165,24 +1153,21 @@ async function uploadCover(f){if(!f)return;const safe=f.name.replace(/[^\w.\-]+/
 document.getElementById("pfCoverInput").addEventListener("change",e=>uploadCover(e.target.files[0]));
 function setCoverPreview(u){const p=document.getElementById("pfCoverPreview");if(u){p.src=u;p.style.display="block"}else{p.removeAttribute("src");p.style.display="none"}}
 async function uploadServiceImage(sid,f){if(!f)return;if(!isAdmin()){showToast(t("admin_no_access"));return}const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`services/${sid}_${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);await sb.from("service_media").upsert({id:sid,url:data.publicUrl});await loadServiceMedia();renderServices();renderSvcMediaList();showToast(t("admin_saved"))}
-
 function renderSvcCategories(){const c=document.getElementById("svcCategoriesList");if(!c)return;c.innerHTML=servicesData.map(s=>`<div class="svc-media-row"><span class="svc-media-thumb">${s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><button class="admin-btn-edit" onclick="openServiceForm('${s.id}')">✏️</button><button class="admin-btn-del" onclick="deleteService('${s.id}')">🗑️</button></div>`).join("")}
 function openServiceForm(id){if(!isAdmin())return;editingServiceId=id||null;const s=id?servicesData.find(x=>x.id===id):null;document.getElementById("svcIcon").value=s?s.icon:"";document.getElementById("svcNameFr").value=s?s.name.fr:"";document.getElementById("svcNameEs").value=s?(s.name.es||""):"";document.getElementById("svcNameAr").value=s?(s.name.ar||""):"";document.getElementById("serviceFormTitle").textContent=s?t("admin_edit_category"):t("admin_add_category");document.getElementById("serviceFormModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeServiceForm(){document.getElementById("serviceFormModal").classList.remove("active");document.body.style.overflow=""}
 async function saveService(e){e.preventDefault();if(!isAdmin())return;const icon=document.getElementById("svcIcon").value.trim()||"🛠️";const fr=document.getElementById("svcNameFr").value.trim();const es=document.getElementById("svcNameEs").value.trim()||fr;const ar=document.getElementById("svcNameAr").value.trim()||fr;if(!fr){showToast(t("admin_name_required"));return}
 let id=editingServiceId;if(!id){id=fr.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"");if(servicesData.some(s=>s.id===id))id=id+"_"+Date.now().toString().slice(-4)}
 const ex=servicesData.find(s=>s.id===id);
-const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:servicesData.length+1};
+const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:(ex&&ex.sort!=null)?ex.sort:servicesData.length+1};
 const{error}=await sb.from("services").upsert(payload);if(error){showToast(error.message);return}
 await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
-async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
-
+async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;await sb.from("pro_services").delete().eq("service_id",id);await sb.from("service_media").delete().eq("id",id);const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
 function renderServiceSelect(){
-  const sel=document.getElementById("serviceSelect");
-  if(!sel)return;
-  sel.innerHTML=`<option value="">${t("search_all_services")}</option>`+servicesData.map(s=>`<option value="${s.id}">${s.icon} ${s.name[currentLang]}</option>`).join("");
+const sel=document.getElementById("serviceSelect");
+if(!sel)return;
+sel.innerHTML=`<option value="">${t("search_all_services")}</option>`+servicesData.map(s=>`<option value="${s.id}">${s.icon} ${s.name[currentLang]}</option>`).join("");
 }
-
 function prepareProForm(){document.getElementById("pfCategory").innerHTML=servicesData.map(s=>`<option value="${s.id}">${s.name[currentLang]}</option>`).join("");document.getElementById("pfCity").innerHTML=citiesData.map((c,i)=>`<option value="${i}">${c[currentLang]}</option>`).join("");renderProSvcGrid()}
 function renderProSvcGrid(){const g=document.getElementById("proSvcGrid");g.innerHTML=servicesData.map(s=>`<label class="pro-svc-item ${selectedProSvcIds.includes(s.id)?"checked":""}"><input type="checkbox" value="${s.id}" ${selectedProSvcIds.includes(s.id)?"checked":""} onchange="toggleProSvc('${s.id}',this)"><span class="svc-icon">${s.icon}</span><span class="svc-label">${s.name[currentLang]}</span></label>`).join("");renderProSvcImgRows()}
 function toggleProSvc(id,input){if(input.checked){if(!selectedProSvcIds.includes(id))selectedProSvcIds.push(id)}else{selectedProSvcIds=selectedProSvcIds.filter(i=>i!==id)}input.closest(".pro-svc-item").classList.toggle("checked",input.checked);renderProSvcImgRows()}
@@ -1217,37 +1202,35 @@ else{payload.id="p"+(Date.now()%1000000);payload.reviews=0;if(!isAdmin()&&curren
 await saveProSvc(targetId);await loadProfessionals();setHeroCard();renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);
 if(isAdmin()&&document.getElementById("adminView").style.display!=="none")renderAdminProList();
 closeProForm();showToast(t("admin_saved"))}
-async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
+async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;await sb.from("pro_services").delete().eq("pro_id",id);await sb.from("favorites").delete().eq("pro_id",id);await sb.from("reviews").delete().eq("pro_id",id);const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
 function renderAdminProList(){const c=document.getElementById("adminProList");if(prosData.length===0){c.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>${t("no_results_title")}</p></div>`;return}
 c.innerHTML=prosData.map(p=>`<div class="admin-pro-row"><span class="admin-pro-emoji">${p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}</span><div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div><div class="admin-pro-actions"><button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button><button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button></div></div>`).join("")}
 function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])"></div>`}).join("")}
-
 function updateAuthUI(){
-  const area=document.getElementById("authArea");
-  const dAuth=document.getElementById("drawerAuth");
-  const dAdmin=document.getElementById("drawerAdminBtn");
-  const dPro=document.getElementById("drawerProBtn");
-  let rolebtns="";let chip="";
-  const loginbtn=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;
-  if(currentProfile){
-    const av=currentProfile.avatar_url;
-    const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();
-    const first=currentProfile.name.split(" ")[0];
-    const ia=isAdmin();const ip=isPro();
-    rolebtns=(ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:"")+(ip&&!ia?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:"");
-    chip=`<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
-    if(dAdmin)dAdmin.style.display=ia?"flex":"none";
-    if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none";
-    if(area)area.innerHTML=rolebtns+chip;
-    if(dAuth)dAuth.innerHTML=chip;
-  }else{
-    if(area)area.innerHTML=loginbtn;
-    if(dAuth)dAuth.innerHTML=loginbtn;
-    if(dAdmin)dAdmin.style.display="none";
-    if(dPro)dPro.style.display="none";
-  }
+const area=document.getElementById("authArea");
+const dAuth=document.getElementById("drawerAuth");
+const dAdmin=document.getElementById("drawerAdminBtn");
+const dPro=document.getElementById("drawerProBtn");
+let rolebtns="";let chip="";
+const loginbtn=`<button class="auth-btn" onclick="openAuth('login')">👤 <span class="auth-btn-text">${t("auth_login_btn")}</span></button>`;
+if(currentProfile){
+const av=currentProfile.avatar_url;
+const ini=av?`<img src="${av}" alt="">`:currentProfile.name.charAt(0).toUpperCase();
+const first=currentProfile.name.split(" ")[0];
+const ia=isAdmin();const ip=isPro();
+rolebtns=(ia?`<button class="header-role-btn" onclick="showAdminView()" title="${t("admin_title")}">⚙️</button>`:"")+(ip&&!ia?`<button class="header-role-btn" onclick="openMyProCard()" title="${t("my_pro_card")}">🛠️</button>`:"");
+chip=`<div class="user-chip"><div class="user-avatar" onclick="openProfile()" title="${t("profile_edit")}">${ini}</div><span class="user-name" onclick="openProfile()">${first}</span><button class="logout-btn" onclick="logout()" title="${t("auth_logout")}"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></button></div>`;
+if(dAdmin)dAdmin.style.display=ia?"flex":"none";
+if(dPro)dPro.style.display=(!ia&&ip)?"flex":"none";
+if(area)area.innerHTML=rolebtns+chip;
+if(dAuth)dAuth.innerHTML=chip;
+}else{
+if(area)area.innerHTML=loginbtn;
+if(dAuth)dAuth.innerHTML=loginbtn;
+if(dAdmin)dAdmin.style.display="none";
+if(dPro)dPro.style.display="none";
 }
-
+}
 function renderCitySelects(){const o=citiesData.map(c=>`<option value="${c[currentLang]}">${c[currentLang]}</option>`).join("");document.getElementById("citySelect").innerHTML=`<option value="" disabled selected>${t("search_city_label")}</option>`+o;document.getElementById("regCity").innerHTML=`<option value="" disabled selected>${t("auth_city_placeholder")}</option>`+o}
 function renderFeatures(){document.getElementById("featuresGrid").innerHTML=featuresData.map(f=>`<div class="feature-card reveal"><div class="feature-icon">${f.icon}</div><h3>${f.title[currentLang]}</h3><p>${f.desc[currentLang]}</p></div>`).join("")}
 function renderServices(){renderStats();document.getElementById("servicesGrid").innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];const v=img?`<img class="service-img" src="${img}" alt="">`:`<div class="service-icon">${s.icon}</div>`;return `<div class="service-card reveal" onclick="filterByService('${s.id}')">${v}<h3>${s.name[currentLang]}</h3><p>${s.desc[currentLang]}</p></div>`}).join("");
@@ -1270,13 +1253,13 @@ const fp=prosData.filter(p=>currentUserFavorites.includes(p.id));fc.textContent=
 if(fp.length===0)c.innerHTML=`<div class="empty-state"><div class="empty-icon">♡</div><h3>${t("favorites")}</h3><p>${t("favorites_empty")}</p></div>`;
 else c.innerHTML=fp.map(p=>{const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center"`:"";return `<div class="pro-card"><button class="fav-btn active" onclick="toggleFavorite('${p.id}',event)">♥</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
 function searchServices(){
-  const svc=document.getElementById("serviceSelect").value;
-  const city=document.getElementById("citySelect").value;
-  if(!svc&&!city){showToast(t("toast_field_empty"));return}
-  renderPros(svc||null,city||null,false);
-  const c=document.getElementById("prosGrid").querySelectorAll(".pro-card").length;
-  showToast(c>0?t("toast_search_results").replace("{n}",c):t("no_results_title"));
-  document.getElementById("pros").scrollIntoView({behavior:"smooth"});
+const svc=document.getElementById("serviceSelect").value;
+const city=document.getElementById("citySelect").value;
+if(!svc&&!city){showToast(t("toast_field_empty"));return}
+renderPros(svc||null,city||null,false);
+const c=document.getElementById("prosGrid").querySelectorAll(".pro-card").length;
+showToast(c>0?t("toast_search_results").replace("{n}",c):t("no_results_title"));
+document.getElementById("pros").scrollIntoView({behavior:"smooth"});
 }
 function filterByService(id){renderPros(id,null,false);document.getElementById("pros").scrollIntoView({behavior:"smooth"})}
 function fillProModal(id){const p=prosData.find(x=>x.id===id);if(!p)return;document.getElementById("modalAvatar").innerHTML=proAvatarHtml(p);document.getElementById("modalName").textContent=p.name;document.getElementById("modalSpecialty").textContent=p.specialty[currentLang];document.getElementById("modalCity").textContent=p.city[currentLang];document.getElementById("modalPhone").textContent=p.phone;document.getElementById("modalRating").textContent=`★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})`;document.getElementById("modalDesc").textContent=p.desc[currentLang];document.getElementById("modalCallBtn").href="tel:"+p.phone.replace(/\s/g,"");document.getElementById("modalWaBtn").href="https://wa.me/"+p.whatsapp}
@@ -1288,22 +1271,24 @@ function switchAuthTab(tab){document.getElementById("loginForm").style.display=t
 function selectRole(r){document.querySelectorAll(".role-option").forEach(o=>o.classList.remove("selected"));const t2=r==="pro"?document.getElementById("rolePro"):document.getElementById("roleClient");t2.classList.add("selected");t2.querySelector("input").checked=true}
 function openAuthAsPro(){openAuth("register");selectRole("pro")}
 function openLegalModal(type){const c=legalContent[type];if(!c)return;const d=c[currentLang]||c.fr;document.getElementById("legalBody").innerHTML=`<h2>${d.title}</h2>${d.html}`;document.getElementById("legalModal").classList.add("active");document.body.style.overflow="hidden"}
-function closeLegalModal(){document.getElementById("legalModal").classList.remove("active");document.body.style.overflow="";const tc=document.getElementById("regTerms");if(tc&&!tc.checked&&document.getElementById("authModal").classList.contains("active"))tc.checked=true}
+function closeLegalModal(){document.getElementById("legalModal").classList.remove("active");document.body.style.overflow=document.querySelector(".modal.active")?"hidden":""}
 function sendContact(){const n=document.getElementById("ctName").value.trim();const em=document.getElementById("ctEmail").value.trim();const s=document.getElementById("ctSubject").value.trim();const m=document.getElementById("ctMessage").value.trim();if(!n||!em||!m){showToast(t("auth_error_required"));return}
-const body=`${t("contact_form_name")}: ${n}\n${t("contact_form_email")}: ${em}\n${t("contact_form_subject")}: ${s}\n\n${m}`;
+const body=`${t("contact_form_name")}: ${n}
+${t("contact_form_email")}: ${em}
+${t("contact_form_subject")}: ${s}
+${m}`;
 window.location.href=`mailto:contact@professionnelsmaroc.click?subject=${encodeURIComponent(s||"Contact Professionnels Maroc")}&body=${encodeURIComponent(body)}`;
 showToast(t("contact_sent"))}
 function showCookieBanner(){if(localStorage.getItem("clickpubli_cookies")!==null)return;document.getElementById("cookieBanner").classList.add("show")}
 function acceptCookies(){localStorage.setItem("clickpubli_cookies","accepted");document.getElementById("cookieBanner").classList.remove("show")}
 function rejectCookies(){localStorage.setItem("clickpubli_cookies","rejected");document.getElementById("cookieBanner").classList.remove("show")}
-
 function applyI18nText(){
-  document.documentElement.lang=currentLang;
-  document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";
-  document.body.classList.toggle("rtl",currentLang==="ar");
-  document.title=t("doc_title");
-  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
+document.documentElement.lang=currentLang;
+document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";
+document.body.classList.toggle("rtl",currentLang==="ar");
+document.title=t("doc_title");
+document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
+document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
 }
 function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);applyI18nText();
 renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();renderPros(null);updateAuthUI();
@@ -1313,7 +1298,6 @@ if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){rende
 if(document.getElementById("faqView").style.display!=="none")renderFaqList();
 if(currentModalProId&&document.getElementById("contactModal").classList.contains("active")){fillProModal(currentModalProId);renderReviewsBlock(currentModalProId,"reviewsModal");updateModalFavButton(currentModalProId)}
 if(document.getElementById("cookieBanner").classList.contains("show")){document.querySelectorAll("#cookieBanner [data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))})}}
-
 function toggleChat(){const p=document.getElementById("chatPanel");if(!p)return;p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
 function closeChatPanel(){const p=document.getElementById("chatPanel");if(p)p.classList.remove("open")}
 function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
@@ -1331,8 +1315,15 @@ function chatPickCity(i){const x=citiesData[i];if(!x)return;chatData.city=x;addC
 function chatPickUrgency(i){const u=chatUrgOpts[currentLang][i];if(!u)return;chatData.urgency=u;addChat(u,"user");chatStep="name";addChat(t("chat_q_name"),"bot");renderChatChips()}
 function chatSkipEmail(){chatData.email="";addChat(t("chat_skip"),"user");chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
 function chatSummaryText(){const s=chatData.service?chatData.service.name[currentLang]:"—";const c=chatData.city?chatData.city[currentLang]:"—";
-let out=`${t("chat_summary_title")}\n• ${t("nav_services")}: ${s}\n• ${t("auth_city")}: ${c}\n• ${t("quote_desc")}: ${chatData.need}\n• ${t("chat_urgency")}: ${chatData.urgency}\n• ${t("auth_name")}: ${chatData.name}\n• ${t("auth_phone")}: ${chatData.phone}`;
-if(chatData.email)out+=`\n• ${t("chat_email_lbl")}: ${chatData.email}`;
+let out=`${t("chat_summary_title")}
+• ${t("nav_services")}: ${s}
+• ${t("auth_city")}: ${c}
+• ${t("quote_desc")}: ${chatData.need}
+• ${t("chat_urgency")}: ${chatData.urgency}
+• ${t("auth_name")}: ${chatData.name}
+• ${t("auth_phone")}: ${chatData.phone}`;
+if(chatData.email)out+=`
+• ${t("chat_email_lbl")}: ${chatData.email}`;
 return out}
 function chatSendWA(){const msg=chatSummaryText();let pro=null;
 if(chatData.service){pro=prosData.find(p=>p.category===chatData.service.id&&(!chatData.city||p.city[currentLang]===chatData.city[currentLang]))||prosData.find(p=>p.category===chatData.service.id)}
@@ -1348,69 +1339,68 @@ else if(chatStep==="name"){chatData.name=v;chatStep="phone";addChat(t("chat_q_ph
 else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t("auth_error_phone"),"bot");return}chatData.phone=v;chatStep="email";addChat(t("chat_q_email"),"bot");renderChatChips()}
 else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
 else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
-
 function openQuoteModal(proId){const p=prosData.find(x=>x.id===proId);if(!p){showToast(t("no_results_title"));return}
 currentQuoteProId=proId;
 const fields=quoteFields[p.category]||quoteFields.default;
 document.getElementById("quoteFields").innerHTML=fields.map(f=>{
-  if(f.opts){return `<div class="form-group"><label>${f.label[currentLang]}</label><select id="qf_${f.id}">${f.opts[currentLang].map(o=>`<option>${o}</option>`).join("")}</select></div>`}
-  return `<div class="form-group"><label>${f.label[currentLang]}</label><input type="text" id="qf_${f.id}"></div>`}).join("");
+if(f.opts){return `<div class="form-group"><label>${f.label[currentLang]}</label><select id="qf_${f.id}">${f.opts[currentLang].map(o=>`<option>${o}</option>`).join("")}</select></div>`}
+return `<div class="form-group"><label>${f.label[currentLang]}</label><input type="text" id="qf_${f.id}"></div>`}).join("");
 document.getElementById("quoteModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeQuoteModal(){document.getElementById("quoteModal").classList.remove("active");document.body.style.overflow=""}
 function submitQuote(e){e.preventDefault();const p=prosData.find(x=>x.id===currentQuoteProId);if(!p)return;
 const name=document.getElementById("qName").value.trim();const phone=document.getElementById("qPhone").value.trim();const desc=document.getElementById("qDesc").value.trim();
 if(!name||!phone){showToast(t("auth_error_required"));return}
 const fields=quoteFields[p.category]||quoteFields.default;
-let extra="";fields.forEach(f=>{const el=document.getElementById("qf_"+f.id);if(el)extra+=`\n- ${f.label[currentLang]}: ${el.value}`});
-const msg=`${t("quote_title")} — Professionnels Maroc\n${t("auth_name")}: ${name}\n${t("auth_phone")}: ${phone}${extra}\n${t("quote_desc")}: ${desc}`;
+let extra="";fields.forEach(f=>{const el=document.getElementById("qf_"+f.id);if(el)extra+=`
+- ${f.label[currentLang]}: ${el.value}`});
+const msg=`${t("quote_title")} — Professionnels Maroc
+${t("auth_name")}: ${name}
+${t("auth_phone")}: ${phone}${extra}
+${t("quote_desc")}: ${desc}`;
 const wa=p.whatsapp||p.phone.replace(/\D/g,"");
 if(!wa){showToast(t("auth_error_phone"));return}
 window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
 closeQuoteModal()}
-
 document.getElementById("contactModal").addEventListener("click",e=>{if(e.target.id==="contactModal")closeModal()});
 document.getElementById("authModal").addEventListener("click",e=>{if(e.target.id==="authModal")closeAuth()});
 document.getElementById("profileModal").addEventListener("click",e=>{if(e.target.id==="profileModal")closeProfile()});
 document.getElementById("proFormModal").addEventListener("click",e=>{if(e.target.id==="proFormModal")closeProForm()});
 document.getElementById("legalModal").addEventListener("click",e=>{if(e.target.id==="legalModal")closeLegalModal()});
 document.getElementById("quoteModal").addEventListener("click",e=>{if(e.target.id==="quoteModal")closeQuoteModal()});
-
 let toastTimer;function showToast(m){const t2=document.getElementById("toast");t2.textContent=m;t2.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t2.classList.remove("show"),3200)}
 function observeReveal(){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(el=>io.observe(el))}
-
 let deferredPrompt=null;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
 async function installAppDirect(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else{showToast(t("install_not_available"))}}
-if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
-
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
-
 function hardRenderFallback(){
-  try{
-    if(typeof renderFeatures==="function")renderFeatures();
-    if(typeof renderServices==="function")renderServices();
-    if(typeof renderCitiesFooter==="function")renderCitiesFooter();
-    if(typeof renderPros==="function")renderPros(null);
-    if(typeof updateAuthUI==="function")updateAuthUI();
-    if(typeof observeReveal==="function")setTimeout(observeReveal,300);
-  }catch(err){console.warn("Fallback render:",err)}
+try{
+if(typeof renderFeatures==="function")renderFeatures();
+if(typeof renderServices==="function")renderServices();
+if(typeof renderCitiesFooter==="function")renderCitiesFooter();
+if(typeof renderPros==="function")renderPros(null);
+if(typeof updateAuthUI==="function")updateAuthUI();
+if(typeof observeReveal==="function")setTimeout(observeReveal,300);
+}catch(err){console.warn("Fallback render:",err)}
 }
 async function initApp(){
-  try{
-    applyI18nText();
-    renderLangSwitchers();
-    renderServiceSelect();
-    renderCitySelects();
-    handleRoute();
-    showCookieBanner();
-    await initAuth();
-    await loadServices();
-    await loadProfessionals();
-    await loadProServicesAll();
-    await loadServiceMedia();
-    setLanguage(currentLang);
-    setHeroCard();
-  }catch(err){console.error("initApp error:",err);hardRenderFallback()}
+try{
+applyI18nText();
+renderLangSwitchers();
+renderServiceSelect();
+renderCitySelects();
+handleRoute();
+showCookieBanner();
+await initAuth();
+await loadServices();
+await loadProfessionals();
+await loadProServicesAll();
+await loadServiceMedia();
+setLanguage(currentLang);
+setHeroCard();
+handleRoute();
+}catch(err){console.error("initApp error:",err);hardRenderFallback()}
 }
 setTimeout(function(){try{var h1=document.querySelector(".hero h1");if(h1&&!h1.textContent.trim()){hardRenderFallback()}}catch(e){}},2500);
 window.addEventListener("load",function(){setTimeout(hardRenderFallback,800)});
