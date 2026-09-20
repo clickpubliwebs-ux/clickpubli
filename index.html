@@ -263,6 +263,7 @@ section{padding:4.5rem 0;scroll-margin-top:80px}
 .btn-call{background:var(--dark);color:white}
 .btn-wa{background:#25d366;color:white}
 .btn-quote{background:var(--brand);color:white}
+.danger-btn{padding:.5rem 1rem;background:#fee2e2;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit;color:#b91c1c;font-size:.85rem;margin-top:.4rem}
 footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
 .footer-col h4{color:white;margin-bottom:1rem;font-size:1.05rem}
@@ -289,6 +290,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 .rtl .close-modal.dark{right:auto;left:12px}
 .profile-modal .auth-body{padding:1.2rem 1.8rem 1.8rem}
 .auth-logo-text{font-size:1.7rem;font-weight:800;color:white;letter-spacing:-.5px;white-space:nowrap}
+.auth-logo-img{height:46px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
 .modal-avatar{width:80px;height:80px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);overflow:hidden}
 .modal-avatar img{width:100%;height:100%;object-fit:cover}
 .modal-body{padding:3.2rem 1.8rem 1.8rem;text-align:center}
@@ -648,7 +650,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 </form>
 </div></div></div>
 <div class="modal" id="authModal"><div class="modal-content auth-content">
-<div class="auth-cover"><button class="close-modal" onclick="closeAuth()">&times;</button><span class="auth-logo-text">Professionnels Maroc</span></div>
+<div class="auth-cover"><button class="close-modal" onclick="closeAuth()">&times;</button><img src="icon.svg?v=2" alt="Professionnels Maroc" class="auth-logo-img"></div>
 <div class="auth-body">
 <div class="auth-tabs">
 <button type="button" class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')" data-i18n="auth_tab_login">Connexion</button>
@@ -698,7 +700,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <form id="proForm" onsubmit="savePro(event)" style="margin-top:1rem">
 <div class="admin-form-grid">
 <div class="form-group full"><label data-i18n="auth_name">Nom complet</label><input type="text" id="pfName"></div>
-<div class="form-group full"><label data-i18n="field_pro_photo">Photo du professionnel</label><img id="pfAvatarPreview" class="avatar-preview" alt=""><input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem"></div>
+<div class="form-group full"><label data-i18n="field_pro_photo">Photo du professionnel</label><img id="pfAvatarPreview" class="avatar-preview" alt=""><input type="file" id="pfAvatarInput" accept="image/*" style="font-size:.85rem"><br><button type="button" class="danger-btn" id="pfAvatarRemove" style="display:none" onclick="removeProAvatar()">🗑️ <span data-i18n="field_remove_photo">Supprimer la photo</span></button></div>
 <div class="form-group full"><label data-i18n="field_pro_cover">Image de couverture</label><img id="pfCoverPreview" class="cover-preview" alt=""><input type="file" id="pfCoverInput" accept="image/*" style="font-size:.85rem"></div>
 <div class="form-group"><label>Emoji</label><input type="text" id="pfEmoji" placeholder="👨"></div>
 <div class="form-group"><label data-i18n="field_category">Catégorie</label><select id="pfCategory"></select></div>
@@ -725,10 +727,11 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="modal-body" style="text-align:start">
 <h2 id="serviceFormTitle" data-i18n="admin_add_category">Ajouter une catégorie</h2>
 <form id="serviceForm" onsubmit="saveService(event)" style="margin-top:1rem">
-<div class="form-group"><label>Icône (emoji)</label><input type="text" id="svcIcon" placeholder="🛠️"></div>
+<div class="form-group"><label>Icône (emoji)</label><input type="text" id="svcIcon" placeholder="🛠️"><br><button type="button" class="danger-btn" onclick="document.getElementById('svcIcon').value=''">🗑️ <span data-i18n="field_remove_icon">Supprimer l'icône</span></button></div>
 <div class="form-group"><label>Nom (Français)</label><input type="text" id="svcNameFr"></div>
 <div class="form-group"><label>Nom (Español)</label><input type="text" id="svcNameEs"></div>
 <div class="form-group"><label>Nom (العربية)</label><input type="text" id="svcNameAr"></div>
+<div class="form-group full"><label data-i18n="field_category_image">Image de la catégorie</label><img id="svcImgPreview" class="cover-preview" alt="" style="height:70px"><input type="file" id="svcImgInput" accept="image/*" style="font-size:.85rem"><br><button type="button" class="danger-btn" id="svcImgRemove" style="display:none" onclick="removeServiceFormImage()">🗑️ <span data-i18n="field_remove_image">Supprimer l'image</span></button></div>
 <button type="submit" class="btn-submit" data-i18n="profile_save">Enregistrer</button>
 </form></div></div></div>
 <div class="modal" id="legalModal"><div class="modal-content legal-modal">
@@ -780,6 +783,7 @@ toast_search_results:"{n} professionnel(s) trouvé(s)",no_results_title:"Aucun p
 toast_contact:"Mettez-vous en relation avec {n}",
 install_not_available:"Installation non disponible ici",
 reviews:"avis",back:"Retour",view_profile:"Voir le profil complet",about_pro:"À propos",realisations:"Réalisations",share:"Partager",link_copied:"Lien copié !",map_title:"Localisation",admin_manage_pro:"Gérer le profil",pros_more:"Voir plus de professionnels",
+field_remove_photo:"Supprimer la photo",field_remove_icon:"Supprimer l'icône",field_category_image:"Image de la catégorie",field_remove_image:"Supprimer l'image",
 auth_login_btn:"Se connecter",auth_tab_login:"Connexion",auth_tab_register:"Inscription",auth_role_label:"Vous êtes :",auth_role_client:"Client",auth_role_client_desc:"Je cherche un professionnel",auth_role_pro:"Professionnel",auth_role_pro_desc:"Je propose mes services",
 auth_name:"Nom complet",auth_email:"Adresse e-mail",auth_phone:"Téléphone",auth_city:"Ville",auth_city_placeholder:"Choisissez votre ville",auth_password:"Mot de passe",auth_confirm:"Confirmer le mot de passe",auth_terms_prefix:"J'accepte les",auth_terms_link:"conditions d'utilisation",auth_submit_login:"Se connecter",auth_submit_register:"Créer mon compte",
 auth_error_required:"Veuillez remplir tous les champs obligatoires",auth_error_email:"Adresse e-mail invalide",auth_error_phone:"Numéro de téléphone invalide",auth_error_password:"Le mot de passe doit contenir au moins 6 caractères",auth_error_confirm:"Les mots de passe ne correspondent pas",auth_error_terms:"Veuillez accepter les conditions d'utilisation",auth_error_notfound:"E-mail ou mot de passe incorrect",auth_check_email:"Vérifiez votre e-mail pour confirmer votre compte",auth_success_register:"Compte créé avec succès ! Bienvenue {n}",auth_success_login:"Content de vous revoir, {n} !",auth_logout:"Déconnexion",auth_logout_success:"Vous avez été déconnecté avec succès",
@@ -822,6 +826,7 @@ toast_search_results:"{n} profesional(es) encontrado(s)",no_results_title:"Ning�
 toast_contact:"Ponte en contacto con {n}",
 install_not_available:"Instalación no disponible aquí",
 reviews:"reseñas",back:"Volver",view_profile:"Ver perfil completo",about_pro:"Sobre este profesional",realisations:"Trabajos realizados",share:"Compartir",link_copied:"¡Enlace copiado!",map_title:"Ubicación",admin_manage_pro:"Administrar perfil",pros_more:"Ver más profesionales",
+field_remove_photo:"Eliminar foto",field_remove_icon:"Quitar icono",field_category_image:"Imagen de la categoría",field_remove_image:"Quitar imagen",
 auth_login_btn:"Iniciar sesión",auth_tab_login:"Iniciar sesión",auth_tab_register:"Registrarse",auth_role_label:"Tú eres:",auth_role_client:"Cliente",auth_role_client_desc:"Busco un profesional",auth_role_pro:"Profesional",auth_role_pro_desc:"Ofrezco mis servicios",
 auth_name:"Nombre completo",auth_email:"Correo electrónico",auth_phone:"Teléfono",auth_city:"Ciudad",auth_city_placeholder:"Elige tu ciudad",auth_password:"Contraseña",auth_confirm:"Confirmar contraseña",auth_terms_prefix:"Acepto los",auth_terms_link:"términos de uso",auth_submit_login:"Iniciar sesión",auth_submit_register:"Crear mi cuenta",
 auth_error_required:"Por favor, completa todos los campos obligatorios",auth_error_email:"Correo electrónico no válido",auth_error_phone:"Número de teléfono no válido",auth_error_password:"La contraseña debe tener al menos 6 caracteres",auth_error_confirm:"Las contraseñas no coinciden",auth_error_terms:"Por favor, acepta los términos de uso",auth_error_notfound:"Correo o contraseña incorrectos",auth_check_email:"Revisa tu correo para confirmar tu cuenta",auth_success_register:"¡Cuenta creada con éxito! Bienvenido/a {n}",auth_success_login:"¡Encantado de verte de nuevo, {n}!",auth_logout:"Cerrar sesión",auth_logout_success:"Has cerrado sesión correctamente",
@@ -864,6 +869,7 @@ toast_search_results:"تم العثور على {n} محترف",no_results_title:
 toast_contact:"تواصل مع {n}",
 install_not_available:"التثبيت غير متاح هنا",
 reviews:"تقييم",back:"رجوع",view_profile:"عرض الملف الكامل",about_pro:"حول",realisations:"أعمال منجزة",share:"مشاركة",link_copied:"تم نسخ الرابط!",map_title:"الموقع",admin_manage_pro:"إدارة الملف",pros_more:"عرض المزيد من المحترفين",
+field_remove_photo:"حذف الصورة",field_remove_icon:"إزالة الأيقونة",field_category_image:"صورة الفئة",field_remove_image:"إزالة الصورة",
 auth_login_btn:"تسجيل الدخول",auth_tab_login:"تسجيل الدخول",auth_tab_register:"إنشاء حساب",auth_role_label:"أنت:",auth_role_client:"عميل",auth_role_client_desc:"أبحث عن محترف",auth_role_pro:"محترف",auth_role_pro_desc:"أقدم خدماتي",
 auth_name:"الاسم الكامل",auth_email:"البريد الإلكتروني",auth_phone:"الهاتف",auth_city:"المدينة",auth_city_placeholder:"اختر مدينتك",auth_password:"كلمة المرور",auth_confirm:"تأكيد كلمة المرور",auth_terms_prefix:"أوافق على",auth_terms_link:"شروط الاستخدام",auth_submit_login:"تسجيل الدخول",auth_submit_register:"إنشاء حسابي",
 auth_error_required:"الرجاء ملء جميع الحقول المطلوبة",auth_error_email:"البريد الإلكتروني غير صالح",auth_error_phone:"رقم الهاتف غير صالح",auth_error_password:"يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل",auth_error_confirm:"كلمتا المرور غير متطابقتين",auth_error_terms:"الرجاء الموافقة على شروط الاستخدام",auth_error_notfound:"البريد الإلكتروني أو كلمة المرور غير صحيحة",auth_check_email:"تحقق من بريدك الإلكتروني لتأكيد حسابك",auth_success_register:"تم إنشاء الحساب بنجاح! مرحباً {n}",auth_success_login:"سعداء برؤيتك مجدداً، {n}!",auth_logout:"تسجيل الخروج",auth_logout_success:"تم تسجيل خروجك بنجاح",
@@ -1019,9 +1025,9 @@ let currentLang=localStorage.getItem("clickpubli_lang")||"fr";
 let currentModalProId=null,currentProProfileId=null,lastProsFilter={id:null,city:null,favs:false};
 let selectedRating=0,isEditingProfile=false,currentProfile=null,currentUserFavorites=[];
 let prosData=[],proServicesMap={},editingProId=null,currentPhotos=[],pendingAvatarUrl=null,pendingCoverUrl=null;
-let serviceMedia={},selectedProSvcIds=[],pendingProSvcImages={},editingServiceId=null;
+let serviceMedia={},selectedProSvcIds=[],pendingProSvcImages={},editingServiceId=null,pendingSvcFile=null;
 let currentQuoteProId=null;
-let prosLimit=4,lastProsTotal=0;
+let prosLimit=0,lastProsTotal=0,lastProsMobile=null;
 let chatStep="service",chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""};
 function t(k){return translations[currentLang][k]||k}
 function flagUrl(c,s=20){return `https://flagcdn.com/w${s}/${c}.png`}
@@ -1193,21 +1199,29 @@ function renderPhotosList(){document.getElementById("proPhotosList").innerHTML=c
 async function uploadProPhotos(files){if(!currentProfile)return;for(const f of files){const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`${currentProfile.id}/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);continue}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);currentPhotos.push(data.publicUrl)}renderPhotosList()}
 async function removeProPhoto(i){const path=(currentPhotos[i]||"").split("/pro-photos/")[1];if(path)await sb.storage.from("pro-photos").remove([path]);currentPhotos.splice(i,1);renderPhotosList()}
 document.getElementById("proPhotoInput").addEventListener("change",e=>uploadProPhotos(Array.from(e.target.files)));
-async function uploadAvatar(f){if(!f)return;const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`avatars/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);pendingAvatarUrl=data.publicUrl;const p=document.getElementById("pfAvatarPreview");p.src=pendingAvatarUrl;p.style.display="block"}
+async function uploadAvatar(f){if(!f)return;const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`avatars/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);pendingAvatarUrl=data.publicUrl;const p=document.getElementById("pfAvatarPreview");p.src=pendingAvatarUrl;p.style.display="block";updateRemoveAvatarBtn()}
 document.getElementById("pfAvatarInput").addEventListener("change",e=>uploadAvatar(e.target.files[0]));
+function updateRemoveAvatarBtn(){const b=document.getElementById("pfAvatarRemove");if(b)b.style.display=pendingAvatarUrl?"inline-block":"none"}
+function removeProAvatar(){pendingAvatarUrl=null;const fi=document.getElementById("pfAvatarInput");if(fi)fi.value="";setAvatarPreview(null);updateRemoveAvatarBtn()}
 async function uploadCover(f){if(!f)return;const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`covers/${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);pendingCoverUrl=data.publicUrl;const p=document.getElementById("pfCoverPreview");p.src=pendingCoverUrl;p.style.display="block"}
 document.getElementById("pfCoverInput").addEventListener("change",e=>uploadCover(e.target.files[0]));
 function setCoverPreview(u){const p=document.getElementById("pfCoverPreview");if(u){p.src=u;p.style.display="block"}else{p.removeAttribute("src");p.style.display="none"}}
 async function uploadServiceImage(sid,f){if(!f)return;if(!isAdmin()){showToast(t("admin_no_access"));return}const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`services/${sid}_${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);await sb.from("service_media").upsert({id:sid,url:data.publicUrl});await loadServiceMedia();renderServices();renderSvcMediaList();showToast(t("admin_saved"))}
-function renderSvcCategories(){const c=document.getElementById("svcCategoriesList");if(!c)return;c.innerHTML=servicesData.map(s=>`<div class="svc-media-row"><span class="svc-media-thumb">${s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><button class="admin-btn-edit" onclick="openServiceForm('${s.id}')">✏️</button><button class="admin-btn-del" onclick="deleteService('${s.id}')">🗑️</button></div>`).join("")}
-function openServiceForm(id){if(!isAdmin())return;editingServiceId=id||null;const s=id?servicesData.find(x=>x.id===id):null;document.getElementById("svcIcon").value=s?s.icon:"";document.getElementById("svcNameFr").value=s?s.name.fr:"";document.getElementById("svcNameEs").value=s?(s.name.es||""):"";document.getElementById("svcNameAr").value=s?(s.name.ar||""):"";document.getElementById("serviceFormTitle").textContent=s?t("admin_edit_category"):t("admin_add_category");document.getElementById("serviceFormModal").classList.add("active");document.body.style.overflow="hidden"}
-function closeServiceForm(){document.getElementById("serviceFormModal").classList.remove("active");document.body.style.overflow=""}
-async function saveService(e){e.preventDefault();if(!isAdmin())return;const icon=document.getElementById("svcIcon").value.trim()||"🛠️";const fr=document.getElementById("svcNameFr").value.trim();const es=document.getElementById("svcNameEs").value.trim()||fr;const ar=document.getElementById("svcNameAr").value.trim()||fr;if(!fr){showToast(t("admin_name_required"));return}
+async function deleteServiceImage(sid){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;await sb.from("service_media").delete().eq("id",sid);await loadServiceMedia();renderServices();renderSvcMediaList();refreshSvcImgUI();showToast(t("admin_deleted"))}
+function renderSvcCategories(){const c=document.getElementById("svcCategoriesList");if(!c)return;c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><button class="admin-btn-edit" onclick="openServiceForm('${s.id}')">✏️</button><button class="admin-btn-del" onclick="deleteService('${s.id}')">🗑️</button></div>`}).join("")}
+function refreshSvcImgUI(){const pv=document.getElementById("svcImgPreview"),rb=document.getElementById("svcImgRemove");if(!pv||!rb)return;const cur=(editingServiceId&&serviceMedia[editingServiceId])||"";if(cur){pv.src=cur;pv.style.display="block";rb.style.display="inline-block"}else if(pendingSvcFile){pv.style.display="block";rb.style.display="inline-block"}else{pv.removeAttribute("src");pv.style.display="none";rb.style.display="none"}}
+document.getElementById("svcImgInput").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(editingServiceId){await uploadServiceImage(editingServiceId,f);e.target.value=""}else{pendingSvcFile=f;const pv=document.getElementById("svcImgPreview");pv.src=URL.createObjectURL(f)}refreshSvcImgUI()});
+function removeServiceFormImage(){if(editingServiceId&&serviceMedia[editingServiceId]){deleteServiceImage(editingServiceId)}pendingSvcFile=null;const fi=document.getElementById("svcImgInput");if(fi)fi.value="";const pv=document.getElementById("svcImgPreview");if(pv)pv.removeAttribute("src");refreshSvcImgUI()}
+function openServiceForm(id){if(!isAdmin())return;editingServiceId=id||null;pendingSvcFile=null;const s=id?servicesData.find(x=>x.id===id):null;document.getElementById("svcIcon").value=s?s.icon:"";document.getElementById("svcNameFr").value=s?s.name.fr:"";document.getElementById("svcNameEs").value=s?(s.name.es||""):"";document.getElementById("svcNameAr").value=s?(s.name.ar||""):"";const fi=document.getElementById("svcImgInput");if(fi)fi.value="";refreshSvcImgUI();document.getElementById("serviceFormTitle").textContent=s?t("admin_edit_category"):t("admin_add_category");document.getElementById("serviceFormModal").classList.add("active");document.body.style.overflow="hidden"}
+function closeServiceForm(){document.getElementById("serviceFormModal").classList.remove("active");document.body.style.overflow="";pendingSvcFile=null}
+async function saveService(e){e.preventDefault();if(!isAdmin())return;const icon=document.getElementById("svcIcon").value.trim();const fr=document.getElementById("svcNameFr").value.trim();const es=document.getElementById("svcNameEs").value.trim()||fr;const ar=document.getElementById("svcNameAr").value.trim()||fr;if(!fr){showToast(t("admin_name_required"));return}
 let id=editingServiceId;if(!id){id=fr.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"");if(servicesData.some(s=>s.id===id))id=id+"_"+Date.now().toString().slice(-4)}
 const ex=servicesData.find(s=>s.id===id);
 const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:(ex&&ex.sort!=null)?ex.sort:servicesData.length+1};
 const{error}=await sb.from("services").upsert(payload);if(error){showToast(error.message);return}
-await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
+await loadServices();
+if(pendingSvcFile){await uploadServiceImage(id,pendingSvcFile);pendingSvcFile=null}
+renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();closeServiceForm();showToast(t("admin_saved"))}
 async function deleteService(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;await sb.from("pro_services").delete().eq("service_id",id);await sb.from("service_media").delete().eq("id",id);const{error}=await sb.from("services").delete().eq("id",id);if(error){showToast(error.message);return}await loadServices();renderServiceSelect();renderSvcCategories();renderServices();renderSvcMediaList();showToast(t("admin_deleted"))}
 function renderServiceSelect(){
 const sel=document.getElementById("serviceSelect");
@@ -1220,19 +1234,18 @@ function toggleProSvc(id,input){if(input.checked){if(!selectedProSvcIds.includes
 function renderProSvcImgRows(){const c=document.getElementById("proSvcImgs");if(selectedProSvcIds.length===0){c.innerHTML="";return}c.innerHTML=selectedProSvcIds.map(id=>{const sd=servicesData.find(s=>s.id===id);if(!sd)return"";const u=pendingProSvcImages[id]||"";return `<div class="pro-svc-img-row"><span class="svc-name">${sd.icon} ${sd.name[currentLang]}</span>${u?`<img src="${u}" alt="">`:""}<input type="file" accept="image/*" onchange="uploadProSvcImage('${id}',this.files[0])"></div>`}).join("")}
 async function uploadProSvcImage(sid,f){if(!f||!currentProfile)return;const safe=f.name.replace(/[^\w.\-]+/g,"_");const path=`prosvc/${currentProfile.id}_${sid}_${Date.now()}_${safe}`;const{error}=await sb.storage.from("pro-photos").upload(path,f);if(error){showToast(error.message);return}const{data}=sb.storage.from("pro-photos").getPublicUrl(path);pendingProSvcImages[sid]=data.publicUrl;renderProSvcImgRows()}
 function setAvatarPreview(u){const p=document.getElementById("pfAvatarPreview");if(u){p.src=u;p.style.display="block"}else{p.removeAttribute("src");p.style.display="none"}}
-function shortDescFor(p){const s=sampleShortDescs[p.id];if(s&&s[currentLang])return s[currentLang];const d=(p.desc&&p.desc[currentLang])||"";return d.length>140?d.slice(0,140).replace(/\s+\S*$/,"")+"…":d}
 function fillProFormFromData(p){document.getElementById("pfName").value=p.name;document.getElementById("pfEmoji").value=p.emoji;document.getElementById("pfCategory").value=p.category;document.getElementById("pfCity").value=citiesData.indexOf(p.city);document.getElementById("pfRating").value=p.rating;document.getElementById("pfPhone").value=p.phone;document.getElementById("pfWhatsapp").value=p.whatsapp;
 const L=p.links||{};document.getElementById("pfFacebook").value=L.facebook||"";document.getElementById("pfInstagram").value=L.instagram||"";document.getElementById("pfTiktok").value=L.tiktok||"";document.getElementById("pfGmb").value=L.gmb||"";document.getElementById("pfWebsite").value=L.website||"";
 document.getElementById("pfSpecFr").value=(p.specialty&&p.specialty.fr)||"";document.getElementById("pfSpecEs").value=(p.specialty&&p.specialty.es)||"";document.getElementById("pfSpecAr").value=(p.specialty&&p.specialty.ar)||"";
 document.getElementById("pfDescFr").value=(p.desc&&p.desc.fr)||"";document.getElementById("pfDescEs").value=(p.desc&&p.desc.es)||"";document.getElementById("pfDescAr").value=(p.desc&&p.desc.ar)||""}
 function openProForm(proId){if(!isAdmin())return;selectedProSvcIds=[];pendingProSvcImages={};prepareProForm();
-if(proId){const p=prosData.find(x=>x.id===proId);editingProId=proId;currentPhotos=(p&&p.photos)?p.photos.slice():[];pendingAvatarUrl=(p&&p.photo_url)||null;pendingCoverUrl=(p&&p.cover_url)||null;fillProFormFromData(p);setAvatarPreview(pendingAvatarUrl);setCoverPreview(pendingCoverUrl);const ex=proServicesMap[proId]||[];selectedProSvcIds=ex.map(s=>s.service_id);ex.forEach(s=>{if(s.image_url)pendingProSvcImages[s.service_id]=s.image_url});renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_edit_pro")}
-else{editingProId=null;currentPhotos=[];pendingAvatarUrl=null;pendingCoverUrl=null;document.getElementById("proForm").reset();setAvatarPreview(null);setCoverPreview(null);document.getElementById("pfRating").value="4.5";renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_add_pro")}
+if(proId){const p=prosData.find(x=>x.id===proId);editingProId=proId;currentPhotos=(p&&p.photos)?p.photos.slice():[];pendingAvatarUrl=(p&&p.photo_url)||null;pendingCoverUrl=(p&&p.cover_url)||null;fillProFormFromData(p);setAvatarPreview(pendingAvatarUrl);setCoverPreview(pendingCoverUrl);updateRemoveAvatarBtn();const ex=proServicesMap[proId]||[];selectedProSvcIds=ex.map(s=>s.service_id);ex.forEach(s=>{if(s.image_url)pendingProSvcImages[s.service_id]=s.image_url});renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_edit_pro")}
+else{editingProId=null;currentPhotos=[];pendingAvatarUrl=null;pendingCoverUrl=null;document.getElementById("proForm").reset();setAvatarPreview(null);setCoverPreview(null);updateRemoveAvatarBtn();document.getElementById("pfRating").value="4.5";renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_add_pro")}
 showPhotosSection(true);renderPhotosList();document.getElementById("proFormModal").classList.add("active");document.body.style.overflow="hidden"}
 async function openMyProCard(){if(!currentProfile){openAuth("login");return}if(currentProfile.role!=="pro"){showToast(t("pro_only"));return}selectedProSvcIds=[];pendingProSvcImages={};prepareProForm();
 const{data,error}=await sb.from("professionals").select("*").eq("user_id",currentProfile.id).maybeSingle();
-if(!error&&data){editingProId=data.id;fillProFormFromData({id:data.id,name:data.name,emoji:data.emoji,category:data.category,specialty:data.specialty,city:citiesData[data.city_index]||citiesData[0],rating:parseFloat(data.rating),reviews:data.reviews,phone:data.phone,whatsapp:data.whatsapp,desc:data.description,links:data.links});currentPhotos=data.photos||[];pendingAvatarUrl=data.photo_url||null;pendingCoverUrl=data.cover_url||null;setAvatarPreview(pendingAvatarUrl);setCoverPreview(pendingCoverUrl);const ex=proServicesMap[data.id]||[];selectedProSvcIds=ex.map(s=>s.service_id);ex.forEach(s=>{if(s.image_url)pendingProSvcImages[s.service_id]=s.image_url});renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_edit_pro")}
-else{editingProId=null;document.getElementById("proForm").reset();document.getElementById("pfRating").value="4.5";currentPhotos=[];pendingAvatarUrl=null;pendingCoverUrl=null;setAvatarPreview(null);setCoverPreview(null);renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("create_pro_card")}
+if(!error&&data){editingProId=data.id;fillProFormFromData({id:data.id,name:data.name,emoji:data.emoji,category:data.category,specialty:data.specialty,city:citiesData[data.city_index]||citiesData[0],rating:parseFloat(data.rating),reviews:data.reviews,phone:data.phone,whatsapp:data.whatsapp,desc:data.description,links:data.links});currentPhotos=data.photos||[];pendingAvatarUrl=data.photo_url||null;pendingCoverUrl=data.cover_url||null;setAvatarPreview(pendingAvatarUrl);setCoverPreview(pendingCoverUrl);updateRemoveAvatarBtn();const ex=proServicesMap[data.id]||[];selectedProSvcIds=ex.map(s=>s.service_id);ex.forEach(s=>{if(s.image_url)pendingProSvcImages[s.service_id]=s.image_url});renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("admin_edit_pro")}
+else{editingProId=null;document.getElementById("proForm").reset();document.getElementById("pfRating").value="4.5";currentPhotos=[];pendingAvatarUrl=null;pendingCoverUrl=null;setAvatarPreview(null);setCoverPreview(null);updateRemoveAvatarBtn();renderProSvcGrid();document.getElementById("proFormTitle").textContent=t("create_pro_card")}
 showPhotosSection(true);renderPhotosList();document.getElementById("proFormModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeProForm(){document.getElementById("proFormModal").classList.remove("active");document.body.style.overflow=""}
 async function saveProSvc(proId){await sb.from("pro_services").delete().eq("pro_id",proId);for(const id of selectedProSvcIds){await sb.from("pro_services").insert({pro_id:proId,service_id:id,image_url:pendingProSvcImages[id]||null})}await loadProServicesAll()}
@@ -1252,7 +1265,7 @@ closeProForm();showToast(t("admin_saved"))}
 async function deletePro(id){if(!isAdmin())return;if(!confirm(t("admin_delete_confirm")))return;await sb.from("pro_services").delete().eq("pro_id",id);await sb.from("favorites").delete().eq("pro_id",id);await sb.from("reviews").delete().eq("pro_id",id);const{error}=await sb.from("professionals").delete().eq("id",id);if(error){showToast(error.message);return}await loadProfessionals();await loadProServicesAll();setHeroCard();renderPros(null);renderAdminProList();showToast(t("admin_deleted"))}
 function renderAdminProList(){const c=document.getElementById("adminProList");if(prosData.length===0){c.innerHTML=`<div class="empty-state"><div class="empty-icon">📭</div><p>${t("no_results_title")}</p></div>`;return}
 c.innerHTML=prosData.map(p=>`<div class="admin-pro-row"><span class="admin-pro-emoji">${p.photo_url?`<img src="${p.photo_url}" alt="">`:p.emoji}</span><div class="admin-pro-info"><strong>${p.name}</strong><small>${p.specialty[currentLang]} · ${p.city[currentLang]} · ★ ${p.rating} (${p.reviews})</small></div><div class="admin-pro-actions"><button class="admin-btn-edit" onclick="openProForm('${p.id}')">✏️</button><button class="admin-btn-del" onclick="deletePro('${p.id}')">🗑️</button></div></div>`).join("")}
-function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])"></div>`}).join("")}
+function renderSvcMediaList(){const c=document.getElementById("svcMediaList");c.innerHTML=servicesData.map(s=>{const img=serviceMedia[s.id];return `<div class="svc-media-row"><span class="svc-media-thumb">${img?`<img src="${img}" alt="">`:s.icon}</span><span class="svc-media-name">${s.name[currentLang]}</span><input type="file" accept="image/*" onchange="uploadServiceImage('${s.id}',this.files[0])">${img?`<button class="admin-btn-del" onclick="deleteServiceImage('${s.id}')">🗑️</button>`:""}</div>`}).join("")}
 function updateAuthUI(){
 const area=document.getElementById("authArea");
 const dAuth=document.getElementById("drawerAuth");
@@ -1289,20 +1302,23 @@ function renderFaqList(){const l=document.getElementById("faqList");const items=
 function toggleFaq(i){document.getElementById("faq-"+i).classList.toggle("open")}
 function renderPros(filterId=null,filterCity=null,onlyFav=false){renderStats();
 const sameFilter=lastProsFilter.id===filterId&&lastProsFilter.city===filterCity&&lastProsFilter.favs===onlyFav;
-if(!sameFilter)prosLimit=4;
+const isMobile=window.matchMedia("(max-width:900px)").matches;
+const base=isMobile?4:6;
+if(!sameFilter||isMobile!==lastProsMobile)prosLimit=base;
+if(prosLimit<base)prosLimit=base;
+lastProsMobile=isMobile;
 lastProsFilter={id:filterId,city:filterCity,favs:onlyFav};let list=prosData;
 if(filterId){const by=prosData.filter(p=>p.category===filterId);if(by.length>0)list=by;else if(!filterCity)list=prosData;else list=[]}
 if(filterCity)list=list.filter(p=>p.city[currentLang]===filterCity);
 if(onlyFav){if(currentProfile)list=list.filter(p=>currentUserFavorites.includes(p.id));else list=[]}
 lastProsTotal=list.length;
-const isMobile=window.matchMedia("(max-width:900px)").matches;
-const shown=(isMobile&&list.length>prosLimit)?list.slice(0,prosLimit):list;
+const shown=list.length>prosLimit?list.slice(0,prosLimit):list;
 const g=document.getElementById("prosGrid");
 if(list.length===0){const icon=onlyFav?"♡":"🔍";const title=onlyFav?t("favorites"):t("no_results_title");const desc=onlyFav?t("favorites_empty"):t("no_results_desc");g.innerHTML=`<div class="empty-state"><div class="empty-icon">${icon}</div><h3>${title}</h3><p>${desc}</p></div>`}
 else{g.innerHTML=shown.map(p=>{const fav=isFavorite(p.id);const cov=p.cover_url?` style="background-image:url('${p.cover_url}');background-size:cover;background-position:center"`:"";return `<div class="pro-card reveal"><button class="fav-btn ${fav?"active":""}" onclick="toggleFavorite('${p.id}',event)">${fav?"♥":"♡"}</button><div class="pro-cover"${cov}><div class="pro-avatar">${proAvatarHtml(p)}</div></div><div class="pro-body"><h3>${p.name}</h3><div class="pro-specialty">${p.specialty[currentLang]}</div><div class="pro-location">📍 ${p.city[currentLang]}</div><div class="pro-rating">★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})</div><button class="pro-btn" onclick="openModal('${p.id}')">${t("hero_card_contact")}</button><button class="pro-btn-secondary" onclick="showProProfile('${p.id}')">${t("view_profile")}</button></div></div>`}).join("")}
-const mb=document.getElementById("prosMoreBtn");if(mb)mb.style.display=(isMobile&&shown.length<list.length)?"inline-flex":"none";
+const mb=document.getElementById("prosMoreBtn");if(mb)mb.style.display=shown.length<list.length?"inline-flex":"none";
 observeReveal()}
-function showMorePros(){prosLimit+=4;renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs)}
+function showMorePros(){prosLimit+=(window.matchMedia("(max-width:900px)").matches?4:6);renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs)}
 function renderFavoritesPage(){const c=document.getElementById("favoritesGrid");const fc=document.getElementById("favCount");
 if(!currentProfile){fc.textContent="";c.innerHTML=`<div class="empty-state"><div class="empty-icon">🔒</div><h3>${t("favorites")}</h3><p>${t("favorites_login_required")}</p></div>`;return}
 const fp=prosData.filter(p=>currentUserFavorites.includes(p.id));fc.textContent=fp.length>0?`(${fp.length})`:"";
@@ -1317,6 +1333,7 @@ showToast(lastProsTotal>0?t("toast_search_results").replace("{n}",lastProsTotal)
 document.getElementById("pros").scrollIntoView({behavior:"smooth"});
 }
 function filterByService(id){renderPros(id,null,false);document.getElementById("pros").scrollIntoView({behavior:"smooth"})}
+function shortDescFor(p){const s=sampleShortDescs[p.id];if(s&&s[currentLang])return s[currentLang];const d=(p.desc&&p.desc[currentLang])||"";return d.length>140?d.slice(0,140).replace(/\s+\S*$/,"")+"…":d}
 function fillProModal(id){const p=prosData.find(x=>x.id===id);if(!p)return;document.getElementById("modalAvatar").innerHTML=proAvatarHtml(p);document.getElementById("modalName").textContent=p.name;document.getElementById("modalSpecialty").textContent=p.specialty[currentLang];document.getElementById("modalCity").textContent=p.city[currentLang];document.getElementById("modalPhone").textContent=p.phone;document.getElementById("modalRating").textContent=`★ ${p.rating.toFixed(1)} (${p.reviews} ${t("reviews")})`;document.getElementById("modalDesc").textContent=shortDescFor(p);document.getElementById("modalCallBtn").href="tel:"+p.phone.replace(/\s/g,"");document.getElementById("modalWaBtn").href="https://wa.me/"+p.whatsapp}
 function openModal(id){currentModalProId=id;fillProModal(id);renderReviewsBlock(id,"reviewsModal");updateModalFavButton(id);document.getElementById("contactModal").classList.add("active");document.body.style.overflow="hidden"}
 function closeModal(){currentModalProId=null;document.getElementById("contactModal").classList.remove("active");document.body.style.overflow=""}
@@ -1346,7 +1363,7 @@ document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAtt
 document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
 }
 function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);applyI18nText();
-renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();prosLimit=4;renderPros(null);updateAuthUI();
+renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();prosLimit=0;renderPros(null);updateAuthUI();
 if(document.getElementById("favoritesView").style.display!=="none")renderFavoritesPage();
 if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
 if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
