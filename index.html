@@ -150,6 +150,7 @@ section{padding:4.5rem 0;scroll-margin-top:80px}
 .pro-body{padding:2.4rem 1.5rem 1.5rem;text-align:center}
 .pro-body h3{font-size:1.15rem;margin-bottom:.2rem}
 .pro-specialty{color:var(--primary);font-weight:600;font-size:.9rem;margin-bottom:.5rem}
+.pro-location{color:var(--gray);font-size:.85rem;margin-bottom:.8rem}
 .pro-short{color:var(--gray);font-size:.82rem;margin:-.2rem 0 .8rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pro-rating{display:inline-flex;background:#fef3c7;color:#b45309;padding:.3rem .8rem;border-radius:50px;font-size:.85rem;font-weight:700;margin-bottom:1.2rem}
 .pro-btn{width:100%;padding:.8rem;background:var(--dark);color:white;border:none;border-radius:11px;font-weight:700;cursor:pointer;font-family:inherit}
@@ -542,7 +543,7 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="pp-head-info">
 <h2 id="ppName">Nom</h2>
 <div class="pp-specialty" id="ppSpecialty"></div>
-<div class="pp-badges"><span class="pp-badge">📍 <span id="ppCity"></span></span><span class="pp-badge pp-badge-rate" id="ppRating">★ 4.9</span><span class="pp-badge" id="ppReviewsCount"></span><span class="pp-badge" id="ppHoursBadge" style="display:none">🕐 <span id="ppHours"></span></span></div>
+<div class="pp-badges"><span class="pp-badge">📍 <span id="ppCity"></span></span><span class="pp-badge pp-badge-rate" id="ppRating">★ 4.9</span><span class="pp-badge" id="ppReviewsCount"></span></div>
 <div class="pp-social" id="ppSocial"></div>
 </div>
 <div class="pp-actions">
@@ -713,13 +714,10 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="form-group"><label>TikTok</label><input type="text" id="pfTiktok" placeholder="https://tiktok.com/@..."></div>
 <div class="form-group"><label>Google My Business</label><input type="text" id="pfGmb" placeholder="https://g.page/..."></div>
 <div class="form-group full"><label data-i18n="field_website">Site web (optionnel)</label><input type="text" id="pfWebsite" placeholder="https://..."></div>
-<div class="form-group full"><button type="button" class="btn-primary" style="padding:.6rem 1.2rem;font-size:.88rem" onclick="generateProTexts()">✨ <span data-i18n="gen_btn">Générer spécialité + descriptions</span></button></div>
+<div class="form-group full"><label data-i18n="field_specialty">Spécialité</label>
 <div class="admin-form-grid"><input type="text" id="pfSpecFr" placeholder="Français"><input type="text" id="pfSpecEs" placeholder="Español"><input type="text" id="pfSpecAr" placeholder="العربية" class="full"></div></div>
 <div class="form-group full"><label data-i18n="field_description">Description</label>
 <div class="admin-form-grid"><textarea id="pfDescFr" placeholder="Français" style="min-height:60px"></textarea><textarea id="pfDescEs" placeholder="Español" style="min-height:60px"></textarea><textarea id="pfDescAr" placeholder="العربية" class="full" style="min-height:60px"></textarea></div></div>
-  <div class="form-group full"><label data-i18n="field_short_desc">Description courte (carte)</label>
-<div class="admin-form-grid"><input type="text" id="pfShortFr" placeholder="Français"><input type="text" id="pfShortEs" placeholder="Español"><input type="text" id="pfShortAr" placeholder="العربية" class="full"></div></div>
-<div class="form-group full"><label data-i18n="field_hours">Horaires de travail</label><input type="text" id="pfHours" placeholder="Lun-Vie 8:00-18:00, Sáb 8:00-13:00"></div>
 <div class="form-group full"><label data-i18n="field_short_desc">Description courte (carte)</label>
 <div class="admin-form-grid"><input type="text" id="pfShortFr" placeholder="Français"><input type="text" id="pfShortEs" placeholder="Español"><input type="text" id="pfShortAr" placeholder="العربية" class="full"></div></div>
 <div class="form-group full"><label data-i18n="field_my_services">Services que je propose</label><div class="pro-svc-grid" id="proSvcGrid"></div><div class="pro-svc-imgs" id="proSvcImgs"></div></div>
@@ -796,7 +794,7 @@ profile_edit:"Modifier",profile_save:"Enregistrer",profile_member_since:"Membre 
 favorites:"Favoris",favorites_empty:"Aucun favori pour le moment. Cliquez sur ♡ pour en ajouter.",favorites_added:"Ajouté aux favoris ❤",favorites_removed:"Retiré des favoris",favorites_login_required:"Connectez-vous pour ajouter des favoris",favorites_show:"Voir mes favoris",
 reviews_title:"Avis clients",reviews_none:"Aucun avis pour le moment. Soyez le premier !",reviews_placeholder:"Partagez votre expérience...",reviews_submit:"Publier l'avis",reviews_login_required:"Connectez-vous pour laisser un avis.",reviews_success:"Merci pour votre avis !",reviews_select_rating:"Veuillez choisir une note",reviews_empty_comment:"Veuillez écrire un commentaire",
 admin_title:"Administration",admin_add_pro:"Ajouter un professionnel",admin_edit_pro:"Modifier le professionnel",admin_delete_confirm:"Supprimer ce professionnel ?",admin_saved:"Enregistré",admin_deleted:"Supprimé",admin_name_required:"Nom requis",admin_no_access:"Accès réservé aux administrateurs",admin_load_samples:"Charger les exemples",admin_svc_images:"Images des services",admin_svc_categories:"Catégories de services",admin_add_category:"Ajouter une catégorie",admin_edit_category:"Modifier la catégorie",
-field_category:"Catégorie",field_rating:"Note",field_specialty:"Spécialité",field_description:"Description",field_pro_photo:"Photo du professionnel",field_pro_cover:"Image de couverture",field_photos:"Photos de vos travaux",field_my_services:"Services que je propose",field_website:"Site web (optionnel)",field_short_desc:"Description courte (carte)",field_hours:"Horaires de travail",gen_btn:"Générer spécialité + descriptions",gen_done:"Textes générés ✅",install_app:"Installer l'app",
+field_category:"Catégorie",field_rating:"Note",field_specialty:"Spécialité",field_description:"Description",field_pro_photo:"Photo du professionnel",field_pro_cover:"Image de couverture",field_photos:"Photos de vos travaux",field_my_services:"Services que je propose",field_website:"Site web (optionnel)",install_app:"Installer l'app",
 my_pro_card:"Ma fiche pro",pro_only:"Réservé aux professionnels",create_pro_card:"Créer ma fiche pro",
 faq_title:"Questions fréquentes",
 quote_title:"Demander un devis",quote_subtitle:"Le message sera envoyé par WhatsApp au professionnel.",quote_name:"Votre nom",quote_phone:"Votre téléphone",quote_desc:"Décrivez votre besoin",quote_send:"Envoyer par WhatsApp",
@@ -839,7 +837,7 @@ profile_edit:"Editar",profile_save:"Guardar",profile_member_since:"Miembro desde
 favorites:"Favoritos",favorites_empty:"Aún no tienes favoritos. Haz clic en ♡ para añadir.",favorites_added:"Añadido a favoritos ❤",favorites_removed:"Eliminado de favoritos",favorites_login_required:"Inicia sesión para añadir favoritos",favorites_show:"Ver mis favoritos",
 reviews_title:"Reseñas de clientes",reviews_none:"Aún no hay reseñas. ¡Sé el primero!",reviews_placeholder:"Comparte tu experiencia...",reviews_submit:"Publicar reseña",reviews_login_required:"Inicia sesión para dejar una reseña.",reviews_success:"¡Gracias por tu reseña!",reviews_select_rating:"Por favor elige una puntuación",reviews_empty_comment:"Por favor escribe un comentario",
 admin_title:"Administración",admin_add_pro:"Añadir profesional",admin_edit_pro:"Editar profesional",admin_delete_confirm:"¿Eliminar este profesional?",admin_saved:"Guardado",admin_deleted:"Eliminado",admin_name_required:"Nombre requerido",admin_no_access:"Acceso reservado a administradores",admin_load_samples:"Cargar ejemplos",admin_svc_images:"Imágenes de servicios",admin_svc_categories:"Categorías de servicios",admin_add_category:"Añadir categoría",admin_edit_category:"Editar categoría",
-field_category:"Categoría",field_rating:"Nota",field_specialty:"Especialidad",field_description:"Descripción",field_pro_photo:"Foto del profesional",field_pro_cover:"Imagen de cabecera",field_photos:"Fotos de tus trabajos",field_my_services:"Servicios que ofrezco",field_website:"Sitio web (opcional)",field_short_desc:"Descripción corta (tarjeta)",field_hours:"Horario de trabajo",gen_btn:"Generar especialidad + descripciones",gen_done:"Textos generados ✅",install_app:"Instalar app",
+field_category:"Categoría",field_rating:"Nota",field_specialty:"Especialidad",field_description:"Descripción",field_pro_photo:"Foto del profesional",field_pro_cover:"Imagen de cabecera",field_photos:"Fotos de tus trabajos",field_my_services:"Servicios que ofrezco",field_website:"Sitio web (opcional)",install_app:"Instalar app",
 my_pro_card:"Mi ficha profesional",pro_only:"Solo para profesionales",create_pro_card:"Crear mi ficha profesional",
 faq_title:"Preguntas frecuentes",
 quote_title:"Pedir presupuesto",quote_subtitle:"El mensaje se enviará por WhatsApp al profesional.",quote_name:"Tu nombre",quote_phone:"Tu teléfono",quote_desc:"Describe tu necesidad",quote_send:"Enviar por WhatsApp",
@@ -882,7 +880,7 @@ profile_edit:"تعديل",profile_save:"حفظ",profile_member_since:"عضو م�
 favorites:"المفضلة",favorites_empty:"لا توجد مفضلات بعد. انقر على ♡ للإضافة.",favorites_added:"أضيف إلى المفضلة ❤",favorites_removed:"أزيل من المفضلة",favorites_login_required:"سجل الدخول لإضافة مفضلات",favorites_show:"عرض المفضلة",
 reviews_title:"آراء العملاء",reviews_none:"لا توجد آراء بعد. كن الأول!",reviews_placeholder:"شارك تجربتك...",reviews_submit:"نشر الرأي",reviews_login_required:"سجل الدخول لترك رأي.",reviews_success:"شكراً لرأيك!",reviews_select_rating:"الرجاء اختيار تقييم",reviews_empty_comment:"الرجاء كتابة تعليق",
 admin_title:"الإدارة",admin_add_pro:"إضافة محترف",admin_edit_pro:"تعديل المحترف",admin_delete_confirm:"حذف هذا المحترف؟",admin_saved:"تم الحفظ",admin_deleted:"تم الحذف",admin_name_required:"الاسم مطلوب",admin_no_access:"الوصول مخصص للمشرفين فقط",admin_load_samples:"تحميل الأمثلة",admin_svc_images:"صور الخدمات",admin_svc_categories:"فئات الخدمات",admin_add_category:"إضافة فئة",admin_edit_category:"تعديل الفئة",
-field_category:"الفئة",field_rating:"التقييم",field_specialty:"التخصص",field_description:"الوصف",field_pro_photo:"صورة المحترف",field_pro_cover:"صورة الغلاف",field_photos:"صور أعمالك",field_my_services:"الخدمات التي أقدمها",field_website:"الموقع الإلكتروني (اختياري)",field_short_desc:"وصف قصير (البطاقة)",field_hours:"ساعات العمل",gen_btn:"توليد التخصص + الأوصاف",gen_done:"تم توليد النصوص ✅",install_app:"تثبيت التطبيق",
+field_category:"الفئة",field_rating:"التقييم",field_specialty:"التخصص",field_description:"الوصف",field_pro_photo:"صورة المحترف",field_pro_cover:"صورة الغلاف",field_photos:"صور أعمالك",field_my_services:"الخدمات التي أقدمها",field_website:"الموقع الإلكتروني (اختياري)",install_app:"تثبيت التطبيق",
 my_pro_card:"بطاقتي المهنية",pro_only:"مخصص للمحترفين",create_pro_card:"إنشاء بطاقتي المهنية",
 faq_title:"الأسئلة الشائعة",
 quote_title:"طلب عرض سعر",quote_subtitle:"سيتم إرسال الرسالة عبر واتساب إلى المحترف.",quote_name:"اسمك",quote_phone:"هاتفك",quote_desc:"صف حاجتك",quote_send:"إرسال عبر واتساب",
@@ -1365,6 +1363,130 @@ function applyI18nText(){
 document.documentElement.lang=currentLang;
 document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";
 document.body.classList.toggle("rtl",currentLang==="ar");
+document.title=t("doc_title");
+document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
+document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
+}
+function setLanguage(lang){currentLang=lang;localStorage.setItem("clickpubli_lang",lang);applyI18nText();
+renderLangSwitchers();renderServiceSelect();renderCitySelects();renderFeatures();renderServices();renderCitiesFooter();prosLimit=0;renderPros(null);updateAuthUI();
+if(document.getElementById("favoritesView").style.display!=="none")renderFavoritesPage();
+if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
+if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
+if(document.getElementById("faqView").style.display!=="none")renderFaqList();
+if(currentModalProId&&document.getElementById("contactModal").classList.contains("active")){fillProModal(currentModalProId);renderReviewsBlock(currentModalProId,"reviewsModal");updateModalFavButton(currentModalProId)}
+if(document.getElementById("cookieBanner").classList.contains("show")){document.querySelectorAll("#cookieBanner [data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))})}}
+function toggleChat(){const p=document.getElementById("chatPanel");if(!p)return;p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
+function closeChatPanel(){const p=document.getElementById("chatPanel");if(p)p.classList.remove("open")}
+function chatReset(){chatStep="service";chatData={service:null,city:null,need:"",urgency:"",name:"",phone:"",email:""}}
+function chatStart(){chatReset();const b=document.getElementById("chatBody");if(b)b.innerHTML="";addChat(t("chat_greet"),"bot");addChat(t("chat_q_service"),"bot");renderChatChips()}
+function addChat(text,who){const b=document.getElementById("chatBody");if(!b)return;const d=document.createElement("div");d.className="chat-msg "+who;d.textContent=text;b.appendChild(d);b.scrollTop=b.scrollHeight}
+function renderChatChips(){const c=document.getElementById("chatChips");if(!c)return;let html="";
+if(chatStep==="service"){html=servicesData.slice(0,8).map(s=>`<button class="chat-chip" onclick="chatPickService('${s.id}')">${s.name[currentLang]}</button>`).join("")}
+else if(chatStep==="city"){html=citiesData.slice(0,8).map((x,i)=>`<button class="chat-chip" onclick="chatPickCity(${i})">${x[currentLang]}</button>`).join("")}
+else if(chatStep==="urgency"){html=chatUrgOpts[currentLang].map((u,i)=>`<button class="chat-chip" onclick="chatPickUrgency(${i})">${u}</button>`).join("")}
+else if(chatStep==="email"){html=`<button class="chat-chip" onclick="chatSkipEmail()">⏭️ ${t("chat_skip")}</button>`}
+else if(chatStep==="summary"){html=`<button class="chat-chip" onclick="chatSendWA()">📤 ${t("chat_send_wa")}</button><button class="chat-chip" onclick="chatSendEmail()">✉️ ${t("chat_send_email")}</button><button class="chat-chip" onclick="chatStart()">🔄 ${t("chat_restart")}</button>`}
+c.innerHTML=html}
+function chatPickService(sid){const s=servicesData.find(x=>x.id===sid);if(!s)return;chatData.service=s;addChat(s.name[currentLang],"user");chatStep="city";addChat(t("chat_q_city"),"bot");renderChatChips()}
+function chatPickCity(i){const x=citiesData[i];if(!x)return;chatData.city=x;addChat(x[currentLang],"user");chatStep="need";addChat(t("chat_q_need"),"bot");renderChatChips()}
+function chatPickUrgency(i){const u=chatUrgOpts[currentLang][i];if(!u)return;chatData.urgency=u;addChat(u,"user");chatStep="name";addChat(t("chat_q_name"),"bot");renderChatChips()}
+function chatSkipEmail(){chatData.email="";addChat(t("chat_skip"),"user");chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+function chatSummaryText(){const s=chatData.service?chatData.service.name[currentLang]:"—";const c=chatData.city?chatData.city[currentLang]:"—";
+let out=`${t("chat_summary_title")}
+• ${t("nav_services")}: ${s}
+• ${t("auth_city")}: ${c}
+• ${t("quote_desc")}: ${chatData.need}
+• ${t("chat_urgency")}: ${chatData.urgency}
+• ${t("auth_name")}: ${chatData.name}
+• ${t("auth_phone")}: ${chatData.phone}`;
+if(chatData.email)out+=`
+• ${t("chat_email_lbl")}: ${chatData.email}`;
+return out}
+function chatSendWA(){const msg=chatSummaryText();let pro=null;
+if(chatData.service){pro=prosData.find(p=>p.category===chatData.service.id&&(!chatData.city||p.city[currentLang]===chatData.city[currentLang]))||prosData.find(p=>p.category===chatData.service.id)}
+const wa=pro?(pro.whatsapp||pro.phone.replace(/\D/g,"")):"212690157092";
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg+" — Professionnels Maroc"),"_blank");addChat(t("chat_sent_ok"),"bot")}
+function chatSendEmail(){const msg=chatSummaryText();window.location.href=`mailto:contact@professionnelsmaroc.click?subject=${encodeURIComponent("Demande de devis — Professionnels Maroc")}&body=${encodeURIComponent(msg)}`;addChat(t("chat_sent_ok"),"bot")}
+function chatSend(){const i=document.getElementById("chatInput");if(!i)return;const v=i.value.trim();if(!v)return;i.value="";addChat(v,"user");
+if(chatStep==="service"){const s=servicesData.find(x=>x.name[currentLang].toLowerCase()===v.toLowerCase()||x.id===v);if(s){chatData.service=s;chatStep="city";addChat(t("chat_q_city"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="city"){const x=citiesData.find(c=>c[currentLang].toLowerCase()===v.toLowerCase());if(x){chatData.city=x;chatStep="need";addChat(t("chat_q_need"),"bot")}else{addChat(t("chat_not_understood"),"bot")}renderChatChips()}
+else if(chatStep==="need"){chatData.need=v;chatStep="urgency";addChat(t("chat_q_urgency"),"bot");renderChatChips()}
+else if(chatStep==="urgency"){const idx=chatUrgOpts[currentLang].findIndex(u=>u.toLowerCase()===v.toLowerCase());if(idx>=0){chatData.urgency=chatUrgOpts[currentLang][idx];chatStep="name";addChat(t("chat_q_name"),"bot")}else{chatData.urgency=v;chatStep="name";addChat(t("chat_q_name"),"bot")}renderChatChips()}
+else if(chatStep==="name"){chatData.name=v;chatStep="phone";addChat(t("chat_q_phone"),"bot");renderChatChips()}
+else if(chatStep==="phone"){const d=v.replace(/\D/g,"");if(d.length<6){addChat(t("auth_error_phone"),"bot");return}chatData.phone=v;chatStep="email";addChat(t("chat_q_email"),"bot");renderChatChips()}
+else if(chatStep==="email"){if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){chatData.email=v}else{chatData.email=""}chatStep="summary";addChat(chatSummaryText(),"bot");renderChatChips()}
+else{addChat(t("chat_not_understood"),"bot");renderChatChips()}}
+function openQuoteModal(proId){const p=prosData.find(x=>x.id===proId);if(!p){showToast(t("no_results_title"));return}
+currentQuoteProId=proId;
+const fields=quoteFields[p.category]||quoteFields.default;
+document.getElementById("quoteFields").innerHTML=fields.map(f=>{
+if(f.opts){return `<div class="form-group"><label>${f.label[currentLang]}</label><select id="qf_${f.id}">${f.opts[currentLang].map(o=>`<option>${o}</option>`).join("")}</select></div>`}
+return `<div class="form-group"><label>${f.label[currentLang]}</label><input type="text" id="qf_${f.id}"></div>`}).join("");
+document.getElementById("quoteModal").classList.add("active");document.body.style.overflow="hidden"}
+function closeQuoteModal(){document.getElementById("quoteModal").classList.remove("active");document.body.style.overflow=""}
+function submitQuote(e){e.preventDefault();const p=prosData.find(x=>x.id===currentQuoteProId);if(!p)return;
+const name=document.getElementById("qName").value.trim();const phone=document.getElementById("qPhone").value.trim();const desc=document.getElementById("qDesc").value.trim();
+if(!name||!phone){showToast(t("auth_error_required"));return}
+const fields=quoteFields[p.category]||quoteFields.default;
+let extra="";fields.forEach(f=>{const el=document.getElementById("qf_"+f.id);if(el)extra+=`
+- ${f.label[currentLang]}: ${el.value}`});
+const msg=`${t("quote_title")} — Professionnels Maroc
+${t("auth_name")}: ${name}
+${t("auth_phone")}: ${phone}${extra}
+${t("quote_desc")}: ${desc}`;
+const wa=p.whatsapp||p.phone.replace(/\D/g,"");
+if(!wa){showToast(t("auth_error_phone"));return}
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");
+closeQuoteModal()}
+document.getElementById("contactModal").addEventListener("click",e=>{if(e.target.id==="contactModal")closeModal()});
+document.getElementById("authModal").addEventListener("click",e=>{if(e.target.id==="authModal")closeAuth()});
+document.getElementById("profileModal").addEventListener("click",e=>{if(e.target.id==="profileModal")closeProfile()});
+document.getElementById("proFormModal").addEventListener("click",e=>{if(e.target.id==="proFormModal")closeProForm()});
+document.getElementById("legalModal").addEventListener("click",e=>{if(e.target.id==="legalModal")closeLegalModal()});
+document.getElementById("quoteModal").addEventListener("click",e=>{if(e.target.id==="quoteModal")closeQuoteModal()});
+let toastTimer;function showToast(m){const t2=document.getElementById("toast");t2.textContent=m;t2.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t2.classList.remove("show"),3200)}
+function observeReveal(){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(el=>io.observe(el))}
+let deferredPrompt=null;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
+async function installAppDirect(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else{showToast(t("install_not_available"))}}
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+let resizeTimer=null;
+window.addEventListener("resize",()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(document.getElementById("mainView").style.display!=="none")renderPros(lastProsFilter.id,lastProsFilter.city,lastProsFilter.favs);},300)});
+document.querySelectorAll(".role-option").forEach(o=>o.addEventListener("click",()=>{document.querySelectorAll(".role-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");o.querySelector("input").checked=true}));
+function hardRenderFallback(){
+try{
+if(typeof renderFeatures==="function")renderFeatures();
+if(typeof renderServices==="function")renderServices();
+if(typeof renderCitiesFooter==="function")renderCitiesFooter();
+if(typeof renderPros==="function")renderPros(null);
+if(typeof updateAuthUI==="function")updateAuthUI();
+if(typeof observeReveal==="function")setTimeout(observeReveal,300);
+}catch(err){console.warn("Fallback render:",err)}
+}
+async function initApp(){
+try{
+applyI18nText();
+renderLangSwitchers();
+renderServiceSelect();
+renderCitySelects();
+handleRoute();
+showCookieBanner();
+await initAuth();
+await loadServices();
+await loadProfessionals();
+await loadProServicesAll();
+await loadServiceMedia();
+setLanguage(currentLang);
+setHeroCard();
+handleRoute();
+}catch(err){console.error("initApp error:",err);hardRenderFallback()}
+}
+setTimeout(function(){try{var h1=document.querySelector(".hero h1");if(h1&&!h1.textContent.trim()){hardRenderFallback()}}catch(e){}},2500);
+window.addEventListener("load",function(){setTimeout(hardRenderFallback,800)});
+initApp();
+</script>
+</body>
+</html>
 document.title=t("doc_title");
 document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))});
 document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.getAttribute("data-i18n-placeholder"))});
