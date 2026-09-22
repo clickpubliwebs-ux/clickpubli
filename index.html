@@ -2312,7 +2312,7 @@ function generateProDescriptions(){
       services: servicesText
     };
 
-    genSet("pfSpec" + cap, genFill(genPick(GEN_TEMPLATES.specialite[lang]), data));
+    genSet("pfSpec"+cap,capFirst((categoryKey!=="default")?job:((category&&category.name&&category.name[lang])||job)));
     genSet("pfDesc" + cap, genFill(genPick(GEN_TEMPLATES.long[lang]), data));
     genSet("pfShort" + cap, genFill(genPick(GEN_TEMPLATES.short[lang]), data));
   });
