@@ -1377,7 +1377,8 @@ function closeServiceForm(){document.getElementById("serviceFormModal").classLis
 async function saveService(e){e.preventDefault();if(!isAdmin())return;const icon=document.getElementById("svcIcon").value.trim();const fr=document.getElementById("svcNameFr").value.trim();const es=document.getElementById("svcNameEs").value.trim()||fr;const ar=document.getElementById("svcNameAr").value.trim()||fr;if(!fr){showToast(t("admin_name_required"));return}
 let id=editingServiceId;if(!id){id=fr.toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"");if(servicesData.some(s=>s.id===id))id=id+"_"+Date.now().toString().slice(-4)}
 const ex=servicesData.find(s=>s.id===id);
-const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:(ex&&ex.sort!=null)?ex.sort:servicesData.length+1};
+const makeSlug=(s,fb)=>{let out=(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\u0600-\u06FF]+/g,"-").replace(/^-+|-+$/g,"");return out||fb};
+const payload={id,icon,name_fr:fr,name_es:es,name_ar:ar,slug_fr:makeSlug(fr,id),slug_es:makeSlug(es,id),slug_ar:makeSlug(ar,id),desc_fr:ex?(ex.desc&&ex.desc.fr)||fr:fr,desc_es:ex?(ex.desc&&ex.desc.es)||es:es,desc_ar:ex?(ex.desc&&ex.desc.ar)||ar:ar,sort:(ex&&ex.sort!=null)?ex.sort:servicesData.length+1};
 const{error}=await sb.from("services").upsert(payload);if(error){showToast(error.message);return}
 await loadServices();
 if(pendingSvcFile){await uploadServiceImage(id,pendingSvcFile);pendingSvcFile=null}
