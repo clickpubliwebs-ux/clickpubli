@@ -1234,6 +1234,7 @@ let svcHtml="";
 if(svcs.length>0){svcHtml=svcs.map(sv=>{const sd=servicesData.find(s=>s.id===sv.service_id);if(!sd)return"";const img=sv.image_url?`<img src="${sv.image_url}" alt="">`:"";return `<span class="pp-service-chip">${img}${sd.icon} ${sd.name[currentLang]}</span>`}).join("")}
 else if(primary){svcHtml=`<span class="pp-service-chip">${primary.icon} ${primary.name[currentLang]}</span>`}
 document.getElementById("ppServices").innerHTML=svcHtml;
+if(window.renderProfileSchedule)window.renderProfileSchedule(p);
 const galSec=document.getElementById("ppGallerySection"),gallery=document.getElementById("ppGallery");
 if(p.photos&&p.photos.length>0){galSec.style.display="block";gallery.innerHTML=p.photos.map(u=>`<div class="pp-gallery-item" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("")}
 else{galSec.style.display="none";gallery.innerHTML=""}
