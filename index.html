@@ -2145,7 +2145,26 @@ const GEN_TEMPLATES = {
     ]
   }
 };
-
+function capFirst(s){s=(s||"").trim();if(!s)return"";return s.charAt(0).toUpperCase()+s.slice(1)}
+function proSpecialtyShort(p){
+const raw=(p&&p.specialty&&p.specialty[currentLang])||"";
+if(raw&&raw.length<=60&&raw.indexOf(":")===-1&&raw.indexOf("–")===-1&&raw.indexOf("- ")===-1)return raw;
+const sd=(typeof servicesData!=="undefined")?servicesData.find(s=>s.id===(p?p.category:"")):null;
+const key=genDetectCategoryKey(sd||{id:p?p.category:"",name:{fr:"",es:"",ar:""}});
+const content=GEN_CATEGORY_CONTENT[key]||GEN_CATEGORY_CONTENT.default;
+let job=(content.job&&content.job[currentLang])||"";
+if(key==="default"){job=(sd&&sd.name&&sd.name[currentLang])||job}
+return capFirst(job);
+}
+function proSpecialtyCard(p){return proSpecialtyShort(p)}
+function proSpecialtyFull(p){
+const short=proSpecialtyShort(p);
+const city=(p&&p.city&&p.city[currentLang])||"";
+if(!city)return short;
+if(short.toLowerCase().indexOf(city.toLowerCase())!==-1)return short;
+const prep=currentLang==="fr"?" à ":(currentLang==="es"?" en ":" في ");
+return short+prep+city;
+}
 function genNormalize(str){
   return (str || "").toLowerCase()
     .normalize("NFD")
