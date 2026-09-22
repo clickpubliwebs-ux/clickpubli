@@ -1379,6 +1379,7 @@ const L=p.links||{};document.getElementById("pfFacebook").value=L.facebook||"";d
 document.getElementById("pfSpecFr").value=(p.specialty&&p.specialty.fr)||"";document.getElementById("pfSpecEs").value=(p.specialty&&p.specialty.es)||"";document.getElementById("pfSpecAr").value=(p.specialty&&p.specialty.ar)||"";
 document.getElementById("pfDescFr").value=(p.desc&&p.desc.fr)||"";document.getElementById("pfDescEs").value=(p.desc&&p.desc.es)||"";document.getElementById("pfDescAr").value=(p.desc&&p.desc.ar)||"";
 document.getElementById("pfShortFr").value=(p.desc&&p.desc.short_fr)||"";document.getElementById("pfShortEs").value=(p.desc&&p.desc.short_es)||"";document.getElementById("pfShortAr").value=(p.desc&&p.desc.short_ar)||"";
+document.getElementById("pfAddress").value=(p.links&&p.links.address)||"";
 if(window.loadScheduleData){window.loadScheduleData((p&&p.links&&p.links.schedule)?p.links.schedule:(p&&p.schedule?p.schedule:null));}
 }
 function openProForm(proId){if(!isAdmin())return;selectedProSvcIds=[];pendingProSvcImages={};prepareProForm();
