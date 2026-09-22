@@ -1504,6 +1504,7 @@ if(document.getElementById("favoritesView").style.display!=="none")renderFavorit
 if(document.getElementById("proProfileView").style.display!=="none"&&currentProProfileId)renderProProfileView(currentProProfileId);
 if(document.getElementById("adminView").style.display!=="none"&&isAdmin()){renderAdminProList();renderSvcMediaList();renderSvcCategories()}
 if(document.getElementById("faqView").style.display!=="none")renderFaqList();
+if(window.refreshScheduleEditorLanguage)refreshScheduleEditorLanguage();
 if(currentModalProId&&document.getElementById("contactModal").classList.contains("active")){fillProModal(currentModalProId);renderReviewsBlock(currentModalProId,"reviewsModal");updateModalFavButton(currentModalProId)}
 if(document.getElementById("cookieBanner").classList.contains("show")){document.querySelectorAll("#cookieBanner [data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"))})}}
 function toggleChat(){const p=document.getElementById("chatPanel");if(!p)return;p.classList.toggle("open");if(p.classList.contains("open")&&document.getElementById("chatBody").children.length===0){chatStart()}}
