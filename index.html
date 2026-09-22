@@ -1245,8 +1245,8 @@ document.getElementById("ppServices").innerHTML=svcHtml;
 if(window.renderProfileSchedule)window.renderProfileSchedule(p);
 if(window.renderProfileSchedule)window.renderProfileSchedule(p);
 const galSec=document.getElementById("ppGallerySection"),gallery=document.getElementById("ppGallery");
-if(p.photos&&p.photos.length>0){galSec.style.display="block";gallery.innerHTML=p.photos.map(u=>`<div class="pp-slide" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("");const multi=p.photos.length>1;galSec.querySelectorAll(".pp-slider-btn").forEach(b=>b.style.display=multi?"flex":"none");const dd=document.getElementById("ppGalleryDots");if(dd){dd.style.display=multi?"flex":"none";if(multi)renderPpDots(p.photos.length);else dd.innerHTML=""}ppSetSlide(0)}
-else{galSec.style.display="none";gallery.innerHTML="";const dd=document.getElementById("ppGalleryDots");if(dd)dd.innerHTML=""}
+if(p.photos&&p.photos.length>0){galSec.style.display="block";gallery.innerHTML=p.photos.map(u=>`<div class="pp-gallery-item" onclick="openLightbox('${u}')"><img src="${u}" alt=""></div>`).join("")}
+else{galSec.style.display="none";gallery.innerHTML=""}
 document.getElementById("ppRevSummary").innerHTML=`<span class="big">${p.rating.toFixed(1)}</span><span><span class="stars">${starsStr(p.rating)}</span><br><span class="count">${p.reviews} ${t("reviews")}</span></span>`;
 const favBtn=document.getElementById("ppFavBtn");const fav=isFavorite(p.id);
 favBtn.textContent=fav?"♥":"♡";favBtn.classList.toggle("active",fav);favBtn.setAttribute("onclick",`toggleFavorite('${p.id}', event)`);
