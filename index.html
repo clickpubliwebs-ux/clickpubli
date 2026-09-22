@@ -1226,9 +1226,12 @@ document.getElementById("ppSpecialty").textContent=proSpecialtyFull(p);
 document.getElementById("ppCity").textContent=p.city[currentLang];
 const countryLbl={fr:"Maroc",es:"Marruecos",ar:"المغرب"}[currentLang]||"Maroc";
 const mf=document.getElementById("ppMapFrame");
-if(mf)mf.src="https://www.google.com/maps?q="+encodeURIComponent((p.city[currentLang]||"")+", "+countryLbl)+"&z=12&output=embed";
+const addrForMap=(p.links&&p.links.address)||"";
+if(mf)mf.src="https://www.google.com/maps?q="+encodeURIComponent((addrForMap?addrForMap+", ":"")+(p.city[currentLang]||"")+", "+countryLbl)+"&z="+(addrForMap?"16":"12")+"&output=embed";
 const mc=document.getElementById("ppMapCity");
 if(mc)mc.textContent="📍 "+(p.city[currentLang]||"");
+const adEl=document.getElementById("ppAddress");
+if(adEl){if(addrForMap){adEl.style.display="";adEl.textContent="🏠 "+addrForMap}else{adEl.style.display="none";adEl.textContent=""}}
 document.getElementById("ppRating").textContent=`★ ${p.rating.toFixed(1)}`;
 document.getElementById("ppReviewsCount").textContent=`${p.reviews} ${t("reviews")}`;
 document.getElementById("ppSocial").innerHTML=socialLinksHtml(p);
