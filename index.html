@@ -819,6 +819,31 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="admin-form-grid"><textarea id="pfDescFr" placeholder="Français" style="min-height:60px"></textarea><textarea id="pfDescEs" placeholder="Español" style="min-height:60px"></textarea><textarea id="pfDescAr" placeholder="العربية" class="full" style="min-height:60px"></textarea></div></div>
 <div class="form-group full"><label data-i18n="field_short_desc">Description courte (carte)</label>
 <div class="admin-form-grid"><input type="text" id="pfShortFr" placeholder="Français"><input type="text" id="pfShortEs" placeholder="Español"><input type="text" id="pfShortAr" placeholder="العربية" class="full"></div></div>
+
+<div class="form-group full">
+<label data-i18n="ai_auto_title">Générateur automatique</label>
+<button type="button" class="ai-gen-btn" onclick="generateProDescriptions()">
+✨ <span data-i18n="ai_generate_desc">Générer la description automatiquement</span>
+</button>
+</div>
+
+<div class="form-group full">
+<label>🕒 <span data-i18n="schedule_title">Horaires de travail</span></label>
+<div class="schedule-box">
+<label class="schedule-enable">
+<input type="checkbox" id="pfScheduleEnabled" onchange="toggleScheduleUI()">
+<span data-i18n="schedule_enable">Activer les horaires</span>
+</label>
+
+<label class="schedule-24" id="pfSchedule24Wrap" style="display:none">
+<input type="checkbox" id="pfSchedule24" onchange="toggleSchedule24()">
+<span data-i18n="schedule_open24">Ouvert 24h/24</span>
+</label>
+
+<div id="pfScheduleRows" style="display:none"></div>
+</div>
+</div>
+
 <div class="form-group full"><label data-i18n="field_my_services">Services que je propose</label><div class="pro-svc-grid" id="proSvcGrid"></div><div class="pro-svc-imgs" id="proSvcImgs"></div></div>
 <div class="form-group full" id="proPhotosSection" style="display:none"><label data-i18n="field_photos">Photos de vos travaux</label><div id="proPhotosList" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem"></div><input type="file" id="proPhotoInput" accept="image/*" multiple style="font-size:.85rem"></div>
 </div>
