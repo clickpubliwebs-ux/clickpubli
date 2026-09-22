@@ -669,7 +669,14 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
 <div class="pp-section"><h3 data-i18n="about_pro">À propos</h3><p id="ppDesc" class="pp-desc"></p></div>
 <div class="pp-section"><h3 data-i18n="nav_services">Services</h3><div class="pp-services" id="ppServices"></div></div>
 <div class="pp-section" id="ppScheduleSection" style="display:none"><h3 data-i18n="schedule_public_title">Horaires d'ouverture</h3><div id="ppSchedule"></div></div>
-<div class="pp-section" id="ppGallerySection" style="display:none"><h3 data-i18n="realisations">Réalisations</h3><div class="pp-gallery" id="ppGallery"></div></div>
+<div class="pp-section" id="ppGallerySection" style="display:none"><h3 data-i18n="realisations">Réalisations</h3>
+<div class="pp-slider">
+<button type="button" class="pp-slider-btn prev" onclick="ppSlide(-1)">‹</button>
+<div class="pp-slider-track" id="ppGallery"></div>
+<button type="button" class="pp-slider-btn next" onclick="ppSlide(1)">›</button>
+</div>
+<div class="pp-slider-dots" id="ppGalleryDots"></div>
+</div>
 </div>
 <div class="pp-side">
 <div class="pp-card-side"><h3 data-i18n="map_title">Localisation</h3><div class="pp-map"><iframe id="ppMapFrame" loading="lazy" title="Map"></iframe></div><p class="pp-map-city" id="ppMapCity"></p></div>
