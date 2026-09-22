@@ -536,6 +536,19 @@ footer{background:var(--dark);color:#cbd5e1;padding:3.5rem 0 1.5rem}
     margin-top:4px;
   }
 }
+.pp-slider{position:relative;display:flex;align-items:center}
+.pp-slider-track{display:flex;overflow:hidden;border-radius:12px;transition:transform .45s ease;width:100%}
+.pp-slide{flex:0 0 100%;min-width:100%;aspect-ratio:4/3;cursor:pointer;overflow:hidden}
+.pp-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.pp-slider-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.92);box-shadow:var(--shadow);font-size:1.4rem;line-height:1;cursor:pointer;color:var(--dark);display:flex;align-items:center;justify-content:center}
+.pp-slider-btn.prev{left:10px}
+.pp-slider-btn.next{right:10px}
+.rtl .pp-slider-btn.prev{left:auto;right:10px}
+.rtl .pp-slider-btn.next{right:auto;left:10px}
+.pp-slider-dots{display:flex;gap:6px;justify-content:center;margin-top:.7rem}
+.pp-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .2s}
+.pp-dot.active{background:var(--primary)}
+</style>  
 </style>
 </head>
 <body>
