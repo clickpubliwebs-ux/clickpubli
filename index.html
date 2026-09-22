@@ -1614,6 +1614,979 @@ handleRoute();
 }
 setTimeout(function(){try{var h1=document.querySelector(".hero h1");if(h1&&!h1.textContent.trim()){hardRenderFallback()}}catch(e){}},2500);
 window.addEventListener("load",function(){setTimeout(hardRenderFallback,800)});
+/* =========================================================
+   GENERADOR AUTOMÁTICO DE DESCRIPCIONES + HORARIOS
+   Sin token, sin IA externa, basado en plantillas
+========================================================= */
+
+Object.assign(translations.fr, {
+  ai_auto_title:"Générateur automatique",
+  ai_generate_desc:"Générer la description automatiquement",
+  ai_generated:"Descriptions générées automatiquement",
+  schedule_title:"Horaires de travail",
+  schedule_enable:"Activer les horaires",
+  schedule_open24:"Ouvert 24h/24",
+  schedule_closed:"Fermé",
+  schedule_public_title:"Horaires d'ouverture"
+});
+
+Object.assign(translations.es, {
+  ai_auto_title:"Generador automático",
+  ai_generate_desc:"Generar la descripción automáticamente",
+  ai_generated:"Descripciones generadas automáticamente",
+  schedule_title:"Horarios de trabajo",
+  schedule_enable:"Activar horarios",
+  schedule_open24:"Abierto 24h/24",
+  schedule_closed:"Cerrado",
+  schedule_public_title:"Horario de apertura"
+});
+
+Object.assign(translations.ar, {
+  ai_auto_title:"مولد تلقائي",
+  ai_generate_desc:"إنشاء الوصف تلقائياً",
+  ai_generated:"تم إنشاء الأوصاف تلقائياً",
+  schedule_title:"أوقات العمل",
+  schedule_enable:"تفعيل أوقات العمل",
+  schedule_open24:"مفتوح 24 ساعة",
+  schedule_closed:"مغلق",
+  schedule_public_title:"أوقات العمل"
+});
+
+const SCHEDULE_DAY_KEYS = ["mon","tue","wed","thu","fri","sat","sun"];
+
+const SCHEDULE_DAY_LABELS = {
+  fr:{
+    mon:"Lundi",
+    tue:"Mardi",
+    wed:"Mercredi",
+    thu:"Jeudi",
+    fri:"Vendredi",
+    sat:"Samedi",
+    sun:"Dimanche"
+  },
+  es:{
+    mon:"Lunes",
+    tue:"Martes",
+    wed:"Miércoles",
+    thu:"Jueves",
+    fri:"Viernes",
+    sat:"Sábado",
+    sun:"Domingo"
+  },
+  ar:{
+    mon:"الاثنين",
+    tue:"الثلاثاء",
+    wed:"الأربعاء",
+    thu:"الخميس",
+    fri:"الجمعة",
+    sat:"السبت",
+    sun:"الأحد"
+  }
+};
+
+const GEN_CATEGORY_CONTENT = {
+  default:{
+    job:{
+      fr:"professionnel",
+      es:"profesional",
+      ar:"محترف"
+    },
+    services:{
+      fr:[
+        "dépannage rapide",
+        "installation",
+        "entretien",
+        "réparation",
+        "conseils personnalisés"
+      ],
+      es:[
+        "reparaciones rápidas",
+        "instalación",
+        "mantenimiento",
+        "soluciones a medida",
+        "consejos personalizados"
+      ],
+      ar:[
+        "تدخلات سريعة",
+        "تركيب",
+        "صيانة",
+        "إصلاح",
+        "نصائح شخصية"
+      ]
+    }
+  },
+
+  plomberie:{
+    job:{
+      fr:"plombier",
+      es:"fontanero",
+      ar:"سباك"
+    },
+    services:{
+      fr:[
+        "réparation de fuites d'eau",
+        "débouchage",
+        "installation sanitaire",
+        "chauffe-eau",
+        "robinetterie"
+      ],
+      es:[
+        "reparación de fugas de agua",
+        "desatascos",
+        "instalación sanitaria",
+        "calentadores de agua",
+        "grifería"
+      ],
+      ar:[
+        "إصلاح تسربات المياه",
+        "تسريح القنوات",
+        "تركيب الأدوات الصحية",
+        "سخانات الماء",
+        "الحنفيات"
+      ]
+    }
+  },
+
+  electricite:{
+    job:{
+      fr:"électricien",
+      es:"electricista",
+      ar:"كهربائي"
+    },
+    services:{
+      fr:[
+        "dépannage électrique",
+        "installation de tableaux",
+        "éclairage",
+        "prises et interrupteurs",
+        "mise aux normes"
+      ],
+      es:[
+        "reparaciones eléctricas",
+        "instalación de cuadros eléctricos",
+        "iluminación",
+        "enchufes e interruptores",
+        "normalización de instalaciones"
+      ],
+      ar:[
+        "إصلاح الأعطال الكهربائية",
+        "تركيب اللوحات الكهربائية",
+        "الإضاءة",
+        "المقابس والمفاتيح",
+        "تحديث التوصيلات"
+      ]
+    }
+  },
+
+  peinture:{
+    job:{
+      fr:"peintre",
+      es:"pintor",
+      ar:"صباغ"
+    },
+    services:{
+      fr:[
+        "peinture intérieure",
+        "peinture extérieure",
+        "enduits et finitions",
+        "traitement de l'humidité",
+        "décoration"
+      ],
+      es:[
+        "pintura interior",
+        "pintura exterior",
+        "enlucido y acabados",
+        "tratamiento de humedad",
+        "decoración"
+      ],
+      ar:[
+        "الصباغة الداخلية",
+        "الصباغة الخارجية",
+        "التشطيبات",
+        "معالجة الرطوبة",
+        "الديكور"
+      ]
+    }
+  },
+
+  menage:{
+    job:{
+      fr:"professionnel du ménage",
+      es:"profesional de limpieza",
+      ar:"متخصص في التنظيف"
+    },
+    services:{
+      fr:[
+        "ménage à domicile",
+        "nettoyage de bureaux",
+        "nettoyage après travaux",
+        "lavage de vitres",
+        "repassage"
+      ],
+      es:[
+        "limpieza a domicilio",
+        "limpieza de oficinas",
+        "limpieza después de obras",
+        "lavado de ventanas",
+        "planchado"
+      ],
+      ar:[
+        "التنظيف المنزلي",
+        "تنظيف المكاتب",
+        "التنظيف بعد الأشغال",
+        "غسل النوافذ",
+        "الكي"
+      ]
+    }
+  },
+
+  climatisation:{
+    job:{
+      fr:"technicien en climatisation",
+      es:"técnico de climatización",
+      ar:"تقني تكييف"
+    },
+    services:{
+      fr:[
+        "installation de climatiseurs",
+        "entretien annuel",
+        "recharge de gaz",
+        "réparation de fuites",
+        "nettoyage des filtres"
+      ],
+      es:[
+        "instalación de aires acondicionados",
+        "mantenimiento anual",
+        "recarga de gas",
+        "reparación de fugas",
+        "limpieza de filtros"
+      ],
+      ar:[
+        "تركيب المكيفات",
+        "الصيانة السنوية",
+        "شحن الغاز",
+        "إصلاح التسربات",
+        "تنظيف الفلاتر"
+      ]
+    }
+  },
+
+  menuiserie:{
+    job:{
+      fr:"menuisier",
+      es:"carpintero",
+      ar:"نجار"
+    },
+    services:{
+      fr:[
+        "portes intérieures",
+        "placards sur mesure",
+        "meubles en bois",
+        "réparation de meubles",
+        "habillage mural"
+      ],
+      es:[
+        "puertas interiores",
+        "armarios a medida",
+        "muebles de madera",
+        "reparación de muebles",
+        "revestimientos murales"
+      ],
+      ar:[
+        "الأبواب الداخلية",
+        "خزائن حسب الطلب",
+        "أثاث خشبي",
+        "إصلاح الأثاث",
+        "تكسية الجدران"
+      ]
+    }
+  },
+
+  serrurerie:{
+    job:{
+      fr:"serrurier",
+      es:"cerrajero",
+      ar:"صانع أقفال"
+    },
+    services:{
+      fr:[
+        "ouverture de portes",
+        "changement de serrures",
+        "installation de portes blindées",
+        "duplicata de clés",
+        "dépannage urgent"
+      ],
+      es:[
+        "apertura de puertas",
+        "cambio de cerraduras",
+        "instalación de puertas blindadas",
+        "copias de llaves",
+        "urgencias"
+      ],
+      ar:[
+        "فتح الأبواب",
+        "تغيير الأقفال",
+        "تركيب الأبواب المصفحة",
+        "نسخ المفاتيح",
+        "التدخلات المستعجلة"
+      ]
+    }
+  },
+
+  maconnerie:{
+    job:{
+      fr:"maçon",
+      es:"albañil",
+      ar:"بنّاء"
+    },
+    services:{
+      fr:[
+        "travaux de maçonnerie",
+        "murs et cloisons",
+        "réparation de fissures",
+        "dalle béton",
+        "petites constructions"
+      ],
+      es:[
+        "trabajos de albañilería",
+        "muros y tabiques",
+        "reparación de grietas",
+        "losa de hormigón",
+        "pequeñas construcciones"
+      ],
+      ar:[
+        "أشغال البناء",
+        "الجدران والفواصل",
+        "إصلاح الشقوق",
+        "الخرسانة",
+        "البناءات الصغيرة"
+      ]
+    }
+  },
+
+  electromenager:{
+    job:{
+      fr:"technicien électroménager",
+      es:"técnico de electrodomésticos",
+      ar:"تقني أجهزة منزلية"
+    },
+    services:{
+      fr:[
+        "réparation de réfrigérateurs",
+        "réparation de lave-linge",
+        "dépannage de fours",
+        "installation d'appareils",
+        "entretien"
+      ],
+      es:[
+        "reparación de frigoríficos",
+        "reparación de lavadoras",
+        "reparación de hornos",
+        "instalación de electrodomésticos",
+        "mantenimiento"
+      ],
+      ar:[
+        "إصلاح الثلاجات",
+        "إصلاح الغسالات",
+        "إصلاح الأفران",
+        "تركيب الأجهزة",
+        "الصيانة"
+      ]
+    }
+  },
+
+  jardinage:{
+    job:{
+      fr:"jardinier",
+      es:"jardinero",
+      ar:"بستاني"
+    },
+    services:{
+      fr:[
+        "entretien de jardins",
+        "tonte de pelouse",
+        "taille d'arbres",
+        "plantation",
+        "arrosage automatique"
+      ],
+      es:[
+        "mantenimiento de jardines",
+        "corte de césped",
+        "poda de árboles",
+        "plantación",
+        "riego automático"
+      ],
+      ar:[
+        "العناية بالحدائق",
+        "قص العشب",
+        "تقليم الأشجار",
+        "الغرس",
+        "الري التلقائي"
+      ]
+    }
+  },
+
+  piscine:{
+    job:{
+      fr:"spécialiste piscines",
+      es:"especialista en piscinas",
+      ar:"متخصص في المسابح"
+    },
+    services:{
+      fr:[
+        "entretien de piscines",
+        "traitement de l'eau",
+        "réparation de pompes",
+        "nettoyage de bassins",
+        "contrôle de filtration"
+      ],
+      es:[
+        "mantenimiento de piscinas",
+        "tratamiento del agua",
+        "reparación de bombas",
+        "limpieza de vasos",
+        "control de filtración"
+      ],
+      ar:[
+        "صيانة المسابح",
+        "معالجة المياه",
+        "إصلاح المضخات",
+        "تنظيف الأحواض",
+        "مراقبة نظام الترشيح"
+      ]
+    }
+  },
+
+  carrelage:{
+    job:{
+      fr:"carreleur",
+      es:"solador / alicatador",
+      ar:"زلايجي"
+    },
+    services:{
+      fr:[
+        "pose de carrelage",
+        "faïence murale",
+        "plinthes",
+        "rénovation de sols",
+        "joints et finitions"
+      ],
+      es:[
+        "colocación de baldosas",
+        "azulejos de pared",
+        "rodapiés",
+        "renovación de suelos",
+        "juntas y acabados"
+      ],
+      ar:[
+        "تركيب الزليج",
+        "القيشاني الجداري",
+        "الحواف",
+        "تجديد الأرضيات",
+        "التشطيبات"
+      ]
+    }
+  }
+};
+
+const GEN_TEMPLATES = {
+  specialite:{
+    fr:[
+      "{name} – {job} à {city} : {services}",
+      "{job} à {city} – {services}",
+      "{cat} à {city} : {services}"
+    ],
+    es:[
+      "{name} – {job} en {city}: {services}",
+      "{job} en {city} – {services}",
+      "{cat} en {city}: {services}"
+    ],
+    ar:[
+      "{name} – {job} في {city}: {services}",
+      "{job} في {city} – {services}",
+      "{cat} في {city}: {services}"
+    ]
+  },
+
+  long:{
+    fr:[
+      "{name} propose des services de {cat} à {city} : {services}. Travail soigné, rapide et adapté à votre budget. Devis gratuit, contact direct et sans commission au Maroc.",
+      "{name} est votre {job} à {city}. Spécialiste de {services}, il intervient rapidement pour un travail propre, sérieux et garanti. Devis gratuit et contact direct sans commission.",
+      "Besoin d'un service de {cat} à {city} ? {name} prend en charge {services}. Intervention rapide, tarifs transparents et travail de qualité partout à {city} et alentours."
+    ],
+    es:[
+      "{name} ofrece servicios de {cat} en {city}: {services}. Trabajo cuidadoso, rápido y adaptado a tu presupuesto. Presupuesto gratuito, contacto directo y sin comisiones en Marruecos.",
+      "{name} es tu {job} en {city}. Especialista en {services}, ofrece un trabajo rápido, limpio y garantizado. Presupuesto gratuito y contacto directo sin comisiones.",
+      "¿Necesitas un servicio de {cat} en {city}? {name} se encarga de {services}. Intervención rápida, precios transparentes y trabajo de calidad en {city} y alrededores."
+    ],
+    ar:[
+      "{name} يقدم خدمات {cat} في {city}: {services}. عمل متقن وسريع ومناسب لميزانيتك، مع عرض سعر مجاني وتواصل مباشر وبدون عمولة في المغرب.",
+      "{name} هو {job} في {city}. متخصص في {services}، مع تدخل سريع وعمل نظيف ومضمون. عرض سعر مجاني وتواصل مباشر بدون عمولة.",
+      "هل تحتاج إلى خدمة {cat} في {city}؟ يتكفل {name} بـ {services}. تدخل سريع وأسعار واضحة وعمل عالي الجودة في {city} وما حولها."
+    ]
+  },
+
+  short:{
+    fr:[
+      "{job} à {city} : {services}. Devis gratuit.",
+      "{name} – {cat} à {city}. Devis gratuit et contact direct.",
+      "{cat} à {city} : {services}. Sans commission ni intermédiaire."
+    ],
+    es:[
+      "{job} en {city}: {services}. Presupuesto gratuito.",
+      "{name} – {cat} en {city}. Presupuesto gratuito y contacto directo.",
+      "{cat} en {city}: {services}. Sin comisiones ni intermediarios."
+    ],
+    ar:[
+      "{job} في {city}: {services}. عرض سعر مجاني.",
+      "{name} – {cat} في {city}. عرض سعر مجاني وتواصل مباشر.",
+      "{cat} في {city}: {services}. بدون عمولة أو وسيط."
+    ]
+  }
+};
+
+function genNormalize(str){
+  return (str || "").toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function genPick(arr){
+  if(!arr || !arr.length) return "";
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function genShuffle(arr){
+  const copy = arr.slice();
+  for(let i = copy.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = copy[i];
+    copy[i] = copy[j];
+    copy[j] = tmp;
+  }
+  return copy;
+}
+
+function genJoin(lang, arr){
+  if(!arr || !arr.length) return "";
+  if(arr.length === 1) return arr[0];
+
+  const last = arr[arr.length - 1];
+  const rest = arr.slice(0, -1);
+
+  if(lang === "fr"){
+    return rest.join(", ") + " et " + last;
+  }
+
+  if(lang === "es"){
+    return rest.join(", ") + " y " + last;
+  }
+
+  if(lang === "ar"){
+    return rest.join("، ") + " و" + last;
+  }
+
+  return arr.join(", ");
+}
+
+function genFill(template, data){
+  return template.replace(/\{(\w+)\}/g, function(match, key){
+    return data[key] || "";
+  });
+}
+
+function genSet(id, value){
+  const el = document.getElementById(id);
+  if(!el) return;
+
+  el.value = value;
+
+  if(id.slice(-2) === "Ar"){
+    el.dir = "rtl";
+  }
+
+  el.dispatchEvent(new Event("input", {bubbles:true}));
+  el.dispatchEvent(new Event("change", {bubbles:true}));
+}
+
+function genGetCategory(){
+  const id = document.getElementById("pfCategory").value;
+  const found = servicesData.find(s => s.id === id);
+
+  if(found){
+    return found;
+  }
+
+  return {
+    id:id,
+    name:{
+      fr:id,
+      es:id,
+      ar:id
+    }
+  };
+}
+
+function genGetCity(){
+  const idx = parseInt(document.getElementById("pfCity").value || "0", 10);
+  return citiesData[idx] || citiesData[0];
+}
+
+function genDetectCategoryKey(cat){
+  if(cat && cat.id && GEN_CATEGORY_CONTENT[cat.id]){
+    return cat.id;
+  }
+
+  const txt = genNormalize([
+    (cat && cat.name ? cat.name.fr : ""),
+    (cat && cat.name ? cat.name.es : ""),
+    (cat && cat.name ? cat.name.ar : "")
+  ].join(" "));
+
+  if(/plomb|fontan|سباك/.test(txt)) return "plomberie";
+  if(/elect|كهرب/.test(txt)) return "electricite";
+  if(/clim|air|تكييف/.test(txt)) return "climatisation";
+  if(/peint|pintur|صباغ|دهان/.test(txt)) return "peinture";
+  if(/menage|nettoy|limpieza|تنظيف/.test(txt)) return "menage";
+  if(/menuis|carpinter|نجار|خشب/.test(txt)) return "menuiserie";
+  if(/serrur|cerraj|قفل|مفاتيح/.test(txt)) return "serrurerie";
+  if(/macon|albañil|بناء/.test(txt)) return "maconnerie";
+  if(/electromenager|lavadora|ثلاجة|غسالة|أجهزة/.test(txt)) return "electromenager";
+  if(/jardin|حدائ|بستاني/.test(txt)) return "jardinage";
+  if(/piscin|مسبح/.test(txt)) return "piscine";
+  if(/carrel|baldos|زليج|بلاط/.test(txt)) return "carrelage";
+
+  return "default";
+}
+
+function generateProDescriptions(){
+  const name = document.getElementById("pfName").value.trim();
+  const category = genGetCategory();
+  const city = genGetCity();
+
+  const categoryKey = genDetectCategoryKey(category);
+  const content = GEN_CATEGORY_CONTENT[categoryKey] || GEN_CATEGORY_CONTENT.default;
+
+  const fallbackName = {
+    fr:"Ce professionnel",
+    es:"Este profesional",
+    ar:"هذا المحترف"
+  };
+
+  const langs = ["fr","es","ar"];
+
+  langs.forEach(function(lang){
+    const cap = lang.charAt(0).toUpperCase() + lang.slice(1);
+
+    const job = (content.job && content.job[lang]) ? content.job[lang] : GEN_CATEGORY_CONTENT.default.job[lang];
+    const servicesPool = (content.services && content.services[lang]) ? content.services[lang] : GEN_CATEGORY_CONTENT.default.services[lang];
+
+    const selectedServices = genShuffle(servicesPool).slice(0, 3 + Math.floor(Math.random() * 2));
+    const servicesText = genJoin(lang, selectedServices);
+
+    const data = {
+      name: name || fallbackName[lang],
+      city: city[lang] || "",
+      cat: (category && category.name ? category.name[lang] : ""),
+      job: job,
+      services: servicesText
+    };
+
+    genSet("pfSpec" + cap, genFill(genPick(GEN_TEMPLATES.specialite[lang]), data));
+    genSet("pfDesc" + cap, genFill(genPick(GEN_TEMPLATES.long[lang]), data));
+    genSet("pfShort" + cap, genFill(genPick(GEN_TEMPLATES.short[lang]), data));
+  });
+
+  showToast(t("ai_generated"));
+}
+
+window.generateProDescriptions = generateProDescriptions;
+
+/* ===============================
+   HORARIOS
+================================ */
+
+function scheduleEnabledEl(){
+  return document.getElementById("pfScheduleEnabled");
+}
+
+function schedule24El(){
+  return document.getElementById("pfSchedule24");
+}
+
+function scheduleRowsEl(){
+  return document.getElementById("pfScheduleRows");
+}
+
+function schedule24WrapEl(){
+  return document.getElementById("pfSchedule24Wrap");
+}
+
+function readScheduleInputs(){
+  const wrap = scheduleRowsEl();
+  const open24 = schedule24El();
+
+  if(!wrap){
+    return {open24:false, days:{}};
+  }
+
+  if(open24 && open24.checked){
+    return {open24:true, days:{}};
+  }
+
+  const days = {};
+
+  wrap.querySelectorAll(".schedule-day").forEach(function(row){
+    const day = row.dataset.day;
+    const closed = row.querySelector(".sched-closed");
+    const open = row.querySelector(".sched-open");
+    const close = row.querySelector(".sched-close");
+
+    days[day] = {
+      closed: closed ? closed.checked : false,
+      open: open ? open.value : "",
+      close: close ? close.value : ""
+    };
+  });
+
+  return {
+    open24:false,
+    days:days
+  };
+}
+
+function renderScheduleEditor(data){
+  const wrap = scheduleRowsEl();
+  if(!wrap) return;
+
+  const lang = window.currentLang || "fr";
+  const source = data || readScheduleInputs();
+  const open24 = schedule24El();
+
+  if(open24){
+    open24.checked = !!source.open24;
+  }
+
+  wrap.innerHTML = "";
+
+  SCHEDULE_DAY_KEYS.forEach(function(day){
+    const d = (source.days && source.days[day]) ? source.days[day] : null;
+
+    const closedDefault = (day === "sun");
+    const closedValue = d ? !!d.closed : closedDefault;
+    const openValue = (d && d.open) ? d.open : "09:00";
+    const closeValue = (d && d.close) ? d.close : "18:00";
+
+    const row = document.createElement("div");
+    row.className = "schedule-day";
+    row.dataset.day = day;
+
+    row.innerHTML = `
+      <label>${SCHEDULE_DAY_LABELS[lang][day]}</label>
+
+      <label class="schedule-closed">
+        <input type="checkbox" class="sched-closed" ${closedValue ? "checked" : ""}>
+        ${t("schedule_closed")}
+      </label>
+
+      <input type="time" class="sched-open" value="${openValue}">
+      <input type="time" class="sched-close" value="${closeValue}">
+    `;
+
+    wrap.appendChild(row);
+
+    const closedInput = row.querySelector(".sched-closed");
+    const openInput = row.querySelector(".sched-open");
+    const closeInput = row.querySelector(".sched-close");
+
+    closedInput.addEventListener("change", function(){
+      openInput.disabled = closedInput.checked;
+      closeInput.disabled = closedInput.checked;
+    });
+
+    openInput.disabled = closedInput.checked;
+    closeInput.disabled = closedInput.checked;
+  });
+
+  toggleSchedule24();
+}
+
+function toggleSchedule24(){
+  const open24 = schedule24El();
+  const wrap = scheduleRowsEl();
+
+  if(!open24 || !wrap) return;
+
+  if(open24.checked){
+    wrap.querySelectorAll("input").forEach(function(input){
+      input.disabled = true;
+    });
+  }else{
+    wrap.querySelectorAll(".schedule-day").forEach(function(row){
+      const closed = row.querySelector(".sched-closed");
+      const open = row.querySelector(".sched-open");
+      const close = row.querySelector(".sched-close");
+
+      if(open) open.disabled = closed ? closed.checked : false;
+      if(close) close.disabled = closed ? closed.checked : false;
+    });
+  }
+}
+
+window.toggleSchedule24 = toggleSchedule24;
+
+function toggleScheduleUI(){
+  const enabled = scheduleEnabledEl();
+  const rows = scheduleRowsEl();
+  const wrap24 = schedule24WrapEl();
+
+  if(!enabled || !rows) return;
+
+  if(enabled.checked){
+    rows.style.display = "block";
+    if(wrap24) wrap24.style.display = "flex";
+    renderScheduleEditor(readScheduleInputs());
+  }else{
+    rows.style.display = "none";
+    if(wrap24) wrap24.style.display = "none";
+  }
+}
+
+window.toggleScheduleUI = toggleScheduleUI;
+
+function getScheduleData(){
+  const enabled = scheduleEnabledEl();
+
+  if(!enabled || !enabled.checked){
+    return null;
+  }
+
+  const open24 = schedule24El();
+
+  if(open24 && open24.checked){
+    return {open24:true};
+  }
+
+  const wrap = scheduleRowsEl();
+  const days = {};
+
+  if(wrap){
+    wrap.querySelectorAll(".schedule-day").forEach(function(row){
+      const day = row.dataset.day;
+      const closed = row.querySelector(".sched-closed");
+      const open = row.querySelector(".sched-open");
+      const close = row.querySelector(".sched-close");
+
+      days[day] = {
+        closed: closed ? closed.checked : false,
+        open: open ? open.value : "",
+        close: close ? close.value : ""
+      };
+    });
+  }
+
+  return {
+    open24:false,
+    days:days
+  };
+}
+
+window.getScheduleData = getScheduleData;
+
+function loadScheduleData(schedule){
+  const enabled = scheduleEnabledEl();
+  if(!enabled) return;
+
+  if(!schedule){
+    enabled.checked = false;
+    toggleScheduleUI();
+    return;
+  }
+
+  enabled.checked = true;
+  toggleScheduleUI();
+
+  const open24 = schedule24El();
+
+  if(schedule.open24){
+    if(open24) open24.checked = true;
+    renderScheduleEditor({open24:true, days:{}});
+  }else{
+    if(open24) open24.checked = false;
+    renderScheduleEditor({open24:false, days:schedule.days || {}});
+  }
+
+  toggleSchedule24();
+}
+
+window.loadScheduleData = loadScheduleData;
+
+function renderPublicSchedule(schedule){
+  const section = document.getElementById("ppScheduleSection");
+  const box = document.getElementById("ppSchedule");
+
+  if(!section || !box) return;
+
+  if(!schedule){
+    section.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+
+  section.style.display = "block";
+
+  if(schedule.open24){
+    box.innerHTML = '<div class="schedule-public-open">🕒 24/7</div>';
+    return;
+  }
+
+  const lang = window.currentLang || "fr";
+  let html = "";
+
+  SCHEDULE_DAY_KEYS.forEach(function(day){
+    const d = (schedule.days && schedule.days[day]) ? schedule.days[day] : null;
+
+    let value = "—";
+
+    if(d && d.closed){
+      value = t("schedule_closed");
+    }else if(d && d.open && d.close){
+      value = d.open + " - " + d.close;
+    }
+
+    html += `
+      <div class="schedule-public-day">
+        <span>${SCHEDULE_DAY_LABELS[lang][day]}</span>
+        <strong>${value}</strong>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+window.renderPublicSchedule = renderPublicSchedule;
+
+function renderProfileSchedule(pro){
+  const schedule = (pro && pro.schedule) ? pro.schedule : ((pro && pro.links && pro.links.schedule) ? pro.links.schedule : null);
+  renderPublicSchedule(schedule);
+}
+
+window.renderProfileSchedule = renderProfileSchedule;
+
+function refreshScheduleEditorLanguage(){
+  const enabled = scheduleEnabledEl();
+  if(enabled && enabled.checked){
+    renderScheduleEditor(readScheduleInputs());
+  }
+}
+
+window.refreshScheduleEditorLanguage = refreshScheduleEditorLanguage;
+
+if(document.getElementById("pfScheduleEnabled")){
+  toggleScheduleUI();
+}
+
 initApp();
 </script>
 </body>
